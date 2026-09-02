@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.bun/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Secrets & local config (never commit)
+.env
+.env.*
+!.env.example
+teamvelocity.config.json
+
+# Generated data — everything under public/data EXCEPT the committed sample fixtures
+/public/data/*
+!/public/data/sample/
+
+# Test / coverage output
+coverage/
+playwright-report/
+test-results/
+/e2e/.cache/
+
+# Editor / OS
+.DS_Store
+*.log
+
+# Claude local (personal machine settings)
+.claude/settings.local.json

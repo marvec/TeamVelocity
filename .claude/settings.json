@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__plugin_context7_context7__query-docs",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__cclsp__restart_server",
+      "mcp__cclsp__find_definition",
+      "mcp__cclsp__find_references",
+      "mcp__cclsp__find_workspace_symbols",
+      "mcp__cclsp__get_hover",
+      "Bash(bun *)",
+      "Bash(bun run:*)",
+      "Bash(bun test:*)",
+      "Bash(bunx *)",
+      "Bash(mkdir *)",
+      "Bash(git *)",
+      "Bash(gh pr:*)",
+      "WebFetch"
+    ]
+  }
+}
