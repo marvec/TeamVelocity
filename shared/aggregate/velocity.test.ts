@@ -1,0 +1,171 @@
+import { describe, it, expect } from "vitest";
+import {
+  rawWeeklySignal,
+  computeVelocitySeries,
+  velocityBand,
+  rangeVelocity,
+  median,
+  mad,
+  DEFAULT_VELOCITY_WEIGHTS,
+  type VelocityInput,
+} from "./velocity";
+
+const ZERO: VelocityInput = {
+  mergedPRs: 0,
+  prsOpened: 0,
+  reviewActivity: 0,
+  commits: 0,
+  locChanged: 0,
+};
+
+describe("rawWeeklySignal", () => {
+  it("is 0 for a week with no activity", () => {
+    expect(rawWeeklySignal(ZERO)).toBe(0);
+  });
+
+  it("applies log1p dampening (a huge burst can't dominate linearly)", () => {
+    const one = rawWeeklySignal({ ...ZERO, mergedPRs: 1 }, DEFAULT_VELOCITY_WEIGHTS);
+    const hundred = rawWeeklySignal({ ...ZERO, mergedPRs: 100 }, DEFAULT_VELOCITY_WEIGHTS);
+    expect(hundred).toBeGreaterThan(one);
+    // 100x the PRs is far less than 100x the signal — log dampening.
+    expect(hundred).toBeLessThan(one * 100);
+  });
+
+  it("uses ln via log1p: log1p(e-1) == 1", () => {
+    const raw = rawWeeklySignal(
+      { ...ZERO, mergedPRs: Math.E - 1 },
+      { wPR: 1, wReview: 0, wCommit: 0, wOpen: 0, wLoc: 0 },
+    );
+    expect(raw).toBeCloseTo(1, 10);
+  });
+
+  it("weights each signal (default review weight 0.7)", () => {
+    const raw = rawWeeklySignal(
+      { ...ZERO, reviewActivity: Math.E - 1 },
+      DEFAULT_VELOCITY_WEIGHTS,
+    );
+    expect(raw).toBeCloseTo(0.7, 10);
+  });
+
+  it("is monotonic non-decreasing in every signal", () => {
+    const base = rawWeeklySignal({ mergedPRs: 1, prsOpened: 1, reviewActivity: 1, commits: 1, locChanged: 1 });
+    const more = rawWeeklySignal({ mergedPRs: 2, prsOpened: 1, reviewActivity: 1, commits: 1, locChanged: 1 });
+    expect(more).toBeGreaterThan(base);
+  });
+});
+
+describe("median / mad", () => {
+  it("median of odd and even sets", () => {
+    expect(median([3, 1, 2])).toBe(2);
+    expect(median([1, 2, 3, 4])).toBe(2.5);
+  });
+  it("mad of a constant set is 0", () => {
+    expect(mad([5, 5, 5, 5])).toBe(0);
+  });
+  it("mad of a spread set is positive", () => {
+    expect(mad([1, 2, 3, 4, 5])).toBeGreaterThan(0);
+  });
+});
+
+describe("computeVelocitySeries — cold start / warming up", () => {
+  it("flags the first weeks (fewer than 4 weeks of history) as warming up", () => {
+    const series = computeVelocitySeries([1, 2, 3, 4, 5, 6]);
+    expect(series.map((w) => w.warmingUp)).toEqual([true, true, true, false, false, false]);
+  });
+
+  it("respects a custom stableAfterWeeks", () => {
+    const series = computeVelocitySeries([1, 2, 3], { stableAfterWeeks: 2 });
+    expect(series.map((w) => w.warmingUp)).toEqual([true, false, false]);
+  });
+});
+
+describe("computeVelocitySeries — a median week lands near 50", () => {
+  it("scores ~50 when the current raw equals the trailing median", () => {
+    // window sorted [2,4,6,6,8,10] -> median 6; current raw is 6.
+    const series = computeVelocitySeries([2, 4, 6, 8, 10, 6]);
+    expect(series[5].velocity).toBeCloseTo(50, 6);
+  });
+});
+
+describe("computeVelocitySeries — stronger week up, quiet week down", () => {
+  it("a stronger-than-usual week trends above 50", () => {
+    const series = computeVelocitySeries([2, 4, 6, 8, 10, 12]);
+    expect(series[5].velocity).toBeGreaterThan(50);
+  });
+
+  it("a quiet / PTO week trends below 50 and can be red", () => {
+    const series = computeVelocitySeries([6, 6, 6, 6, 6, 0]);
+    expect(series[5].velocity).toBeLessThan(50);
+  });
+
+  it("orders a strong week above a median week above a quiet week", () => {
+    const base = [4, 5, 6, 5, 4]; // established baseline around 5
+    const strong = computeVelocitySeries([...base, 12])[5].velocity;
+    const medianish = computeVelocitySeries([...base, 5])[5].velocity;
+    const quiet = computeVelocitySeries([...base, 0])[5].velocity;
+    expect(strong).toBeGreaterThan(medianish);
+    expect(medianish).toBeGreaterThan(quiet);
+  });
+});
+
+describe("computeVelocitySeries — MAD ≈ 0 fallback", () => {
+  it("returns a finite 50 when history is perfectly constant", () => {
+    const series = computeVelocitySeries([5, 5, 5, 5, 5]);
+    const last = series[4];
+    expect(Number.isFinite(last.velocity)).toBe(true);
+    expect(last.velocity).toBe(50);
+  });
+
+  it("does not produce NaN/Infinity when MAD is 0 but the current week differs", () => {
+    const series = computeVelocitySeries([5, 5, 5, 9]);
+    const last = series[3];
+    expect(Number.isFinite(last.velocity)).toBe(true);
+    expect(last.velocity).toBe(100); // clamped, not Infinity
+  });
+});
+
+describe("computeVelocitySeries — clamping", () => {
+  it("clamps at 100 for an extreme high week", () => {
+    const series = computeVelocitySeries([1, 1, 1, 1, 1, 1000]);
+    expect(series[5].velocity).toBe(100);
+  });
+
+  it("clamps at 0 for an extreme low week after high history", () => {
+    const series = computeVelocitySeries([50, 60, 55, 58, 52, 0]);
+    expect(series[5].velocity).toBe(0);
+  });
+
+  it("never leaves the 0..100 range", () => {
+    const raws = [0, 100, 3, 77, 1, 42, 9, 88, 2, 63, 5, 30, 0, 120];
+    for (const w of computeVelocitySeries(raws)) {
+      expect(w.velocity).toBeGreaterThanOrEqual(0);
+      expect(w.velocity).toBeLessThanOrEqual(100);
+    }
+  });
+});
+
+describe("velocityBand", () => {
+  it("maps values to red/yellow/green at default thresholds", () => {
+    expect(velocityBand(0)).toBe("red");
+    expect(velocityBand(39.9)).toBe("red");
+    expect(velocityBand(40)).toBe("yellow");
+    expect(velocityBand(69.9)).toBe("yellow");
+    expect(velocityBand(70)).toBe("green");
+    expect(velocityBand(100)).toBe("green");
+  });
+
+  it("respects custom thresholds", () => {
+    expect(velocityBand(50, { red: 60, green: 80 })).toBe("red");
+    expect(velocityBand(70, { red: 60, green: 80 })).toBe("yellow");
+    expect(velocityBand(90, { red: 60, green: 80 })).toBe("green");
+  });
+});
+
+describe("rangeVelocity", () => {
+  it("is the mean of per-week velocities", () => {
+    expect(rangeVelocity([50, 70, 30])).toBeCloseTo(50, 10);
+  });
+  it("is 0 for an empty range", () => {
+    expect(rangeVelocity([])).toBe(0);
+  });
+});
