@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * TeamVelocity design tokens — Solarized-light-inspired, all in OKLCH.
+ * Defined ONCE here; components reference tokens via utility classes
+ * (bg-*, text-*, border-*, fill-*) and never hardcode hex/oklch values.
+ *
+ * Solarized base tones + accents mapped to OKLCH. Category and velocity-band
+ * colors are first-class tokens (PRD §9).
+ */
+@theme {
+  /* Solarized base tones (light scheme) */
+  --color-base3: oklch(0.972 0.017 95); /* #fdf6e3 background */
+  --color-base2: oklch(0.934 0.021 92); /* #eee8d5 highlight */
+  --color-base1: oklch(0.685 0.017 195); /* #93a1a1 secondary content */
+  --color-base0: oklch(0.635 0.021 205); /* #839496 */
+  --color-base00: oklch(0.535 0.028 215); /* #657b83 body text */
+  --color-base01: oklch(0.485 0.028 213); /* #586e75 emphasized text */
+  --color-base02: oklch(0.285 0.037 210); /* #073642 dark accent */
+  --color-base03: oklch(0.235 0.036 210); /* #002b36 darkest */
+
+  /* Solarized accents */
+  --color-sol-yellow: oklch(0.66 0.13 90); /* #b58900 */
+  --color-sol-orange: oklch(0.63 0.16 52); /* #cb4b16 */
+  --color-sol-red: oklch(0.6 0.19 27); /* #dc322f */
+  --color-sol-magenta: oklch(0.6 0.19 356); /* #d33682 */
+  --color-sol-violet: oklch(0.57 0.11 285); /* #6c71c4 */
+  --color-sol-blue: oklch(0.62 0.13 245); /* #268bd2 */
+  --color-sol-cyan: oklch(0.69 0.1 190); /* #2aa198 */
+  --color-sol-green: oklch(0.68 0.14 122); /* #859900 */
+
+  /* Semantic surface tokens */
+  --color-background: oklch(0.972 0.017 95);
+  --color-surface: oklch(0.99 0.008 95);
+  --color-card: oklch(0.99 0.008 95);
+  --color-muted: oklch(0.934 0.021 92);
+  --color-border: oklch(0.86 0.02 90);
+  --color-ring: oklch(0.62 0.13 245);
+  --color-foreground: oklch(0.485 0.028 213);
+  --color-foreground-muted: oklch(0.635 0.021 205);
+  --color-heading: oklch(0.285 0.037 210);
+  --color-primary: oklch(0.62 0.13 245);
+  --color-primary-foreground: oklch(0.99 0.008 95);
+  --color-accent: oklch(0.69 0.1 190);
+
+  /* Five contribution-category tokens (PRD §8/§9) */
+  --color-cat-prs: oklch(0.62 0.13 245); /* blue */
+  --color-cat-commits: oklch(0.57 0.11 285); /* violet */
+  --color-cat-comments: oklch(0.69 0.1 190); /* cyan */
+  --color-cat-loc-add: oklch(0.68 0.14 122); /* green */
+  --color-cat-loc-remove: oklch(0.63 0.16 52); /* orange */
+
+  /* Velocity band tokens */
+  --color-band-red: oklch(0.6 0.19 27);
+  --color-band-yellow: oklch(0.66 0.13 90);
+  --color-band-green: oklch(0.68 0.14 122);
+
+  /* Typography */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Radii */
+  --radius-card: 0.75rem;
+  --radius-control: 0.5rem;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Tabular numerals for IDs / PR numbers / LOC figures. */
+  .tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}

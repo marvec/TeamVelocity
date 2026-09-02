@@ -1,0 +1,25 @@
+{
+  "teams": [
+    {
+      "id": "jdt",
+      "name": "JDT",
+      "sprintStartsOn": "Wed",
+      "sprintStartHour": 0,
+      "members": [
+        { "name": "Jeff", "github": "jeffhandle" },
+        { "name": "Jack", "github": "https://github.com/jackhandle", "bitbucket": "jack_bb" }
+      ],
+      "repos": ["acme/backend", "acme/web"],
+      "velocityWeights": { "wPR": 1.0, "wReview": 0.7, "wCommit": 0.5, "wOpen": 0.4, "wLoc": 0.3 },
+      "prScoreWeights": {
+        "loc": 0.25,
+        "reviewActivity": 0.25,
+        "participants": 0.2,
+        "files": 0.15,
+        "commits": 0.1,
+        "linkedIssues": 0.05
+      },
+      "thresholds": { "red": 40, "green": 70 }
+    }
+  ]
+}
