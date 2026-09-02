@@ -1,0 +1,122 @@
+{
+  "authored": {
+    "alice": [
+      {
+        "number": 10,
+        "title": "Add velocity gauge",
+        "state": "MERGED",
+        "url": "https://github.com/acme/web/pull/10",
+        "createdAt": "2026-08-04T10:00:00Z",
+        "updatedAt": "2026-08-05T12:00:00Z",
+        "mergedAt": "2026-08-05T12:00:00Z",
+        "closedAt": "2026-08-05T12:00:00Z",
+        "additions": 120,
+        "deletions": 30,
+        "changedFiles": 6,
+        "author": { "login": "alice", "url": "https://github.com/alice" },
+        "repository": { "name": "web", "url": "https://github.com/acme/web", "owner": { "login": "acme" } },
+        "commits": { "totalCount": 4 },
+        "comments": { "totalCount": 2 },
+        "reviews": { "totalCount": 1 },
+        "reviewThreads": { "totalCount": 3 },
+        "participants": { "totalCount": 2, "nodes": [{ "login": "alice" }, { "login": "bob" }] },
+        "closingIssuesReferences": { "totalCount": 1 }
+      },
+      {
+        "number": 11,
+        "title": "Wire URL state",
+        "state": "OPEN",
+        "url": "https://github.com/acme/api/pull/11",
+        "createdAt": "2026-08-12T09:00:00Z",
+        "updatedAt": "2026-08-12T09:30:00Z",
+        "mergedAt": null,
+        "closedAt": null,
+        "additions": 40,
+        "deletions": 5,
+        "changedFiles": 2,
+        "author": { "login": "alice", "url": "https://github.com/alice" },
+        "repository": { "name": "api", "url": "https://github.com/acme/api", "owner": { "login": "acme" } },
+        "commits": { "totalCount": 2 },
+        "comments": { "totalCount": 1 },
+        "reviews": { "totalCount": 0 },
+        "reviewThreads": { "totalCount": 0 },
+        "participants": { "totalCount": 1, "nodes": [{ "login": "alice" }] },
+        "closingIssuesReferences": { "totalCount": 0 }
+      }
+    ],
+    "bob": [
+      {
+        "number": 12,
+        "title": "Refactor aggregation pipeline",
+        "state": "MERGED",
+        "url": "https://github.com/acme/api/pull/12",
+        "createdAt": "2026-08-13T08:00:00Z",
+        "updatedAt": "2026-08-14T16:00:00Z",
+        "mergedAt": "2026-08-14T16:00:00Z",
+        "closedAt": "2026-08-14T16:00:00Z",
+        "additions": 200,
+        "deletions": 60,
+        "changedFiles": 9,
+        "author": { "login": "bob", "url": "https://github.com/bob" },
+        "repository": { "name": "api", "url": "https://github.com/acme/api", "owner": { "login": "acme" } },
+        "commits": { "totalCount": 6 },
+        "comments": { "totalCount": 4 },
+        "reviews": { "totalCount": 2 },
+        "reviewThreads": { "totalCount": 5 },
+        "participants": { "totalCount": 2, "nodes": [{ "login": "bob" }, { "login": "alice" }] },
+        "closingIssuesReferences": { "totalCount": 2 }
+      }
+    ]
+  },
+  "reviewed": {
+    "alice": [
+      {
+        "number": 12,
+        "url": "https://github.com/acme/api/pull/12",
+        "updatedAt": "2026-08-14T16:00:00Z",
+        "repository": { "name": "api", "url": "https://github.com/acme/api", "owner": { "login": "acme" } }
+      }
+    ],
+    "bob": [
+      {
+        "number": 10,
+        "url": "https://github.com/acme/web/pull/10",
+        "updatedAt": "2026-08-05T12:00:00Z",
+        "repository": { "name": "web", "url": "https://github.com/acme/web", "owner": { "login": "acme" } }
+      }
+    ]
+  },
+  "commits": {
+    "github:acme/web|alice": [
+      {
+        "sha": "aaa111",
+        "authorLogin": "alice",
+        "committedDate": "2026-08-05T11:00:00Z",
+        "additions": 0,
+        "deletions": 0,
+        "url": "https://github.com/acme/web/commit/aaa111",
+        "repo": { "owner": "acme", "name": "web", "url": "https://github.com/acme/web" }
+      },
+      {
+        "sha": "aaa222",
+        "authorLogin": "alice",
+        "committedDate": "2026-08-06T09:00:00Z",
+        "additions": 0,
+        "deletions": 0,
+        "url": "https://github.com/acme/web/commit/aaa222",
+        "repo": { "owner": "acme", "name": "web", "url": "https://github.com/acme/web" }
+      }
+    ],
+    "github:acme/api|bob": [
+      {
+        "sha": "bbb111",
+        "authorLogin": "bob",
+        "committedDate": "2026-08-13T09:00:00Z",
+        "additions": 0,
+        "deletions": 0,
+        "url": "https://github.com/acme/api/commit/bbb111",
+        "repo": { "owner": "acme", "name": "api", "url": "https://github.com/acme/api" }
+      }
+    ]
+  }
+}
