@@ -79,6 +79,27 @@ describe("computeVelocitySeries — cold start / warming up", () => {
   });
 });
 
+describe("computeVelocitySeries — trailing baseline window", () => {
+  it("ignores weeks older than the window (default 12): the last week's score is unaffected by the distant prefix", () => {
+    // Two series sharing the last 12 weeks but differing >12 weeks back. If the
+    // baseline is a trailing window, the last week's velocity must be identical.
+    const tail = [4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5]; // 12 varied weeks
+    const calmStart = computeVelocitySeries([1, 1, 1, ...tail]);
+    const spikeStart = computeVelocitySeries([100, 100, 100, ...tail]);
+    expect(calmStart[calmStart.length - 1].velocity).toBeCloseTo(
+      spikeStart[spikeStart.length - 1].velocity,
+      10,
+    );
+  });
+
+  it("honors a custom window size", () => {
+    const tail = [4, 6, 5, 4, 6]; // 5 weeks
+    const a = computeVelocitySeries([1, 1, ...tail], { windowWeeks: 5 });
+    const b = computeVelocitySeries([100, 100, ...tail], { windowWeeks: 5 });
+    expect(a[a.length - 1].velocity).toBeCloseTo(b[b.length - 1].velocity, 10);
+  });
+});
+
 describe("computeVelocitySeries — a median week lands near 50", () => {
   it("scores ~50 when the current raw equals the trailing median", () => {
     // window sorted [2,4,6,6,8,10] -> median 6; current raw is 6.

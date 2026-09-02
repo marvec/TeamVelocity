@@ -45,6 +45,8 @@ export function PrTable({ prs, showAuthor = true }: { prs: ScoredPr[]; showAutho
   };
 
   const arrow = (key: SortKey): string => (key === sortKey ? (dir === "asc" ? " ▲" : " ▼") : "");
+  const ariaSort = (key: SortKey): "ascending" | "descending" | "none" =>
+    key === sortKey ? (dir === "asc" ? "ascending" : "descending") : "none";
 
   if (prs.length === 0) {
     return <p className="py-6 text-center text-sm text-foreground-muted">No pull requests in this selection.</p>;
@@ -55,11 +57,15 @@ export function PrTable({ prs, showAuthor = true }: { prs: ScoredPr[]; showAutho
       <table className="w-full border-collapse text-sm" data-testid="pr-table">
         <thead>
           <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-foreground-muted">
-            <Th onClick={() => { toggle("repo"); }}>Repo{arrow("repo")}</Th>
-            <Th onClick={() => { toggle("number"); }}>PR{arrow("number")}</Th>
-            {showAuthor && <Th onClick={() => { toggle("author"); }}>Author{arrow("author")}</Th>}
-            <Th onClick={() => { toggle("title"); }}>Title{arrow("title")}</Th>
-            <Th className="text-right" onClick={() => { toggle("score"); }}>Score{arrow("score")}</Th>
+            <Th ariaSort={ariaSort("repo")} onClick={() => { toggle("repo"); }}>Repo{arrow("repo")}</Th>
+            <Th ariaSort={ariaSort("number")} onClick={() => { toggle("number"); }}>PR{arrow("number")}</Th>
+            {showAuthor && (
+              <Th ariaSort={ariaSort("author")} onClick={() => { toggle("author"); }}>Author{arrow("author")}</Th>
+            )}
+            <Th ariaSort={ariaSort("title")} onClick={() => { toggle("title"); }}>Title{arrow("title")}</Th>
+            <Th ariaSort={ariaSort("score")} className="text-right" onClick={() => { toggle("score"); }}>
+              Score{arrow("score")}
+            </Th>
           </tr>
         </thead>
         <tbody>
@@ -99,9 +105,22 @@ export function PrTable({ prs, showAuthor = true }: { prs: ScoredPr[]; showAutho
   );
 }
 
-function Th({ children, onClick, className }: { children: React.ReactNode; onClick: () => void; className?: string }) {
+function Th({
+  children,
+  onClick,
+  className,
+  ariaSort,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  className?: string;
+  ariaSort: "ascending" | "descending" | "none";
+}) {
   return (
-    <th className={cn("cursor-pointer select-none py-2 pr-3 font-medium hover:text-foreground", className)}>
+    <th
+      aria-sort={ariaSort}
+      className={cn("cursor-pointer select-none py-2 pr-3 font-medium hover:text-foreground", className)}
+    >
       <button type="button" onClick={onClick} className="uppercase tracking-wide">
         {children}
       </button>

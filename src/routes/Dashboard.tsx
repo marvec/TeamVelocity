@@ -42,12 +42,15 @@ export function Dashboard({
   const minDate = weeks[0]?.weekStart ?? meta.rangeStart;
   const maxDate = weeks[weeks.length - 1]?.weekStart ?? meta.rangeStart;
   const inRange = useMemo(() => weeksInRange(weeks, selection), [weeks, selection]);
-  const allKeys = useMemo(() => new Set(weeks.map((w) => w.weekStart)), [weeks]);
+  const inRangeKeys = useMemo(() => new Set(inRange.map((w) => w.weekStart)), [inRange]);
 
+  // Focus the URL-selected week when it is within the current range; otherwise
+  // fall back to the latest in-range week (a week that dropped out of range
+  // must not stay focused with no highlighted bar).
   const focusedWeekKey =
     selection.week === WEEK_NONE
       ? undefined
-      : selection.week && allKeys.has(selection.week)
+      : selection.week && inRangeKeys.has(selection.week)
         ? selection.week
         : inRange[inRange.length - 1]?.weekStart;
 

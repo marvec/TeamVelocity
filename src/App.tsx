@@ -19,6 +19,7 @@ function Shell({ children }: { children: ReactNode }) {
 
 function DashboardRoute({ teamId, teamsCount }: { teamId: string; teamsCount: number }) {
   const teamStatus = useDataStore((s) => s.teamStatus);
+  const currentTeamId = useDataStore((s) => s.currentTeamId);
   const meta = useDataStore((s) => s.meta);
   const index = useDataStore((s) => s.index);
   const teamError = useDataStore((s) => s.teamError);
@@ -29,7 +30,11 @@ function DashboardRoute({ teamId, teamsCount }: { teamId: string; teamsCount: nu
   }, [teamId, selectTeamData]);
 
   if (teamStatus === "error" && teamError) return <ErrorState error={teamError} />;
-  if (teamStatus !== "loaded" || !meta || !index) return <LoadingState label="Loading team…" />;
+  // Also gate on currentTeamId so a previously-viewed team's meta/index is never
+  // painted for a frame before the effect reloads the newly selected team.
+  if (currentTeamId !== teamId || teamStatus !== "loaded" || !meta || !index) {
+    return <LoadingState label="Loading team…" />;
+  }
   return <Dashboard meta={meta} index={index} teamsCount={teamsCount} />;
 }
 

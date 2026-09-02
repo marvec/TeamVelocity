@@ -116,6 +116,9 @@ export function setRange(range: RangePreset, from?: string, to?: string): void {
 export function selectWeek(weekStart: string): void {
   update((p) => {
     p.set("week", weekStart);
+    // Cascade: focusing a new week clears the person/repo selected under the old one.
+    p.delete("member");
+    p.delete("repo");
   });
 }
 

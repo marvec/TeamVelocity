@@ -28,8 +28,13 @@ export async function writeTeamsIndex(dataDir: string, teams: TeamsIndex): Promi
 
 /** Write one team's meta + index + per-week detail, replacing any prior output. */
 export async function writeTeamDataset(dataDir: string, ds: BuiltDataset): Promise<void> {
+  // Validate EVERYTHING before touching the filesystem, so a validation failure
+  // never destroys the previously written dataset (atomic-ish; invariant #4).
   const meta = TeamMetaSchema.parse(ds.meta);
   const index = TeamIndexSchema.parse(ds.index);
+  const weeks = Object.entries(ds.weeks).map(
+    ([key, detail]) => [key, WeekDetailSchema.parse(detail)] as const,
+  );
 
   const teamDir = join(dataDir, ds.meta.teamId);
   const weeksDir = join(teamDir, "weeks");
@@ -38,9 +43,7 @@ export async function writeTeamDataset(dataDir: string, ds: BuiltDataset): Promi
 
   await writeJson(join(teamDir, "meta.json"), meta);
   await writeJson(join(teamDir, "index.json"), index);
-
-  for (const [key, detail] of Object.entries(ds.weeks)) {
-    const validated = WeekDetailSchema.parse(detail);
-    await writeJson(join(weeksDir, `${key}.json`), validated);
+  for (const [key, detail] of weeks) {
+    await writeJson(join(weeksDir, `${key}.json`), detail);
   }
 }

@@ -8,7 +8,7 @@ const OPTIONS: { value: RangePreset; label: string }[] = [
 ];
 
 const TRIGGER_CLASS =
-  "inline-flex h-8 min-w-[10rem] items-center justify-between gap-2 rounded-control border border-border bg-surface px-3 text-sm font-medium text-foreground hover:bg-muted data-[popup-open]:border-primary";
+  "inline-flex h-8 min-w-40 items-center justify-between gap-2 rounded-control border border-border bg-surface px-3 text-sm font-medium text-foreground hover:bg-muted data-[popup-open]:border-primary";
 const POPUP_CLASS =
   "z-50 min-w-[var(--anchor-width)] rounded-control border border-border bg-card p-1 shadow-md outline-none";
 const ITEM_CLASS =

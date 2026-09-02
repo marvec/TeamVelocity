@@ -12,7 +12,6 @@
 
 import { ConfigError } from "../shared/schema/config";
 import type { TeamConfig } from "../shared/schema/config";
-import type { TeamsIndex } from "../shared/schema/data";
 import { buildTeamDataset } from "../shared/aggregate/dataset";
 import { createConsoleLogger } from "./logger";
 import { getGithubToken, loadConfig } from "./config";
@@ -118,7 +117,6 @@ async function runLivePull(flags: Flags, token: string, logger: Logger): Promise
   const { since, until } = resolveRange(flags, now);
   logger.info(`Range ${since.toISOString()} .. ${until.toISOString()}`);
 
-  const teamsIndex: TeamsIndex = [];
   for (const team of teams) {
     logger.info(`Team ${team.name} (${team.id}) — ${String(githubMembers(team).length)} github members`);
     const result = await connector.collect({
@@ -139,10 +137,14 @@ async function runLivePull(flags: Flags, token: string, logger: Logger): Promise
       now,
     });
     await writeTeamDataset(flags.dataDir, dataset);
-    teamsIndex.push({ id: team.id, name: team.name });
     logger.info(`  wrote ${flags.dataDir}/${team.id}/ (${String(dataset.index.weeks.length)} weeks)`);
   }
-  await writeTeamsIndex(flags.dataDir, teamsIndex);
+  // teams.json lists EVERY configured team so a `--team` refresh never drops the
+  // others from the SPA's team picker.
+  await writeTeamsIndex(
+    flags.dataDir,
+    config.teams.map((t) => ({ id: t.id, name: t.name })),
+  );
 }
 
 async function main(): Promise<void> {

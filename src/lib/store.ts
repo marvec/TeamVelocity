@@ -89,8 +89,12 @@ export const useDataStore = create<DataState>((set, get) => ({
     set((s) => ({ weeks: { ...s.weeks, [weekStart]: { status: "loading" } } }));
     try {
       const data = await loadWeekDetail(state.dataDir, teamId, weekStart);
+      // Bail if the team changed while this fetch was in flight, so team A's
+      // detail never lands in team B's (cleared) weeks cache.
+      if (get().currentTeamId !== teamId) return;
       set((s) => ({ weeks: { ...s.weeks, [weekStart]: { status: "loaded", data } } }));
     } catch (e) {
+      if (get().currentTeamId !== teamId) return;
       set((s) => ({ weeks: { ...s.weeks, [weekStart]: { status: "error", error: asLoadError(e) } } }));
     }
   },
