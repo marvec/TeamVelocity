@@ -297,6 +297,19 @@ history** line (smooth curve, colored by band). Category legend: PRs, commits, c
 categories. Clicking a bar selects that week; the latest week is selected by default; the
 selected week is highlighted and can be unselected (→ range overview).
 
+> Rendering decision (v1): PR/commit/comment counts are single digits while LOC is in the
+> hundreds, so on a single stacked axis LOC would swamp the rest. The stacked bars therefore
+> render LOC added/removed **scaled to hundreds of lines** (value ÷ 100) so all five categories
+> stay visible; the tooltip always shows the **exact** counts and LOC. The legend flags the LOC
+> series as “LOC+ (×100)”. Same scaling applies to the per-member (Section C) and per-repo
+> (Section D) horizontal stacked bars.
+
+> URL decision (v1): all selection state is encoded in **search params on the root path**
+> (`/?team=&range=&from=&to=&week=&member=&repo=`) rather than a `/team/:teamId` path segment.
+> This keeps the app a pure static bundle (no server rewrites, works from `file://` and any
+> base path) while preserving “all selection state lives in the URL, shareable, refresh-safe”.
+> A `data` param selects the fixture dir (used by e2e).
+
 **Section B — Week detail.** For the selected week: a team-wide PR list
 (`repo · PR# · author · title ····· score%`), each row clickable through to GitHub — the raw
 material for a status report. If no week is selected, this area shows the range overview.
