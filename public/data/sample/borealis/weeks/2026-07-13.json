@@ -1,0 +1,256 @@
+{
+  "weekStart": "2026-07-13",
+  "weekEnd": "2026-07-20",
+  "label": "2026/07/13–07/19",
+  "velocity": 20.5,
+  "velocityBand": "red",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 1,
+    "prsMerged": 1,
+    "prsClosed": 0,
+    "commits": 2,
+    "comments": 4,
+    "locAdded": 143,
+    "locRemoved": 75
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "number": 11,
+      "title": "Improve the sample fixtures (core)",
+      "authorHandle": "alanturing",
+      "authorName": "Alan Turing",
+      "state": "merged",
+      "url": "https://github.com/borealis/core/pull/11",
+      "createdAt": "2026-07-15T23:58:58.870Z",
+      "mergedAt": "2026-07-16T19:23:27.863Z",
+      "closedAt": null,
+      "score": 100,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 15,
+        "commits": 10,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 143,
+        "deletions": 75,
+        "changedFiles": 5,
+        "commits": 7,
+        "reviewComments": 0,
+        "issueComments": 1,
+        "reviews": 1,
+        "participants": 1,
+        "linkedIssues": 1
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "rosalindf",
+      "name": "Rosalind Frank",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 2,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": null,
+          "createdAt": "2026-07-17T19:21:18.410Z",
+          "url": "https://github.com/borealis/core/pull/43#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": null,
+          "createdAt": "2026-07-18T11:17:27.031Z",
+          "url": "https://github.com/borealis/app/pull/82#c0"
+        }
+      ]
+    },
+    {
+      "handle": "alanturing",
+      "name": "Alan Turing",
+      "velocity": 57.2,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 2,
+        "comments": 2,
+        "locAdded": 143,
+        "locRemoved": 75
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 143,
+            "locRemoved": 75
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "number": 11,
+          "title": "Improve the sample fixtures (core)",
+          "authorHandle": "alanturing",
+          "authorName": "Alan Turing",
+          "state": "merged",
+          "url": "https://github.com/borealis/core/pull/11",
+          "createdAt": "2026-07-15T23:58:58.870Z",
+          "mergedAt": "2026-07-16T19:23:27.863Z",
+          "closedAt": null,
+          "score": 100,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 15,
+            "commits": 10,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 143,
+            "deletions": 75,
+            "changedFiles": 5,
+            "commits": 7,
+            "reviewComments": 0,
+            "issueComments": 1,
+            "reviews": 1,
+            "participants": 1,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 11,
+          "createdAt": "2026-07-13T23:45:25.919Z",
+          "url": "https://github.com/borealis/core/pull/11#c1"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 11,
+          "createdAt": "2026-07-18T06:07:11.977Z",
+          "url": "https://github.com/borealis/core/pull/11#c0"
+        }
+      ]
+    }
+  ]
+}

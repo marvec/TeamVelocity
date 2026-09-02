@@ -1,0 +1,198 @@
+{
+  "weekStart": "2026-08-10",
+  "weekEnd": "2026-08-17",
+  "label": "2026/08/10–08/16",
+  "velocity": 0,
+  "velocityBand": "red",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 0,
+    "prsMerged": 0,
+    "prsClosed": 0,
+    "commits": 4,
+    "comments": 1,
+    "locAdded": 0,
+    "locRemoved": 0
+  },
+  "prs": [],
+  "members": [
+    {
+      "handle": "adalovelace",
+      "name": "Ada Lovelace",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-16T14:19:19.182Z",
+          "url": "https://github.com/aurora/api/pull/43#c0"
+        }
+      ]
+    },
+    {
+      "handle": "gracehopper",
+      "name": "Grace Hopper",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": []
+    },
+    {
+      "handle": "linusn",
+      "name": "Linus Nyman",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": []
+    },
+    {
+      "handle": "margaretp",
+      "name": "Margaret Park",
+      "velocity": 3.4,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": []
+    }
+  ]
+}

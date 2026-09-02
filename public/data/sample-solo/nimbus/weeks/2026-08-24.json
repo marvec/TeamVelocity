@@ -1,0 +1,561 @@
+{
+  "weekStart": "2026-08-24",
+  "weekEnd": "2026-08-31",
+  "label": "2026/08/24–08/30",
+  "velocity": 60.2,
+  "velocityBand": "yellow",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 5,
+    "prsMerged": 2,
+    "prsClosed": 1,
+    "commits": 11,
+    "comments": 4,
+    "locAdded": 1021,
+    "locRemoved": 328
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 31,
+      "title": "Harden the sample fixtures (cloud)",
+      "authorHandle": "dennisr",
+      "authorName": "Dennis Ritchie",
+      "state": "open",
+      "url": "https://github.com/nimbus/cloud/pull/31",
+      "createdAt": "2026-08-26T16:41:46.384Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 68.1,
+      "breakdown": {
+        "loc": 13.06,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 0,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 178,
+        "deletions": 90,
+        "changedFiles": 1,
+        "commits": 8,
+        "reviewComments": 4,
+        "issueComments": 3,
+        "reviews": 3,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 23,
+      "title": "Add the velocity gauge (edge)",
+      "authorHandle": "dennisr",
+      "authorName": "Dennis Ritchie",
+      "state": "open",
+      "url": "https://github.com/nimbus/edge/pull/23",
+      "createdAt": "2026-08-29T18:19:54.447Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 62.6,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 0,
+        "participants": 20,
+        "files": 15,
+        "commits": 2.62,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 220,
+        "deletions": 87,
+        "changedFiles": 14,
+        "commits": 3,
+        "reviewComments": 4,
+        "issueComments": 0,
+        "reviews": 2,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 22,
+      "title": "Optimize URL state (edge)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "merged",
+      "url": "https://github.com/nimbus/edge/pull/22",
+      "createdAt": "2026-08-24T04:59:22.181Z",
+      "mergedAt": "2026-08-25T01:14:48.487Z",
+      "closedAt": null,
+      "score": 54.9,
+      "breakdown": {
+        "loc": 12.07,
+        "reviewActivity": 13.9,
+        "participants": 20,
+        "files": 0,
+        "commits": 8.93,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 232,
+        "deletions": 33,
+        "changedFiles": 1,
+        "commits": 7,
+        "reviewComments": 2,
+        "issueComments": 3,
+        "reviews": 3,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 21,
+      "title": "Fix PR scoring (edge)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "closed",
+      "url": "https://github.com/nimbus/edge/pull/21",
+      "createdAt": "2026-08-24T23:58:19.586Z",
+      "mergedAt": null,
+      "closedAt": "2026-08-25T23:43:40.204Z",
+      "score": 51,
+      "breakdown": {
+        "loc": 16.28,
+        "reviewActivity": 19.73,
+        "participants": 0,
+        "files": 15,
+        "commits": 0,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 237,
+        "deletions": 41,
+        "changedFiles": 14,
+        "commits": 2,
+        "reviewComments": 5,
+        "issueComments": 1,
+        "reviews": 3,
+        "participants": 1,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 30,
+      "title": "Optimize PR scoring (cloud)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "merged",
+      "url": "https://github.com/nimbus/cloud/pull/30",
+      "createdAt": "2026-08-24T04:06:02.879Z",
+      "mergedAt": "2026-08-24T18:47:00.907Z",
+      "closedAt": null,
+      "score": 27.7,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 19.73,
+        "participants": 0,
+        "files": 3.02,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 154,
+        "deletions": 77,
+        "changedFiles": 2,
+        "commits": 2,
+        "reviewComments": 2,
+        "issueComments": 4,
+        "reviews": 3,
+        "participants": 1,
+        "linkedIssues": 2
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "katherinej",
+      "name": "Katherine Johnson",
+      "velocity": 66.8,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 3,
+        "prsMerged": 2,
+        "prsClosed": 1,
+        "commits": 8,
+        "comments": 2,
+        "locAdded": 623,
+        "locRemoved": 151
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 2,
+            "locAdded": 154,
+            "locRemoved": 77
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 4,
+            "comments": 0,
+            "locAdded": 469,
+            "locRemoved": 74
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 22,
+          "title": "Optimize URL state (edge)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "merged",
+          "url": "https://github.com/nimbus/edge/pull/22",
+          "createdAt": "2026-08-24T04:59:22.181Z",
+          "mergedAt": "2026-08-25T01:14:48.487Z",
+          "closedAt": null,
+          "score": 54.9,
+          "breakdown": {
+            "loc": 12.07,
+            "reviewActivity": 13.9,
+            "participants": 20,
+            "files": 0,
+            "commits": 8.93,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 232,
+            "deletions": 33,
+            "changedFiles": 1,
+            "commits": 7,
+            "reviewComments": 2,
+            "issueComments": 3,
+            "reviews": 3,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 21,
+          "title": "Fix PR scoring (edge)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "closed",
+          "url": "https://github.com/nimbus/edge/pull/21",
+          "createdAt": "2026-08-24T23:58:19.586Z",
+          "mergedAt": null,
+          "closedAt": "2026-08-25T23:43:40.204Z",
+          "score": 51,
+          "breakdown": {
+            "loc": 16.28,
+            "reviewActivity": 19.73,
+            "participants": 0,
+            "files": 15,
+            "commits": 0,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 237,
+            "deletions": 41,
+            "changedFiles": 14,
+            "commits": 2,
+            "reviewComments": 5,
+            "issueComments": 1,
+            "reviews": 3,
+            "participants": 1,
+            "linkedIssues": 0
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 30,
+          "title": "Optimize PR scoring (cloud)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "merged",
+          "url": "https://github.com/nimbus/cloud/pull/30",
+          "createdAt": "2026-08-24T04:06:02.879Z",
+          "mergedAt": "2026-08-24T18:47:00.907Z",
+          "closedAt": null,
+          "score": 27.7,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 19.73,
+            "participants": 0,
+            "files": 3.02,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 154,
+            "deletions": 77,
+            "changedFiles": 2,
+            "commits": 2,
+            "reviewComments": 2,
+            "issueComments": 4,
+            "reviews": 3,
+            "participants": 1,
+            "linkedIssues": 2
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 30,
+          "createdAt": "2026-08-24T18:26:51.416Z",
+          "url": "https://github.com/nimbus/cloud/pull/30#c1"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 30,
+          "createdAt": "2026-08-30T08:59:53.521Z",
+          "url": "https://github.com/nimbus/cloud/pull/30#c0"
+        }
+      ]
+    },
+    {
+      "handle": "dennisr",
+      "name": "Dennis Ritchie",
+      "velocity": 48.6,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 2,
+        "locAdded": 398,
+        "locRemoved": 177
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 178,
+            "locRemoved": 90
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 1,
+            "locAdded": 220,
+            "locRemoved": 87
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 31,
+          "title": "Harden the sample fixtures (cloud)",
+          "authorHandle": "dennisr",
+          "authorName": "Dennis Ritchie",
+          "state": "open",
+          "url": "https://github.com/nimbus/cloud/pull/31",
+          "createdAt": "2026-08-26T16:41:46.384Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 68.1,
+          "breakdown": {
+            "loc": 13.06,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 0,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 178,
+            "deletions": 90,
+            "changedFiles": 1,
+            "commits": 8,
+            "reviewComments": 4,
+            "issueComments": 3,
+            "reviews": 3,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 23,
+          "title": "Add the velocity gauge (edge)",
+          "authorHandle": "dennisr",
+          "authorName": "Dennis Ritchie",
+          "state": "open",
+          "url": "https://github.com/nimbus/edge/pull/23",
+          "createdAt": "2026-08-29T18:19:54.447Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 62.6,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 0,
+            "participants": 20,
+            "files": 15,
+            "commits": 2.62,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 220,
+            "deletions": 87,
+            "changedFiles": 14,
+            "commits": 3,
+            "reviewComments": 4,
+            "issueComments": 0,
+            "reviews": 2,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 31,
+          "createdAt": "2026-08-25T09:50:00.128Z",
+          "url": "https://github.com/nimbus/cloud/pull/31#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 23,
+          "createdAt": "2026-08-30T09:17:14.156Z",
+          "url": "https://github.com/nimbus/edge/pull/23#c0"
+        }
+      ]
+    }
+  ]
+}

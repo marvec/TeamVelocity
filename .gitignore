@@ -16,6 +16,7 @@ teamvelocity.config.json
 # Generated data — everything under public/data EXCEPT the committed sample fixtures
 /public/data/*
 !/public/data/sample/
+!/public/data/sample-solo/
 
 # Test / coverage output
 coverage/

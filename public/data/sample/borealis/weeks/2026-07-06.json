@@ -1,0 +1,309 @@
+{
+  "weekStart": "2026-07-06",
+  "weekEnd": "2026-07-13",
+  "label": "2026/07/06–07/12",
+  "velocity": 16,
+  "velocityBand": "red",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 2,
+    "prsMerged": 1,
+    "prsClosed": 1,
+    "commits": 4,
+    "comments": 2,
+    "locAdded": 340,
+    "locRemoved": 90
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "number": 17,
+      "title": "Add URL state (app)",
+      "authorHandle": "alanturing",
+      "authorName": "Alan Turing",
+      "state": "merged",
+      "url": "https://github.com/borealis/app/pull/17",
+      "createdAt": "2026-07-06T03:14:14.224Z",
+      "mergedAt": "2026-07-06T09:04:32.282Z",
+      "closedAt": null,
+      "score": 80,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 0,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 193,
+        "deletions": 33,
+        "changedFiles": 3,
+        "commits": 7,
+        "reviewComments": 5,
+        "issueComments": 0,
+        "reviews": 2,
+        "participants": 1,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "number": 16,
+      "title": "Optimize URL state (app)",
+      "authorHandle": "rosalindf",
+      "authorName": "Rosalind Frank",
+      "state": "closed",
+      "url": "https://github.com/borealis/app/pull/16",
+      "createdAt": "2026-07-10T09:00:43.518Z",
+      "mergedAt": null,
+      "closedAt": "2026-07-11T19:01:00.997Z",
+      "score": 40,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 0,
+        "participants": 20,
+        "files": 15,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 147,
+        "deletions": 57,
+        "changedFiles": 10,
+        "commits": 6,
+        "reviewComments": 0,
+        "issueComments": 2,
+        "reviews": 2,
+        "participants": 1,
+        "linkedIssues": 2
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "rosalindf",
+      "name": "Rosalind Frank",
+      "velocity": 3.2,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 0,
+        "prsClosed": 1,
+        "commits": 1,
+        "comments": 1,
+        "locAdded": 147,
+        "locRemoved": 57
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 147,
+            "locRemoved": 57
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "number": 16,
+          "title": "Optimize URL state (app)",
+          "authorHandle": "rosalindf",
+          "authorName": "Rosalind Frank",
+          "state": "closed",
+          "url": "https://github.com/borealis/app/pull/16",
+          "createdAt": "2026-07-10T09:00:43.518Z",
+          "mergedAt": null,
+          "closedAt": "2026-07-11T19:01:00.997Z",
+          "score": 40,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 0,
+            "participants": 20,
+            "files": 15,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 147,
+            "deletions": 57,
+            "changedFiles": 10,
+            "commits": 6,
+            "reviewComments": 0,
+            "issueComments": 2,
+            "reviews": 2,
+            "participants": 1,
+            "linkedIssues": 2
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 16,
+          "createdAt": "2026-07-11T19:35:50.108Z",
+          "url": "https://github.com/borealis/app/pull/16#c0"
+        }
+      ]
+    },
+    {
+      "handle": "alanturing",
+      "name": "Alan Turing",
+      "velocity": 48.9,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 1,
+        "locAdded": 193,
+        "locRemoved": 33
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 1,
+            "locAdded": 193,
+            "locRemoved": 33
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "number": 17,
+          "title": "Add URL state (app)",
+          "authorHandle": "alanturing",
+          "authorName": "Alan Turing",
+          "state": "merged",
+          "url": "https://github.com/borealis/app/pull/17",
+          "createdAt": "2026-07-06T03:14:14.224Z",
+          "mergedAt": "2026-07-06T09:04:32.282Z",
+          "closedAt": null,
+          "score": 80,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 0,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 193,
+            "deletions": 33,
+            "changedFiles": 3,
+            "commits": 7,
+            "reviewComments": 5,
+            "issueComments": 0,
+            "reviews": 2,
+            "participants": 1,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 17,
+          "createdAt": "2026-07-09T05:16:20.654Z",
+          "url": "https://github.com/borealis/app/pull/17#c0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "teamId": "borealis",
+  "name": "Borealis",
+  "source": "github",
+  "lastPulledAt": "2026-08-31T07:00:00.000Z",
+  "rangeStart": "2026-04-27",
+  "rangeEnd": "2026-09-07",
+  "sprintStartsOn": "Mon",
+  "sprintStartHour": 0,
+  "warmingUpUntil": "2026-05-18",
+  "thresholds": {
+    "red": 40,
+    "green": 70
+  }
+}

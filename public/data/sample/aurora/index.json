@@ -1,0 +1,1581 @@
+{
+  "weeks": [
+    {
+      "weekStart": "2026-04-27",
+      "weekEnd": "2026-05-04",
+      "label": "2026/04/27–05/03",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 4,
+        "prsClosed": 0,
+        "commits": 20,
+        "comments": 8,
+        "locAdded": 777,
+        "locRemoved": 398
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 10,
+            "comments": 3,
+            "locAdded": 209,
+            "locRemoved": 90
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 2,
+            "locAdded": 74,
+            "locRemoved": 21
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 2,
+            "locAdded": 494,
+            "locRemoved": 287
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-04",
+      "weekEnd": "2026-05-11",
+      "label": "2026/05/04–05/10",
+      "velocity": 63.5,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 5,
+        "prsMerged": 5,
+        "prsClosed": 0,
+        "commits": 20,
+        "comments": 6,
+        "locAdded": 1422,
+        "locRemoved": 475
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 3,
+            "prsClosed": 0,
+            "commits": 10,
+            "comments": 1,
+            "locAdded": 679,
+            "locRemoved": 193
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 36.5,
+          "velocityBand": "red",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 171,
+            "locRemoved": 103
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 2,
+            "locAdded": 572,
+            "locRemoved": 179
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-11",
+      "weekEnd": "2026-05-18",
+      "label": "2026/05/11–05/17",
+      "velocity": 63.5,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 7,
+        "prsMerged": 6,
+        "prsClosed": 0,
+        "commits": 17,
+        "comments": 10,
+        "locAdded": 1789,
+        "locRemoved": 477
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 36.5,
+          "velocityBand": "red",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 3,
+            "prsClosed": 0,
+            "commits": 9,
+            "comments": 3,
+            "locAdded": 597,
+            "locRemoved": 161
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 3,
+            "locAdded": 313,
+            "locRemoved": 70
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 2,
+            "locAdded": 879,
+            "locRemoved": 246
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-18",
+      "weekEnd": "2026-05-25",
+      "label": "2026/05/18–05/24",
+      "velocity": 74.5,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 7,
+        "prsMerged": 6,
+        "prsClosed": 0,
+        "commits": 19,
+        "comments": 9,
+        "locAdded": 2035,
+        "locRemoved": 702
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 76.7,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 9,
+            "comments": 4,
+            "locAdded": 826,
+            "locRemoved": 181
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 71.8,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 3,
+            "locAdded": 217,
+            "locRemoved": 98
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 68.7,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 1,
+            "locAdded": 992,
+            "locRemoved": 423
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-25",
+      "weekEnd": "2026-06-01",
+      "label": "2026/05/25–05/31",
+      "velocity": 36.5,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 5,
+        "prsMerged": 3,
+        "prsClosed": 0,
+        "commits": 15,
+        "comments": 10,
+        "locAdded": 1384,
+        "locRemoved": 459
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 34.9,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 2,
+            "locAdded": 464,
+            "locRemoved": 150
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 36.5,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 6,
+            "locAdded": 111,
+            "locRemoved": 19
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 1,
+            "locAdded": 809,
+            "locRemoved": 290
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-01",
+      "weekEnd": "2026-06-08",
+      "label": "2026/06/01–06/07",
+      "velocity": 39.9,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 4,
+        "prsClosed": 0,
+        "commits": 14,
+        "comments": 12,
+        "locAdded": 869,
+        "locRemoved": 374
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 47,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 4,
+            "locAdded": 386,
+            "locRemoved": 181
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 42.9,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 3,
+            "locAdded": 65,
+            "locRemoved": 25
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 45.9,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 3,
+            "locAdded": 418,
+            "locRemoved": 168
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-08",
+      "weekEnd": "2026-06-15",
+      "label": "2026/06/08–06/14",
+      "velocity": 51,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 6,
+        "prsMerged": 6,
+        "prsClosed": 0,
+        "commits": 19,
+        "comments": 9,
+        "locAdded": 1237,
+        "locRemoved": 441
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 7,
+            "comments": 4,
+            "locAdded": 622,
+            "locRemoved": 219
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 202,
+            "locRemoved": 71
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 36.5,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 2,
+            "locAdded": 337,
+            "locRemoved": 121
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 1,
+            "locAdded": 76,
+            "locRemoved": 30
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-15",
+      "weekEnd": "2026-06-22",
+      "label": "2026/06/15–06/21",
+      "velocity": 25.3,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 4,
+        "prsClosed": 0,
+        "commits": 12,
+        "comments": 6,
+        "locAdded": 956,
+        "locRemoved": 266
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 14,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 1,
+            "locAdded": 147,
+            "locRemoved": 62
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 41.4,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 3,
+            "locAdded": 97,
+            "locRemoved": 10
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 56.2,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 1,
+            "locAdded": 712,
+            "locRemoved": 194
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-22",
+      "weekEnd": "2026-06-29",
+      "label": "2026/06/22–06/28",
+      "velocity": 36.4,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 5,
+        "prsMerged": 5,
+        "prsClosed": 0,
+        "commits": 9,
+        "comments": 6,
+        "locAdded": 777,
+        "locRemoved": 188
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 34.7,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 383,
+            "locRemoved": 109
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 50.8,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 3,
+            "locAdded": 106,
+            "locRemoved": 13
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 22.1,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 1,
+            "locAdded": 217,
+            "locRemoved": 35
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 71,
+            "locRemoved": 31
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-29",
+      "weekEnd": "2026-07-06",
+      "label": "2026/06/29–07/05",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 1,
+        "prsClosed": 1,
+        "commits": 10,
+        "comments": 5,
+        "locAdded": 524,
+        "locRemoved": 199
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 7.4,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 1,
+            "locAdded": 200,
+            "locRemoved": 92
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 0,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 16.9,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 4,
+            "comments": 1,
+            "locAdded": 197,
+            "locRemoved": 61
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 127,
+            "locRemoved": 46
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-06",
+      "weekEnd": "2026-07-13",
+      "label": "2026/07/06–07/12",
+      "velocity": 24.5,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 5,
+        "prsMerged": 4,
+        "prsClosed": 1,
+        "commits": 15,
+        "comments": 6,
+        "locAdded": 678,
+        "locRemoved": 263
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 40.5,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 2,
+            "locAdded": 293,
+            "locRemoved": 134
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 0,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 5,
+            "comments": 2,
+            "locAdded": 30,
+            "locRemoved": 4
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 30.8,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 1,
+            "locAdded": 192,
+            "locRemoved": 60
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 163,
+            "locRemoved": 65
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-13",
+      "weekEnd": "2026-07-20",
+      "label": "2026/07/13–07/19",
+      "velocity": 57.8,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 6,
+        "prsMerged": 5,
+        "prsClosed": 0,
+        "commits": 15,
+        "comments": 7,
+        "locAdded": 1052,
+        "locRemoved": 443
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 45.7,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 2,
+            "locAdded": 364,
+            "locRemoved": 151
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 37.2,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 99,
+            "locRemoved": 19
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 63.3,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 1,
+            "locAdded": 437,
+            "locRemoved": 253
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 152,
+            "locRemoved": 20
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-20",
+      "weekEnd": "2026-07-27",
+      "label": "2026/07/20–07/26",
+      "velocity": 100,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 12,
+        "prsMerged": 8,
+        "prsClosed": 3,
+        "commits": 43,
+        "comments": 22,
+        "locAdded": 6375,
+        "locRemoved": 1844
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 91.6,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 4,
+            "prsMerged": 2,
+            "prsClosed": 1,
+            "commits": 15,
+            "comments": 6,
+            "locAdded": 2507,
+            "locRemoved": 573
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 3,
+            "prsClosed": 0,
+            "commits": 10,
+            "comments": 8,
+            "locAdded": 740,
+            "locRemoved": 164
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 2,
+            "prsClosed": 1,
+            "commits": 14,
+            "comments": 4,
+            "locAdded": 2539,
+            "locRemoved": 872
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 89.4,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 4,
+            "comments": 4,
+            "locAdded": 589,
+            "locRemoved": 235
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-27",
+      "weekEnd": "2026-08-03",
+      "label": "2026/07/27–08/02",
+      "velocity": 64,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 5,
+        "prsMerged": 5,
+        "prsClosed": 0,
+        "commits": 22,
+        "comments": 12,
+        "locAdded": 859,
+        "locRemoved": 234
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 54.4,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 3,
+            "locAdded": 531,
+            "locRemoved": 163
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 64.4,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 5,
+            "locAdded": 124,
+            "locRemoved": 14
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 49.6,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 2,
+            "locAdded": 151,
+            "locRemoved": 44
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 56,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 53,
+            "locRemoved": 13
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-03",
+      "weekEnd": "2026-08-10",
+      "label": "2026/08/03–08/09",
+      "velocity": 77.9,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 8,
+        "prsMerged": 5,
+        "prsClosed": 1,
+        "commits": 26,
+        "comments": 13,
+        "locAdded": 2426,
+        "locRemoved": 792
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 72.2,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 12,
+            "comments": 3,
+            "locAdded": 770,
+            "locRemoved": 289
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 73.8,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 5,
+            "locAdded": 176,
+            "locRemoved": 35
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 42.1,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 2,
+            "locAdded": 1107,
+            "locRemoved": 334
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 69.8,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 2,
+            "comments": 3,
+            "locAdded": 373,
+            "locRemoved": 134
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-10",
+      "weekEnd": "2026-08-17",
+      "label": "2026/08/10–08/16",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 4,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 0,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 0,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 0,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 3.4,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-17",
+      "weekEnd": "2026-08-24",
+      "label": "2026/08/17–08/23",
+      "velocity": 69.7,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 8,
+        "prsMerged": 5,
+        "prsClosed": 2,
+        "commits": 19,
+        "comments": 11,
+        "locAdded": 2237,
+        "locRemoved": 882
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 53.2,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 3,
+            "locAdded": 514,
+            "locRemoved": 212
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 72.6,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 3,
+            "locAdded": 333,
+            "locRemoved": 152
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 65.4,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 1,
+            "prsClosed": 2,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 1320,
+            "locRemoved": 488
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 62.2,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 3,
+            "locAdded": 70,
+            "locRemoved": 30
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-24",
+      "weekEnd": "2026-08-31",
+      "label": "2026/08/24–08/30",
+      "velocity": 56,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 7,
+        "prsMerged": 6,
+        "prsClosed": 1,
+        "commits": 20,
+        "comments": 9,
+        "locAdded": 1343,
+        "locRemoved": 384
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 41.6,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 2,
+            "locAdded": 550,
+            "locRemoved": 114
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 58.1,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 2,
+            "comments": 3,
+            "locAdded": 281,
+            "locRemoved": 122
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 69.3,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 9,
+            "comments": 2,
+            "locAdded": 435,
+            "locRemoved": 133
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 40.8,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 77,
+            "locRemoved": 15
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-31",
+      "weekEnd": "2026-09-07",
+      "label": "2026/08/31–09/06",
+      "velocity": 66,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 7,
+        "prsMerged": 7,
+        "prsClosed": 0,
+        "commits": 22,
+        "comments": 9,
+        "locAdded": 1817,
+        "locRemoved": 644
+      },
+      "members": [
+        {
+          "handle": "adalovelace",
+          "name": "Ada Lovelace",
+          "velocity": 79.7,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 3,
+            "prsClosed": 0,
+            "commits": 11,
+            "comments": 2,
+            "locAdded": 719,
+            "locRemoved": 315
+          }
+        },
+        {
+          "handle": "gracehopper",
+          "name": "Grace Hopper",
+          "velocity": 46.5,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 101,
+            "locRemoved": 31
+          }
+        },
+        {
+          "handle": "linusn",
+          "name": "Linus Nyman",
+          "velocity": 63.3,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 2,
+            "locAdded": 769,
+            "locRemoved": 192
+          }
+        },
+        {
+          "handle": "margaretp",
+          "name": "Margaret Park",
+          "velocity": 70.5,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 3,
+            "locAdded": 228,
+            "locRemoved": 106
+          }
+        }
+      ]
+    }
+  ]
+}

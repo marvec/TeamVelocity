@@ -9,6 +9,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "pull": "bun run cli/pull.ts",
+    "generate:sample": "TZ=Europe/Prague bun run cli/generate-sample.ts",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "TZ=Europe/Prague vitest run",
@@ -16,6 +17,7 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@base-ui/react": "1.7.0",
     "octokit": "5.0.5",
     "react": "19.2.8",
     "react-dom": "19.2.8",

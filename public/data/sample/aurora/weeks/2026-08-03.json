@@ -1,0 +1,1077 @@
+{
+  "weekStart": "2026-08-03",
+  "weekEnd": "2026-08-10",
+  "label": "2026/08/03–08/09",
+  "velocity": 77.9,
+  "velocityBand": "green",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 8,
+    "prsMerged": 5,
+    "prsClosed": 1,
+    "commits": 26,
+    "comments": 13,
+    "locAdded": 2426,
+    "locRemoved": 792
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "api",
+        "url": "https://github.com/aurora/api"
+      },
+      "number": 24,
+      "title": "Harden the stacked bars (api)",
+      "authorHandle": "linusn",
+      "authorName": "Linus Nyman",
+      "state": "open",
+      "url": "https://github.com/aurora/api/pull/24",
+      "createdAt": "2026-08-06T05:30:31.440Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 68,
+      "breakdown": {
+        "loc": 18.89,
+        "reviewActivity": 4.9,
+        "participants": 20,
+        "files": 15,
+        "commits": 6.09,
+        "linkedIssues": 3.15
+      },
+      "stats": {
+        "additions": 491,
+        "deletions": 109,
+        "changedFiles": 13,
+        "commits": 4,
+        "reviewComments": 0,
+        "issueComments": 3,
+        "reviews": 0,
+        "participants": 3,
+        "linkedIssues": 1
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 34,
+      "title": "Optimize the drill-down (web)",
+      "authorHandle": "margaretp",
+      "authorName": "Margaret Park",
+      "state": "merged",
+      "url": "https://github.com/aurora/web/pull/34",
+      "createdAt": "2026-08-03T03:54:31.219Z",
+      "mergedAt": "2026-08-04T00:39:30.944Z",
+      "closedAt": null,
+      "score": 51.8,
+      "breakdown": {
+        "loc": 1.79,
+        "reviewActivity": 25,
+        "participants": 11.7,
+        "files": 0,
+        "commits": 8.33,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 156,
+        "deletions": 77,
+        "changedFiles": 2,
+        "commits": 6,
+        "reviewComments": 5,
+        "issueComments": 4,
+        "reviews": 3,
+        "participants": 2,
+        "linkedIssues": 2
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 33,
+      "title": "Improve the sample fixtures (web)",
+      "authorHandle": "margaretp",
+      "authorName": "Margaret Park",
+      "state": "closed",
+      "url": "https://github.com/aurora/web/pull/33",
+      "createdAt": "2026-08-03T14:35:51.209Z",
+      "mergedAt": null,
+      "closedAt": "2026-08-04T02:59:53.159Z",
+      "score": 50.6,
+      "breakdown": {
+        "loc": 4.72,
+        "reviewActivity": 4.9,
+        "participants": 20,
+        "files": 11.72,
+        "commits": 9.22,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 217,
+        "deletions": 57,
+        "changedFiles": 9,
+        "commits": 7,
+        "reviewComments": 1,
+        "issueComments": 0,
+        "reviews": 2,
+        "participants": 3,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 28,
+      "title": "Refactor rate-limit backoff (web)",
+      "authorHandle": "adalovelace",
+      "authorName": "Ada Lovelace",
+      "state": "merged",
+      "url": "https://github.com/aurora/web/pull/28",
+      "createdAt": "2026-08-04T16:42:14.041Z",
+      "mergedAt": "2026-08-05T10:16:07.705Z",
+      "closedAt": null,
+      "score": 47.3,
+      "breakdown": {
+        "loc": 10.63,
+        "reviewActivity": 4.9,
+        "participants": 11.7,
+        "files": 11.72,
+        "commits": 8.33,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 255,
+        "deletions": 125,
+        "changedFiles": 9,
+        "commits": 6,
+        "reviewComments": 2,
+        "issueComments": 1,
+        "reviews": 0,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 30,
+      "title": "Harden the stacked bars (web)",
+      "authorHandle": "adalovelace",
+      "authorName": "Ada Lovelace",
+      "state": "merged",
+      "url": "https://github.com/aurora/web/pull/30",
+      "createdAt": "2026-08-03T13:52:55.668Z",
+      "mergedAt": "2026-08-03T21:54:38.529Z",
+      "closedAt": null,
+      "score": 47.2,
+      "breakdown": {
+        "loc": 8.83,
+        "reviewActivity": 4.9,
+        "participants": 11.7,
+        "files": 6.75,
+        "commits": 10,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 265,
+        "deletions": 79,
+        "changedFiles": 5,
+        "commits": 8,
+        "reviewComments": 0,
+        "issueComments": 3,
+        "reviews": 0,
+        "participants": 2,
+        "linkedIssues": 2
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 32,
+      "title": "Harden the velocity gauge (web)",
+      "authorHandle": "linusn",
+      "authorName": "Linus Nyman",
+      "state": "merged",
+      "url": "https://github.com/aurora/web/pull/32",
+      "createdAt": "2026-08-08T04:56:02.192Z",
+      "mergedAt": "2026-08-08T10:24:21.993Z",
+      "closedAt": null,
+      "score": 45,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 0,
+        "participants": 0,
+        "files": 15,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 616,
+        "deletions": 225,
+        "changedFiles": 13,
+        "commits": 1,
+        "reviewComments": 0,
+        "issueComments": 0,
+        "reviews": 2,
+        "participants": 1,
+        "linkedIssues": 2
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 29,
+      "title": "Add rate-limit backoff (web)",
+      "authorHandle": "adalovelace",
+      "authorName": "Ada Lovelace",
+      "state": "open",
+      "url": "https://github.com/aurora/web/pull/29",
+      "createdAt": "2026-08-07T04:17:11.198Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 41.2,
+      "breakdown": {
+        "loc": 8.35,
+        "reviewActivity": 14.45,
+        "participants": 11.7,
+        "files": 6.75,
+        "commits": 0,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 250,
+        "deletions": 85,
+        "changedFiles": 5,
+        "commits": 1,
+        "reviewComments": 1,
+        "issueComments": 4,
+        "reviews": 1,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 31,
+      "title": "Add week bucketing (web)",
+      "authorHandle": "gracehopper",
+      "authorName": "Grace Hopper",
+      "state": "merged",
+      "url": "https://github.com/aurora/web/pull/31",
+      "createdAt": "2026-08-04T05:38:11.395Z",
+      "mergedAt": "2026-08-04T20:51:33.285Z",
+      "closedAt": null,
+      "score": 33.4,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 8.71,
+        "participants": 0,
+        "files": 14.28,
+        "commits": 7.3,
+        "linkedIssues": 3.15
+      },
+      "stats": {
+        "additions": 176,
+        "deletions": 35,
+        "changedFiles": 12,
+        "commits": 5,
+        "reviewComments": 0,
+        "issueComments": 2,
+        "reviews": 2,
+        "participants": 1,
+        "linkedIssues": 1
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "adalovelace",
+      "name": "Ada Lovelace",
+      "velocity": 72.2,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 3,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 12,
+        "comments": 3,
+        "locAdded": 770,
+        "locRemoved": 289
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 3,
+            "locAdded": 770,
+            "locRemoved": 289
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 28,
+          "title": "Refactor rate-limit backoff (web)",
+          "authorHandle": "adalovelace",
+          "authorName": "Ada Lovelace",
+          "state": "merged",
+          "url": "https://github.com/aurora/web/pull/28",
+          "createdAt": "2026-08-04T16:42:14.041Z",
+          "mergedAt": "2026-08-05T10:16:07.705Z",
+          "closedAt": null,
+          "score": 47.3,
+          "breakdown": {
+            "loc": 10.63,
+            "reviewActivity": 4.9,
+            "participants": 11.7,
+            "files": 11.72,
+            "commits": 8.33,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 255,
+            "deletions": 125,
+            "changedFiles": 9,
+            "commits": 6,
+            "reviewComments": 2,
+            "issueComments": 1,
+            "reviews": 0,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 30,
+          "title": "Harden the stacked bars (web)",
+          "authorHandle": "adalovelace",
+          "authorName": "Ada Lovelace",
+          "state": "merged",
+          "url": "https://github.com/aurora/web/pull/30",
+          "createdAt": "2026-08-03T13:52:55.668Z",
+          "mergedAt": "2026-08-03T21:54:38.529Z",
+          "closedAt": null,
+          "score": 47.2,
+          "breakdown": {
+            "loc": 8.83,
+            "reviewActivity": 4.9,
+            "participants": 11.7,
+            "files": 6.75,
+            "commits": 10,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 265,
+            "deletions": 79,
+            "changedFiles": 5,
+            "commits": 8,
+            "reviewComments": 0,
+            "issueComments": 3,
+            "reviews": 0,
+            "participants": 2,
+            "linkedIssues": 2
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 29,
+          "title": "Add rate-limit backoff (web)",
+          "authorHandle": "adalovelace",
+          "authorName": "Ada Lovelace",
+          "state": "open",
+          "url": "https://github.com/aurora/web/pull/29",
+          "createdAt": "2026-08-07T04:17:11.198Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 41.2,
+          "breakdown": {
+            "loc": 8.35,
+            "reviewActivity": 14.45,
+            "participants": 11.7,
+            "files": 6.75,
+            "commits": 0,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 250,
+            "deletions": 85,
+            "changedFiles": 5,
+            "commits": 1,
+            "reviewComments": 1,
+            "issueComments": 4,
+            "reviews": 1,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 30,
+          "createdAt": "2026-08-07T11:36:42.785Z",
+          "url": "https://github.com/aurora/web/pull/30#c1"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 30,
+          "createdAt": "2026-08-08T03:42:26.107Z",
+          "url": "https://github.com/aurora/web/pull/30#c2"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 30,
+          "createdAt": "2026-08-09T03:06:18.968Z",
+          "url": "https://github.com/aurora/web/pull/30#c0"
+        }
+      ]
+    },
+    {
+      "handle": "gracehopper",
+      "name": "Grace Hopper",
+      "velocity": 73.8,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 8,
+        "comments": 5,
+        "locAdded": 176,
+        "locRemoved": 35
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 5,
+            "locAdded": 176,
+            "locRemoved": 35
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 31,
+          "title": "Add week bucketing (web)",
+          "authorHandle": "gracehopper",
+          "authorName": "Grace Hopper",
+          "state": "merged",
+          "url": "https://github.com/aurora/web/pull/31",
+          "createdAt": "2026-08-04T05:38:11.395Z",
+          "mergedAt": "2026-08-04T20:51:33.285Z",
+          "closedAt": null,
+          "score": 33.4,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 8.71,
+            "participants": 0,
+            "files": 14.28,
+            "commits": 7.3,
+            "linkedIssues": 3.15
+          },
+          "stats": {
+            "additions": 176,
+            "deletions": 35,
+            "changedFiles": 12,
+            "commits": 5,
+            "reviewComments": 0,
+            "issueComments": 2,
+            "reviews": 2,
+            "participants": 1,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 31,
+          "createdAt": "2026-08-04T06:57:17.620Z",
+          "url": "https://github.com/aurora/web/pull/31#c4"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 31,
+          "createdAt": "2026-08-04T20:29:12.619Z",
+          "url": "https://github.com/aurora/web/pull/31#c3"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 31,
+          "createdAt": "2026-08-04T23:13:52.437Z",
+          "url": "https://github.com/aurora/web/pull/31#c0"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 31,
+          "createdAt": "2026-08-07T06:29:05.676Z",
+          "url": "https://github.com/aurora/web/pull/31#c2"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 31,
+          "createdAt": "2026-08-09T21:20:45.308Z",
+          "url": "https://github.com/aurora/web/pull/31#c1"
+        }
+      ]
+    },
+    {
+      "handle": "linusn",
+      "name": "Linus Nyman",
+      "velocity": 42.1,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 4,
+        "comments": 2,
+        "locAdded": 1107,
+        "locRemoved": 334
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 491,
+            "locRemoved": 109
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 616,
+            "locRemoved": 225
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "number": 24,
+          "title": "Harden the stacked bars (api)",
+          "authorHandle": "linusn",
+          "authorName": "Linus Nyman",
+          "state": "open",
+          "url": "https://github.com/aurora/api/pull/24",
+          "createdAt": "2026-08-06T05:30:31.440Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 68,
+          "breakdown": {
+            "loc": 18.89,
+            "reviewActivity": 4.9,
+            "participants": 20,
+            "files": 15,
+            "commits": 6.09,
+            "linkedIssues": 3.15
+          },
+          "stats": {
+            "additions": 491,
+            "deletions": 109,
+            "changedFiles": 13,
+            "commits": 4,
+            "reviewComments": 0,
+            "issueComments": 3,
+            "reviews": 0,
+            "participants": 3,
+            "linkedIssues": 1
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 32,
+          "title": "Harden the velocity gauge (web)",
+          "authorHandle": "linusn",
+          "authorName": "Linus Nyman",
+          "state": "merged",
+          "url": "https://github.com/aurora/web/pull/32",
+          "createdAt": "2026-08-08T04:56:02.192Z",
+          "mergedAt": "2026-08-08T10:24:21.993Z",
+          "closedAt": null,
+          "score": 45,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 0,
+            "participants": 0,
+            "files": 15,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 616,
+            "deletions": 225,
+            "changedFiles": 13,
+            "commits": 1,
+            "reviewComments": 0,
+            "issueComments": 0,
+            "reviews": 2,
+            "participants": 1,
+            "linkedIssues": 2
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 24,
+          "createdAt": "2026-08-02T23:57:43.737Z",
+          "url": "https://github.com/aurora/api/pull/24#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 32,
+          "createdAt": "2026-08-05T07:34:47.784Z",
+          "url": "https://github.com/aurora/web/pull/32#c0"
+        }
+      ]
+    },
+    {
+      "handle": "margaretp",
+      "name": "Margaret Park",
+      "velocity": 69.8,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 1,
+        "commits": 2,
+        "comments": 3,
+        "locAdded": 373,
+        "locRemoved": 134
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 0,
+            "comments": 3,
+            "locAdded": 373,
+            "locRemoved": 134
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 34,
+          "title": "Optimize the drill-down (web)",
+          "authorHandle": "margaretp",
+          "authorName": "Margaret Park",
+          "state": "merged",
+          "url": "https://github.com/aurora/web/pull/34",
+          "createdAt": "2026-08-03T03:54:31.219Z",
+          "mergedAt": "2026-08-04T00:39:30.944Z",
+          "closedAt": null,
+          "score": 51.8,
+          "breakdown": {
+            "loc": 1.79,
+            "reviewActivity": 25,
+            "participants": 11.7,
+            "files": 0,
+            "commits": 8.33,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 156,
+            "deletions": 77,
+            "changedFiles": 2,
+            "commits": 6,
+            "reviewComments": 5,
+            "issueComments": 4,
+            "reviews": 3,
+            "participants": 2,
+            "linkedIssues": 2
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 33,
+          "title": "Improve the sample fixtures (web)",
+          "authorHandle": "margaretp",
+          "authorName": "Margaret Park",
+          "state": "closed",
+          "url": "https://github.com/aurora/web/pull/33",
+          "createdAt": "2026-08-03T14:35:51.209Z",
+          "mergedAt": null,
+          "closedAt": "2026-08-04T02:59:53.159Z",
+          "score": 50.6,
+          "breakdown": {
+            "loc": 4.72,
+            "reviewActivity": 4.9,
+            "participants": 20,
+            "files": 11.72,
+            "commits": 9.22,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 217,
+            "deletions": 57,
+            "changedFiles": 9,
+            "commits": 7,
+            "reviewComments": 1,
+            "issueComments": 0,
+            "reviews": 2,
+            "participants": 3,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 33,
+          "createdAt": "2026-08-05T06:58:38.989Z",
+          "url": "https://github.com/aurora/web/pull/33#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 33,
+          "createdAt": "2026-08-07T03:51:51.979Z",
+          "url": "https://github.com/aurora/web/pull/33#c2"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 33,
+          "createdAt": "2026-08-08T16:36:43.329Z",
+          "url": "https://github.com/aurora/web/pull/33#c1"
+        }
+      ]
+    }
+  ]
+}

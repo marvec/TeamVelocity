@@ -1,0 +1,321 @@
+{
+  "weekStart": "2026-07-06",
+  "weekEnd": "2026-07-13",
+  "label": "2026/07/06–07/12",
+  "velocity": 26.4,
+  "velocityBand": "red",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 2,
+    "prsMerged": 1,
+    "prsClosed": 1,
+    "commits": 5,
+    "comments": 3,
+    "locAdded": 173,
+    "locRemoved": 62
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 21,
+      "title": "Tidy up week bucketing (cloud)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "merged",
+      "url": "https://github.com/nimbus/cloud/pull/21",
+      "createdAt": "2026-07-10T07:10:35.035Z",
+      "mergedAt": "2026-07-10T23:54:42.317Z",
+      "closedAt": null,
+      "score": 75,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 0,
+        "files": 15,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 92,
+        "deletions": 31,
+        "changedFiles": 7,
+        "commits": 2,
+        "reviewComments": 6,
+        "issueComments": 0,
+        "reviews": 0,
+        "participants": 1,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 22,
+      "title": "Document the data loader (cloud)",
+      "authorHandle": "dennisr",
+      "authorName": "Dennis Ritchie",
+      "state": "closed",
+      "url": "https://github.com/nimbus/cloud/pull/22",
+      "createdAt": "2026-07-12T11:43:47.890Z",
+      "mergedAt": null,
+      "closedAt": "2026-07-12T21:59:59.999Z",
+      "score": 25,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 0,
+        "participants": 20,
+        "files": 0,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 81,
+        "deletions": 31,
+        "changedFiles": 1,
+        "commits": 1,
+        "reviewComments": 1,
+        "issueComments": 3,
+        "reviews": 0,
+        "participants": 2,
+        "linkedIssues": 1
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "katherinej",
+      "name": "Katherine Johnson",
+      "velocity": 24.7,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 2,
+        "comments": 2,
+        "locAdded": 92,
+        "locRemoved": 31
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 92,
+            "locRemoved": 31
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 21,
+          "title": "Tidy up week bucketing (cloud)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "merged",
+          "url": "https://github.com/nimbus/cloud/pull/21",
+          "createdAt": "2026-07-10T07:10:35.035Z",
+          "mergedAt": "2026-07-10T23:54:42.317Z",
+          "closedAt": null,
+          "score": 75,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 0,
+            "files": 15,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 92,
+            "deletions": 31,
+            "changedFiles": 7,
+            "commits": 2,
+            "reviewComments": 6,
+            "issueComments": 0,
+            "reviews": 0,
+            "participants": 1,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 21,
+          "createdAt": "2026-07-09T12:14:18.703Z",
+          "url": "https://github.com/nimbus/cloud/pull/21#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 21,
+          "createdAt": "2026-07-10T14:26:27.774Z",
+          "url": "https://github.com/nimbus/cloud/pull/21#c1"
+        }
+      ]
+    },
+    {
+      "handle": "dennisr",
+      "name": "Dennis Ritchie",
+      "velocity": 28.2,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 0,
+        "prsClosed": 1,
+        "commits": 3,
+        "comments": 1,
+        "locAdded": 81,
+        "locRemoved": 31
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 2,
+            "comments": 1,
+            "locAdded": 81,
+            "locRemoved": 31
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 22,
+          "title": "Document the data loader (cloud)",
+          "authorHandle": "dennisr",
+          "authorName": "Dennis Ritchie",
+          "state": "closed",
+          "url": "https://github.com/nimbus/cloud/pull/22",
+          "createdAt": "2026-07-12T11:43:47.890Z",
+          "mergedAt": null,
+          "closedAt": "2026-07-12T21:59:59.999Z",
+          "score": 25,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 0,
+            "participants": 20,
+            "files": 0,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 81,
+            "deletions": 31,
+            "changedFiles": 1,
+            "commits": 1,
+            "reviewComments": 1,
+            "issueComments": 3,
+            "reviews": 0,
+            "participants": 2,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 22,
+          "createdAt": "2026-07-06T16:13:22.324Z",
+          "url": "https://github.com/nimbus/cloud/pull/22#c0"
+        }
+      ]
+    }
+  ]
+}

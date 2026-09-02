@@ -1,0 +1,392 @@
+{
+  "weekStart": "2026-05-11",
+  "weekEnd": "2026-05-18",
+  "label": "2026/05/11–05/17",
+  "velocity": 50,
+  "velocityBand": "yellow",
+  "warmingUp": true,
+  "totals": {
+    "prsOpened": 3,
+    "prsMerged": 2,
+    "prsClosed": 0,
+    "commits": 7,
+    "comments": 4,
+    "locAdded": 700,
+    "locRemoved": 298
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 1,
+      "title": "Harden rate-limit backoff (edge)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "open",
+      "url": "https://github.com/nimbus/edge/pull/1",
+      "createdAt": "2026-05-11T18:50:32.045Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 50,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 0,
+        "files": 0,
+        "commits": 0,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 275,
+        "deletions": 119,
+        "changedFiles": 10,
+        "commits": 1,
+        "reviewComments": 5,
+        "issueComments": 4,
+        "reviews": 3,
+        "participants": 1,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 7,
+      "title": "Tidy up the velocity gauge (cloud)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "merged",
+      "url": "https://github.com/nimbus/cloud/pull/7",
+      "createdAt": "2026-05-15T06:00:24.777Z",
+      "mergedAt": "2026-05-16T10:47:42.911Z",
+      "closedAt": null,
+      "score": 46.6,
+      "breakdown": {
+        "loc": 1.21,
+        "reviewActivity": 25,
+        "participants": 0,
+        "files": 10.39,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 201,
+        "deletions": 103,
+        "changedFiles": 12,
+        "commits": 7,
+        "reviewComments": 5,
+        "issueComments": 4,
+        "reviews": 3,
+        "participants": 1,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 2,
+      "title": "Tidy up rate-limit backoff (edge)",
+      "authorHandle": "dennisr",
+      "authorName": "Dennis Ritchie",
+      "state": "merged",
+      "url": "https://github.com/nimbus/edge/pull/2",
+      "createdAt": "2026-05-12T15:13:32.793Z",
+      "mergedAt": "2026-05-13T15:23:05.694Z",
+      "closedAt": null,
+      "score": 41.6,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 0,
+        "participants": 20,
+        "files": 15,
+        "commits": 6.61,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 224,
+        "deletions": 76,
+        "changedFiles": 13,
+        "commits": 4,
+        "reviewComments": 0,
+        "issueComments": 3,
+        "reviews": 2,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "katherinej",
+      "name": "Katherine Johnson",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 6,
+        "comments": 3,
+        "locAdded": 476,
+        "locRemoved": 222
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 1,
+            "locAdded": 201,
+            "locRemoved": 103
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 275,
+            "locRemoved": 119
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 1,
+          "title": "Harden rate-limit backoff (edge)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "open",
+          "url": "https://github.com/nimbus/edge/pull/1",
+          "createdAt": "2026-05-11T18:50:32.045Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 50,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 0,
+            "files": 0,
+            "commits": 0,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 275,
+            "deletions": 119,
+            "changedFiles": 10,
+            "commits": 1,
+            "reviewComments": 5,
+            "issueComments": 4,
+            "reviews": 3,
+            "participants": 1,
+            "linkedIssues": 0
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 7,
+          "title": "Tidy up the velocity gauge (cloud)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "merged",
+          "url": "https://github.com/nimbus/cloud/pull/7",
+          "createdAt": "2026-05-15T06:00:24.777Z",
+          "mergedAt": "2026-05-16T10:47:42.911Z",
+          "closedAt": null,
+          "score": 46.6,
+          "breakdown": {
+            "loc": 1.21,
+            "reviewActivity": 25,
+            "participants": 0,
+            "files": 10.39,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 201,
+            "deletions": 103,
+            "changedFiles": 12,
+            "commits": 7,
+            "reviewComments": 5,
+            "issueComments": 4,
+            "reviews": 3,
+            "participants": 1,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 1,
+          "createdAt": "2026-05-13T00:26:18.812Z",
+          "url": "https://github.com/nimbus/edge/pull/1#c2"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 7,
+          "createdAt": "2026-05-15T21:18:30.908Z",
+          "url": "https://github.com/nimbus/cloud/pull/7#c0"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 1,
+          "createdAt": "2026-05-16T13:26:20.084Z",
+          "url": "https://github.com/nimbus/edge/pull/1#c1"
+        }
+      ]
+    },
+    {
+      "handle": "dennisr",
+      "name": "Dennis Ritchie",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 1,
+        "locAdded": 224,
+        "locRemoved": 76
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 224,
+            "locRemoved": 76
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 2,
+          "title": "Tidy up rate-limit backoff (edge)",
+          "authorHandle": "dennisr",
+          "authorName": "Dennis Ritchie",
+          "state": "merged",
+          "url": "https://github.com/nimbus/edge/pull/2",
+          "createdAt": "2026-05-12T15:13:32.793Z",
+          "mergedAt": "2026-05-13T15:23:05.694Z",
+          "closedAt": null,
+          "score": 41.6,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 0,
+            "participants": 20,
+            "files": 15,
+            "commits": 6.61,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 224,
+            "deletions": 76,
+            "changedFiles": 13,
+            "commits": 4,
+            "reviewComments": 0,
+            "issueComments": 3,
+            "reviews": 2,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-14T06:56:56.108Z",
+          "url": "https://github.com/nimbus/edge/pull/2#c0"
+        }
+      ]
+    }
+  ]
+}

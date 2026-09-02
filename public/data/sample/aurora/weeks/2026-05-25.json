@@ -1,0 +1,778 @@
+{
+  "weekStart": "2026-05-25",
+  "weekEnd": "2026-06-01",
+  "label": "2026/05/25–05/31",
+  "velocity": 36.5,
+  "velocityBand": "red",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 5,
+    "prsMerged": 3,
+    "prsClosed": 0,
+    "commits": 15,
+    "comments": 10,
+    "locAdded": 1384,
+    "locRemoved": 459
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "api",
+        "url": "https://github.com/aurora/api"
+      },
+      "number": 8,
+      "title": "Add the velocity gauge (api)",
+      "authorHandle": "linusn",
+      "authorName": "Linus Nyman",
+      "state": "merged",
+      "url": "https://github.com/aurora/api/pull/8",
+      "createdAt": "2026-05-25T04:37:30.130Z",
+      "mergedAt": "2026-05-25T22:27:43.859Z",
+      "closedAt": null,
+      "score": 84.6,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 11.7,
+        "files": 12.9,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 617,
+        "deletions": 252,
+        "changedFiles": 9,
+        "commits": 6,
+        "reviewComments": 5,
+        "issueComments": 1,
+        "reviews": 3,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "infra",
+        "url": "https://github.com/aurora/infra"
+      },
+      "number": 9,
+      "title": "Improve week bucketing (infra)",
+      "authorHandle": "adalovelace",
+      "authorName": "Ada Lovelace",
+      "state": "open",
+      "url": "https://github.com/aurora/infra/pull/9",
+      "createdAt": "2026-05-26T05:33:01.336Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 54.9,
+      "breakdown": {
+        "loc": 10.45,
+        "reviewActivity": 12.14,
+        "participants": 20,
+        "files": 7.34,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 204,
+        "deletions": 84,
+        "changedFiles": 4,
+        "commits": 2,
+        "reviewComments": 2,
+        "issueComments": 4,
+        "reviews": 0,
+        "participants": 3,
+        "linkedIssues": 1
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "api",
+        "url": "https://github.com/aurora/api"
+      },
+      "number": 7,
+      "title": "Tidy up the drill-down (api)",
+      "authorHandle": "gracehopper",
+      "authorName": "Grace Hopper",
+      "state": "open",
+      "url": "https://github.com/aurora/api/pull/7",
+      "createdAt": "2026-05-29T07:21:03.160Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 40.3,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 12.14,
+        "participants": 0,
+        "files": 15,
+        "commits": 8.18,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 111,
+        "deletions": 19,
+        "changedFiles": 12,
+        "commits": 5,
+        "reviewComments": 3,
+        "issueComments": 0,
+        "reviews": 3,
+        "participants": 1,
+        "linkedIssues": 1
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "infra",
+        "url": "https://github.com/aurora/infra"
+      },
+      "number": 10,
+      "title": "Harden the velocity gauge (infra)",
+      "authorHandle": "adalovelace",
+      "authorName": "Ada Lovelace",
+      "state": "merged",
+      "url": "https://github.com/aurora/infra/pull/10",
+      "createdAt": "2026-05-27T13:39:15.982Z",
+      "mergedAt": "2026-05-27T18:09:45.324Z",
+      "closedAt": null,
+      "score": 29.2,
+      "breakdown": {
+        "loc": 12.08,
+        "reviewActivity": 12.14,
+        "participants": 0,
+        "files": 0,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 260,
+        "deletions": 66,
+        "changedFiles": 1,
+        "commits": 2,
+        "reviewComments": 5,
+        "issueComments": 0,
+        "reviews": 1,
+        "participants": 1,
+        "linkedIssues": 1
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "number": 10,
+      "title": "Wire up the data loader (web)",
+      "authorHandle": "linusn",
+      "authorName": "Linus Nyman",
+      "state": "merged",
+      "url": "https://github.com/aurora/web/pull/10",
+      "createdAt": "2026-05-30T06:21:57.748Z",
+      "mergedAt": "2026-05-31T04:34:51.824Z",
+      "closedAt": null,
+      "score": 19.2,
+      "breakdown": {
+        "loc": 7.49,
+        "reviewActivity": 0,
+        "participants": 11.7,
+        "files": 0,
+        "commits": 0,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 192,
+        "deletions": 38,
+        "changedFiles": 1,
+        "commits": 2,
+        "reviewComments": 0,
+        "issueComments": 2,
+        "reviews": 2,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "adalovelace",
+      "name": "Ada Lovelace",
+      "velocity": 34.9,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 5,
+        "comments": 2,
+        "locAdded": 464,
+        "locRemoved": 150
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 464,
+            "locRemoved": 150
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "number": 9,
+          "title": "Improve week bucketing (infra)",
+          "authorHandle": "adalovelace",
+          "authorName": "Ada Lovelace",
+          "state": "open",
+          "url": "https://github.com/aurora/infra/pull/9",
+          "createdAt": "2026-05-26T05:33:01.336Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 54.9,
+          "breakdown": {
+            "loc": 10.45,
+            "reviewActivity": 12.14,
+            "participants": 20,
+            "files": 7.34,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 204,
+            "deletions": 84,
+            "changedFiles": 4,
+            "commits": 2,
+            "reviewComments": 2,
+            "issueComments": 4,
+            "reviews": 0,
+            "participants": 3,
+            "linkedIssues": 1
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "number": 10,
+          "title": "Harden the velocity gauge (infra)",
+          "authorHandle": "adalovelace",
+          "authorName": "Ada Lovelace",
+          "state": "merged",
+          "url": "https://github.com/aurora/infra/pull/10",
+          "createdAt": "2026-05-27T13:39:15.982Z",
+          "mergedAt": "2026-05-27T18:09:45.324Z",
+          "closedAt": null,
+          "score": 29.2,
+          "breakdown": {
+            "loc": 12.08,
+            "reviewActivity": 12.14,
+            "participants": 0,
+            "files": 0,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 260,
+            "deletions": 66,
+            "changedFiles": 1,
+            "commits": 2,
+            "reviewComments": 5,
+            "issueComments": 0,
+            "reviews": 1,
+            "participants": 1,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": 10,
+          "createdAt": "2026-05-28T13:09:37.327Z",
+          "url": "https://github.com/aurora/infra/pull/10#c0"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": 9,
+          "createdAt": "2026-05-31T02:02:57.872Z",
+          "url": "https://github.com/aurora/infra/pull/9#c1"
+        }
+      ]
+    },
+    {
+      "handle": "gracehopper",
+      "name": "Grace Hopper",
+      "velocity": 36.5,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 6,
+        "locAdded": 111,
+        "locRemoved": 19
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 6,
+            "locAdded": 111,
+            "locRemoved": 19
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "number": 7,
+          "title": "Tidy up the drill-down (api)",
+          "authorHandle": "gracehopper",
+          "authorName": "Grace Hopper",
+          "state": "open",
+          "url": "https://github.com/aurora/api/pull/7",
+          "createdAt": "2026-05-29T07:21:03.160Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 40.3,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 12.14,
+            "participants": 0,
+            "files": 15,
+            "commits": 8.18,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 111,
+            "deletions": 19,
+            "changedFiles": 12,
+            "commits": 5,
+            "reviewComments": 3,
+            "issueComments": 0,
+            "reviews": 3,
+            "participants": 1,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 7,
+          "createdAt": "2026-05-27T07:55:08.667Z",
+          "url": "https://github.com/aurora/api/pull/7#c5"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 7,
+          "createdAt": "2026-05-27T18:33:35.694Z",
+          "url": "https://github.com/aurora/api/pull/7#c3"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 7,
+          "createdAt": "2026-05-28T09:32:43.337Z",
+          "url": "https://github.com/aurora/api/pull/7#c0"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 7,
+          "createdAt": "2026-05-28T15:05:45.147Z",
+          "url": "https://github.com/aurora/api/pull/7#c2"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 7,
+          "createdAt": "2026-05-29T23:10:53.089Z",
+          "url": "https://github.com/aurora/api/pull/7#c4"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 7,
+          "createdAt": "2026-05-30T23:36:34.375Z",
+          "url": "https://github.com/aurora/api/pull/7#c1"
+        }
+      ]
+    },
+    {
+      "handle": "linusn",
+      "name": "Linus Nyman",
+      "velocity": 63.5,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 6,
+        "comments": 1,
+        "locAdded": 809,
+        "locRemoved": 290
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 1,
+            "locAdded": 617,
+            "locRemoved": 252
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 192,
+            "locRemoved": 38
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "number": 8,
+          "title": "Add the velocity gauge (api)",
+          "authorHandle": "linusn",
+          "authorName": "Linus Nyman",
+          "state": "merged",
+          "url": "https://github.com/aurora/api/pull/8",
+          "createdAt": "2026-05-25T04:37:30.130Z",
+          "mergedAt": "2026-05-25T22:27:43.859Z",
+          "closedAt": null,
+          "score": 84.6,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 11.7,
+            "files": 12.9,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 617,
+            "deletions": 252,
+            "changedFiles": 9,
+            "commits": 6,
+            "reviewComments": 5,
+            "issueComments": 1,
+            "reviews": 3,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "number": 10,
+          "title": "Wire up the data loader (web)",
+          "authorHandle": "linusn",
+          "authorName": "Linus Nyman",
+          "state": "merged",
+          "url": "https://github.com/aurora/web/pull/10",
+          "createdAt": "2026-05-30T06:21:57.748Z",
+          "mergedAt": "2026-05-31T04:34:51.824Z",
+          "closedAt": null,
+          "score": 19.2,
+          "breakdown": {
+            "loc": 7.49,
+            "reviewActivity": 0,
+            "participants": 11.7,
+            "files": 0,
+            "commits": 0,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 192,
+            "deletions": 38,
+            "changedFiles": 1,
+            "commits": 2,
+            "reviewComments": 0,
+            "issueComments": 2,
+            "reviews": 2,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": 8,
+          "createdAt": "2026-05-29T12:00:24.064Z",
+          "url": "https://github.com/aurora/api/pull/8#c0"
+        }
+      ]
+    },
+    {
+      "handle": "margaretp",
+      "name": "Margaret Park",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": null,
+          "createdAt": "2026-05-29T01:35:38.353Z",
+          "url": "https://github.com/aurora/infra/pull/20#c0"
+        }
+      ]
+    }
+  ]
+}

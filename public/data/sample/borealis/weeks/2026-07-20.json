@@ -1,0 +1,421 @@
+{
+  "weekStart": "2026-07-20",
+  "weekEnd": "2026-07-27",
+  "label": "2026/07/20–07/26",
+  "velocity": 51.6,
+  "velocityBand": "yellow",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 3,
+    "prsMerged": 1,
+    "prsClosed": 0,
+    "commits": 10,
+    "comments": 5,
+    "locAdded": 633,
+    "locRemoved": 264
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "number": 13,
+      "title": "Document the sample fixtures (core)",
+      "authorHandle": "alanturing",
+      "authorName": "Alan Turing",
+      "state": "merged",
+      "url": "https://github.com/borealis/core/pull/13",
+      "createdAt": "2026-07-24T17:00:56.397Z",
+      "mergedAt": "2026-07-26T06:14:05.399Z",
+      "closedAt": null,
+      "score": 80,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 0,
+        "files": 15,
+        "commits": 10,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 319,
+        "deletions": 128,
+        "changedFiles": 13,
+        "commits": 4,
+        "reviewComments": 4,
+        "issueComments": 3,
+        "reviews": 2,
+        "participants": 1,
+        "linkedIssues": 2
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "number": 12,
+      "title": "Document the drill-down (core)",
+      "authorHandle": "alanturing",
+      "authorName": "Alan Turing",
+      "state": "open",
+      "url": "https://github.com/borealis/core/pull/12",
+      "createdAt": "2026-07-21T07:58:41.274Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 68,
+      "breakdown": {
+        "loc": 21.41,
+        "reviewActivity": 22.13,
+        "participants": 20,
+        "files": 0,
+        "commits": 4.43,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 241,
+        "deletions": 116,
+        "changedFiles": 1,
+        "commits": 2,
+        "reviewComments": 4,
+        "issueComments": 4,
+        "reviews": 0,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "number": 18,
+      "title": "Add the drill-down (app)",
+      "authorHandle": "rosalindf",
+      "authorName": "Rosalind Frank",
+      "state": "open",
+      "url": "https://github.com/borealis/app/pull/18",
+      "createdAt": "2026-07-26T04:10:20.070Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 18.8,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 0,
+        "participants": 0,
+        "files": 13.81,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 73,
+        "deletions": 20,
+        "changedFiles": 11,
+        "commits": 1,
+        "reviewComments": 1,
+        "issueComments": 2,
+        "reviews": 0,
+        "participants": 1,
+        "linkedIssues": 2
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "rosalindf",
+      "name": "Rosalind Frank",
+      "velocity": 36.1,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 4,
+        "comments": 3,
+        "locAdded": 73,
+        "locRemoved": 20
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 3,
+            "locAdded": 73,
+            "locRemoved": 20
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "number": 18,
+          "title": "Add the drill-down (app)",
+          "authorHandle": "rosalindf",
+          "authorName": "Rosalind Frank",
+          "state": "open",
+          "url": "https://github.com/borealis/app/pull/18",
+          "createdAt": "2026-07-26T04:10:20.070Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 18.8,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 0,
+            "participants": 0,
+            "files": 13.81,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 73,
+            "deletions": 20,
+            "changedFiles": 11,
+            "commits": 1,
+            "reviewComments": 1,
+            "issueComments": 2,
+            "reviews": 0,
+            "participants": 1,
+            "linkedIssues": 2
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 18,
+          "createdAt": "2026-07-20T00:58:54.049Z",
+          "url": "https://github.com/borealis/app/pull/18#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 18,
+          "createdAt": "2026-07-24T05:52:56.104Z",
+          "url": "https://github.com/borealis/app/pull/18#c2"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 18,
+          "createdAt": "2026-07-24T13:25:34.304Z",
+          "url": "https://github.com/borealis/app/pull/18#c1"
+        }
+      ]
+    },
+    {
+      "handle": "alanturing",
+      "name": "Alan Turing",
+      "velocity": 100,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 6,
+        "comments": 2,
+        "locAdded": 560,
+        "locRemoved": 244
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 560,
+            "locRemoved": 244
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "number": 13,
+          "title": "Document the sample fixtures (core)",
+          "authorHandle": "alanturing",
+          "authorName": "Alan Turing",
+          "state": "merged",
+          "url": "https://github.com/borealis/core/pull/13",
+          "createdAt": "2026-07-24T17:00:56.397Z",
+          "mergedAt": "2026-07-26T06:14:05.399Z",
+          "closedAt": null,
+          "score": 80,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 0,
+            "files": 15,
+            "commits": 10,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 319,
+            "deletions": 128,
+            "changedFiles": 13,
+            "commits": 4,
+            "reviewComments": 4,
+            "issueComments": 3,
+            "reviews": 2,
+            "participants": 1,
+            "linkedIssues": 2
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "number": 12,
+          "title": "Document the drill-down (core)",
+          "authorHandle": "alanturing",
+          "authorName": "Alan Turing",
+          "state": "open",
+          "url": "https://github.com/borealis/core/pull/12",
+          "createdAt": "2026-07-21T07:58:41.274Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 68,
+          "breakdown": {
+            "loc": 21.41,
+            "reviewActivity": 22.13,
+            "participants": 20,
+            "files": 0,
+            "commits": 4.43,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 241,
+            "deletions": 116,
+            "changedFiles": 1,
+            "commits": 2,
+            "reviewComments": 4,
+            "issueComments": 4,
+            "reviews": 0,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 12,
+          "createdAt": "2026-07-26T02:56:21.800Z",
+          "url": "https://github.com/borealis/core/pull/12#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 13,
+          "createdAt": "2026-07-26T18:43:20.325Z",
+          "url": "https://github.com/borealis/core/pull/13#c1"
+        }
+      ]
+    }
+  ]
+}

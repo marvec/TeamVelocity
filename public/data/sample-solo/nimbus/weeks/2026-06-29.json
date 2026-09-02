@@ -1,0 +1,304 @@
+{
+  "weekStart": "2026-06-29",
+  "weekEnd": "2026-07-06",
+  "label": "2026/06/29–07/05",
+  "velocity": 49.3,
+  "velocityBand": "yellow",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 2,
+    "prsMerged": 2,
+    "prsClosed": 0,
+    "commits": 6,
+    "comments": 3,
+    "locAdded": 419,
+    "locRemoved": 78
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 11,
+      "title": "Wire up the stacked bars (edge)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "merged",
+      "url": "https://github.com/nimbus/edge/pull/11",
+      "createdAt": "2026-07-02T10:41:37.621Z",
+      "mergedAt": "2026-07-03T00:22:11.929Z",
+      "closedAt": null,
+      "score": 70,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 0,
+        "participants": 20,
+        "files": 15,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 208,
+        "deletions": 45,
+        "changedFiles": 12,
+        "commits": 4,
+        "reviewComments": 1,
+        "issueComments": 1,
+        "reviews": 2,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 20,
+      "title": "Fix the sample fixtures (cloud)",
+      "authorHandle": "dennisr",
+      "authorName": "Dennis Ritchie",
+      "state": "merged",
+      "url": "https://github.com/nimbus/cloud/pull/20",
+      "createdAt": "2026-07-02T10:02:22.678Z",
+      "mergedAt": "2026-07-02T18:31:01.310Z",
+      "closedAt": null,
+      "score": 55,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 0,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 211,
+        "deletions": 33,
+        "changedFiles": 2,
+        "commits": 4,
+        "reviewComments": 2,
+        "issueComments": 4,
+        "reviews": 2,
+        "participants": 2,
+        "linkedIssues": 0
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "katherinej",
+      "name": "Katherine Johnson",
+      "velocity": 35.4,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 2,
+        "locAdded": 208,
+        "locRemoved": 45
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 208,
+            "locRemoved": 45
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 11,
+          "title": "Wire up the stacked bars (edge)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "merged",
+          "url": "https://github.com/nimbus/edge/pull/11",
+          "createdAt": "2026-07-02T10:41:37.621Z",
+          "mergedAt": "2026-07-03T00:22:11.929Z",
+          "closedAt": null,
+          "score": 70,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 0,
+            "participants": 20,
+            "files": 15,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 208,
+            "deletions": 45,
+            "changedFiles": 12,
+            "commits": 4,
+            "reviewComments": 1,
+            "issueComments": 1,
+            "reviews": 2,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 11,
+          "createdAt": "2026-07-01T14:51:04.853Z",
+          "url": "https://github.com/nimbus/edge/pull/11#c1"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 11,
+          "createdAt": "2026-07-04T17:29:30.740Z",
+          "url": "https://github.com/nimbus/edge/pull/11#c0"
+        }
+      ]
+    },
+    {
+      "handle": "dennisr",
+      "name": "Dennis Ritchie",
+      "velocity": 67.4,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 1,
+        "locAdded": 211,
+        "locRemoved": 33
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 1,
+            "locAdded": 211,
+            "locRemoved": 33
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 20,
+          "title": "Fix the sample fixtures (cloud)",
+          "authorHandle": "dennisr",
+          "authorName": "Dennis Ritchie",
+          "state": "merged",
+          "url": "https://github.com/nimbus/cloud/pull/20",
+          "createdAt": "2026-07-02T10:02:22.678Z",
+          "mergedAt": "2026-07-02T18:31:01.310Z",
+          "closedAt": null,
+          "score": 55,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 0,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 211,
+            "deletions": 33,
+            "changedFiles": 2,
+            "commits": 4,
+            "reviewComments": 2,
+            "issueComments": 4,
+            "reviews": 2,
+            "participants": 2,
+            "linkedIssues": 0
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 20,
+          "createdAt": "2026-07-05T11:13:13.464Z",
+          "url": "https://github.com/nimbus/cloud/pull/20#c0"
+        }
+      ]
+    }
+  ]
+}

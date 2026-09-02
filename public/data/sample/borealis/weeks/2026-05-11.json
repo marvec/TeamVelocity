@@ -1,0 +1,433 @@
+{
+  "weekStart": "2026-05-11",
+  "weekEnd": "2026-05-18",
+  "label": "2026/05/11–05/17",
+  "velocity": 63.5,
+  "velocityBand": "yellow",
+  "warmingUp": true,
+  "totals": {
+    "prsOpened": 3,
+    "prsMerged": 2,
+    "prsClosed": 0,
+    "commits": 5,
+    "comments": 6,
+    "locAdded": 476,
+    "locRemoved": 122
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "number": 3,
+      "title": "Fix the sample fixtures (app)",
+      "authorHandle": "alanturing",
+      "authorName": "Alan Turing",
+      "state": "merged",
+      "url": "https://github.com/borealis/app/pull/3",
+      "createdAt": "2026-05-14T22:48:55.360Z",
+      "mergedAt": "2026-05-15T20:19:12.095Z",
+      "closedAt": null,
+      "score": 83.1,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 0,
+        "commits": 8.07,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 191,
+        "deletions": 84,
+        "changedFiles": 4,
+        "commits": 6,
+        "reviewComments": 6,
+        "issueComments": 0,
+        "reviews": 3,
+        "participants": 2,
+        "linkedIssues": 1
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "number": 2,
+      "title": "Harden URL state (core)",
+      "authorHandle": "rosalindf",
+      "authorName": "Rosalind Frank",
+      "state": "merged",
+      "url": "https://github.com/borealis/core/pull/2",
+      "createdAt": "2026-05-12T15:46:22.723Z",
+      "mergedAt": "2026-05-13T11:37:29.705Z",
+      "closedAt": null,
+      "score": 61,
+      "breakdown": {
+        "loc": 13.17,
+        "reviewActivity": 22.81,
+        "participants": 0,
+        "files": 15,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 170,
+        "deletions": 23,
+        "changedFiles": 7,
+        "commits": 7,
+        "reviewComments": 5,
+        "issueComments": 2,
+        "reviews": 1,
+        "participants": 1,
+        "linkedIssues": 0
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "number": 3,
+      "title": "Wire up the stacked bars (core)",
+      "authorHandle": "rosalindf",
+      "authorName": "Rosalind Frank",
+      "state": "open",
+      "url": "https://github.com/borealis/core/pull/3",
+      "createdAt": "2026-05-17T13:02:36.099Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 20,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 0,
+        "participants": 0,
+        "files": 15,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 115,
+        "deletions": 15,
+        "changedFiles": 7,
+        "commits": 3,
+        "reviewComments": 0,
+        "issueComments": 1,
+        "reviews": 1,
+        "participants": 1,
+        "linkedIssues": 1
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "rosalindf",
+      "name": "Rosalind Frank",
+      "velocity": 71.7,
+      "velocityBand": "green",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 4,
+        "locAdded": 285,
+        "locRemoved": 38
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 4,
+            "locAdded": 285,
+            "locRemoved": 38
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "number": 2,
+          "title": "Harden URL state (core)",
+          "authorHandle": "rosalindf",
+          "authorName": "Rosalind Frank",
+          "state": "merged",
+          "url": "https://github.com/borealis/core/pull/2",
+          "createdAt": "2026-05-12T15:46:22.723Z",
+          "mergedAt": "2026-05-13T11:37:29.705Z",
+          "closedAt": null,
+          "score": 61,
+          "breakdown": {
+            "loc": 13.17,
+            "reviewActivity": 22.81,
+            "participants": 0,
+            "files": 15,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 170,
+            "deletions": 23,
+            "changedFiles": 7,
+            "commits": 7,
+            "reviewComments": 5,
+            "issueComments": 2,
+            "reviews": 1,
+            "participants": 1,
+            "linkedIssues": 0
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "number": 3,
+          "title": "Wire up the stacked bars (core)",
+          "authorHandle": "rosalindf",
+          "authorName": "Rosalind Frank",
+          "state": "open",
+          "url": "https://github.com/borealis/core/pull/3",
+          "createdAt": "2026-05-17T13:02:36.099Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 20,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 0,
+            "participants": 0,
+            "files": 15,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 115,
+            "deletions": 15,
+            "changedFiles": 7,
+            "commits": 3,
+            "reviewComments": 0,
+            "issueComments": 1,
+            "reviews": 1,
+            "participants": 1,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-12T05:09:07.857Z",
+          "url": "https://github.com/borealis/core/pull/2#c2"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-13T18:00:50.016Z",
+          "url": "https://github.com/borealis/core/pull/2#c3"
+        },
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-15T04:12:08.759Z",
+          "url": "https://github.com/borealis/core/pull/2#c1"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-17T10:11:31.484Z",
+          "url": "https://github.com/borealis/core/pull/2#c0"
+        }
+      ]
+    },
+    {
+      "handle": "alanturing",
+      "name": "Alan Turing",
+      "velocity": 63.5,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 2,
+        "comments": 2,
+        "locAdded": 191,
+        "locRemoved": 84
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 191,
+            "locRemoved": 84
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "number": 3,
+          "title": "Fix the sample fixtures (app)",
+          "authorHandle": "alanturing",
+          "authorName": "Alan Turing",
+          "state": "merged",
+          "url": "https://github.com/borealis/app/pull/3",
+          "createdAt": "2026-05-14T22:48:55.360Z",
+          "mergedAt": "2026-05-15T20:19:12.095Z",
+          "closedAt": null,
+          "score": 83.1,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 0,
+            "commits": 8.07,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 191,
+            "deletions": 84,
+            "changedFiles": 4,
+            "commits": 6,
+            "reviewComments": 6,
+            "issueComments": 0,
+            "reviews": 3,
+            "participants": 2,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 3,
+          "createdAt": "2026-05-15T11:08:48.360Z",
+          "url": "https://github.com/borealis/app/pull/3#c0"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 3,
+          "createdAt": "2026-05-16T19:30:23.475Z",
+          "url": "https://github.com/borealis/app/pull/3#c1"
+        }
+      ]
+    }
+  ]
+}

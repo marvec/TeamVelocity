@@ -1,0 +1,333 @@
+{
+  "weekStart": "2026-07-13",
+  "weekEnd": "2026-07-20",
+  "label": "2026/07/13–07/19",
+  "velocity": 25,
+  "velocityBand": "red",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 2,
+    "prsMerged": 0,
+    "prsClosed": 0,
+    "commits": 4,
+    "comments": 4,
+    "locAdded": 281,
+    "locRemoved": 63
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 12,
+      "title": "Optimize week bucketing (edge)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "open",
+      "url": "https://github.com/nimbus/edge/pull/12",
+      "createdAt": "2026-07-16T18:04:44.466Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 70,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 0,
+        "participants": 20,
+        "files": 15,
+        "commits": 10,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 177,
+        "deletions": 38,
+        "changedFiles": 2,
+        "commits": 8,
+        "reviewComments": 3,
+        "issueComments": 4,
+        "reviews": 1,
+        "participants": 2,
+        "linkedIssues": 1
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "number": 13,
+      "title": "Document the data loader (edge)",
+      "authorHandle": "dennisr",
+      "authorName": "Dennis Ritchie",
+      "state": "open",
+      "url": "https://github.com/nimbus/edge/pull/13",
+      "createdAt": "2026-07-18T08:17:11.287Z",
+      "mergedAt": null,
+      "closedAt": null,
+      "score": 50,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 0,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 104,
+        "deletions": 25,
+        "changedFiles": 1,
+        "commits": 2,
+        "reviewComments": 5,
+        "issueComments": 4,
+        "reviews": 1,
+        "participants": 2,
+        "linkedIssues": 2
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "katherinej",
+      "name": "Katherine Johnson",
+      "velocity": 18.4,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 2,
+        "comments": 2,
+        "locAdded": 177,
+        "locRemoved": 38
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 2,
+            "locAdded": 177,
+            "locRemoved": 38
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 12,
+          "title": "Optimize week bucketing (edge)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "open",
+          "url": "https://github.com/nimbus/edge/pull/12",
+          "createdAt": "2026-07-16T18:04:44.466Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 70,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 0,
+            "participants": 20,
+            "files": 15,
+            "commits": 10,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 177,
+            "deletions": 38,
+            "changedFiles": 2,
+            "commits": 8,
+            "reviewComments": 3,
+            "issueComments": 4,
+            "reviews": 1,
+            "participants": 2,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 12,
+          "createdAt": "2026-07-18T22:28:44.080Z",
+          "url": "https://github.com/nimbus/edge/pull/12#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 12,
+          "createdAt": "2026-07-19T08:29:19.724Z",
+          "url": "https://github.com/nimbus/edge/pull/12#c1"
+        }
+      ]
+    },
+    {
+      "handle": "dennisr",
+      "name": "Dennis Ritchie",
+      "velocity": 37,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 2,
+        "comments": 2,
+        "locAdded": 104,
+        "locRemoved": 25
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 104,
+            "locRemoved": 25
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "number": 13,
+          "title": "Document the data loader (edge)",
+          "authorHandle": "dennisr",
+          "authorName": "Dennis Ritchie",
+          "state": "open",
+          "url": "https://github.com/nimbus/edge/pull/13",
+          "createdAt": "2026-07-18T08:17:11.287Z",
+          "mergedAt": null,
+          "closedAt": null,
+          "score": 50,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 0,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 104,
+            "deletions": 25,
+            "changedFiles": 1,
+            "commits": 2,
+            "reviewComments": 5,
+            "issueComments": 4,
+            "reviews": 1,
+            "participants": 2,
+            "linkedIssues": 2
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 13,
+          "createdAt": "2026-07-13T03:08:21.751Z",
+          "url": "https://github.com/nimbus/edge/pull/13#c0"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 13,
+          "createdAt": "2026-07-15T04:54:40.276Z",
+          "url": "https://github.com/nimbus/edge/pull/13#c1"
+        }
+      ]
+    }
+  ]
+}

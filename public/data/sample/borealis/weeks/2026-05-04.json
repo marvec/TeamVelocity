@@ -1,0 +1,333 @@
+{
+  "weekStart": "2026-05-04",
+  "weekEnd": "2026-05-11",
+  "label": "2026/05/04–05/10",
+  "velocity": 63.5,
+  "velocityBand": "yellow",
+  "warmingUp": true,
+  "totals": {
+    "prsOpened": 2,
+    "prsMerged": 2,
+    "prsClosed": 0,
+    "commits": 4,
+    "comments": 4,
+    "locAdded": 413,
+    "locRemoved": 167
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "number": 2,
+      "title": "Improve the velocity gauge (app)",
+      "authorHandle": "alanturing",
+      "authorName": "Alan Turing",
+      "state": "merged",
+      "url": "https://github.com/borealis/app/pull/2",
+      "createdAt": "2026-05-07T01:41:28.828Z",
+      "mergedAt": "2026-05-08T05:06:49.787Z",
+      "closedAt": null,
+      "score": 85,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 15,
+        "commits": 0,
+        "linkedIssues": 0
+      },
+      "stats": {
+        "additions": 228,
+        "deletions": 68,
+        "changedFiles": 13,
+        "commits": 1,
+        "reviewComments": 4,
+        "issueComments": 4,
+        "reviews": 0,
+        "participants": 2,
+        "linkedIssues": 1
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "number": 1,
+      "title": "Wire up the stacked bars (app)",
+      "authorHandle": "rosalindf",
+      "authorName": "Rosalind Frank",
+      "state": "merged",
+      "url": "https://github.com/borealis/app/pull/1",
+      "createdAt": "2026-05-05T14:42:40.681Z",
+      "mergedAt": "2026-05-05T19:21:02.374Z",
+      "closedAt": null,
+      "score": 60,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 0,
+        "commits": 10,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 185,
+        "deletions": 99,
+        "changedFiles": 12,
+        "commits": 6,
+        "reviewComments": 3,
+        "issueComments": 4,
+        "reviews": 1,
+        "participants": 2,
+        "linkedIssues": 2
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "rosalindf",
+      "name": "Rosalind Frank",
+      "velocity": 36.5,
+      "velocityBand": "red",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 2,
+        "locAdded": 185,
+        "locRemoved": 99
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 185,
+            "locRemoved": 99
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "number": 1,
+          "title": "Wire up the stacked bars (app)",
+          "authorHandle": "rosalindf",
+          "authorName": "Rosalind Frank",
+          "state": "merged",
+          "url": "https://github.com/borealis/app/pull/1",
+          "createdAt": "2026-05-05T14:42:40.681Z",
+          "mergedAt": "2026-05-05T19:21:02.374Z",
+          "closedAt": null,
+          "score": 60,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 0,
+            "commits": 10,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 185,
+            "deletions": 99,
+            "changedFiles": 12,
+            "commits": 6,
+            "reviewComments": 3,
+            "issueComments": 4,
+            "reviews": 1,
+            "participants": 2,
+            "linkedIssues": 2
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 1,
+          "createdAt": "2026-05-07T23:31:04.652Z",
+          "url": "https://github.com/borealis/app/pull/1#c0"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 1,
+          "createdAt": "2026-05-09T17:43:06.777Z",
+          "url": "https://github.com/borealis/app/pull/1#c1"
+        }
+      ]
+    },
+    {
+      "handle": "alanturing",
+      "name": "Alan Turing",
+      "velocity": 63.5,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 2,
+        "locAdded": 228,
+        "locRemoved": 68
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 228,
+            "locRemoved": 68
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "number": 2,
+          "title": "Improve the velocity gauge (app)",
+          "authorHandle": "alanturing",
+          "authorName": "Alan Turing",
+          "state": "merged",
+          "url": "https://github.com/borealis/app/pull/2",
+          "createdAt": "2026-05-07T01:41:28.828Z",
+          "mergedAt": "2026-05-08T05:06:49.787Z",
+          "closedAt": null,
+          "score": 85,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 15,
+            "commits": 0,
+            "linkedIssues": 0
+          },
+          "stats": {
+            "additions": 228,
+            "deletions": 68,
+            "changedFiles": 13,
+            "commits": 1,
+            "reviewComments": 4,
+            "issueComments": 4,
+            "reviews": 0,
+            "participants": 2,
+            "linkedIssues": 1
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-07T07:15:09.109Z",
+          "url": "https://github.com/borealis/app/pull/2#c0"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-09T07:32:22.425Z",
+          "url": "https://github.com/borealis/app/pull/2#c1"
+        }
+      ]
+    }
+  ]
+}

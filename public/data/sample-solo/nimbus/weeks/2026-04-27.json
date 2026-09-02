@@ -1,0 +1,303 @@
+{
+  "weekStart": "2026-04-27",
+  "weekEnd": "2026-05-04",
+  "label": "2026/04/27–05/03",
+  "velocity": 50,
+  "velocityBand": "yellow",
+  "warmingUp": true,
+  "totals": {
+    "prsOpened": 2,
+    "prsMerged": 1,
+    "prsClosed": 1,
+    "commits": 2,
+    "comments": 3,
+    "locAdded": 246,
+    "locRemoved": 90
+  },
+  "prs": [
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 1,
+      "title": "Tidy up the drill-down (cloud)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "merged",
+      "url": "https://github.com/nimbus/cloud/pull/1",
+      "createdAt": "2026-04-29T09:08:24.735Z",
+      "mergedAt": "2026-04-30T06:57:50.307Z",
+      "closedAt": null,
+      "score": 75,
+      "breakdown": {
+        "loc": 25,
+        "reviewActivity": 0,
+        "participants": 20,
+        "files": 15,
+        "commits": 10,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 156,
+        "deletions": 78,
+        "changedFiles": 8,
+        "commits": 6,
+        "reviewComments": 3,
+        "issueComments": 2,
+        "reviews": 2,
+        "participants": 2,
+        "linkedIssues": 2
+      }
+    },
+    {
+      "source": "github",
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "number": 2,
+      "title": "Improve the velocity gauge (cloud)",
+      "authorHandle": "katherinej",
+      "authorName": "Katherine Johnson",
+      "state": "closed",
+      "url": "https://github.com/nimbus/cloud/pull/2",
+      "createdAt": "2026-05-02T10:57:16.778Z",
+      "mergedAt": null,
+      "closedAt": "2026-05-03T02:19:37.840Z",
+      "score": 50,
+      "breakdown": {
+        "loc": 0,
+        "reviewActivity": 25,
+        "participants": 20,
+        "files": 0,
+        "commits": 0,
+        "linkedIssues": 5
+      },
+      "stats": {
+        "additions": 90,
+        "deletions": 12,
+        "changedFiles": 6,
+        "commits": 3,
+        "reviewComments": 3,
+        "issueComments": 4,
+        "reviews": 3,
+        "participants": 2,
+        "linkedIssues": 2
+      }
+    }
+  ],
+  "members": [
+    {
+      "handle": "katherinej",
+      "name": "Katherine Johnson",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 1,
+        "commits": 2,
+        "comments": 2,
+        "locAdded": 246,
+        "locRemoved": 90
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 246,
+            "locRemoved": 90
+          }
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 1,
+          "title": "Tidy up the drill-down (cloud)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "merged",
+          "url": "https://github.com/nimbus/cloud/pull/1",
+          "createdAt": "2026-04-29T09:08:24.735Z",
+          "mergedAt": "2026-04-30T06:57:50.307Z",
+          "closedAt": null,
+          "score": 75,
+          "breakdown": {
+            "loc": 25,
+            "reviewActivity": 0,
+            "participants": 20,
+            "files": 15,
+            "commits": 10,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 156,
+            "deletions": 78,
+            "changedFiles": 8,
+            "commits": 6,
+            "reviewComments": 3,
+            "issueComments": 2,
+            "reviews": 2,
+            "participants": 2,
+            "linkedIssues": 2
+          }
+        },
+        {
+          "source": "github",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "number": 2,
+          "title": "Improve the velocity gauge (cloud)",
+          "authorHandle": "katherinej",
+          "authorName": "Katherine Johnson",
+          "state": "closed",
+          "url": "https://github.com/nimbus/cloud/pull/2",
+          "createdAt": "2026-05-02T10:57:16.778Z",
+          "mergedAt": null,
+          "closedAt": "2026-05-03T02:19:37.840Z",
+          "score": 50,
+          "breakdown": {
+            "loc": 0,
+            "reviewActivity": 25,
+            "participants": 20,
+            "files": 0,
+            "commits": 0,
+            "linkedIssues": 5
+          },
+          "stats": {
+            "additions": 90,
+            "deletions": 12,
+            "changedFiles": 6,
+            "commits": 3,
+            "reviewComments": 3,
+            "issueComments": 4,
+            "reviews": 3,
+            "participants": 2,
+            "linkedIssues": 2
+          }
+        }
+      ],
+      "comments": [
+        {
+          "kind": "review",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 1,
+          "createdAt": "2026-04-30T09:21:17.178Z",
+          "url": "https://github.com/nimbus/cloud/pull/1#c0"
+        },
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": 2,
+          "createdAt": "2026-05-03T15:36:56.182Z",
+          "url": "https://github.com/nimbus/cloud/pull/2#c1"
+        }
+      ]
+    },
+    {
+      "handle": "dennisr",
+      "name": "Dennis Ritchie",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": [
+        {
+          "kind": "review_summary",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": null,
+          "createdAt": "2026-05-03T15:24:56.812Z",
+          "url": "https://github.com/nimbus/edge/pull/54#c0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "weekStart": "2026-08-17",
+  "weekEnd": "2026-08-24",
+  "label": "2026/08/17–08/23",
+  "velocity": 0,
+  "velocityBand": "red",
+  "warmingUp": false,
+  "totals": {
+    "prsOpened": 0,
+    "prsMerged": 0,
+    "prsClosed": 0,
+    "commits": 1,
+    "comments": 0,
+    "locAdded": 0,
+    "locRemoved": 0
+  },
+  "prs": [],
+  "members": [
+    {
+      "handle": "katherinej",
+      "name": "Katherine Johnson",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [],
+      "prs": [],
+      "comments": []
+    },
+    {
+      "handle": "dennisr",
+      "name": "Dennis Ritchie",
+      "velocity": 4.5,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ],
+      "prs": [],
+      "comments": []
+    }
+  ]
+}

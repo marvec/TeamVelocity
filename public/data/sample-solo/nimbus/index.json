@@ -1,0 +1,973 @@
+{
+  "weeks": [
+    {
+      "weekStart": "2026-04-27",
+      "weekEnd": "2026-05-04",
+      "label": "2026/04/27–05/03",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 1,
+        "commits": 2,
+        "comments": 3,
+        "locAdded": 246,
+        "locRemoved": 90
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 246,
+            "locRemoved": 90
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-04",
+      "weekEnd": "2026-05-11",
+      "label": "2026/05/04–05/10",
+      "velocity": 63.5,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 3,
+        "prsClosed": 1,
+        "commits": 9,
+        "comments": 5,
+        "locAdded": 801,
+        "locRemoved": 383
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 2,
+            "prsClosed": 1,
+            "commits": 7,
+            "comments": 3,
+            "locAdded": 644,
+            "locRemoved": 302
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 157,
+            "locRemoved": 81
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-11",
+      "weekEnd": "2026-05-18",
+      "label": "2026/05/11–05/17",
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true,
+      "totals": {
+        "prsOpened": 3,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 7,
+        "comments": 4,
+        "locAdded": 700,
+        "locRemoved": 298
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 3,
+            "locAdded": 476,
+            "locRemoved": 222
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 1,
+            "locAdded": 224,
+            "locRemoved": 76
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-18",
+      "weekEnd": "2026-05-25",
+      "label": "2026/05/18–05/24",
+      "velocity": 40.7,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 0,
+        "prsClosed": 3,
+        "commits": 7,
+        "comments": 4,
+        "locAdded": 1111,
+        "locRemoved": 436
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 36.6,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 0,
+            "prsClosed": 2,
+            "commits": 4,
+            "comments": 3,
+            "locAdded": 766,
+            "locRemoved": 243
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 42.4,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 3,
+            "comments": 1,
+            "locAdded": 345,
+            "locRemoved": 193
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-05-25",
+      "weekEnd": "2026-06-01",
+      "label": "2026/05/25–05/31",
+      "velocity": 58.3,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 2,
+        "prsClosed": 1,
+        "commits": 9,
+        "comments": 6,
+        "locAdded": 1142,
+        "locRemoved": 403
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 61.1,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 4,
+            "locAdded": 762,
+            "locRemoved": 260
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 4,
+            "comments": 2,
+            "locAdded": 380,
+            "locRemoved": 143
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-01",
+      "weekEnd": "2026-06-08",
+      "label": "2026/06/01–06/07",
+      "velocity": 40.7,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 4,
+        "comments": 3,
+        "locAdded": 350,
+        "locRemoved": 109
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 49.1,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 3,
+            "locAdded": 350,
+            "locRemoved": 109
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 0,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-08",
+      "weekEnd": "2026-06-15",
+      "label": "2026/06/08–06/14",
+      "velocity": 42.9,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 3,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 6,
+        "comments": 3,
+        "locAdded": 497,
+        "locRemoved": 181
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 27.7,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 2,
+            "locAdded": 293,
+            "locRemoved": 78
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 36.2,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 1,
+            "locAdded": 204,
+            "locRemoved": 103
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-15",
+      "weekEnd": "2026-06-22",
+      "label": "2026/06/15–06/21",
+      "velocity": 55,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 5,
+        "comments": 5,
+        "locAdded": 418,
+        "locRemoved": 52
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 39,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 4,
+            "locAdded": 204,
+            "locRemoved": 21
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 63.7,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 1,
+            "locAdded": 214,
+            "locRemoved": 31
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-22",
+      "weekEnd": "2026-06-29",
+      "label": "2026/06/22–06/28",
+      "velocity": 92.5,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 5,
+        "prsMerged": 4,
+        "prsClosed": 0,
+        "commits": 22,
+        "comments": 8,
+        "locAdded": 2377,
+        "locRemoved": 672
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 77.8,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 3,
+            "prsClosed": 0,
+            "commits": 14,
+            "comments": 4,
+            "locAdded": 1334,
+            "locRemoved": 350
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 4,
+            "locAdded": 1043,
+            "locRemoved": 322
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-06-29",
+      "weekEnd": "2026-07-06",
+      "label": "2026/06/29–07/05",
+      "velocity": 49.3,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 6,
+        "comments": 3,
+        "locAdded": 419,
+        "locRemoved": 78
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 35.4,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 208,
+            "locRemoved": 45
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 67.4,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 1,
+            "locAdded": 211,
+            "locRemoved": 33
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-06",
+      "weekEnd": "2026-07-13",
+      "label": "2026/07/06–07/12",
+      "velocity": 26.4,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 1,
+        "commits": 5,
+        "comments": 3,
+        "locAdded": 173,
+        "locRemoved": 62
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 24.7,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 92,
+            "locRemoved": 31
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 28.2,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 3,
+            "comments": 1,
+            "locAdded": 81,
+            "locRemoved": 31
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-13",
+      "weekEnd": "2026-07-20",
+      "label": "2026/07/13–07/19",
+      "velocity": 25,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 4,
+        "comments": 4,
+        "locAdded": 281,
+        "locRemoved": 63
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 18.4,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 177,
+            "locRemoved": 38
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 37,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 2,
+            "comments": 2,
+            "locAdded": 104,
+            "locRemoved": 25
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-20",
+      "weekEnd": "2026-07-27",
+      "label": "2026/07/20–07/26",
+      "velocity": 37.5,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 0,
+        "prsClosed": 1,
+        "commits": 7,
+        "comments": 5,
+        "locAdded": 404,
+        "locRemoved": 164
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 38.4,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 3,
+            "locAdded": 206,
+            "locRemoved": 108
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 49,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 1,
+            "prsMerged": 0,
+            "prsClosed": 1,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 198,
+            "locRemoved": 56
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-07-27",
+      "weekEnd": "2026-08-03",
+      "label": "2026/07/27–08/02",
+      "velocity": 79.8,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 4,
+        "prsClosed": 0,
+        "commits": 8,
+        "comments": 6,
+        "locAdded": 1154,
+        "locRemoved": 356
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 67.6,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 4,
+            "locAdded": 476,
+            "locRemoved": 114
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 4,
+            "comments": 2,
+            "locAdded": 678,
+            "locRemoved": 242
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-03",
+      "weekEnd": "2026-08-10",
+      "label": "2026/08/03–08/09",
+      "velocity": 73.7,
+      "velocityBand": "green",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 3,
+        "prsClosed": 0,
+        "commits": 14,
+        "comments": 5,
+        "locAdded": 1334,
+        "locRemoved": 349
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 66.4,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 3,
+            "locAdded": 542,
+            "locRemoved": 232
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 96.9,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 2,
+            "locAdded": 792,
+            "locRemoved": 117
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-10",
+      "weekEnd": "2026-08-17",
+      "label": "2026/08/10–08/16",
+      "velocity": 64.1,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 3,
+        "prsClosed": 1,
+        "commits": 12,
+        "comments": 3,
+        "locAdded": 1319,
+        "locRemoved": 437
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 54.7,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 5,
+            "comments": 2,
+            "locAdded": 429,
+            "locRemoved": 101
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 77.9,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 1,
+            "commits": 7,
+            "comments": 1,
+            "locAdded": 890,
+            "locRemoved": 336
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-17",
+      "weekEnd": "2026-08-24",
+      "label": "2026/08/17–08/23",
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 0,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 4.5,
+          "velocityBand": "red",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 1,
+            "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-24",
+      "weekEnd": "2026-08-31",
+      "label": "2026/08/24–08/30",
+      "velocity": 60.2,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 5,
+        "prsMerged": 2,
+        "prsClosed": 1,
+        "commits": 11,
+        "comments": 4,
+        "locAdded": 1021,
+        "locRemoved": 328
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 66.8,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 3,
+            "prsMerged": 2,
+            "prsClosed": 1,
+            "commits": 8,
+            "comments": 2,
+            "locAdded": 623,
+            "locRemoved": 151
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 48.6,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 3,
+            "comments": 2,
+            "locAdded": 398,
+            "locRemoved": 177
+          }
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-08-31",
+      "weekEnd": "2026-09-07",
+      "label": "2026/08/31–09/06",
+      "velocity": 65.2,
+      "velocityBand": "yellow",
+      "warmingUp": false,
+      "totals": {
+        "prsOpened": 4,
+        "prsMerged": 3,
+        "prsClosed": 0,
+        "commits": 14,
+        "comments": 6,
+        "locAdded": 1070,
+        "locRemoved": 390
+      },
+      "members": [
+        {
+          "handle": "katherinej",
+          "name": "Katherine Johnson",
+          "velocity": 63.3,
+          "velocityBand": "yellow",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 2,
+            "prsClosed": 0,
+            "commits": 6,
+            "comments": 3,
+            "locAdded": 531,
+            "locRemoved": 210
+          }
+        },
+        {
+          "handle": "dennisr",
+          "name": "Dennis Ritchie",
+          "velocity": 70.7,
+          "velocityBand": "green",
+          "warmingUp": false,
+          "totals": {
+            "prsOpened": 2,
+            "prsMerged": 1,
+            "prsClosed": 0,
+            "commits": 8,
+            "comments": 3,
+            "locAdded": 539,
+            "locRemoved": 180
+          }
+        }
+      ]
+    }
+  ]
+}
