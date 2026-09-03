@@ -53,6 +53,14 @@ export const TeamMetaSchema = z.strictObject({
   /** ISO date until which velocity is provisional, or null once history is stable. */
   warmingUpUntil: isoDate.nullable(),
   thresholds: z.strictObject({ red: score01to100, green: score01to100 }),
+  /** The velocity signal weights in effect, so the SPA can decompose a velocity into its drivers. */
+  velocityWeights: z.strictObject({
+    wPR: z.number().nonnegative(),
+    wReview: z.number().nonnegative(),
+    wCommit: z.number().nonnegative(),
+    wOpen: z.number().nonnegative(),
+    wLoc: z.number().nonnegative(),
+  }),
 });
 export type TeamMeta = z.infer<typeof TeamMetaSchema>;
 

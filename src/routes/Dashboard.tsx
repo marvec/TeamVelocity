@@ -120,6 +120,7 @@ export function Dashboard({
           <PrRelevanceSection prs={weekDetail.prs} />
           <MembersSection
             week={weekDetail}
+            weights={meta.velocityWeights}
             selectedMember={selection.member}
             onSelect={selectMember}
             onClear={clearMember}
@@ -127,6 +128,7 @@ export function Dashboard({
           {scope && (
             <PersonDetailSection
               scope={scope}
+              weights={meta.velocityWeights}
               isMember={focusedMember !== undefined}
               selectedRepo={selection.repo}
               onSelectRepo={selectRepo}

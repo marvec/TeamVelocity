@@ -318,12 +318,19 @@ selected week is highlighted and can be unselected (→ range overview).
 material for a status report. If no week is selected, this area shows the range overview.
 
 **Section C — Velocity of individuals.** Per-member horizontal stacked bars for the selected
-week (with legend), expandable. **Bar length is contribution volume** (the stacked categories,
-LOC ÷100) — *not* velocity; the member's **velocity value (0–100) is printed, band-colored, at the
-end of each bar** so the score is never conflated with bar length. Clicking a member selects them
-and reveals, below the bars, that person's **tabbed breakdown** — the same
-`PRs · Commits · Comments · LOC` tabs used in the repo drill-down (§D), but spanning all of the
-person's repos, so each row is tagged with its repo.
+week (with legend), expandable. **Bar length is the member's velocity (0–100 axis)**, printed
+band-colored at the bar end; the **segments are each category's contribution to that velocity**
+(`weight · log1p(count)`, scaled so the stack sums to the velocity — see §7.1), *not* raw
+contribution volume, so the bar reads as the score. Clicking a member selects them and reveals,
+below the bars, that person's **tabbed breakdown** — the same `PRs · Commits · Comments · LOC`
+tabs used in the repo drill-down (§D), but spanning all of the person's repos, so each row is
+tagged with its repo.
+
+The **velocity-by-repo** bars (§D) apply the same scaling: the scope's velocity is split across its
+repos in proportion to each repo's velocity signal, so the repo bars **sum to the scope velocity**
+and each reads as that repo's contribution to it. (Repos have no independent velocity of their own
+— there is no per-repo rolling baseline — so this decomposition is the honest reading of "velocity
+by repo".)
 
 A **"?" help control** in the header opens a plain-language explainer for the two 0–100 scores
 (velocity vs PR relevance), so the distinction in §7 is discoverable in-app.

@@ -82,6 +82,54 @@ export function rawWeeklySignal(
   );
 }
 
+/** Per-display-category contribution to the raw weekly signal. The five parts sum to `rawWeeklySignal`. */
+export interface VelocityContribution {
+  prs: number;
+  commits: number;
+  comments: number;
+  locAdd: number;
+  locRem: number;
+}
+
+/** Totals fields the contribution split reads (a superset-compatible shape with `Totals`). */
+export interface VelocityContributionInput {
+  prsMerged: number;
+  prsOpened: number;
+  commits: number;
+  comments: number;
+  locAdded: number;
+  locRemoved: number;
+}
+
+/**
+ * Split a totals bucket into each display category's contribution to the raw
+ * velocity signal — `weight · log1p(count)`, exactly the terms of
+ * `rawWeeklySignal`. The five parts SUM to that signal, so scaling them to a
+ * stored velocity produces a stacked bar whose LENGTH is the velocity and whose
+ * segments show what drove it (rather than raw contribution volume). LOC is one
+ * combined term in the signal; it is split by the add/remove ratio for display.
+ * The `comments` term stands in for the signal's review-activity weight.
+ */
+export function velocityContribution(
+  t: VelocityContributionInput,
+  weights: VelocityWeights = DEFAULT_VELOCITY_WEIGHTS,
+): VelocityContribution {
+  const locTotal = t.locAdded + t.locRemoved;
+  const locPart = weights.wLoc * log1p(locTotal);
+  const addShare = locTotal > 0 ? t.locAdded / locTotal : 0;
+  return {
+    prs: weights.wPR * log1p(t.prsMerged) + weights.wOpen * log1p(t.prsOpened),
+    commits: weights.wCommit * log1p(t.commits),
+    comments: weights.wReview * log1p(t.comments),
+    locAdd: locPart * addShare,
+    locRem: locPart * (1 - addShare),
+  };
+}
+
+export function contributionSum(c: VelocityContribution): number {
+  return c.prs + c.commits + c.comments + c.locAdd + c.locRem;
+}
+
 export function median(values: readonly number[]): number {
   if (values.length === 0) return 0;
   const sorted = [...values].sort((a, b) => a - b);

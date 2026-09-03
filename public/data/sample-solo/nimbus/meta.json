@@ -11,5 +11,12 @@
   "thresholds": {
     "red": 40,
     "green": 70
+  },
+  "velocityWeights": {
+    "wPR": 1,
+    "wReview": 0.7,
+    "wCommit": 0.5,
+    "wOpen": 0.4,
+    "wLoc": 0.3
   }
 }

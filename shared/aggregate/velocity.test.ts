@@ -3,6 +3,8 @@ import {
   rawWeeklySignal,
   computeVelocitySeries,
   velocityBand,
+  velocityContribution,
+  contributionSum,
   rangeVelocity,
   median,
   mad,
@@ -51,6 +53,52 @@ describe("rawWeeklySignal", () => {
     const base = rawWeeklySignal({ mergedPRs: 1, prsOpened: 1, reviewActivity: 1, commits: 1, locChanged: 1 });
     const more = rawWeeklySignal({ mergedPRs: 2, prsOpened: 1, reviewActivity: 1, commits: 1, locChanged: 1 });
     expect(more).toBeGreaterThan(base);
+  });
+});
+
+describe("velocityContribution", () => {
+  const totals = {
+    prsMerged: 3,
+    prsOpened: 2,
+    commits: 6,
+    comments: 4,
+    locAdded: 300,
+    locRemoved: 100,
+  };
+
+  it("its five parts sum to the raw weekly signal (comments ↔ review, LOC combined)", () => {
+    const parts = velocityContribution(totals, DEFAULT_VELOCITY_WEIGHTS);
+    const raw = rawWeeklySignal(
+      {
+        mergedPRs: totals.prsMerged,
+        prsOpened: totals.prsOpened,
+        reviewActivity: totals.comments,
+        commits: totals.commits,
+        locChanged: totals.locAdded + totals.locRemoved,
+      },
+      DEFAULT_VELOCITY_WEIGHTS,
+    );
+    expect(contributionSum(parts)).toBeCloseTo(raw, 10);
+  });
+
+  it("splits the single LOC term by the add/remove ratio", () => {
+    const parts = velocityContribution(totals);
+    // 300:100 added:removed → locAdd is 3× locRem, and together they are the LOC term.
+    expect(parts.locAdd).toBeCloseTo(parts.locRem * 3, 10);
+  });
+
+  it("is all zeros for an empty bucket (no division by zero on LOC split)", () => {
+    const parts = velocityContribution({
+      prsMerged: 0,
+      prsOpened: 0,
+      commits: 0,
+      comments: 0,
+      locAdded: 0,
+      locRemoved: 0,
+    });
+    expect(contributionSum(parts)).toBe(0);
+    expect(parts.locAdd).toBe(0);
+    expect(parts.locRem).toBe(0);
   });
 });
 

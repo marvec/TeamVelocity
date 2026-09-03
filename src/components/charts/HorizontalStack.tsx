@@ -1,21 +1,26 @@
 import type { ReactElement } from "react";
 import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { VelocityBand } from "../../../shared/types";
-import type { TotalsData } from "../../../shared/schema/data";
-import { CATEGORIES, bandVar, toStackDatum, type StackDatum } from "../../lib/format";
+import { CATEGORIES, bandVar, type StackDatum } from "../../lib/format";
 import { StackTooltip } from "./StackTooltip";
 
 export interface StackRow {
   key: string;
   label: string;
-  totals: TotalsData;
+  /** Pre-scaled stacked segments (+ raw counts for the tooltip). */
+  datum: StackDatum;
+  /** Number printed at the bar's end (the bar total, e.g. a velocity). */
+  value?: number;
+  /** Velocity shown in the tooltip (members only). */
   velocity?: number;
+  /** Colors the end label + tooltip; neutral when absent. */
   band?: VelocityBand;
 }
 
 interface RowDatum extends StackDatum {
   key: string;
   label: string;
+  value?: number;
   velocity?: number;
   band?: VelocityBand;
 }
@@ -25,31 +30,32 @@ export function HorizontalStack({
   selectedKey,
   onSelect,
   yWidth = 128,
+  xMax,
 }: {
   rows: StackRow[];
   selectedKey?: string;
   onSelect?: (key: string) => void;
   yWidth?: number;
+  /** Fixes the axis maximum (e.g. 100 for the 0–100 velocity scale). */
+  xMax?: number;
 }) {
   const data: RowDatum[] = rows.map((r) => ({
-    ...toStackDatum(r.totals),
+    ...r.datum,
     key: r.key,
     label: r.label,
+    value: r.value,
     velocity: r.velocity,
     band: r.band,
   }));
   const height = Math.max(80, rows.length * 38 + 16);
-  // Rows carry a velocity only for the per-member chart (repo rows don't); when
-  // present, print the value at each bar's end so the score can't be confused
-  // with the bar's raw contribution length.
-  const showVelocity = rows.some((r) => r.velocity !== undefined);
+  const showValue = rows.some((r) => r.value !== undefined);
 
   const handleClick = (entry: unknown): void => {
     const payload = (entry as { payload?: RowDatum }).payload;
     if (payload && onSelect) onSelect(payload.key);
   };
 
-  const renderVelocityLabel = (props: unknown): ReactElement | null => {
+  const renderValueLabel = (props: unknown): ReactElement | null => {
     const { x, y, width, height: barHeight, index } = props as {
       x?: number;
       y?: number;
@@ -58,7 +64,7 @@ export function HorizontalStack({
       index?: number;
     };
     const row = data[index ?? -1];
-    if (!row || row.velocity === undefined || row.band === undefined) return null;
+    if (!row || row.value === undefined) return null;
     return (
       <text
         x={Number(x ?? 0) + Number(width ?? 0) + 6}
@@ -66,10 +72,10 @@ export function HorizontalStack({
         dy={4}
         fontSize={11}
         fontWeight={700}
-        fill={bandVar(row.band)}
+        fill={row.band ? bandVar(row.band) : "var(--color-foreground-muted)"}
         textAnchor="start"
       >
-        {Math.round(row.velocity)}
+        {Math.round(row.value)}
       </text>
     );
   };
@@ -80,10 +86,14 @@ export function HorizontalStack({
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 4, right: showVelocity ? 34 : 12, left: 4, bottom: 4 }}
+          margin={{ top: 4, right: showValue ? 34 : 12, left: 4, bottom: 4 }}
           barCategoryGap="26%"
         >
-          <XAxis type="number" tick={{ fontSize: 10, fill: "var(--color-foreground-muted)" }} />
+          <XAxis
+            type="number"
+            domain={xMax !== undefined ? [0, xMax] : undefined}
+            tick={{ fontSize: 10, fill: "var(--color-foreground-muted)" }}
+          />
           <YAxis
             type="category"
             dataKey="label"
@@ -107,8 +117,8 @@ export function HorizontalStack({
                   fillOpacity={selectedKey && d.key !== selectedKey ? 0.3 : 1}
                 />
               ))}
-              {showVelocity && ci === CATEGORIES.length - 1 && (
-                <LabelList dataKey="velocity" content={renderVelocityLabel} />
+              {showValue && ci === CATEGORIES.length - 1 && (
+                <LabelList dataKey="value" content={renderValueLabel} />
               )}
             </Bar>
           ))}

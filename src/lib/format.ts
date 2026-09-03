@@ -3,8 +3,9 @@
  * range selection. All colors reference @theme tokens (never hardcoded hex).
  */
 
-import type { VelocityBand } from "../../shared/types";
+import type { VelocityBand, VelocityWeights } from "../../shared/types";
 import type { TotalsData, WeekSummary } from "../../shared/schema/data";
+import { contributionSum, velocityContribution } from "../../shared/aggregate/velocity";
 import type { RangePreset, Selection } from "./url-state";
 
 /** LOC is scaled to hundreds of lines for stacked-bar heights (see PRD §8). */
@@ -45,6 +46,27 @@ export function toStackDatum(totals: TotalsData): StackDatum {
     comments: totals.comments,
     locAdd: totals.locAdded / LOC_SCALE,
     locRem: totals.locRemoved / LOC_SCALE,
+    raw: totals,
+  };
+}
+
+/**
+ * A stacked datum whose segments are each category's contribution to the
+ * velocity signal, scaled so the bar's total length equals `target` (a
+ * velocity, or a repo's share of one). `raw` keeps the exact counts for the
+ * tooltip. Use this — not `toStackDatum` — wherever the bar should read as
+ * velocity rather than raw contribution volume.
+ */
+export function velocityStackDatum(totals: TotalsData, target: number, weights: VelocityWeights): StackDatum {
+  const c = velocityContribution(totals, weights);
+  const sum = contributionSum(c);
+  const k = sum > 0 ? target / sum : 0;
+  return {
+    prs: c.prs * k,
+    commits: c.commits * k,
+    comments: c.comments * k,
+    locAdd: c.locAdd * k,
+    locRem: c.locRem * k,
     raw: totals,
   };
 }

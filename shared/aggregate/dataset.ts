@@ -425,6 +425,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
     sprintStartHour: team.sprintStartHour,
     warmingUpUntil,
     thresholds: team.thresholds,
+    velocityWeights: velWeights,
   };
 
   return { meta, index: { weeks: summaries }, weeks: weekDetails };

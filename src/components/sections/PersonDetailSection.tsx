@@ -1,6 +1,8 @@
 import type { CommentRow, CommitRow, ScoredPr } from "../../../shared/schema/data";
+import type { VelocityWeights } from "../../../shared/types";
+import { contributionSum, velocityContribution } from "../../../shared/aggregate/velocity";
 import { type RepoTotals, type Scope, repoRefKey } from "../../lib/selectors";
-import { bandTextClass, formatVelocity } from "../../lib/format";
+import { bandTextClass, formatVelocity, velocityStackDatum } from "../../lib/format";
 import { cn } from "../../lib/cn";
 import { HorizontalStack, type StackRow } from "../charts/HorizontalStack";
 import { PrTable } from "../tables/PrTable";
@@ -52,6 +54,7 @@ function RepoDetail({
 
 export function PersonDetailSection({
   scope,
+  weights,
   isMember,
   selectedRepo,
   onSelectRepo,
@@ -59,17 +62,28 @@ export function PersonDetailSection({
   onClearMember,
 }: {
   scope: Scope;
+  weights: VelocityWeights;
   isMember: boolean;
   selectedRepo?: string;
   onSelectRepo: (repo: string) => void;
   onClearRepo: () => void;
   onClearMember: () => void;
 }) {
-  const repoRows: StackRow[] = scope.repos.map((rt) => ({
-    key: repoRefKey(rt.repo),
-    label: rt.repo.name,
-    totals: rt.totals,
-  }));
+  // "Velocity by repo": distribute the scope's velocity across its repos by each
+  // repo's share of the velocity signal, so the bars sum to the scope velocity
+  // and each bar reads as that repo's contribution to it.
+  const scopeVelocity = scope.velocity ?? 0;
+  const repoContribTotals = scope.repos.map((rt) => contributionSum(velocityContribution(rt.totals, weights)));
+  const contribSum = repoContribTotals.reduce((a, b) => a + b, 0);
+  const repoRows: StackRow[] = scope.repos.map((rt, i) => {
+    const allocated = contribSum > 0 ? scopeVelocity * (repoContribTotals[i] / contribSum) : 0;
+    return {
+      key: repoRefKey(rt.repo),
+      label: rt.repo.name,
+      datum: velocityStackDatum(rt.totals, allocated, weights),
+      value: allocated,
+    };
+  });
   const selectedRepoData = selectedRepo
     ? scope.repos.find((rt) => repoRefKey(rt.repo) === selectedRepo)
     : undefined;
