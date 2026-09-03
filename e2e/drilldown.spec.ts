@@ -20,6 +20,13 @@ test.describe("drill-down", () => {
     await expect(page).toHaveURL(/member=/);
     await expect(page.getByTestId("person-detail")).toBeVisible();
 
+    // The person's contribution tabs appear under the individuals bars.
+    await expect(page.getByTestId("member-detail")).toBeVisible();
+    await expect(page.getByTestId("member-panel-prs")).toBeVisible();
+    await page.getByTestId("member-tab-comments").click();
+    await expect(page.getByTestId("member-panel-comments")).toBeVisible();
+    await expect(page.getByTestId("member-panel-prs")).toHaveCount(0);
+
     // Repo: click a repo bar inside the person detail.
     await page.locator("[data-testid=person-detail] .recharts-bar-rectangle").first().click();
     await expect(page).toHaveURL(/repo=/);

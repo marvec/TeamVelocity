@@ -318,7 +318,9 @@ selected week is highlighted and can be unselected (→ range overview).
 material for a status report. If no week is selected, this area shows the range overview.
 
 **Section C — Velocity of individuals.** Per-member horizontal stacked bars for the selected
-week (with legend), expandable. Clicking a member selects them.
+week (with legend), expandable. Clicking a member selects them and reveals, below the bars, that
+person's **tabbed breakdown** — the same `PRs · Commits · Comments · LOC` tabs used in the repo
+drill-down (§D), but spanning all of the person's repos, so each row is tagged with its repo.
 
 **Section D — Selected person detail.** For the selected member + week:
 - their PR list (`repo · PR# · title ····· score%`), clickable to GitHub;
