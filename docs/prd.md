@@ -318,9 +318,15 @@ selected week is highlighted and can be unselected (→ range overview).
 material for a status report. If no week is selected, this area shows the range overview.
 
 **Section C — Velocity of individuals.** Per-member horizontal stacked bars for the selected
-week (with legend), expandable. Clicking a member selects them and reveals, below the bars, that
-person's **tabbed breakdown** — the same `PRs · Commits · Comments · LOC` tabs used in the repo
-drill-down (§D), but spanning all of the person's repos, so each row is tagged with its repo.
+week (with legend), expandable. **Bar length is contribution volume** (the stacked categories,
+LOC ÷100) — *not* velocity; the member's **velocity value (0–100) is printed, band-colored, at the
+end of each bar** so the score is never conflated with bar length. Clicking a member selects them
+and reveals, below the bars, that person's **tabbed breakdown** — the same
+`PRs · Commits · Comments · LOC` tabs used in the repo drill-down (§D), but spanning all of the
+person's repos, so each row is tagged with its repo.
+
+A **"?" help control** in the header opens a plain-language explainer for the two 0–100 scores
+(velocity vs PR relevance), so the distinction in §7 is discoverable in-app.
 
 **Section D — Selected person detail.** For the selected member + week:
 - their PR list (`repo · PR# · title ····· score%`), clickable to GitHub;

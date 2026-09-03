@@ -59,8 +59,8 @@ export function MembersSection({
           </div>
         ) : (
           <p className="mt-2 text-xs text-foreground-muted">
-            Bars show contribution shape; hover a row for exact counts and that member’s velocity. Click to focus a
-            person.
+            Bar length is contribution volume (by category); the number at each bar’s end is that member’s velocity
+            (0–100, vs their own baseline). Hover for exact counts; click to focus a person.
           </p>
         )}
       </CardBody>

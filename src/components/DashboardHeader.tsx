@@ -4,6 +4,7 @@ import type { Selection } from "../lib/url-state";
 import { VelocityGauge } from "./charts/VelocityGauge";
 import { VelocityHistory } from "./charts/VelocityHistory";
 import { DateRangePicker } from "./DateRangePicker";
+import { ScoreHelp } from "./ScoreHelp";
 import { CategoryLegend } from "./ui/Legend";
 import { Button } from "./ui/Button";
 
@@ -48,7 +49,10 @@ export function DashboardHeader({
             <span className="text-foreground-muted font-normal">Team:</span> {meta.name}
           </h1>
         </div>
-        <DateRangePicker selection={selection} minDate={minDate} maxDate={maxDate} />
+        <div className="flex items-center gap-2">
+          <DateRangePicker selection={selection} minDate={minDate} maxDate={maxDate} />
+          <ScoreHelp />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 rounded-card border border-border bg-card p-4 shadow-sm lg:grid-cols-[auto_1fr]">

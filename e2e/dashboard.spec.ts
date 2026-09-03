@@ -35,6 +35,13 @@ test.describe("dashboard", () => {
     await expect(gauge).toHaveAttribute("data-band", /red|yellow|green/);
   });
 
+  test("the help popover explains the two scores", async ({ page }) => {
+    await page.getByRole("button", { name: "How the scores work" }).click();
+    await expect(page.getByRole("heading", { name: "How the scores work" })).toBeVisible();
+    await expect(page.getByText("weekly rhythm")).toBeVisible();
+    await expect(page.getByText("which PRs are worth a status-report mention")).toBeVisible();
+  });
+
   test("warming-up weeks are flagged as provisional", async ({ page }) => {
     await selectRange(page, "All time");
     // Leftmost bar = earliest week, which is within the warming-up window.
