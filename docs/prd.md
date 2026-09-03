@@ -203,8 +203,11 @@ caching so re-pulls are incremental (already-closed weeks are not re-fetched).
                members: [ { handle, name, velocity, totals } ] } ] }
   ```
 - `<teamId>/weeks/<weekStart>.json` — drill-down detail for one week (lazy-loaded on selection):
-  team PR list with scores; per-member `{ totals, repos:[{repo, totals}], prs:[…], comments:[…] }`;
-  per-PR relevance breakdown.
+  team PR list with scores; per-member
+  `{ totals, repos:[{repo, totals}], prs:[…], comments:[…], commits:[…] }`; per-PR relevance
+  breakdown. Each `commits` row is `{ sha, repo, authorHandle, committedAt, url }` — **no line
+  stats**: live pulls don't fetch per-commit additions/deletions (LOC is delivered by PRs, §5), so
+  the row carries only what every source can supply. This backs the repo drill-down's Commits tab.
 
 `weekStart` is the ISO date (`YYYY-MM-DD`) of the sprint window start, used as the id in paths
 and URLs. `label` is the human range, e.g. `2026/08/24–08/30`.
@@ -320,8 +323,11 @@ week (with legend), expandable. Clicking a member selects them.
 **Section D — Selected person detail.** For the selected member + week:
 - their PR list (`repo · PR# · title ····· score%`), clickable to GitHub;
 - **velocity by repo** — horizontal stacked bars, one row per repo, repo name clickable to GitHub;
-- **repo detail** (when a repo row is selected): the repo URL, a **stat row**
-  (`3 PRs · 48 commits · 15 comments · 358 LOC +112/−246`), and a **comment-details** list.
+- **repo detail** (when a repo row is selected): the repo URL and a **tabbed breakdown** — the
+  four contribution metrics (`PRs · Commits · Comments · LOC`) are the tab labels, each carrying a
+  count/total and revealing its own list: PRs (`PR# · title ····· score%`), Commits
+  (`date · short SHA · author`), Comments (`date · kind · on PR#`), and LOC (repo `+add/−del`
+  total plus a per-PR line-change breakdown). One tab is always open (PRs by default).
 - If no member is selected, this area reflects the whole team.
 
 **Section E — PR relevance.** Per-PR stacked-bar chart (x = PR#, stacks = comments, LOC,

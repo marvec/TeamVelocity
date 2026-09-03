@@ -142,6 +142,20 @@ const CommentRowSchema = z.strictObject({
 });
 export type CommentRow = z.infer<typeof CommentRowSchema>;
 
+/**
+ * A commit row in a week's detail. Line stats are intentionally absent: live
+ * pulls do not fetch per-commit additions/deletions (PRD §5 — LOC comes from
+ * PRs), so a commit list carries only what every source can supply honestly.
+ */
+const CommitRowSchema = z.strictObject({
+  sha: z.string(),
+  repo: RepoRefLiteSchema,
+  authorHandle: z.string(),
+  committedAt: isoDateTime,
+  url: z.string(),
+});
+export type CommitRow = z.infer<typeof CommitRowSchema>;
+
 const RepoTotalsSchema = z.strictObject({
   repo: RepoRefLiteSchema,
   totals: TotalsSchema,
@@ -157,6 +171,7 @@ const MemberWeekDetailSchema = z.strictObject({
   repos: z.array(RepoTotalsSchema),
   prs: z.array(ScoredPrSchema),
   comments: z.array(CommentRowSchema),
+  commits: z.array(CommitRowSchema),
 });
 export type MemberWeekDetail = z.infer<typeof MemberWeekDetailSchema>;
 

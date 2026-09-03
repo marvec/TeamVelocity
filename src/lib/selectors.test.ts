@@ -23,6 +23,7 @@ const alice: MemberWeekDetail = {
   ],
   prs: [],
   comments: [{ kind: "review", repo: web, prNumber: 1, createdAt: "2026-08-05T10:00:00.000Z", url: "u1" }],
+  commits: [{ sha: "a1sha", repo: web, authorHandle: "alice", committedAt: "2026-08-06T10:00:00.000Z", url: "c-a1" }],
 };
 
 const bob: MemberWeekDetail = {
@@ -35,6 +36,7 @@ const bob: MemberWeekDetail = {
   repos: [{ repo: web, totals: totals({ commits: 4 }) }],
   prs: [],
   comments: [{ kind: "issue", repo: api, prNumber: null, createdAt: "2026-08-04T10:00:00.000Z", url: "u2" }],
+  commits: [{ sha: "b1sha", repo: web, authorHandle: "bob", committedAt: "2026-08-04T09:00:00.000Z", url: "c-b1" }],
 };
 
 const week: WeekDetail = {
@@ -65,13 +67,16 @@ describe("aggregateRepos", () => {
 });
 
 describe("teamScope / memberScope", () => {
-  it("teamScope aggregates repos + comments across the team", () => {
+  it("teamScope aggregates repos + comments + commits across the team", () => {
     const scope = teamScope(week);
     expect(scope.key).toBe(TEAM_SCOPE_KEY);
     expect(scope.repos).toHaveLength(2);
     expect(scope.comments).toHaveLength(2);
     // comments sorted by createdAt
     expect(scope.comments[0].url).toBe("u2");
+    // commits flattened across members and sorted by committedAt
+    expect(scope.commits).toHaveLength(2);
+    expect(scope.commits[0].url).toBe("c-b1");
   });
 
   it("memberScope surfaces that member's data", () => {
@@ -79,5 +84,7 @@ describe("teamScope / memberScope", () => {
     expect(scope.key).toBe("alice");
     expect(scope.velocity).toBe(60);
     expect(scope.repos).toHaveLength(2);
+    expect(scope.commits).toHaveLength(1);
+    expect(scope.commits[0].sha).toBe("a1sha");
   });
 });

@@ -347,6 +347,56 @@
           "createdAt": "2026-08-01T20:20:23.031Z",
           "url": "https://github.com/nimbus/edge/pull/15#c1"
         }
+      ],
+      "commits": [
+        {
+          "sha": "1a9e4c2c9a07e65efde1e982e77238fef13301fd",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-07-28T09:54:17.961Z",
+          "url": "https://github.com/nimbus/edge/commit/1a9e4c2c9a07e65efde1e982e77238fef13301fd"
+        },
+        {
+          "sha": "92c5cb71270995c3f9ba18813262fb4ded8cced4",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-07-29T13:42:22.564Z",
+          "url": "https://github.com/nimbus/cloud/commit/92c5cb71270995c3f9ba18813262fb4ded8cced4"
+        },
+        {
+          "sha": "3ced43d7adb35d304f08b0cf9cf16ef18db11f7a",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-07-30T14:29:37.297Z",
+          "url": "https://github.com/nimbus/edge/commit/3ced43d7adb35d304f08b0cf9cf16ef18db11f7a"
+        },
+        {
+          "sha": "512d90e689d29a3812788d7e6084e57c842d7b84",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-08-02T03:26:01.225Z",
+          "url": "https://github.com/nimbus/edge/commit/512d90e689d29a3812788d7e6084e57c842d7b84"
+        }
       ]
     },
     {
@@ -502,6 +552,56 @@
           "prNumber": 16,
           "createdAt": "2026-07-27T07:14:21.237Z",
           "url": "https://github.com/nimbus/edge/pull/16#c0"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "25126600dce3151a8ff3467551f307cddd4c4fb6",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-07-27T13:21:21.630Z",
+          "url": "https://github.com/nimbus/cloud/commit/25126600dce3151a8ff3467551f307cddd4c4fb6"
+        },
+        {
+          "sha": "d11791eeda92e0c574b503c733f7b5c849d0861c",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-07-27T15:27:58.064Z",
+          "url": "https://github.com/nimbus/cloud/commit/d11791eeda92e0c574b503c733f7b5c849d0861c"
+        },
+        {
+          "sha": "49c8bb570fc37a3fc9553272f108a0cda6cde625",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-07-29T08:05:53.742Z",
+          "url": "https://github.com/nimbus/edge/commit/49c8bb570fc37a3fc9553272f108a0cda6cde625"
+        },
+        {
+          "sha": "5042e9f1be57ec6945bf079969bbb10910f4435a",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-08-02T16:21:23.402Z",
+          "url": "https://github.com/nimbus/cloud/commit/5042e9f1be57ec6945bf079969bbb10910f4435a"
         }
       ]
     }

@@ -6,6 +6,7 @@
 import type { VelocityBand } from "../../shared/types";
 import type {
   CommentRow,
+  CommitRow,
   MemberWeekDetail,
   RepoRefLite,
   ScoredPr,
@@ -27,6 +28,7 @@ export interface Scope {
   repos: RepoTotals[];
   prs: ScoredPr[];
   comments: CommentRow[];
+  commits: CommitRow[];
   velocity?: number;
   band?: VelocityBand;
   warmingUp?: boolean;
@@ -60,6 +62,7 @@ export function memberScope(m: MemberWeekDetail): Scope {
     repos: [...m.repos].sort((a, b) => repoRefKey(a.repo).localeCompare(repoRefKey(b.repo))),
     prs: m.prs,
     comments: m.comments,
+    commits: m.commits,
     velocity: m.velocity,
     band: m.velocityBand,
     warmingUp: m.warmingUp,
@@ -70,6 +73,9 @@ export function teamScope(week: WeekDetail): Scope {
   const comments = week.members
     .flatMap((m) => m.comments)
     .sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.url.localeCompare(b.url));
+  const commits = week.members
+    .flatMap((m) => m.commits)
+    .sort((a, b) => a.committedAt.localeCompare(b.committedAt) || a.sha.localeCompare(b.sha));
   return {
     key: TEAM_SCOPE_KEY,
     name: "Whole team",
@@ -77,6 +83,7 @@ export function teamScope(week: WeekDetail): Scope {
     repos: aggregateRepos(week.members),
     prs: week.prs,
     comments,
+    commits,
     velocity: week.velocity,
     band: week.velocityBand,
     warmingUp: week.warmingUp,

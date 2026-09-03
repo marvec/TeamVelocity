@@ -390,6 +390,104 @@
           "createdAt": "2026-08-02T10:43:29.250Z",
           "url": "https://github.com/aurora/web/pull/25#c1"
         }
+      ],
+      "commits": [
+        {
+          "sha": "b645145bbcbc2e7ad518b6fa5df61f5d5b68cd3d",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-07-27T17:21:15.855Z",
+          "url": "https://github.com/aurora/api/commit/b645145bbcbc2e7ad518b6fa5df61f5d5b68cd3d"
+        },
+        {
+          "sha": "ae092d360d62de14ab5073d01f90eaf8aed18ae6",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-07-28T02:53:31.284Z",
+          "url": "https://github.com/aurora/infra/commit/ae092d360d62de14ab5073d01f90eaf8aed18ae6"
+        },
+        {
+          "sha": "2ae6209925463043bcff99840aa81b7adc855a85",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-07-28T14:08:47.416Z",
+          "url": "https://github.com/aurora/web/commit/2ae6209925463043bcff99840aa81b7adc855a85"
+        },
+        {
+          "sha": "1ed8fed14ce8b8952561d571873eaa5e243496e8",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-07-29T01:33:53.765Z",
+          "url": "https://github.com/aurora/api/commit/1ed8fed14ce8b8952561d571873eaa5e243496e8"
+        },
+        {
+          "sha": "50dbc0ec2397c4f0bb2ff93a652da6f5738e61f7",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-07-29T12:22:42.523Z",
+          "url": "https://github.com/aurora/web/commit/50dbc0ec2397c4f0bb2ff93a652da6f5738e61f7"
+        },
+        {
+          "sha": "fcb15477b24d7232016a557bfaf69afb9701b354",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-07-29T20:53:54.411Z",
+          "url": "https://github.com/aurora/web/commit/fcb15477b24d7232016a557bfaf69afb9701b354"
+        },
+        {
+          "sha": "3324be0a33a62a78e91242596903d9052ae8ff3d",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-07-30T08:59:01.057Z",
+          "url": "https://github.com/aurora/web/commit/3324be0a33a62a78e91242596903d9052ae8ff3d"
+        },
+        {
+          "sha": "ded67c7460aa0d542fb11e15ec2e1f91d479b2a5",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-08-01T06:35:40.704Z",
+          "url": "https://github.com/aurora/infra/commit/ded67c7460aa0d542fb11e15ec2e1f91d479b2a5"
+        }
       ]
     },
     {
@@ -561,6 +659,68 @@
           "createdAt": "2026-08-01T17:39:41.935Z",
           "url": "https://github.com/aurora/web/pull/26#c1"
         }
+      ],
+      "commits": [
+        {
+          "sha": "40ca4581c57a4af900372c87b9deb1511e7af9d6",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "gracehopper",
+          "committedAt": "2026-07-27T14:41:17.086Z",
+          "url": "https://github.com/aurora/infra/commit/40ca4581c57a4af900372c87b9deb1511e7af9d6"
+        },
+        {
+          "sha": "187a506e51ead5672784aa926ee17f55a8d8446e",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "authorHandle": "gracehopper",
+          "committedAt": "2026-07-27T18:43:54.690Z",
+          "url": "https://github.com/aurora/api/commit/187a506e51ead5672784aa926ee17f55a8d8446e"
+        },
+        {
+          "sha": "3424585744007e67ee08808ce2427bd8be9ee448",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "gracehopper",
+          "committedAt": "2026-07-30T19:46:43.145Z",
+          "url": "https://github.com/aurora/web/commit/3424585744007e67ee08808ce2427bd8be9ee448"
+        },
+        {
+          "sha": "490c6f797bbb0383aa153ea0e47575de23fd83f6",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "gracehopper",
+          "committedAt": "2026-08-01T19:45:59.102Z",
+          "url": "https://github.com/aurora/web/commit/490c6f797bbb0383aa153ea0e47575de23fd83f6"
+        },
+        {
+          "sha": "9b9276a205a20ef8483c20bb9dadf62842564ded",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "gracehopper",
+          "committedAt": "2026-08-01T21:37:58.897Z",
+          "url": "https://github.com/aurora/infra/commit/9b9276a205a20ef8483c20bb9dadf62842564ded"
+        }
       ]
     },
     {
@@ -696,6 +856,104 @@
           "createdAt": "2026-08-02T08:22:33.173Z",
           "url": "https://github.com/aurora/infra/pull/29#c0"
         }
+      ],
+      "commits": [
+        {
+          "sha": "16b377ba18bc5bedeadbda0a7262fb2dd3ba1609",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-07-27T09:33:07.050Z",
+          "url": "https://github.com/aurora/infra/commit/16b377ba18bc5bedeadbda0a7262fb2dd3ba1609"
+        },
+        {
+          "sha": "4e6eab9934b78f6ee55c192e30d5253ba7ece79e",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-07-28T01:11:11.095Z",
+          "url": "https://github.com/aurora/infra/commit/4e6eab9934b78f6ee55c192e30d5253ba7ece79e"
+        },
+        {
+          "sha": "c34efb7b4273302b3bb5c53039b1f1d453a09538",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-07-28T01:43:08.386Z",
+          "url": "https://github.com/aurora/infra/commit/c34efb7b4273302b3bb5c53039b1f1d453a09538"
+        },
+        {
+          "sha": "44af48879333c44d1a9454bae1701786b1ecff9d",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-07-28T15:11:38.587Z",
+          "url": "https://github.com/aurora/api/commit/44af48879333c44d1a9454bae1701786b1ecff9d"
+        },
+        {
+          "sha": "95ee340859562777f233ea78f522579c08b354bd",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-07-29T00:29:45.524Z",
+          "url": "https://github.com/aurora/web/commit/95ee340859562777f233ea78f522579c08b354bd"
+        },
+        {
+          "sha": "9c97b00ee9ae5f1f0ce0efde163bc88f5246f2dd",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-07-31T07:51:58.676Z",
+          "url": "https://github.com/aurora/infra/commit/9c97b00ee9ae5f1f0ce0efde163bc88f5246f2dd"
+        },
+        {
+          "sha": "721e09246876ffba96dbdbbe91148f205ae3719d",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-07-31T19:14:38.381Z",
+          "url": "https://github.com/aurora/web/commit/721e09246876ffba96dbdbbe91148f205ae3719d"
+        },
+        {
+          "sha": "4b85e78509cf1083a840b96fa6cd2f47269ee262",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-08-02T00:14:18.876Z",
+          "url": "https://github.com/aurora/api/commit/4b85e78509cf1083a840b96fa6cd2f47269ee262"
+        }
       ]
     },
     {
@@ -813,6 +1071,20 @@
           "prNumber": 27,
           "createdAt": "2026-08-01T16:20:35.427Z",
           "url": "https://github.com/aurora/web/pull/27#c1"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "713bc4b0134c91a8c641ab1e34bd010b539a3a96",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "authorHandle": "margaretp",
+          "committedAt": "2026-07-29T02:51:44.272Z",
+          "url": "https://github.com/aurora/api/commit/713bc4b0134c91a8c641ab1e34bd010b539a3a96"
         }
       ]
     }

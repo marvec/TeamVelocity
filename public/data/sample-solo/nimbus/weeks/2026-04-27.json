@@ -247,6 +247,32 @@
           "createdAt": "2026-05-03T15:36:56.182Z",
           "url": "https://github.com/nimbus/cloud/pull/2#c1"
         }
+      ],
+      "commits": [
+        {
+          "sha": "49cdf327ba5db0e3cab36cb5148e5f66bf2d7298",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-05-01T18:31:49.582Z",
+          "url": "https://github.com/nimbus/edge/commit/49cdf327ba5db0e3cab36cb5148e5f66bf2d7298"
+        },
+        {
+          "sha": "8408aab632257a080b309f6a88fe861736301cf9",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-05-03T09:41:40.368Z",
+          "url": "https://github.com/nimbus/edge/commit/8408aab632257a080b309f6a88fe861736301cf9"
+        }
       ]
     },
     {
@@ -297,7 +323,8 @@
           "createdAt": "2026-05-03T15:24:56.812Z",
           "url": "https://github.com/nimbus/edge/pull/54#c0"
         }
-      ]
+      ],
+      "commits": []
     }
   ]
 }

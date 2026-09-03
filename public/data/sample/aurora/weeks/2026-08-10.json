@@ -81,6 +81,20 @@
           "createdAt": "2026-08-16T14:19:19.182Z",
           "url": "https://github.com/aurora/api/pull/43#c0"
         }
+      ],
+      "commits": [
+        {
+          "sha": "acc0bac6695ce84dc7aa3b2e16b1b089fd8b3ef1",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "adalovelace",
+          "committedAt": "2026-08-15T00:27:25.410Z",
+          "url": "https://github.com/aurora/web/commit/acc0bac6695ce84dc7aa3b2e16b1b089fd8b3ef1"
+        }
       ]
     },
     {
@@ -118,7 +132,21 @@
         }
       ],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": [
+        {
+          "sha": "516eef63d20a5824a7d49f616ff8f372b65c2139",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "gracehopper",
+          "committedAt": "2026-08-14T22:47:26.707Z",
+          "url": "https://github.com/aurora/infra/commit/516eef63d20a5824a7d49f616ff8f372b65c2139"
+        }
+      ]
     },
     {
       "handle": "linusn",
@@ -155,7 +183,21 @@
         }
       ],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": [
+        {
+          "sha": "e350d3d44e62fd60ac6bb9c7f0b319a321761ea4",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "authorHandle": "linusn",
+          "committedAt": "2026-08-10T15:03:00.448Z",
+          "url": "https://github.com/aurora/infra/commit/e350d3d44e62fd60ac6bb9c7f0b319a321761ea4"
+        }
+      ]
     },
     {
       "handle": "margaretp",
@@ -192,7 +234,21 @@
         }
       ],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": [
+        {
+          "sha": "82e4d294e5a77cf0b4321f124bb020e3bbd38bb4",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "authorHandle": "margaretp",
+          "committedAt": "2026-08-16T05:30:23.635Z",
+          "url": "https://github.com/aurora/web/commit/82e4d294e5a77cf0b4321f124bb020e3bbd38bb4"
+        }
+      ]
     }
   ]
 }

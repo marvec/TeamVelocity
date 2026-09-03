@@ -25,6 +25,14 @@ test.describe("drill-down", () => {
     await expect(page).toHaveURL(/repo=/);
     await expect(page.getByTestId("repo-detail")).toBeVisible();
 
+    // Repo detail exposes clickable tabs; PRs is the default panel.
+    await expect(page.getByTestId("repo-panel-prs")).toBeVisible();
+    await page.getByTestId("repo-tab-commits").click();
+    await expect(page.getByTestId("repo-panel-commits")).toBeVisible();
+    await expect(page.getByTestId("repo-panel-prs")).toHaveCount(0);
+    await page.getByTestId("repo-tab-loc").click();
+    await expect(page.getByTestId("repo-panel-loc")).toBeVisible();
+
     // Deselect repo.
     await page.getByTestId("clear-repo").click();
     await expect(page).not.toHaveURL(/repo=/);

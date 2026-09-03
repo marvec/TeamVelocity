@@ -178,15 +178,20 @@ describe("buildTeamDataset — PR detail & scoring", () => {
     expect(sum).toBeCloseTo(pr.score, 1);
   });
 
-  it("exposes a member's PRs and comments in the week detail", () => {
+  it("exposes a member's PRs, comments, and commits in the week detail", () => {
     const ds = buildTeamDataset(sampleInput());
     const w0 = ds.weeks["2026-08-03"];
     const alice = w0.members.find((m) => m.handle === "alice")!;
     expect(alice.prs.map((p) => p.number)).toEqual([1]);
     expect(alice.repos.map((r) => r.repo.name)).toContain("web");
+    // alice's commit lands in this week, carried as a row (sha + date + url, no LOC).
+    expect(alice.commits.map((c) => c.sha)).toEqual(["a1"]);
+    expect(alice.commits[0].authorHandle).toBe("alice");
+    expect(alice.commits[0]).not.toHaveProperty("additions");
     const bob = w0.members.find((m) => m.handle === "bob")!;
     expect(bob.comments).toHaveLength(1);
     expect(bob.comments[0].kind).toBe("review");
+    expect(bob.commits).toHaveLength(0); // bob's commit is in the next week
   });
 });
 

@@ -423,6 +423,176 @@
           "createdAt": "2026-06-26T08:48:41.111Z",
           "url": "https://github.com/nimbus/edge/pull/9#c0"
         }
+      ],
+      "commits": [
+        {
+          "sha": "cfa5297d1da0778c3257717e3f74e9e137428420",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-22T09:19:59.477Z",
+          "url": "https://github.com/nimbus/edge/commit/cfa5297d1da0778c3257717e3f74e9e137428420"
+        },
+        {
+          "sha": "5f2a79742f61cf9116f5de3eb7355730145c3c76",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-22T11:09:30.902Z",
+          "url": "https://github.com/nimbus/cloud/commit/5f2a79742f61cf9116f5de3eb7355730145c3c76"
+        },
+        {
+          "sha": "5014aab1d8e71926a5906a1b45635b7f652b2289",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-22T15:06:04.562Z",
+          "url": "https://github.com/nimbus/edge/commit/5014aab1d8e71926a5906a1b45635b7f652b2289"
+        },
+        {
+          "sha": "b30cd7f7ef857ea32dd774837bc86af254fb0eb8",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-23T01:59:30.133Z",
+          "url": "https://github.com/nimbus/edge/commit/b30cd7f7ef857ea32dd774837bc86af254fb0eb8"
+        },
+        {
+          "sha": "5c6927fcf41d951db78896a8420bb1289707ee83",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-24T03:08:32.439Z",
+          "url": "https://github.com/nimbus/edge/commit/5c6927fcf41d951db78896a8420bb1289707ee83"
+        },
+        {
+          "sha": "5bf553663ef089f05fdf459d255322d7b5de6a85",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-25T00:27:47.597Z",
+          "url": "https://github.com/nimbus/cloud/commit/5bf553663ef089f05fdf459d255322d7b5de6a85"
+        },
+        {
+          "sha": "d90cbdff1052eeffd5edbaab3b7305876e842e3e",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-25T04:43:51.466Z",
+          "url": "https://github.com/nimbus/edge/commit/d90cbdff1052eeffd5edbaab3b7305876e842e3e"
+        },
+        {
+          "sha": "92f86cb6e3197864292a459dc738fc7a8fd60d53",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-25T14:36:18.384Z",
+          "url": "https://github.com/nimbus/edge/commit/92f86cb6e3197864292a459dc738fc7a8fd60d53"
+        },
+        {
+          "sha": "616edf05898adc70a7c3885fd72b91192cf2f4ba",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-25T20:32:05.581Z",
+          "url": "https://github.com/nimbus/edge/commit/616edf05898adc70a7c3885fd72b91192cf2f4ba"
+        },
+        {
+          "sha": "3f74ab9842f79bb487947b30c4eef0da402a7528",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-25T23:41:11.600Z",
+          "url": "https://github.com/nimbus/edge/commit/3f74ab9842f79bb487947b30c4eef0da402a7528"
+        },
+        {
+          "sha": "73a9438611315081e1d581aa7e4212edf09fe2b2",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-26T12:56:47.425Z",
+          "url": "https://github.com/nimbus/edge/commit/73a9438611315081e1d581aa7e4212edf09fe2b2"
+        },
+        {
+          "sha": "f4dd080e776f77bb11ca20b67ddac2bbffe7e89f",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-26T19:40:27.382Z",
+          "url": "https://github.com/nimbus/edge/commit/f4dd080e776f77bb11ca20b67ddac2bbffe7e89f"
+        },
+        {
+          "sha": "c91279afcca1e54b997eaeb7b059c6a0337b15df",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-27T10:58:24.374Z",
+          "url": "https://github.com/nimbus/cloud/commit/c91279afcca1e54b997eaeb7b059c6a0337b15df"
+        },
+        {
+          "sha": "58bdb527f0a55e36fb8a63ecea084a3a70d6368d",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-28T16:37:40.359Z",
+          "url": "https://github.com/nimbus/edge/commit/58bdb527f0a55e36fb8a63ecea084a3a70d6368d"
+        }
       ]
     },
     {
@@ -602,6 +772,104 @@
           "prNumber": 10,
           "createdAt": "2026-06-26T17:50:44.564Z",
           "url": "https://github.com/nimbus/edge/pull/10#c2"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "4acfe6e11f9a9eaa379796e076dd25ced614eebc",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-22T19:30:21.167Z",
+          "url": "https://github.com/nimbus/edge/commit/4acfe6e11f9a9eaa379796e076dd25ced614eebc"
+        },
+        {
+          "sha": "d038dba4480d32184c46b1bcad285b19a06604ee",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-25T07:02:36.453Z",
+          "url": "https://github.com/nimbus/cloud/commit/d038dba4480d32184c46b1bcad285b19a06604ee"
+        },
+        {
+          "sha": "d3b5b1bea12e55c697a00de66982605c6e331d97",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-25T08:30:46.144Z",
+          "url": "https://github.com/nimbus/edge/commit/d3b5b1bea12e55c697a00de66982605c6e331d97"
+        },
+        {
+          "sha": "d050a4e2f23a7bf9014f2196fb5c2f2a2fe232bf",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-25T21:48:20.471Z",
+          "url": "https://github.com/nimbus/cloud/commit/d050a4e2f23a7bf9014f2196fb5c2f2a2fe232bf"
+        },
+        {
+          "sha": "997c8d2f01f7141370f8bef24e88982fa2e2a398",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-25T23:31:44.768Z",
+          "url": "https://github.com/nimbus/edge/commit/997c8d2f01f7141370f8bef24e88982fa2e2a398"
+        },
+        {
+          "sha": "12ce27d9ae102822d312cc906fd56e336f8179d8",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-26T04:01:33.794Z",
+          "url": "https://github.com/nimbus/cloud/commit/12ce27d9ae102822d312cc906fd56e336f8179d8"
+        },
+        {
+          "sha": "574033a45a5e07a3db16bd091806c943a86f482b",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-26T16:29:20.600Z",
+          "url": "https://github.com/nimbus/edge/commit/574033a45a5e07a3db16bd091806c943a86f482b"
+        },
+        {
+          "sha": "c124cb9f2ed3343308386bb691775340b8983b6e",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-06-28T17:23:03.501Z",
+          "url": "https://github.com/nimbus/cloud/commit/c124cb9f2ed3343308386bb691775340b8983b6e"
         }
       ]
     }

@@ -309,6 +309,44 @@
           "createdAt": "2026-05-17T10:11:31.484Z",
           "url": "https://github.com/borealis/core/pull/2#c0"
         }
+      ],
+      "commits": [
+        {
+          "sha": "77425a350d7ab7bf7ad5684677155cb4bf0d1344",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-05-11T18:07:21.439Z",
+          "url": "https://github.com/borealis/app/commit/77425a350d7ab7bf7ad5684677155cb4bf0d1344"
+        },
+        {
+          "sha": "953149eba6db26f11777e9b37f83973ef91e456b",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-05-12T05:40:13.820Z",
+          "url": "https://github.com/borealis/app/commit/953149eba6db26f11777e9b37f83973ef91e456b"
+        },
+        {
+          "sha": "5e253e5ce37789cb1abb81403268d15683aa3d7f",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-05-17T12:55:45.286Z",
+          "url": "https://github.com/borealis/app/commit/5e253e5ce37789cb1abb81403268d15683aa3d7f"
+        }
       ]
     },
     {
@@ -426,6 +464,32 @@
           "prNumber": 3,
           "createdAt": "2026-05-16T19:30:23.475Z",
           "url": "https://github.com/borealis/app/pull/3#c1"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "1cbcbfae00949e73090ff133dc846b9d6f474573",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-05-13T15:12:25.836Z",
+          "url": "https://github.com/borealis/core/commit/1cbcbfae00949e73090ff133dc846b9d6f474573"
+        },
+        {
+          "sha": "67fed5efb6a4b8dda8c6fdd8c1b13ac783523d63",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-05-16T13:51:39.286Z",
+          "url": "https://github.com/borealis/core/commit/67fed5efb6a4b8dda8c6fdd8c1b13ac783523d63"
         }
       ]
     }

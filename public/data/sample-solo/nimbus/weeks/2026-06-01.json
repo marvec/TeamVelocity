@@ -259,6 +259,56 @@
           "createdAt": "2026-06-07T14:44:54.319Z",
           "url": "https://github.com/nimbus/edge/pull/6#c1"
         }
+      ],
+      "commits": [
+        {
+          "sha": "9d94a1ccd2af5758c1adf4d4a4f1ade75eeae499",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-03T02:43:39.134Z",
+          "url": "https://github.com/nimbus/cloud/commit/9d94a1ccd2af5758c1adf4d4a4f1ade75eeae499"
+        },
+        {
+          "sha": "3bd019409db30c4b67eee39d1c34972f9b5117a2",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-05T19:39:50.166Z",
+          "url": "https://github.com/nimbus/edge/commit/3bd019409db30c4b67eee39d1c34972f9b5117a2"
+        },
+        {
+          "sha": "221c223d3a15d0b2151625f76894b62d30b6307a",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-06T10:22:36.357Z",
+          "url": "https://github.com/nimbus/cloud/commit/221c223d3a15d0b2151625f76894b62d30b6307a"
+        },
+        {
+          "sha": "99084eabc9a5b749e268bf6190c9da05e50c4098",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "katherinej",
+          "committedAt": "2026-06-06T10:53:31.648Z",
+          "url": "https://github.com/nimbus/edge/commit/99084eabc9a5b749e268bf6190c9da05e50c4098"
+        }
       ]
     },
     {
@@ -278,7 +328,8 @@
       },
       "repos": [],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": []
     }
   ]
 }

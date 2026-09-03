@@ -132,7 +132,8 @@
           "createdAt": "2026-07-18T11:17:27.031Z",
           "url": "https://github.com/borealis/app/pull/82#c0"
         }
-      ]
+      ],
+      "commits": []
     },
     {
       "handle": "alanturing",
@@ -249,6 +250,32 @@
           "prNumber": 11,
           "createdAt": "2026-07-18T06:07:11.977Z",
           "url": "https://github.com/borealis/core/pull/11#c0"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "16c33902e25c921103dcf330a976a71dc2fafeb2",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-07-14T20:41:28.526Z",
+          "url": "https://github.com/borealis/app/commit/16c33902e25c921103dcf330a976a71dc2fafeb2"
+        },
+        {
+          "sha": "d0edddcd2bee46d75ec8bdc41dfbcfa7c105f764",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-07-18T06:57:06.804Z",
+          "url": "https://github.com/borealis/core/commit/d0edddcd2bee46d75ec8bdc41dfbcfa7c105f764"
         }
       ]
     }

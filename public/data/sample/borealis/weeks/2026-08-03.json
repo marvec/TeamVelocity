@@ -51,7 +51,21 @@
         }
       ],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": [
+        {
+          "sha": "0fb46230d21e48cf8c1a75cd3fc7410bd32a2d87",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-08-05T23:45:27.667Z",
+          "url": "https://github.com/borealis/core/commit/0fb46230d21e48cf8c1a75cd3fc7410bd32a2d87"
+        }
+      ]
     },
     {
       "handle": "alanturing",
@@ -70,7 +84,8 @@
       },
       "repos": [],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": []
     }
   ]
 }

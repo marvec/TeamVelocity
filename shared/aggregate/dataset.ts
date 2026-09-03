@@ -30,6 +30,7 @@ import type { PrScoreInput } from "./pr-score";
 import { DEFAULT_PR_SCORE_WEIGHTS, scorePullRequests } from "./pr-score";
 import type {
   CommentRow,
+  CommitRow,
   MemberWeekDetail,
   RepoRefLite,
   ScoredPr,
@@ -99,6 +100,7 @@ interface MemberAccum {
   repoTotals: Map<string, RepoTotals>;
   prNumbers: Set<string>; // primary-week PRs, keyed repoKey#number
   comments: Comment[];
+  commits: Commit[];
 }
 
 interface WeekAccum {
@@ -116,6 +118,7 @@ function newMemberAccum(): MemberAccum {
     repoTotals: new Map(),
     prNumbers: new Set(),
     comments: [],
+    commits: [],
   };
 }
 
@@ -211,7 +214,9 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
   for (const c of input.commits) {
     const idx = weekIdxOf(c.committedAt);
     if (idx === undefined) continue;
-    add(idx, matchMember(c.authorHandle), c.repo, "commits", 1);
+    const member = matchMember(c.authorHandle);
+    add(idx, member, c.repo, "commits", 1);
+    if (member !== undefined) weeks[idx].members.get(member)?.commits.push(c);
   }
 
   // --- Comments ---
@@ -368,6 +373,17 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
           }),
         )
         .sort((a, b) => a.createdAt.localeCompare(b.createdAt) || a.url.localeCompare(b.url));
+      const commits: CommitRow[] = ma.commits
+        .map(
+          (c): CommitRow => ({
+            sha: c.sha,
+            repo: toLite(c.repo),
+            authorHandle: c.authorHandle,
+            committedAt: c.committedAt.toISOString(),
+            url: c.url,
+          }),
+        )
+        .sort((a, b) => a.committedAt.localeCompare(b.committedAt) || a.sha.localeCompare(b.sha));
       return {
         handle: m.handle,
         name: m.name,
@@ -378,6 +394,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
         repos,
         prs: sortScoredPrs(prs),
         comments,
+        commits,
       };
     });
 

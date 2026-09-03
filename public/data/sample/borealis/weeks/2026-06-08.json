@@ -371,6 +371,56 @@
           "createdAt": "2026-06-14T18:06:52.601Z",
           "url": "https://github.com/borealis/core/pull/7#c5"
         }
+      ],
+      "commits": [
+        {
+          "sha": "164f4a6a139c4d991564d540b570d9e2b4752eaa",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-06-08T01:51:20.685Z",
+          "url": "https://github.com/borealis/core/commit/164f4a6a139c4d991564d540b570d9e2b4752eaa"
+        },
+        {
+          "sha": "91503d3d5fbb0d42a2fa57c819fbdc036a785cfe",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-06-09T08:00:46.171Z",
+          "url": "https://github.com/borealis/core/commit/91503d3d5fbb0d42a2fa57c819fbdc036a785cfe"
+        },
+        {
+          "sha": "0e71a372d883ea381f11426e583a1beefbe720b2",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-06-10T07:51:57.144Z",
+          "url": "https://github.com/borealis/app/commit/0e71a372d883ea381f11426e583a1beefbe720b2"
+        },
+        {
+          "sha": "f56a9afbe8db6789a021ac94e2f545a8f8b25c18",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "rosalindf",
+          "committedAt": "2026-06-13T16:07:23.990Z",
+          "url": "https://github.com/borealis/core/commit/f56a9afbe8db6789a021ac94e2f545a8f8b25c18"
+        }
       ]
     },
     {
@@ -562,6 +612,56 @@
           "prNumber": 12,
           "createdAt": "2026-06-13T15:17:39.844Z",
           "url": "https://github.com/borealis/app/pull/12#c0"
+        }
+      ],
+      "commits": [
+        {
+          "sha": "2b6f3dbd8e901abc486df7963c774306b2067e15",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-06-08T05:21:36.609Z",
+          "url": "https://github.com/borealis/core/commit/2b6f3dbd8e901abc486df7963c774306b2067e15"
+        },
+        {
+          "sha": "c0bbf0cceacc4267b9b66f95713d81b8b96099fb",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-06-13T04:00:25.676Z",
+          "url": "https://github.com/borealis/core/commit/c0bbf0cceacc4267b9b66f95713d81b8b96099fb"
+        },
+        {
+          "sha": "8f899b7bfd231058ed89fdc6749c2119e11ed6ae",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-06-14T01:07:46.882Z",
+          "url": "https://github.com/borealis/core/commit/8f899b7bfd231058ed89fdc6749c2119e11ed6ae"
+        },
+        {
+          "sha": "49e77270f8efdddd4ae9498d831e14db77b624a9",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "authorHandle": "alanturing",
+          "committedAt": "2026-06-14T12:14:08.205Z",
+          "url": "https://github.com/borealis/app/commit/49e77270f8efdddd4ae9498d831e14db77b624a9"
         }
       ]
     }

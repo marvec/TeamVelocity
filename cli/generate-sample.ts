@@ -62,6 +62,26 @@ function repo(owner: string, name: string): RepoRef {
   return { source: "github", owner, name, url: `https://github.com/${owner}/${name}` };
 }
 
+/**
+ * A realistic-looking 40-char hex commit SHA derived deterministically from a
+ * seed string (FNV-1a, expanded). Pure of the RNG stream so it doesn't perturb
+ * any other generated field — real pulls yield hex SHAs, so the sample should too.
+ */
+function shaHex(seed: string): string {
+  let h = 0x811c9dc5;
+  let out = "";
+  let s = seed;
+  while (out.length < 40) {
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    out += h.toString(16).padStart(8, "0");
+    s = out;
+  }
+  return out.slice(0, 40);
+}
+
 interface Entities {
   pullRequests: PullRequest[];
   commits: Commit[];
@@ -146,7 +166,7 @@ function generateEntities(spec: TeamSpec, windows: WeekWindow[]): Entities {
       const numCommits = Math.max(0, Math.round(activity * rand(rng, 1, 5)));
       for (let c = 0; c < numCommits; c++) {
         const r = spec.repos[randInt(rng, 0, spec.repos.length - 1)];
-        const sha = `${spec.id}${String(wi)}${m.handle}${String(c)}`;
+        const sha = shaHex(`${spec.id}-${String(wi)}-${m.handle}-${String(c)}-${r.name}`);
         commits.push({
           source: "github",
           repo: r,

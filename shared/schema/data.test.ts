@@ -91,4 +91,22 @@ describe("on-disk schemas — reject drifted / invalid data (fail loud, invarian
     expect(() => WeekDetailSchema.parse({ ...week, velocity: "high" })).toThrow();
     expect(() => WeekDetailSchema.parse({ ...week, velocityBand: "blue" })).toThrow();
   });
+
+  it("WeekDetail rejects a malformed commit row", () => {
+    const withBadCommit = {
+      ...week,
+      members: week.members.map((m, i) =>
+        i === 0
+          ? { ...m, commits: [{ sha: "x", repo: web, authorHandle: "a", committedAt: "not-a-date", url: "u" }] }
+          : m,
+      ),
+    };
+    expect(() => WeekDetailSchema.parse(withBadCommit)).toThrow();
+    // A missing commits array is also drift.
+    const noCommits = {
+      ...week,
+      members: week.members.map((m) => Object.fromEntries(Object.entries(m).filter(([k]) => k !== "commits"))),
+    };
+    expect(() => WeekDetailSchema.parse(noCommits)).toThrow();
+  });
 });

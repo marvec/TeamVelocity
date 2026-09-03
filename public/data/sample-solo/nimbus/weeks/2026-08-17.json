@@ -33,7 +33,8 @@
       },
       "repos": [],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": []
     },
     {
       "handle": "dennisr",
@@ -70,7 +71,21 @@
         }
       ],
       "prs": [],
-      "comments": []
+      "comments": [],
+      "commits": [
+        {
+          "sha": "e5ea1dd08c02f889e298647a990d3c811ac43a99",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "authorHandle": "dennisr",
+          "committedAt": "2026-08-17T11:48:01.178Z",
+          "url": "https://github.com/nimbus/edge/commit/e5ea1dd08c02f889e298647a990d3c811ac43a99"
+        }
+      ]
     }
   ]
 }
