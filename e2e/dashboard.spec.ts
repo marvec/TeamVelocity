@@ -35,6 +35,16 @@ test.describe("dashboard", () => {
     await expect(gauge).toHaveAttribute("data-band", /red|yellow|green/);
   });
 
+  test("clicking a focused week again deselects it (range overview)", async ({ page }) => {
+    const bar = page.locator("[data-testid=team-weekly-bars] .recharts-bar-rectangle").first();
+    await bar.click();
+    await expect(page).toHaveURL(/week=\d{4}-\d{2}-\d{2}/);
+    // Clicking the same (now focused) week toggles it off.
+    await bar.click();
+    await expect(page).toHaveURL(/week=none/);
+    await expect(page.getByTestId("range-overview")).toBeVisible();
+  });
+
   test("the help popover explains the two scores", async ({ page }) => {
     await page.getByRole("button", { name: "How the scores work" }).click();
     await expect(page.getByRole("heading", { name: "How the scores work" })).toBeVisible();

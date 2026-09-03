@@ -294,13 +294,19 @@ only one team is configured** (go straight to its dashboard).
 
 ### 8.2 Dashboard (sketch 2)
 
-**Header:** `Team: <name>` (left) · **date-range picker** (right; default **last 3 months**,
-presets 1m / 3m / 6m / all + custom) · **velocity gauge** (ring + big number) · **velocity
-history** line (smooth curve, colored by band). Category legend: PRs, commits, comments, LOC+, LOC−.
+**Header:** `Team: <name>` (left) · **date-range picker** + a **"?" help control** (right; the help
+opens the two score formulas — §7.1/§7.2 — with the team's actual velocity weights) · **velocity
+gauge** · **velocity history** line. The **gauge** is a segmented ring: the filled arc from 0 to the
+value is split into its band portions (red up to the red threshold, then yellow, then green) over a
+muted 0–100 track, so you see how far the value sits above red; big number + `VELOCITY` label
+inside. The **history** line is coloured by score via a vertical gradient (red below the red
+threshold, yellow, green above green) with band-coloured dots, and carries the **band legend**
+(`< red · red–green · ≥ green`).
 
 **Section A — Team weekly stacked bars.** X-axis = weeks in range; each bar stacks the five
-categories. Clicking a bar selects that week; the latest week is selected by default; the
-selected week is highlighted and can be unselected (→ range overview).
+categories; carries the **category legend** (PRs, commits, comments, LOC+, LOC−). Clicking a bar
+selects that week; the latest week is selected by default; the selected week is highlighted and
+**clicking it again deselects** it (→ range overview) — as does the week chip.
 
 > Rendering decision (v1): PR/commit/comment counts are single digits while LOC is in the
 > hundreds, so on a single stacked axis LOC would swamp the rest. The stacked bars therefore

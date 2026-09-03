@@ -5,7 +5,7 @@ import { VelocityGauge } from "./charts/VelocityGauge";
 import { VelocityHistory } from "./charts/VelocityHistory";
 import { DateRangePicker } from "./DateRangePicker";
 import { ScoreHelp } from "./ScoreHelp";
-import { CategoryLegend } from "./ui/Legend";
+import { BandLegend } from "./ui/Legend";
 import { Button } from "./ui/Button";
 
 interface Gauge {
@@ -22,7 +22,6 @@ export function DashboardHeader({
   minDate,
   maxDate,
   gauge,
-  historyBand,
   showTeams,
   onBackToTeams,
 }: {
@@ -32,7 +31,6 @@ export function DashboardHeader({
   minDate: string;
   maxDate: string;
   gauge: Gauge;
-  historyBand: VelocityBand;
   showTeams: boolean;
   onBackToTeams: () => void;
 }) {
@@ -51,20 +49,26 @@ export function DashboardHeader({
         </div>
         <div className="flex items-center gap-2">
           <DateRangePicker selection={selection} minDate={minDate} maxDate={maxDate} />
-          <ScoreHelp />
+          <ScoreHelp velocityWeights={meta.velocityWeights} />
         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 rounded-card border border-border bg-card p-4 shadow-sm lg:grid-cols-[auto_1fr]">
         <div className="flex items-center justify-center">
-          <VelocityGauge value={gauge.value} band={gauge.band} warmingUp={gauge.warmingUp} caption={gauge.caption} />
+          <VelocityGauge
+            value={gauge.value}
+            band={gauge.band}
+            thresholds={meta.thresholds}
+            warmingUp={gauge.warmingUp}
+            caption={gauge.caption}
+          />
         </div>
         <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-heading">Velocity history</h2>
-            <CategoryLegend />
+            <BandLegend thresholds={meta.thresholds} />
           </div>
-          <VelocityHistory weeks={weeks} band={historyBand} />
+          <VelocityHistory weeks={weeks} thresholds={meta.thresholds} />
         </div>
       </div>
     </header>

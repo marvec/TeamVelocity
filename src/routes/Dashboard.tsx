@@ -22,6 +22,7 @@ import { PrRelevanceSection } from "../components/sections/PrRelevanceSection";
 import { MembersSection } from "../components/sections/MembersSection";
 import { PersonDetailSection } from "../components/sections/PersonDetailSection";
 import { Card, CardBody, CardHeader, CardTitle } from "../components/ui/Card";
+import { CategoryLegend } from "../components/ui/Legend";
 import { StatRow } from "../components/ui/StatRow";
 import { ErrorState, LoadingState } from "../components/states";
 
@@ -67,9 +68,9 @@ export function Dashboard({
         value: focusedSummary.velocity,
         band: focusedSummary.velocityBand,
         warmingUp: focusedSummary.warmingUp,
-        caption: "week velocity",
+        caption: "velocity",
       }
-    : { value: rangeVel, band: rangeBand, warmingUp: false, caption: "range velocity" };
+    : { value: rangeVel, band: rangeBand, warmingUp: false, caption: "velocity" };
 
   const weekEntry = focusedWeekKey ? weekEntries[focusedWeekKey] : undefined;
   const weekDetail = weekEntry?.status === "loaded" ? weekEntry.data : undefined;
@@ -87,7 +88,6 @@ export function Dashboard({
         minDate={minDate}
         maxDate={maxDate}
         gauge={gauge}
-        historyBand={rangeBand}
         showTeams={teamsCount > 1}
         onBackToTeams={clearTeam}
       />
@@ -95,10 +95,20 @@ export function Dashboard({
       <Card className="mb-4">
         <CardHeader>
           <CardTitle>Weekly activity</CardTitle>
-          <span className="text-xs text-foreground-muted">Click a week to focus it</span>
+          <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
+            <span className="text-xs text-foreground-muted">Click a week to focus it · again to deselect</span>
+            <CategoryLegend />
+          </div>
         </CardHeader>
         <CardBody>
-          <TeamWeeklyBars weeks={inRange} selectedWeek={focusedWeekKey} onSelectWeek={selectWeek} />
+          <TeamWeeklyBars
+            weeks={inRange}
+            selectedWeek={focusedWeekKey}
+            onSelectWeek={(w) => {
+              if (w === focusedWeekKey) clearWeek();
+              else selectWeek(w);
+            }}
+          />
         </CardBody>
       </Card>
 
