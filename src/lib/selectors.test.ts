@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { emptyTotals } from "../../shared/types";
 import type { MemberWeekDetail, WeekDetail } from "../../shared/schema/data";
-import { aggregateRepos, memberScope, teamScope, TEAM_SCOPE_KEY } from "./selectors";
+import { memberScope, teamScope, TEAM_SCOPE_KEY } from "./selectors";
 
 function totals(over: Partial<ReturnType<typeof emptyTotals>>) {
   return { ...emptyTotals(), ...over };
@@ -18,8 +18,8 @@ const alice: MemberWeekDetail = {
   warmingUp: false,
   totals: totals({ prsMerged: 2, commits: 5 }),
   repos: [
-    { repo: web, totals: totals({ prsMerged: 1, commits: 3 }) },
-    { repo: api, totals: totals({ prsMerged: 1, commits: 2 }) },
+    { repo: web, totals: totals({ prsMerged: 1, commits: 3 }), velocity: 62, velocityBand: "yellow", warmingUp: false },
+    { repo: api, totals: totals({ prsMerged: 1, commits: 2 }), velocity: 55, velocityBand: "yellow", warmingUp: false },
   ],
   prs: [],
   comments: [{ kind: "review", repo: web, prNumber: 1, createdAt: "2026-08-05T10:00:00.000Z", url: "u1" }],
@@ -33,7 +33,7 @@ const bob: MemberWeekDetail = {
   velocityBand: "yellow",
   warmingUp: false,
   totals: totals({ commits: 4 }),
-  repos: [{ repo: web, totals: totals({ commits: 4 }) }],
+  repos: [{ repo: web, totals: totals({ commits: 4 }), velocity: 44, velocityBand: "yellow", warmingUp: false }],
   prs: [],
   comments: [{ kind: "issue", repo: api, prNumber: null, createdAt: "2026-08-04T10:00:00.000Z", url: "u2" }],
   commits: [{ sha: "b1sha", repo: web, authorHandle: "bob", committedAt: "2026-08-04T09:00:00.000Z", url: "c-b1" }],
@@ -49,28 +49,19 @@ const week: WeekDetail = {
   totals: totals({ prsMerged: 2, commits: 9 }),
   prs: [],
   members: [alice, bob],
+  repos: [
+    { repo: api, totals: totals({ prsMerged: 1, commits: 2 }), velocity: 51, velocityBand: "yellow", warmingUp: false },
+    { repo: web, totals: totals({ prsMerged: 1, commits: 7 }), velocity: 66, velocityBand: "yellow", warmingUp: false },
+  ],
 };
 
-describe("aggregateRepos", () => {
-  it("sums per-repo totals across members and sorts by name", () => {
-    const repos = aggregateRepos([alice, bob]);
-    expect(repos.map((r) => `${r.repo.owner}/${r.repo.name}`)).toEqual(["acme/api", "acme/web"]);
-    const webTotals = repos.find((r) => r.repo.name === "web")!.totals;
-    expect(webTotals.commits).toBe(7); // alice 3 + bob 4
-    expect(webTotals.prsMerged).toBe(1);
-  });
-
-  it("does not mutate the source member totals", () => {
-    aggregateRepos([alice, bob]);
-    expect(alice.repos[0].totals.commits).toBe(3);
-  });
-});
-
 describe("teamScope / memberScope", () => {
-  it("teamScope aggregates repos + comments + commits across the team", () => {
+  it("teamScope exposes the stored team repos + flattened comments + commits", () => {
     const scope = teamScope(week);
     expect(scope.key).toBe(TEAM_SCOPE_KEY);
-    expect(scope.repos).toHaveLength(2);
+    // team repos come straight from the week (each with its own velocity), not summed in the SPA
+    expect(scope.repos).toBe(week.repos);
+    expect(scope.repos.map((r) => r.velocity)).toEqual([51, 66]);
     expect(scope.comments).toHaveLength(2);
     // comments sorted by createdAt
     expect(scope.comments[0].url).toBe("u2");
@@ -79,11 +70,13 @@ describe("teamScope / memberScope", () => {
     expect(scope.commits[0].url).toBe("c-b1");
   });
 
-  it("memberScope surfaces that member's data", () => {
+  it("memberScope surfaces that member's data, including per-repo velocity", () => {
     const scope = memberScope(alice);
     expect(scope.key).toBe("alice");
     expect(scope.velocity).toBe(60);
     expect(scope.repos).toHaveLength(2);
+    // sorted by repo name → api, web
+    expect(scope.repos.map((r) => `${r.repo.name}:${String(r.velocity)}`)).toEqual(["api:55", "web:62"]);
     expect(scope.commits).toHaveLength(1);
     expect(scope.commits[0].sha).toBe("a1sha");
   });

@@ -1,6 +1,5 @@
 import type { CommentRow, CommitRow, ScoredPr } from "../../../shared/schema/data";
 import type { VelocityWeights } from "../../../shared/types";
-import { contributionSum, velocityContribution } from "../../../shared/aggregate/velocity";
 import { type RepoTotals, type Scope, repoRefKey } from "../../lib/selectors";
 import { bandTextClass, formatVelocity, velocityStackDatum } from "../../lib/format";
 import { cn } from "../../lib/cn";
@@ -69,21 +68,17 @@ export function PersonDetailSection({
   onClearRepo: () => void;
   onClearMember: () => void;
 }) {
-  // "Velocity by repo": distribute the scope's velocity across its repos by each
-  // repo's share of the velocity signal, so the bars sum to the scope velocity
-  // and each bar reads as that repo's contribution to it.
-  const scopeVelocity = scope.velocity ?? 0;
-  const repoContribTotals = scope.repos.map((rt) => contributionSum(velocityContribution(rt.totals, weights)));
-  const contribSum = repoContribTotals.reduce((a, b) => a + b, 0);
-  const repoRows: StackRow[] = scope.repos.map((rt, i) => {
-    const allocated = contribSum > 0 ? scopeVelocity * (repoContribTotals[i] / contribSum) : 0;
-    return {
-      key: repoRefKey(rt.repo),
-      label: rt.repo.name,
-      datum: velocityStackDatum(rt.totals, allocated, weights),
-      value: allocated,
-    };
-  });
+  // "Velocity by repo": each repo has its own independent velocity (vs its own
+  // baseline) — velocity is non-linear, so repo bars are NOT a decomposition of
+  // the scope velocity and do not sum to it. Bar length = the repo's velocity.
+  const repoRows: StackRow[] = scope.repos.map((rt) => ({
+    key: repoRefKey(rt.repo),
+    label: rt.repo.name,
+    datum: velocityStackDatum(rt.totals, rt.velocity, weights),
+    value: rt.velocity,
+    velocity: rt.velocity,
+    band: rt.velocityBand,
+  }));
   const selectedRepoData = selectedRepo
     ? scope.repos.find((rt) => repoRefKey(rt.repo) === selectedRepo)
     : undefined;
@@ -122,7 +117,7 @@ export function PersonDetailSection({
           {repoRows.length === 0 ? (
             <p className="text-xs text-foreground-muted">No repo activity in this selection.</p>
           ) : (
-            <HorizontalStack rows={repoRows} selectedKey={selectedRepo} onSelect={onSelectRepo} yWidth={120} />
+            <HorizontalStack rows={repoRows} selectedKey={selectedRepo} onSelect={onSelectRepo} yWidth={120} xMax={100} />
           )}
         </div>
 

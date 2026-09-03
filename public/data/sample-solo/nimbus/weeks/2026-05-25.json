@@ -200,7 +200,10 @@
             "comments": 0,
             "locAdded": 329,
             "locRemoved": 120
-          }
+          },
+          "velocity": 22.9,
+          "velocityBand": "red",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -217,7 +220,10 @@
             "comments": 4,
             "locAdded": 433,
             "locRemoved": 140
-          }
+          },
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -480,7 +486,10 @@
             "comments": 2,
             "locAdded": 380,
             "locRemoved": 143
-          }
+          },
+          "velocity": 59.6,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -497,7 +506,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -616,6 +628,48 @@
           "url": "https://github.com/nimbus/cloud/commit/3916624a5e04eefea3c8c07b45c7624b41166fa8"
         }
       ]
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 0,
+        "prsClosed": 1,
+        "commits": 6,
+        "comments": 2,
+        "locAdded": 709,
+        "locRemoved": 263
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 3,
+        "comments": 4,
+        "locAdded": 433,
+        "locRemoved": 140
+      },
+      "velocity": 63.5,
+      "velocityBand": "yellow",
+      "warmingUp": false
     }
   ]
 }

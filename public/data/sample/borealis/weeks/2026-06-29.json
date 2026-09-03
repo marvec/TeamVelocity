@@ -124,7 +124,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 12.6,
+          "velocityBand": "red",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -141,7 +144,10 @@
             "comments": 1,
             "locAdded": 148,
             "locRemoved": 67
-          }
+          },
+          "velocity": 42.9,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -292,7 +298,10 @@
             "comments": 2,
             "locAdded": 124,
             "locRemoved": 54
-          }
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -387,6 +396,48 @@
           "url": "https://github.com/borealis/core/commit/6e5c1eaae2b0156b5234791d7485cde2b813334d"
         }
       ]
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 2,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 0,
+        "prsClosed": 1,
+        "commits": 5,
+        "comments": 3,
+        "locAdded": 272,
+        "locRemoved": 121
+      },
+      "velocity": 44.1,
+      "velocityBand": "yellow",
+      "warmingUp": false
     }
   ]
 }

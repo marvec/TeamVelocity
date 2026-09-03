@@ -238,7 +238,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -255,7 +258,10 @@
             "comments": 1,
             "locAdded": 227,
             "locRemoved": 46
-          }
+          },
+          "velocity": 44.4,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -272,7 +278,10 @@
             "comments": 2,
             "locAdded": 304,
             "locRemoved": 117
-          }
+          },
+          "velocity": 86.6,
+          "velocityBand": "green",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -521,7 +530,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 38.1,
+          "velocityBand": "red",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -538,7 +550,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -555,7 +570,10 @@
             "comments": 5,
             "locAdded": 124,
             "locRemoved": 14
-          }
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -754,7 +772,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -771,7 +792,10 @@
             "comments": 2,
             "locAdded": 151,
             "locRemoved": 44
-          }
+          },
+          "velocity": 67.9,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -788,7 +812,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 39.7,
+          "velocityBand": "red",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -987,7 +1014,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -1004,7 +1034,10 @@
             "comments": 2,
             "locAdded": 53,
             "locRemoved": 13
-          }
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -1087,6 +1120,68 @@
           "url": "https://github.com/aurora/api/commit/713bc4b0134c91a8c641ab1e34bd010b539a3a96"
         }
       ]
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "api",
+        "url": "https://github.com/aurora/api"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 6,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "infra",
+        "url": "https://github.com/aurora/infra"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 8,
+        "comments": 3,
+        "locAdded": 378,
+        "locRemoved": 90
+      },
+      "velocity": 62.1,
+      "velocityBand": "yellow",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "totals": {
+        "prsOpened": 3,
+        "prsMerged": 3,
+        "prsClosed": 0,
+        "commits": 8,
+        "comments": 9,
+        "locAdded": 481,
+        "locRemoved": 144
+      },
+      "velocity": 69,
+      "velocityBand": "yellow",
+      "warmingUp": false
     }
   ]
 }

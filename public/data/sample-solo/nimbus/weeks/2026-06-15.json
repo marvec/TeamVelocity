@@ -124,7 +124,10 @@
             "comments": 4,
             "locAdded": 204,
             "locRemoved": 21
-          }
+          },
+          "velocity": 63.9,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -287,7 +290,10 @@
             "comments": 1,
             "locAdded": 214,
             "locRemoved": 31
-          }
+          },
+          "velocity": 62.7,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -370,6 +376,28 @@
           "url": "https://github.com/nimbus/cloud/commit/81ea711794b30886d6b5cd8319c5b6eb4679ee8a"
         }
       ]
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 2,
+        "prsClosed": 0,
+        "commits": 5,
+        "comments": 5,
+        "locAdded": 418,
+        "locRemoved": 52
+      },
+      "velocity": 77.9,
+      "velocityBand": "green",
+      "warmingUp": false
     }
   ]
 }

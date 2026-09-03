@@ -238,7 +238,10 @@
             "comments": 2,
             "locAdded": 464,
             "locRemoved": 150
-          }
+          },
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -255,7 +258,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 19.9,
+          "velocityBand": "red",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -456,7 +462,10 @@
             "comments": 6,
             "locAdded": 111,
             "locRemoved": 19
-          }
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -473,7 +482,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -490,7 +502,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 4.5,
+          "velocityBand": "red",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -677,7 +692,10 @@
             "comments": 1,
             "locAdded": 617,
             "locRemoved": 252
-          }
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -694,7 +712,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 24.6,
+          "velocityBand": "red",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -711,7 +732,10 @@
             "comments": 0,
             "locAdded": 192,
             "locRemoved": 38
-          }
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -912,7 +936,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -929,7 +956,10 @@
             "comments": 1,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [],
@@ -961,6 +991,68 @@
           "url": "https://github.com/aurora/api/commit/d3a11584cf8e6c3d458c7da265860cb32978d06b"
         }
       ]
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "api",
+        "url": "https://github.com/aurora/api"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 5,
+        "comments": 7,
+        "locAdded": 728,
+        "locRemoved": 271
+      },
+      "velocity": 54.5,
+      "velocityBand": "yellow",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "infra",
+        "url": "https://github.com/aurora/infra"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 4,
+        "comments": 3,
+        "locAdded": 464,
+        "locRemoved": 150
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "aurora",
+        "name": "web",
+        "url": "https://github.com/aurora/web"
+      },
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 6,
+        "comments": 0,
+        "locAdded": 192,
+        "locRemoved": 38
+      },
+      "velocity": 29.1,
+      "velocityBand": "red",
+      "warmingUp": false
     }
   ]
 }

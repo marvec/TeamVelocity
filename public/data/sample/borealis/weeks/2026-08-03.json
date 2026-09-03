@@ -47,7 +47,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 36.5,
+          "velocityBand": "red",
+          "warmingUp": false
         }
       ],
       "prs": [],
@@ -86,6 +89,28 @@
       "prs": [],
       "comments": [],
       "commits": []
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 5.3,
+      "velocityBand": "red",
+      "warmingUp": false
     }
   ]
 }

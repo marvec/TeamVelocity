@@ -124,7 +124,10 @@
             "comments": 2,
             "locAdded": 246,
             "locRemoved": 90
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true
         },
         {
           "repo": {
@@ -141,7 +144,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true
         }
       ],
       "prs": [
@@ -306,7 +312,10 @@
             "comments": 1,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true
         }
       ],
       "prs": [],
@@ -325,6 +334,48 @@
         }
       ],
       "commits": []
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "cloud",
+        "url": "https://github.com/nimbus/cloud"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 1,
+        "commits": 0,
+        "comments": 2,
+        "locAdded": 246,
+        "locRemoved": 90
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 2,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true
     }
   ]
 }

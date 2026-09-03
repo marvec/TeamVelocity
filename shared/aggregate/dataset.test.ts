@@ -195,6 +195,31 @@ describe("buildTeamDataset — PR detail & scoring", () => {
   });
 });
 
+describe("buildTeamDataset — independent per-repo velocity", () => {
+  it("stores each team repo's own velocity (valid range, band, first-week warming-up)", () => {
+    const ds = buildTeamDataset(sampleInput());
+    const w0 = ds.weeks["2026-08-03"]; // first week of the range
+    expect(w0.repos.length).toBeGreaterThan(0);
+    for (const r of w0.repos) {
+      expect(r.velocity).toBeGreaterThanOrEqual(0);
+      expect(r.velocity).toBeLessThanOrEqual(100);
+      expect(["red", "yellow", "green"]).toContain(r.velocityBand);
+      expect(r.warmingUp).toBe(true); // first weeks of the repo's own series
+    }
+  });
+
+  it("gives a member's repos their own velocity too", () => {
+    const ds = buildTeamDataset(sampleInput());
+    const w0 = ds.weeks["2026-08-03"];
+    const alice = w0.members.find((m) => m.handle === "alice")!;
+    expect(alice.repos.length).toBeGreaterThan(0);
+    for (const r of alice.repos) {
+      expect(r.velocity).toBeGreaterThanOrEqual(0);
+      expect(r.velocity).toBeLessThanOrEqual(100);
+    }
+  });
+});
+
 describe("buildTeamDataset — warming up & determinism", () => {
   it("flags the first 3 weeks warming up and sets warmingUpUntil", () => {
     const ds = buildTeamDataset(sampleInput());

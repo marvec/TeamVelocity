@@ -162,7 +162,10 @@
             "comments": 3,
             "locAdded": 73,
             "locRemoved": 20
-          }
+          },
+          "velocity": 46,
+          "velocityBand": "yellow",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -179,7 +182,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 53.5,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -342,7 +348,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 28.2,
+          "velocityBand": "red",
+          "warmingUp": false
         },
         {
           "repo": {
@@ -359,7 +368,10 @@
             "comments": 2,
             "locAdded": 560,
             "locRemoved": 244
-          }
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
         }
       ],
       "prs": [
@@ -540,6 +552,48 @@
           "url": "https://github.com/borealis/core/commit/cb1259fbae23ddb71add5a2155fefdcaa3b92198"
         }
       ]
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "totals": {
+        "prsOpened": 1,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 5,
+        "comments": 3,
+        "locAdded": 73,
+        "locRemoved": 20
+      },
+      "velocity": 37.1,
+      "velocityBand": "red",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
+        "name": "core",
+        "url": "https://github.com/borealis/core"
+      },
+      "totals": {
+        "prsOpened": 2,
+        "prsMerged": 1,
+        "prsClosed": 0,
+        "commits": 5,
+        "comments": 2,
+        "locAdded": 560,
+        "locRemoved": 244
+      },
+      "velocity": 64.5,
+      "velocityBand": "yellow",
+      "warmingUp": false
     }
   ]
 }

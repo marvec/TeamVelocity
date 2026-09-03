@@ -67,7 +67,10 @@
             "comments": 0,
             "locAdded": 0,
             "locRemoved": 0
-          }
+          },
+          "velocity": 39.8,
+          "velocityBand": "red",
+          "warmingUp": false
         }
       ],
       "prs": [],
@@ -86,6 +89,28 @@
           "url": "https://github.com/nimbus/edge/commit/e5ea1dd08c02f889e298647a990d3c811ac43a99"
         }
       ]
+    }
+  ],
+  "repos": [
+    {
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 1,
+        "comments": 0,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 18.9,
+      "velocityBand": "red",
+      "warmingUp": false
     }
   ]
 }

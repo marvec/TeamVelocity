@@ -16,7 +16,7 @@ import type {
   Totals,
   VelocityWeights,
 } from "../types";
-import { emptyTotals, repoKey } from "../types";
+import { addTotals, emptyTotals, repoKey } from "../types";
 import type { Weekday, WeekWindow } from "./weeks";
 import { enumerateWeeks, isoDate, weekKeyFor } from "./weeks";
 import type { VelocityThresholds, WeekVelocity } from "./velocity";
@@ -273,6 +273,65 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
     memberVel.set(lower, computeVelocitySeries(raw, velOpts));
   }
 
+  // --- Per-repo velocity series (independent, vs each repo's OWN baseline) ---
+  // A repo has no additive share of a scope's velocity (velocity is non-linear),
+  // so each repo gets its own normalized velocity from its own weekly signal:
+  // team-wide for the team chart, per-member for a person's chart. Review
+  // activity isn't tracked per repo, so all comments stand in for it here.
+  const repoRaw = (t: Totals): number =>
+    rawWeeklySignal(
+      {
+        mergedPRs: t.prsMerged,
+        prsOpened: t.prsOpened,
+        reviewActivity: t.comments,
+        commits: t.commits,
+        locChanged: t.locAdded + t.locRemoved,
+      },
+      velWeights,
+    );
+
+  // Per-week team-aggregated repo totals (members only), ref carried with them.
+  const teamRepoTotals: Map<string, RepoTotals>[] = weeks.map(() => new Map<string, RepoTotals>());
+  const repoKeys = new Set<string>();
+  weeks.forEach((w, i) => {
+    for (const ma of w.members.values()) {
+      for (const [rk, rt] of ma.repoTotals) {
+        repoKeys.add(rk);
+        const agg = teamRepoTotals[i].get(rk);
+        if (agg) addTotals(agg.totals, rt.totals);
+        else teamRepoTotals[i].set(rk, { repo: rt.repo, totals: { ...rt.totals } });
+      }
+    }
+  });
+
+  const teamRepoVel = new Map<string, WeekVelocity[]>();
+  for (const rk of repoKeys) {
+    const raw = teamRepoTotals.map((m) => {
+      const rt = m.get(rk);
+      return rt ? repoRaw(rt.totals) : 0;
+    });
+    teamRepoVel.set(rk, computeVelocitySeries(raw, velOpts));
+  }
+
+  const memberRepoVel = new Map<string, Map<string, WeekVelocity[]>>();
+  for (const m of team.members) {
+    const lower = m.handle.toLowerCase();
+    const keys = new Set<string>();
+    for (const w of weeks) {
+      const ma = w.members.get(lower);
+      if (ma) for (const rk of ma.repoTotals.keys()) keys.add(rk);
+    }
+    const perRepo = new Map<string, WeekVelocity[]>();
+    for (const rk of keys) {
+      const raw = weeks.map((w) => {
+        const rt = w.members.get(lower)?.repoTotals.get(rk);
+        return rt ? repoRaw(rt.totals) : 0;
+      });
+      perRepo.set(rk, computeVelocitySeries(raw, velOpts));
+    }
+    memberRepoVel.set(lower, perRepo);
+  }
+
   // --- Score PRs within each week's set ---
   const prScoreWeights = team.prScoreWeights ?? DEFAULT_PR_SCORE_WEIGHTS;
   const scoredByWeek: ScoredPr[][] = weeks.map((w) => {
@@ -356,9 +415,19 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
       const lower = m.handle.toLowerCase();
       const ma = w.members.get(lower) ?? newMemberAccum();
       const mv = round1((memberVel.get(lower) ?? [])[i]?.velocity ?? 0);
-      const repos: RepoTotals[] = [...ma.repoTotals.values()].sort((a, b) =>
-        `${a.repo.owner}/${a.repo.name}`.localeCompare(`${b.repo.owner}/${b.repo.name}`),
-      );
+      const perRepoVel = memberRepoVel.get(lower);
+      const repos = [...ma.repoTotals.entries()]
+        .map(([rk, rt]) => {
+          const rv = round1((perRepoVel?.get(rk) ?? [])[i]?.velocity ?? 0);
+          return {
+            repo: rt.repo,
+            totals: rt.totals,
+            velocity: rv,
+            velocityBand: bandAt(rv),
+            warmingUp: (perRepoVel?.get(rk) ?? [])[i]?.warmingUp ?? true,
+          };
+        })
+        .sort((a, b) => `${a.repo.owner}/${a.repo.name}`.localeCompare(`${b.repo.owner}/${b.repo.name}`));
       const prs = [...ma.prNumbers]
         .map((k) => scoredByPrKey.get(k))
         .filter((s): s is ScoredPr => s !== undefined);
@@ -398,6 +467,19 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
       };
     });
 
+    const repos = [...teamRepoTotals[i].entries()]
+      .map(([rk, rt]) => {
+        const rv = round1((teamRepoVel.get(rk) ?? [])[i]?.velocity ?? 0);
+        return {
+          repo: rt.repo,
+          totals: rt.totals,
+          velocity: rv,
+          velocityBand: bandAt(rv),
+          warmingUp: (teamRepoVel.get(rk) ?? [])[i]?.warmingUp ?? true,
+        };
+      })
+      .sort((a, b) => `${a.repo.owner}/${a.repo.name}`.localeCompare(`${b.repo.owner}/${b.repo.name}`));
+
     weekDetails[w.window.key] = {
       weekStart: w.window.key,
       weekEnd: isoDate(w.window.weekEnd),
@@ -408,6 +490,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
       totals: w.teamTotals,
       prs: scored,
       members,
+      repos,
     };
   });
 

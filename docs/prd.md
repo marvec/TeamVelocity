@@ -203,11 +203,13 @@ caching so re-pulls are incremental (already-closed weeks are not re-fetched).
                members: [ { handle, name, velocity, totals } ] } ] }
   ```
 - `<teamId>/weeks/<weekStart>.json` — drill-down detail for one week (lazy-loaded on selection):
-  team PR list with scores; per-member
-  `{ totals, repos:[{repo, totals}], prs:[…], comments:[…], commits:[…] }`; per-PR relevance
-  breakdown. Each `commits` row is `{ sha, repo, authorHandle, committedAt, url }` — **no line
-  stats**: live pulls don't fetch per-commit additions/deletions (LOC is delivered by PRs, §5), so
-  the row carries only what every source can supply. This backs the repo drill-down's Commits tab.
+  team PR list with scores; a team-level `repos:[{repo, totals, velocity, velocityBand, warmingUp}]`;
+  per-member `{ totals, repos:[{repo, totals, velocity, velocityBand, warmingUp}], prs:[…],
+  comments:[…], commits:[…] }`; per-PR relevance breakdown. Each repo carries its **own** velocity
+  (§7.1, §8-D) — independent, not a share of the scope velocity. Each `commits` row is
+  `{ sha, repo, authorHandle, committedAt, url }` — **no line stats**: live pulls don't fetch
+  per-commit additions/deletions (LOC is delivered by PRs, §5), so the row carries only what every
+  source can supply. This backs the repo drill-down's Commits tab.
 
 `weekStart` is the ISO date (`YYYY-MM-DD`) of the sprint window start, used as the id in paths
 and URLs. `label` is the human range, e.g. `2026/08/24–08/30`.
@@ -326,11 +328,14 @@ below the bars, that person's **tabbed breakdown** — the same `PRs · Commits 
 tabs used in the repo drill-down (§D), but spanning all of the person's repos, so each row is
 tagged with its repo.
 
-The **velocity-by-repo** bars (§D) apply the same scaling: the scope's velocity is split across its
-repos in proportion to each repo's velocity signal, so the repo bars **sum to the scope velocity**
-and each reads as that repo's contribution to it. (Repos have no independent velocity of their own
-— there is no per-repo rolling baseline — so this decomposition is the honest reading of "velocity
-by repo".)
+The **velocity-by-repo** bars (§D) give **each repo its own independent velocity** (0–100), computed
+exactly like team/member velocity but on that repo's *own* weekly signal series normalized against
+its *own* trailing baseline — team-wide for the team chart, per-member for a person's chart. Because
+velocity is non-linear, repo bars are **not** a decomposition of the scope velocity and do **not**
+sum to it (just as team velocity ≠ Σ member velocities). Per-repo velocity series are computed in
+the CLI and stored in the week detail (`WeekDetail.repos` for the team; a `velocity` on each member
+repo), since the SPA only holds one week and can't compute a baseline. Review activity isn't tracked
+per repo, so all comments stand in for the review term there.
 
 A **"?" help control** in the header opens a plain-language explainer for the two 0–100 scores
 (velocity vs PR relevance), so the distinction in §7 is discoverable in-app.

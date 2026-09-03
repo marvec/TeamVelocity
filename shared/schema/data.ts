@@ -167,6 +167,10 @@ export type CommitRow = z.infer<typeof CommitRowSchema>;
 const RepoTotalsSchema = z.strictObject({
   repo: RepoRefLiteSchema,
   totals: TotalsSchema,
+  /** The repo's own velocity for this scope+week, normalized against its own baseline. */
+  velocity: score01to100,
+  velocityBand: VelocityBandSchema,
+  warmingUp: z.boolean(),
 });
 
 const MemberWeekDetailSchema = z.strictObject({
@@ -194,5 +198,7 @@ export const WeekDetailSchema = z.strictObject({
   totals: TotalsSchema,
   prs: z.array(ScoredPrSchema),
   members: z.array(MemberWeekDetailSchema),
+  /** Team-wide per-repo breakdown, each repo with its own independent velocity. */
+  repos: z.array(RepoTotalsSchema),
 });
 export type WeekDetail = z.infer<typeof WeekDetailSchema>;

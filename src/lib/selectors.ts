@@ -18,6 +18,10 @@ import { emptyTotals, addTotals } from "../../shared/types";
 export interface RepoTotals {
   repo: RepoRefLite;
   totals: TotalsData;
+  /** The repo's own velocity for this scope+week (independent, vs its own baseline). */
+  velocity: number;
+  velocityBand: VelocityBand;
+  warmingUp: boolean;
 }
 
 export interface Scope {
@@ -38,20 +42,6 @@ export const TEAM_SCOPE_KEY = "__team__";
 
 export function repoRefKey(repo: Pick<RepoRefLite, "owner" | "name">): string {
   return `${repo.owner}/${repo.name}`;
-}
-
-/** Sum per-repo totals across all members (team-wide repo breakdown). */
-export function aggregateRepos(members: MemberWeekDetail[]): RepoTotals[] {
-  const map = new Map<string, RepoTotals>();
-  for (const m of members) {
-    for (const rt of m.repos) {
-      const key = repoRefKey(rt.repo);
-      const existing = map.get(key);
-      if (existing) addTotals(existing.totals, rt.totals);
-      else map.set(key, { repo: rt.repo, totals: { ...rt.totals } });
-    }
-  }
-  return [...map.values()].sort((a, b) => repoRefKey(a.repo).localeCompare(repoRefKey(b.repo)));
 }
 
 export function memberScope(m: MemberWeekDetail): Scope {
@@ -80,7 +70,7 @@ export function teamScope(week: WeekDetail): Scope {
     key: TEAM_SCOPE_KEY,
     name: "Whole team",
     totals: week.totals,
-    repos: aggregateRepos(week.members),
+    repos: week.repos,
     prs: week.prs,
     comments,
     commits,
