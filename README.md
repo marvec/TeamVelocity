@@ -12,6 +12,8 @@ See [`docs/prd.md`](docs/prd.md) for the full specification.
 
 ---
 
+![TeamVelocity — weekly velocity plus a Team → Week → Person → Repo drill-down, shown over the bundled sample dataset](docs/screenshot.png)
+
 ## Requirements
 
 - [**Bun**](https://bun.sh) (the runtime **and** package manager — never use npm/yarn/pnpm).
