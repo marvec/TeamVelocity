@@ -5,6 +5,7 @@ import { cn } from "../../lib/cn";
 import { HorizontalStack, type StackRow } from "../charts/HorizontalStack";
 import { Card, CardBody, CardHeader, CardTitle } from "../ui/Card";
 import { CategoryLegend } from "../ui/Legend";
+import { BandChip } from "../ui/BandChip";
 import { DeselectChip } from "../ui/Chip";
 import { ContributionTabs } from "./ContributionTabs";
 
@@ -45,13 +46,17 @@ export function MembersSection({
       <CardBody>
         <HorizontalStack rows={rows} selectedKey={selectedMember} onSelect={onSelect} yWidth={148} xMax={100} />
         {selected ? (
-          <div className="mt-4 rounded-control border border-border bg-surface p-3" data-testid="member-detail">
-            <div className="mb-2 flex items-baseline gap-1.5">
-              <span className="text-sm font-semibold text-foreground">{selected.name}</span>
+          <div
+            className="mt-4 rounded-control border-(length:--border-w) border-border bg-surface p-3"
+            data-testid="member-detail"
+          >
+            <div className="mb-2 flex flex-wrap items-center gap-1.5">
+              <span className="text-sm font-semibold text-heading">{selected.name}</span>
               <span className={cn("tabular ml-1 text-sm font-bold", bandTextClass(selected.velocityBand))}>
                 {formatVelocity(selected.velocity)}
               </span>
               <span className="text-xs text-foreground-muted">velocity</span>
+              <BandChip band={selected.velocityBand} className="ml-1" />
             </div>
             <ContributionTabs
               prs={selected.prs}

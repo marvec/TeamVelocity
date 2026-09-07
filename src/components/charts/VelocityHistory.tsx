@@ -1,8 +1,9 @@
 import type { ReactElement } from "react";
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, ReferenceArea, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { VelocityBand } from "../../../shared/types";
 import type { WeekSummary } from "../../../shared/schema/data";
-import { bandTextClass, bandVar } from "../../lib/format";
+import { bandVar } from "../../lib/format";
+import { BandChip } from "../ui/BandChip";
 
 interface HistoryDatum {
   x: string;
@@ -26,15 +27,18 @@ function HistoryTooltip({ active, payload }: LineTooltipProps) {
   const d = payload[0]?.payload;
   if (!d) return null;
   return (
-    <div className="rounded-control border border-border bg-card p-2 text-xs shadow-md">
-      <div className="font-semibold text-heading">{d.full}</div>
-      <div className={bandTextClass(d.band)}>velocity {Math.round(d.velocity)}</div>
-      {d.warmingUp && <div className="text-band-yellow">warming up</div>}
+    <div className="rounded-control border-(length:--border-w) border-border bg-card p-2 text-xs shadow-md">
+      <div className="mb-1 font-semibold text-heading">{d.full}</div>
+      <div className="flex items-center gap-2">
+        <BandChip band={d.band} />
+        <span className="tabular text-foreground">velocity {Math.round(d.velocity)}</span>
+      </div>
+      {d.warmingUp && <div className="mt-1 text-band-yellow-ink">warming up</div>}
     </div>
   );
 }
 
-const GRADIENT_ID = "velocity-history-gradient";
+const TICK = { fontSize: 10.5, fill: "var(--color-foreground-muted)" };
 
 export function VelocityHistory({
   weeks,
@@ -50,19 +54,10 @@ export function VelocityHistory({
     band: w.velocityBand,
     warmingUp: w.warmingUp,
   }));
+  const lastIndex = data.length - 1;
 
-  // Colour the line by score with a vertical gradient. objectBoundingBox maps
-  // the gradient to the line's own vertical extent [lo, hi], so a threshold t
-  // sits at offset (hi − t) / (hi − lo) — no chart-geometry math needed.
-  const vels = data.map((d) => d.velocity);
-  const hi = vels.length ? Math.max(...vels) : 100;
-  const lo = vels.length ? Math.min(...vels) : 0;
-  const span = hi - lo || 1;
-  const off = (t: number): string => `${(Math.min(1, Math.max(0, (hi - t) / span)) * 100).toFixed(2)}%`;
-  const gRed = bandVar("red");
-  const gYellow = bandVar("yellow");
-  const gGreen = bandVar("green");
-
+  // The line is ink; the band lives in the translucent zones behind it and in
+  // the dots (band fill + surface ring), which stays legible on any theme.
   const renderDot = (props: unknown): ReactElement => {
     const { cx, cy, index, payload } = props as {
       cx?: number;
@@ -72,34 +67,42 @@ export function VelocityHistory({
     };
     const key = `dot-${String(index ?? 0)}`;
     if (cx == null || cy == null || !payload) return <g key={key} />;
-    return <circle key={key} cx={cx} cy={cy} r={2.5} fill={bandVar(payload.band)} />;
+    return (
+      <g key={key}>
+        <circle cx={cx} cy={cy} r={4} fill={bandVar(payload.band)} stroke="var(--color-card)" strokeWidth={2} />
+        {index === lastIndex && (
+          <text x={cx + 9} y={cy + 4} fontSize={12} fontWeight={700} fill="var(--color-heading)">
+            {Math.round(payload.velocity)}
+          </text>
+        )}
+      </g>
+    );
   };
 
   return (
     <div className="h-[150px] w-full" data-testid="velocity-history">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={data} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
-          <defs>
-            <linearGradient id={GRADIENT_ID} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={gGreen} />
-              <stop offset={off(thresholds.green)} stopColor={gGreen} />
-              <stop offset={off(thresholds.green)} stopColor={gYellow} />
-              <stop offset={off(thresholds.red)} stopColor={gYellow} />
-              <stop offset={off(thresholds.red)} stopColor={gRed} />
-              <stop offset="100%" stopColor={gRed} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-          <XAxis dataKey="x" tick={{ fontSize: 10, fill: "var(--color-foreground-muted)" }} interval="preserveStartEnd" minTickGap={16} />
-          <YAxis domain={[0, 100]} tick={{ fontSize: 10, fill: "var(--color-foreground-muted)" }} width={38} />
+        <LineChart data={data} margin={{ top: 8, right: 30, left: 0, bottom: 0 }}>
+          <ReferenceArea y1={0} y2={thresholds.red} fill={bandVar("red")} fillOpacity={0.11} stroke="none" />
+          <ReferenceArea
+            y1={thresholds.red}
+            y2={thresholds.green}
+            fill={bandVar("yellow")}
+            fillOpacity={0.18}
+            stroke="none"
+          />
+          <ReferenceArea y1={thresholds.green} y2={100} fill={bandVar("green")} fillOpacity={0.11} stroke="none" />
+          <CartesianGrid stroke="var(--color-grid)" vertical={false} />
+          <XAxis dataKey="x" tick={TICK} interval="preserveStartEnd" minTickGap={16} />
+          <YAxis domain={[0, 100]} tick={TICK} width={38} />
           <Tooltip content={<HistoryTooltip />} />
           <Line
             type="monotone"
             dataKey="velocity"
-            stroke={`url(#${GRADIENT_ID})`}
+            stroke="var(--color-heading)"
             strokeWidth={2}
             dot={renderDot}
-            activeDot={{ r: 5 }}
+            activeDot={{ r: 6, stroke: "var(--color-card)", strokeWidth: 2 }}
             isAnimationActive={false}
           />
         </LineChart>

@@ -278,6 +278,10 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
   // so each repo gets its own normalized velocity from its own weekly signal:
   // team-wide for the team chart, per-member for a person's chart. Review
   // activity isn't tracked per repo, so all comments stand in for it here.
+  // A repo series is sparse (a person touches a given repo in a minority of
+  // weeks), so its baseline is its last 12 ACTIVE weeks — an all-weeks window
+  // would be majority-zero, collapse the MAD, and peg every active week at 100.
+  const repoVelOpts = { ...velOpts, baseline: "active" as const };
   const repoRaw = (t: Totals): number =>
     rawWeeklySignal(
       {
@@ -310,7 +314,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
       const rt = m.get(rk);
       return rt ? repoRaw(rt.totals) : 0;
     });
-    teamRepoVel.set(rk, computeVelocitySeries(raw, velOpts));
+    teamRepoVel.set(rk, computeVelocitySeries(raw, repoVelOpts));
   }
 
   const memberRepoVel = new Map<string, Map<string, WeekVelocity[]>>();
@@ -327,7 +331,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
         const rt = w.members.get(lower)?.repoTotals.get(rk);
         return rt ? repoRaw(rt.totals) : 0;
       });
-      perRepo.set(rk, computeVelocitySeries(raw, velOpts));
+      perRepo.set(rk, computeVelocitySeries(raw, repoVelOpts));
     }
     memberRepoVel.set(lower, perRepo);
   }

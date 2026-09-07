@@ -12,7 +12,7 @@ function scoreBand(score: number): "red" | "yellow" | "green" {
 }
 
 function stateBadge(state: ScoredPr["state"]): string {
-  return state === "merged" ? "text-cat-commits" : state === "closed" ? "text-band-red" : "text-foreground-muted";
+  return state === "merged" ? "text-primary" : state === "closed" ? "text-band-red-ink" : "text-foreground-muted";
 }
 
 export function PrTable({ prs, showAuthor = true }: { prs: ScoredPr[]; showAuthor?: boolean }) {
@@ -70,7 +70,7 @@ export function PrTable({ prs, showAuthor = true }: { prs: ScoredPr[]; showAutho
         </thead>
         <tbody>
           {sorted.map((pr) => (
-            <tr key={`${pr.repo.owner}/${pr.repo.name}#${String(pr.number)}`} className="border-b border-border/60 hover:bg-muted/50">
+            <tr key={`${pr.repo.owner}/${pr.repo.name}#${String(pr.number)}`} className="border-b border-grid hover:bg-muted/50">
               <td className="py-1.5 pr-3 text-foreground-muted">{pr.repo.name}</td>
               <td className="py-1.5 pr-3">
                 <a

@@ -62,7 +62,14 @@ These come from `docs/prd.md §3` and are the point of the design:
 - **Styling:** Tailwind only. Design tokens (colors, spacing, radii) are defined once in the
   `@theme` block in `globals.css` as OKLCH CSS variables; components reference tokens via class
   names — never hardcode arbitrary values like `text-[#3a3a3a]` or `p-[13px]`.
-- **Theme:** Solarized-light-inspired. Category + velocity-band colors are tokens.
+- **Themes:** five switchable token sets in `globals.css` — Daylight (default), Nightlight (dark),
+  Poster, Sorbet, Solarized. The `@theme` block IS Daylight; every other theme is a
+  `[data-theme="…"]` override of the same variables, stamped on `<html>` by `src/theme/themes.ts`
+  and persisted in localStorage. New colors go into `@theme` AND every override block. Category +
+  velocity-band colors are tokens; `band-*` is the fill, `band-*-ink` the text-safe step, and text
+  never wears a bright band fill (use `BandChip` or the `-ink` class). Series hues were chosen by
+  palette-validator search — keep the role→hue mapping (PRs blue · commits lime · comments violet ·
+  LOC+ teal · LOC− orange · issues pink) when tuning.
 
 # Tailwind v4
 

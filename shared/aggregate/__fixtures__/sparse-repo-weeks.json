@@ -1,0 +1,361 @@
+{
+  "_source": "One member (robstryker) weekly totals in two public GitHub repos, pulled 2026-09-03 over 27 weeks; idle weeks are null. Pins per-repo velocity on real sparse series.",
+  "repos": {
+    "redhat-developer/rsp-server": [
+      {
+        "weekStart": "2026-03-03",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-10",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-17",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-24",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-31",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-07",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-14",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-21",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-28",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-05-05",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-05-12",
+        "totals": {
+          "prsOpened": 3,
+          "prsMerged": 3,
+          "prsClosed": 0,
+          "commits": 12,
+          "comments": 0,
+          "locAdded": 132,
+          "locRemoved": 12
+        }
+      },
+      {
+        "weekStart": "2026-05-19",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-05-26",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-06-02",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 1,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-06-09",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-06-16",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-06-23",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-06-30",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-07-07",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-07-14",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-07-21",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-07-28",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-08-04",
+        "totals": {
+          "prsOpened": 1,
+          "prsMerged": 1,
+          "prsClosed": 0,
+          "commits": 10,
+          "comments": 0,
+          "locAdded": 86,
+          "locRemoved": 27
+        }
+      },
+      {
+        "weekStart": "2026-08-11",
+        "totals": {
+          "prsOpened": 1,
+          "prsMerged": 1,
+          "prsClosed": 0,
+          "commits": 1,
+          "comments": 0,
+          "locAdded": 105,
+          "locRemoved": 12
+        }
+      },
+      {
+        "weekStart": "2026-08-18",
+        "totals": {
+          "prsOpened": 3,
+          "prsMerged": 3,
+          "prsClosed": 0,
+          "commits": 17,
+          "comments": 0,
+          "locAdded": 700,
+          "locRemoved": 371
+        }
+      },
+      {
+        "weekStart": "2026-08-25",
+        "totals": {
+          "prsOpened": 2,
+          "prsMerged": 2,
+          "prsClosed": 0,
+          "commits": 2,
+          "comments": 0,
+          "locAdded": 73,
+          "locRemoved": 25
+        }
+      },
+      {
+        "weekStart": "2026-09-01",
+        "totals": {
+          "prsOpened": 1,
+          "prsMerged": 1,
+          "prsClosed": 0,
+          "commits": 3,
+          "comments": 0,
+          "locAdded": 297,
+          "locRemoved": 0
+        }
+      }
+    ],
+    "nb-javac-shaded/javac-ls": [
+      {
+        "weekStart": "2026-03-03",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-10",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-17",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-24",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-03-31",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-07",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-14",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-21",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-04-28",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-05-05",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-05-12",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-05-19",
+        "totals": {
+          "prsOpened": 7,
+          "prsMerged": 7,
+          "prsClosed": 0,
+          "commits": 20,
+          "comments": 0,
+          "locAdded": 1879,
+          "locRemoved": 25189
+        }
+      },
+      {
+        "weekStart": "2026-05-26",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 17,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-06-02",
+        "totals": {
+          "prsOpened": 4,
+          "prsMerged": 4,
+          "prsClosed": 0,
+          "commits": 8,
+          "comments": 0,
+          "locAdded": 12459,
+          "locRemoved": 882
+        }
+      },
+      {
+        "weekStart": "2026-06-09",
+        "totals": {
+          "prsOpened": 9,
+          "prsMerged": 7,
+          "prsClosed": 2,
+          "commits": 12,
+          "comments": 0,
+          "locAdded": 11178,
+          "locRemoved": 135
+        }
+      },
+      {
+        "weekStart": "2026-06-16",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 6,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-06-23",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 14,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-06-30",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 12,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-07-07",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 14,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-07-14",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-07-21",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 7,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-07-28",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-08-04",
+        "totals": {
+          "prsOpened": 0,
+          "prsMerged": 0,
+          "prsClosed": 0,
+          "commits": 2,
+          "comments": 0,
+          "locAdded": 0,
+          "locRemoved": 0
+        }
+      },
+      {
+        "weekStart": "2026-08-11",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-08-18",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-08-25",
+        "totals": null
+      },
+      {
+        "weekStart": "2026-09-01",
+        "totals": null
+      }
+    ]
+  }
+}

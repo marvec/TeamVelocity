@@ -11,6 +11,7 @@ import {
   DEFAULT_VELOCITY_WEIGHTS,
   type VelocityInput,
 } from "./velocity";
+import sparseRepoWeeks from "./__fixtures__/sparse-repo-weeks.json";
 
 const ZERO: VelocityInput = {
   mergedPRs: 0,
@@ -236,5 +237,122 @@ describe("rangeVelocity", () => {
   });
   it("is 0 for an empty range", () => {
     expect(rangeVelocity([])).toBe(0);
+  });
+});
+
+describe("computeVelocitySeries — active-weeks baseline (sparse series such as one repo's)", () => {
+  // A repo touched in 2 of 12 weeks. With the default all-weeks baseline the
+  // majority-idle window collapses median and MAD to 0, so every active week
+  // is pegged at 100. The active baseline scores active weeks against each other.
+  const sparse = [0, 0, 0, 1.2, 0, 0, 0, 0, 0, 0, 0, 2.5];
+
+  it("the default all-weeks baseline pegs a majority-idle series at 100 (what repos must avoid)", () => {
+    expect(computeVelocitySeries(sparse)[11].velocity).toBe(100);
+  });
+
+  it("scores an active week against the other active weeks, not the idle ones", () => {
+    const series = computeVelocitySeries(sparse, { baseline: "active" });
+    // Baseline for the last week = {1.2, 2.5}: median 1.85, MAD 0.65.
+    // 50 + 20 · (2.5 − 1.85) / (1.4826 · 0.65) ≈ 63.5
+    expect(series[11].velocity).toBeCloseTo(63.49, 1);
+  });
+
+  it("scores the first active week 50 — its only baseline is itself", () => {
+    expect(computeVelocitySeries(sparse, { baseline: "active" })[3].velocity).toBe(50);
+  });
+
+  it("scores idle weeks 0", () => {
+    const idle = computeVelocitySeries(sparse, { baseline: "active" }).filter((w) => w.raw === 0);
+    expect(idle).toHaveLength(10);
+    for (const w of idle) expect(w.velocity).toBe(0);
+  });
+
+  it("idle weeks do not enter the baseline: a sparse series scores like its compacted active series", () => {
+    const compact = [3, 5, 4, 6, 2, 5];
+    const spread = [0, 3, 0, 0, 5, 4, 0, 6, 0, 0, 0, 2, 5];
+    const a = computeVelocitySeries(compact, { baseline: "active" }).map((w) => w.velocity);
+    const b = computeVelocitySeries(spread, { baseline: "active" })
+      .filter((w) => w.raw > 0)
+      .map((w) => w.velocity);
+    expect(b).toEqual(a);
+  });
+
+  it("reaches past idle weeks: an active week older than the calendar window still counts", () => {
+    const twelveIdle = new Array<number>(12).fill(0);
+    const afterBig = computeVelocitySeries([9, ...twelveIdle, 5], { baseline: "active" });
+    const afterSmall = computeVelocitySeries([1, ...twelveIdle, 5], { baseline: "active" });
+    expect(afterBig[13].velocity).toBeLessThan(50); // 5 sits below the {9, 5} median
+    expect(afterSmall[13].velocity).toBeGreaterThan(50); // 5 sits above the {1, 5} median
+  });
+
+  it("keeps only the last `windowWeeks` active weeks in the baseline", () => {
+    const tail = [4, 6, 5, 4, 6, 5, 4, 6, 5, 4, 6, 5]; // 12 active weeks
+    const calm = computeVelocitySeries([1, 0, 1, 0, ...tail], { baseline: "active" });
+    const spike = computeVelocitySeries([100, 0, 100, 0, ...tail], { baseline: "active" });
+    expect(calm[calm.length - 1].velocity).toBeCloseTo(spike[spike.length - 1].velocity, 10);
+  });
+
+  it("warms up by active weeks, not calendar weeks", () => {
+    const series = computeVelocitySeries([0, 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5], { baseline: "active" });
+    // The 4th active week is index 9; everything before it (idle or not) is provisional.
+    expect(series.map((w) => w.warmingUp)).toEqual([
+      true, true, true, true, true, true, true, true, true, false, false, false,
+    ]);
+  });
+});
+
+describe("computeVelocitySeries — active baseline on real sparse repo series", () => {
+  interface FixtureTotals {
+    prsOpened: number;
+    prsMerged: number;
+    prsClosed: number;
+    commits: number;
+    comments: number;
+    locAdded: number;
+    locRemoved: number;
+  }
+  interface FixtureWeek {
+    weekStart: string;
+    totals: FixtureTotals | null;
+  }
+  const repoRaw = (t: FixtureTotals): number =>
+    rawWeeklySignal({
+      mergedPRs: t.prsMerged,
+      prsOpened: t.prsOpened,
+      reviewActivity: t.comments,
+      commits: t.commits,
+      locChanged: t.locAdded + t.locRemoved,
+    });
+  const rawsOf = (weeks: FixtureWeek[]): number[] => weeks.map((w) => (w.totals ? repoRaw(w.totals) : 0));
+  const fixture = sparseRepoWeeks.repos as Record<string, FixtureWeek[]>;
+
+  it("rsp-server (7 active of 27 weeks): the default baseline pegged every active week at 100", () => {
+    const active = computeVelocitySeries(rawsOf(fixture["redhat-developer/rsp-server"])).filter((w) => w.raw > 0);
+    expect(active).toHaveLength(7);
+    expect(active.map((w) => w.velocity)).toEqual([100, 100, 100, 100, 100, 100, 100]);
+  });
+
+  it("rsp-server: with the active baseline no week is pegged; the 3-PR/17-commit week is green and the lone-commit week is red", () => {
+    const weeks = fixture["redhat-developer/rsp-server"];
+    const series = computeVelocitySeries(rawsOf(weeks), { baseline: "active" });
+    const active = series.filter((w) => w.raw > 0);
+    for (const w of active) expect(w.velocity).toBeLessThan(100);
+    const biggest = weeks.findIndex((w) => w.totals?.commits === 17);
+    const loneCommit = weeks.findIndex((w) => w.totals?.commits === 1 && w.totals.prsMerged === 0);
+    expect(series[biggest].band).toBe("green");
+    expect(series[loneCommit].band).toBe("red");
+  });
+
+  it("javac-ls (10 active of 27 weeks): commit-only weeks after the PR-heavy weeks score below 50, none at 100", () => {
+    const weeks = fixture["nb-javac-shaded/javac-ls"];
+    const series = computeVelocitySeries(rawsOf(weeks), { baseline: "active" });
+    const lastPrWeek = weeks.map((w) => w.totals?.prsMerged ?? 0).lastIndexOf(7);
+    const commitOnlyAfter = series.filter((w, i) => i > lastPrWeek && w.raw > 0);
+    expect(commitOnlyAfter.length).toBeGreaterThanOrEqual(5);
+    for (const w of commitOnlyAfter) {
+      expect(w.velocity).toBeLessThan(50);
+      expect(w.velocity).toBeLessThan(100);
+    }
+    for (const w of series) expect(Number.isFinite(w.velocity)).toBe(true);
   });
 });

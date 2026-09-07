@@ -1,15 +1,18 @@
 import { test, expect } from "@playwright/test";
 
+// Every spec names its dataset explicitly: the SPA default can be redirected by
+// VITE_DATA_DIR in a developer's .env (e.g. to real pulled data with one team),
+// and e2e must stay hermetic over the committed sample fixtures.
 test.describe("team select", () => {
   test("shows a card per team when several are configured", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/?data=/data/sample");
     await expect(page.getByTestId("team-select")).toBeVisible();
     await expect(page.getByTestId("team-card")).toHaveCount(2);
     await expect(page.getByRole("heading", { name: "Choose team" })).toBeVisible();
   });
 
   test("selecting a team opens its dashboard and updates the URL", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("/?data=/data/sample");
     await page.getByRole("button", { name: /Aurora/ }).click();
     await expect(page.getByTestId("dashboard")).toBeVisible();
     await expect(page).toHaveURL(/team=aurora/);

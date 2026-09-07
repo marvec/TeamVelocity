@@ -3,7 +3,7 @@
 import type { VelocityBand } from "../../../shared/types";
 import type { StackDatum } from "../../lib/format";
 import { CATEGORIES, formatNumber } from "../../lib/format";
-import { bandTextClass } from "../../lib/format";
+import { BandChip } from "../ui/BandChip";
 
 interface StackPayload extends StackDatum {
   label?: string;
@@ -29,11 +29,12 @@ export function StackTooltip({ active, payload, title }: StackTooltipProps) {
   if (!datum) return null;
   const raw = datum.raw;
   return (
-    <div className="rounded-control border border-border bg-card p-2.5 text-xs shadow-md">
+    <div className="rounded-control border-(length:--border-w) border-border bg-card p-2.5 text-xs shadow-md">
       <div className="mb-1 font-semibold text-heading">{title ?? datum.label}</div>
       {datum.velocity !== undefined && datum.band !== undefined && (
-        <div className={bandTextClass(datum.band)}>
-          velocity {Math.round(datum.velocity)}
+        <div className="mb-1 flex items-center gap-2">
+          <BandChip band={datum.band} />
+          <span className="tabular text-foreground">velocity {Math.round(datum.velocity)}</span>
         </div>
       )}
       <table className="mt-1">

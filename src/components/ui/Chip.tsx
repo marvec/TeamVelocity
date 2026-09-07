@@ -17,12 +17,12 @@ export function DeselectChip({
       onClick={onClear}
       data-testid={testid}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-medium text-foreground transition-colors hover:bg-background",
+        "inline-flex items-center gap-1.5 rounded-chip border-(length:--border-w) border-border bg-muted px-2.5 py-0.5 text-xs font-semibold text-heading transition-colors hover:bg-background",
         className,
       )}
     >
       <span>{label}</span>
-      <span aria-hidden className="text-foreground-muted">
+      <span aria-hidden className="font-normal text-foreground-muted">
         ✕
       </span>
       <span className="sr-only">clear</span>

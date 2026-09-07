@@ -40,9 +40,9 @@ function PrList({ prs, showRepo }: { prs: ScoredPr[]; showRepo: boolean }) {
             className={cn(
               "tabular shrink-0 font-medium hover:underline",
               pr.state === "merged"
-                ? "text-cat-commits"
+                ? "text-primary"
                 : pr.state === "closed"
-                  ? "text-band-red"
+                  ? "text-band-red-ink"
                   : "text-foreground-muted",
             )}
           >
@@ -147,9 +147,9 @@ function LocBreakdown({ prs, totals, showRepo }: { prs: ScoredPr[]; totals: Tota
                     <span className="block h-full rounded-full bg-cat-loc-add" style={{ width: `${String(pct)}%` }} />
                   </span>
                   <span className="tabular w-20 text-right text-foreground-muted">
-                    <span className="text-band-green">+{formatNumber(pr.stats.additions)}</span>
+                    <span className="text-band-green-ink">+{formatNumber(pr.stats.additions)}</span>
                     {" / "}
-                    <span className="text-band-red">−{formatNumber(pr.stats.deletions)}</span>
+                    <span className="text-band-red-ink">−{formatNumber(pr.stats.deletions)}</span>
                   </span>
                 </span>
               </li>

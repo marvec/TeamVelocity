@@ -5,6 +5,7 @@ import { VelocityGauge } from "./charts/VelocityGauge";
 import { VelocityHistory } from "./charts/VelocityHistory";
 import { DateRangePicker } from "./DateRangePicker";
 import { ScoreHelp } from "./ScoreHelp";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 import { BandLegend } from "./ui/Legend";
 import { Button } from "./ui/Button";
 
@@ -44,17 +45,19 @@ export function DashboardHeader({
             </Button>
           )}
           <h1 className="text-xl font-bold text-heading">
-            <span className="text-foreground-muted font-normal">Team:</span> {meta.name}
+            <span className="font-normal text-foreground-muted">Team:</span>{" "}
+            <span className="-mx-1 rounded-sm bg-h1-mark px-1">{meta.name}</span>
           </h1>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <DateRangePicker selection={selection} minDate={minDate} maxDate={maxDate} />
+          <ThemeSwitcher />
           <ScoreHelp velocityWeights={meta.velocityWeights} />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 rounded-card border border-border bg-card p-4 shadow-sm lg:grid-cols-[auto_1fr]">
-        <div className="flex items-center justify-center">
+      <div className="grid grid-cols-1 gap-4 rounded-card border-(length:--border-w) border-border bg-card p-4 shadow-card lg:grid-cols-[auto_1fr]">
+        <div className="flex items-center justify-center lg:min-w-48">
           <VelocityGauge
             value={gauge.value}
             band={gauge.band}
@@ -63,9 +66,9 @@ export function DashboardHeader({
             caption={gauge.caption}
           />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-heading">Velocity history</h2>
+            <h2 className="card-title">Velocity history</h2>
             <BandLegend thresholds={meta.thresholds} />
           </div>
           <VelocityHistory weeks={weeks} thresholds={meta.thresholds} />

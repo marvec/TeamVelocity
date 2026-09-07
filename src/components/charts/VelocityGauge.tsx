@@ -1,9 +1,10 @@
 import type { VelocityBand } from "../../../shared/types";
-import { bandTextClass, bandVar, formatVelocity } from "../../lib/format";
+import { bandBgClass, bandVar, formatVelocity } from "../../lib/format";
 import { cn } from "../../lib/cn";
+import { BandChip } from "../ui/BandChip";
 
 const R = 63; // ring centerline radius within a 150×150 box
-const SW = 11; // ring thickness
+const SW = 12; // ring thickness
 const START = 220; // degrees (math convention: 0 = east, CCW positive)
 const END = -40;
 
@@ -46,23 +47,26 @@ export function VelocityGauge({
 
   return (
     <div
-      className="relative h-[150px] w-[150px]"
+      className="flex flex-col items-center gap-1.5"
       data-testid="velocity-gauge"
       data-velocity={formatVelocity(value)}
       data-band={band}
     >
-      <svg viewBox="0 0 150 150" className="h-full w-full" aria-hidden>
-        {segments.map((s) => (
-          <path key={s.stroke} d={s.d} fill="none" stroke={s.stroke} strokeWidth={SW} strokeLinecap="round" />
-        ))}
-      </svg>
-      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <span className={cn("tabular text-4xl font-bold leading-none", bandTextClass(band))}>
-          {formatVelocity(value)}
-        </span>
-        <span className="mt-1 text-xs uppercase tracking-wide text-foreground-muted">{caption}</span>
-        {warmingUp && <span className="mt-0.5 text-xs text-band-yellow">warming up</span>}
+      <div className="relative h-[150px] w-[150px]">
+        {/* Soft band-coloured disc behind the arc; opacity is a theme knob (0 in most themes). */}
+        <div aria-hidden className={cn("absolute inset-6 rounded-full opacity-(--gauge-halo)", bandBgClass(band))} />
+        <svg viewBox="0 0 150 150" className="relative h-full w-full" aria-hidden>
+          {segments.map((s) => (
+            <path key={s.stroke} d={s.d} fill="none" stroke={s.stroke} strokeWidth={SW} strokeLinecap="round" />
+          ))}
+        </svg>
+        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-4xl leading-none font-bold tracking-tight text-heading">{formatVelocity(value)}</span>
+          <span className="mt-1 text-xs tracking-wide text-foreground-muted uppercase">{caption}</span>
+          {warmingUp && <span className="mt-0.5 text-xs text-band-yellow-ink">warming up</span>}
+        </div>
       </div>
+      <BandChip band={band} thresholds={thresholds} />
     </div>
   );
 }

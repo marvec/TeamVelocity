@@ -671,7 +671,7 @@
           },
           "velocity": 100,
           "velocityBand": "green",
-          "warmingUp": false
+          "warmingUp": true
         },
         {
           "repo": {
@@ -691,7 +691,7 @@
           },
           "velocity": 100,
           "velocityBand": "green",
-          "warmingUp": false
+          "warmingUp": true
         },
         {
           "repo": {
@@ -1145,9 +1145,9 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 36.5,
+          "velocity": 0,
           "velocityBand": "red",
-          "warmingUp": false
+          "warmingUp": true
         },
         {
           "repo": {
@@ -1165,9 +1165,9 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 63.5,
+          "velocity": 50,
           "velocityBand": "yellow",
-          "warmingUp": false
+          "warmingUp": true
         }
       ],
       "prs": [],

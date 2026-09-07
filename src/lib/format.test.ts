@@ -54,8 +54,9 @@ describe("formatting helpers", () => {
   it("formats a LOC summary", () => {
     expect(formatLoc(112, 246)).toBe("358 LOC +112/−246");
   });
-  it("maps bands to token classes", () => {
-    expect(bandTextClass("green")).toBe("text-band-green");
+  it("maps bands to token classes (text uses the readable ink step)", () => {
+    expect(bandTextClass("green")).toBe("text-band-green-ink");
+    expect(bandTextClass("yellow")).toBe("text-band-yellow-ink");
     expect(bandBgClass("red")).toBe("bg-band-red");
   });
   it("scales LOC for stacked bars but keeps raw totals", () => {

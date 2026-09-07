@@ -353,7 +353,7 @@
             "locAdded": 276,
             "locRemoved": 70
           },
-          "velocity": 100,
+          "velocity": 78.3,
           "velocityBand": "green",
           "warmingUp": false
         },
@@ -373,8 +373,8 @@
             "locAdded": 238,
             "locRemoved": 142
           },
-          "velocity": 45.8,
-          "velocityBand": "yellow",
+          "velocity": 30.5,
+          "velocityBand": "red",
           "warmingUp": false
         },
         {
@@ -645,8 +645,8 @@
             "locAdded": 146,
             "locRemoved": 85
           },
-          "velocity": 100,
-          "velocityBand": "green",
+          "velocity": 61.4,
+          "velocityBand": "yellow",
           "warmingUp": false
         },
         {
@@ -665,7 +665,7 @@
             "locAdded": 187,
             "locRemoved": 67
           },
-          "velocity": 61.7,
+          "velocity": 51,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -893,8 +893,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 46.9,
-          "velocityBand": "yellow",
+          "velocity": 36.5,
+          "velocityBand": "red",
           "warmingUp": false
         },
         {
@@ -913,8 +913,8 @@
             "locAdded": 337,
             "locRemoved": 108
           },
-          "velocity": 100,
-          "velocityBand": "green",
+          "velocity": 64.9,
+          "velocityBand": "yellow",
           "warmingUp": false
         },
         {
@@ -933,7 +933,7 @@
             "locAdded": 983,
             "locRemoved": 380
           },
-          "velocity": 59.9,
+          "velocity": 50.6,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -1171,8 +1171,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 43.6,
-          "velocityBand": "yellow",
+          "velocity": 36.5,
+          "velocityBand": "red",
           "warmingUp": false
         }
       ],

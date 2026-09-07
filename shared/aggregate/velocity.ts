@@ -51,6 +51,16 @@ export interface VelocityOptions {
   /** Scale floor used when MAD ≈ 0 (near-constant history). Default 1e-6. */
   epsilon?: number;
   thresholds?: VelocityThresholds;
+  /**
+   * Which weeks form the trailing baseline. `"all"` (default): the last
+   * `windowWeeks` calendar weeks, idle weeks included — right for a team or a
+   * person, whose series is dense. `"active"`: only weeks with a non-zero raw
+   * signal, the last `windowWeeks` of them — for a sparse series such as a
+   * single repo's, where a majority-idle window collapses the MAD to 0 and pegs
+   * every active week at 100. Idle weeks then score 0 and do not count toward
+   * warming up.
+   */
+  baseline?: "all" | "active";
 }
 
 export interface WeekVelocity {
@@ -171,20 +181,33 @@ export function computeVelocitySeries(
   const stableAfterWeeks = opts.stableAfterWeeks ?? 4;
   const epsilon = opts.epsilon ?? 1e-6;
   const thresholds = opts.thresholds ?? DEFAULT_THRESHOLDS;
+  const baseline = opts.baseline ?? "all";
 
-  return raws.map((raw, i) => {
-    const start = Math.max(0, i - windowWeeks + 1);
-    const window = raws.slice(start, i + 1);
+  /** Score one week against its baseline window; `history` = weeks of baseline so far. */
+  const score = (raw: number, window: readonly number[], history: number): WeekVelocity => {
     const m = median(window);
     const scale = Math.max(1.4826 * mad(window), epsilon);
     const velocity = clamp(50 + K * ((raw - m) / scale), 0, 100);
     return {
       velocity,
       band: velocityBand(velocity, thresholds),
-      warmingUp: i + 1 < stableAfterWeeks,
+      warmingUp: history < stableAfterWeeks,
       raw,
     };
-  });
+  };
+
+  if (baseline === "active") {
+    const active: number[] = [];
+    return raws.map((raw) => {
+      if (raw <= 0) {
+        return { velocity: 0, band: velocityBand(0, thresholds), warmingUp: active.length < stableAfterWeeks, raw };
+      }
+      active.push(raw);
+      return score(raw, active.slice(-windowWeeks), active.length);
+    });
+  }
+
+  return raws.map((raw, i) => score(raw, raws.slice(Math.max(0, i - windowWeeks + 1), i + 1), i + 1));
 }
 
 /** Velocity for a whole date range (no week selected): the mean of per-week velocities. */

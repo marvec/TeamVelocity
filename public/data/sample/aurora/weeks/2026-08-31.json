@@ -335,7 +335,7 @@
             "locAdded": 165,
             "locRemoved": 32
           },
-          "velocity": 61.8,
+          "velocity": 57.6,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -669,8 +669,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 60,
-          "velocityBand": "yellow",
+          "velocity": 38.7,
+          "velocityBand": "red",
           "warmingUp": false
         },
         {
@@ -831,7 +831,7 @@
             "locAdded": 769,
             "locRemoved": 192
           },
-          "velocity": 100,
+          "velocity": 85,
           "velocityBand": "green",
           "warmingUp": false
         },
@@ -851,7 +851,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 46.3,
+          "velocity": 44.4,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -871,8 +871,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 51.6,
-          "velocityBand": "yellow",
+          "velocity": 28.4,
+          "velocityBand": "red",
           "warmingUp": false
         }
       ],
@@ -1107,8 +1107,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 44.4,
-          "velocityBand": "yellow",
+          "velocity": 36.5,
+          "velocityBand": "red",
           "warmingUp": false
         }
       ],

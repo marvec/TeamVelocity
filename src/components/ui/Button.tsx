@@ -4,9 +4,9 @@ import { cn } from "../../lib/cn";
 type Variant = "primary" | "outline" | "ghost";
 
 const VARIANTS: Record<Variant, string> = {
-  primary: "bg-primary text-primary-foreground hover:opacity-90 border border-transparent",
-  outline: "border border-border bg-surface text-foreground hover:bg-muted",
-  ghost: "border border-transparent text-foreground-muted hover:bg-muted hover:text-foreground",
+  primary: "bg-primary text-primary-foreground hover:opacity-90 border-(length:--border-w) border-transparent",
+  outline: "border-(length:--border-w) border-border bg-surface text-foreground hover:bg-muted",
+  ghost: "border-(length:--border-w) border-transparent text-foreground-muted hover:bg-muted hover:text-foreground",
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

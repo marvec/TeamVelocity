@@ -14,6 +14,15 @@ test.describe("drill-down", () => {
     await expect(page.getByTestId("pr-relevance")).toBeVisible();
   });
 
+  test("clicking a person's axis label selects them (the zero-length-bar path)", async ({ page }) => {
+    // The axis label is a click target in its own right — the general selector,
+    // and the only way to pick a member whose bar has zero length this week.
+    await page.locator('[data-testid=members-section] [data-testid^="stack-label-"]').first().click();
+    await expect(page).toHaveURL(/member=/);
+    await expect(page.getByTestId("person-detail")).toBeVisible();
+    await expect(page.getByTestId("member-detail")).toBeVisible();
+  });
+
   test("Team → Week → Person → Repo, then deselect back up", async ({ page }) => {
     // Person: click a member bar.
     await page.locator("[data-testid=members-section] .recharts-bar-rectangle").first().click();

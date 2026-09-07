@@ -208,6 +208,26 @@ describe("buildTeamDataset — independent per-repo velocity", () => {
     }
   });
 
+  it("scores a repo against its own active weeks: a repo first touched in week 4 starts at 50, not pegged at 100 by three idle weeks", () => {
+    const infra: RepoRef = { source: "github", owner: "acme", name: "infra", url: "https://github.com/acme/infra" };
+    const input = sampleInput();
+    input.commits.push({
+      source: "github",
+      repo: infra,
+      sha: "c1",
+      authorHandle: "bob",
+      committedAt: new Date(2026, 7, 26, 10),
+      additions: 5,
+      deletions: 1,
+      url: "https://github.com/acme/infra/commit/c1",
+    });
+    const w3 = buildTeamDataset(input).weeks["2026-08-24"];
+    const teamInfra = w3.repos.find((r) => r.repo.name === "infra")!;
+    const bobInfra = w3.members.find((m) => m.handle === "bob")!.repos.find((r) => r.repo.name === "infra")!;
+    expect(teamInfra.velocity).toBe(50);
+    expect(bobInfra.velocity).toBe(50);
+  });
+
   it("gives a member's repos their own velocity too", () => {
     const ds = buildTeamDataset(sampleInput());
     const w0 = ds.weeks["2026-08-03"];

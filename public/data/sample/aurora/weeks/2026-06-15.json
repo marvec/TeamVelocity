@@ -201,7 +201,7 @@
             "locAdded": 147,
             "locRemoved": 62
           },
-          "velocity": 57.4,
+          "velocity": 44.5,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -407,7 +407,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 38,
+          "velocity": 0,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -427,7 +427,7 @@
             "locAdded": 97,
             "locRemoved": 10
           },
-          "velocity": 61.9,
+          "velocity": 50.5,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -569,8 +569,8 @@
             "locAdded": 712,
             "locRemoved": 194
           },
-          "velocity": 70.5,
-          "velocityBand": "green",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
           "warmingUp": false
         }
       ],
@@ -737,7 +737,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 73.1,
+          "velocity": 100,
           "velocityBand": "green",
           "warmingUp": false
         }

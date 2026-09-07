@@ -5,7 +5,10 @@ type DivProps = ComponentPropsWithoutRef<"div">;
 
 export function Card({ className, children, ...rest }: DivProps) {
   return (
-    <div className={cn("rounded-card border border-border bg-card shadow-sm", className)} {...rest}>
+    <div
+      className={cn("rounded-card border-(length:--border-w) border-border bg-card shadow-card", className)}
+      {...rest}
+    >
       {children}
     </div>
   );
@@ -21,7 +24,7 @@ export function CardHeader({ className, children, ...rest }: DivProps) {
 
 export function CardTitle({ className, children, ...rest }: ComponentPropsWithoutRef<"h2">) {
   return (
-    <h2 className={cn("text-sm font-semibold tracking-wide text-heading uppercase", className)} {...rest}>
+    <h2 className={cn("card-title", className)} {...rest}>
       {children}
     </h2>
   );

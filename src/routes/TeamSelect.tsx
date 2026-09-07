@@ -18,7 +18,7 @@ export function TeamSelect({ teams }: { teams: TeamsIndex }) {
             onClick={() => {
               selectTeam(t.id);
             }}
-            className="flex flex-col items-start gap-1 rounded-card border border-border bg-card p-5 text-left shadow-sm transition-colors hover:border-primary hover:bg-muted focus-visible:outline-2 focus-visible:outline-ring"
+            className="flex flex-col items-start gap-1 rounded-card border-(length:--border-w) border-border bg-card p-5 text-left shadow-card transition-colors hover:border-primary hover:bg-muted focus-visible:outline-2 focus-visible:outline-ring"
           >
             <span className="text-lg font-semibold text-heading">{t.name}</span>
             <span className="tabular text-xs text-foreground-muted">{t.id}</span>

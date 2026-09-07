@@ -387,8 +387,8 @@
             "locAdded": 191,
             "locRemoved": 84
           },
-          "velocity": 50,
-          "velocityBand": "yellow",
+          "velocity": 36.5,
+          "velocityBand": "red",
           "warmingUp": true
         },
         {

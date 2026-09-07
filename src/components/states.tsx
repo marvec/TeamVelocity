@@ -14,7 +14,7 @@ export function ErrorState({ error }: { error: LoadError }) {
   return (
     <Card className="mx-auto my-12 max-w-xl border-band-red/40">
       <CardBody>
-        <h2 className="mb-2 text-base font-semibold text-band-red" data-testid="error">
+        <h2 className="mb-2 text-base font-semibold text-band-red-ink" data-testid="error">
           {error.kind === "invalid" ? "Data validation failed" : "Could not load data"}
         </h2>
         <pre className="tabular overflow-x-auto whitespace-pre-wrap text-xs text-foreground-muted">{error.message}</pre>

@@ -1,18 +1,12 @@
 import { Select } from "@base-ui/react/select";
 import { Popover } from "@base-ui/react/popover";
 import { RANGE_PRESETS, setRange, type RangePreset, type Selection } from "../lib/url-state";
+import { SELECT_ITEM_CLASS, SELECT_POPUP_CLASS, SELECT_TRIGGER_CLASS } from "./ui/select-classes";
 
 const OPTIONS: { value: RangePreset; label: string }[] = [
   ...RANGE_PRESETS,
   { value: "custom", label: "Custom…" },
 ];
-
-const TRIGGER_CLASS =
-  "inline-flex h-8 min-w-40 items-center justify-between gap-2 rounded-control border border-border bg-surface px-3 text-sm font-medium text-foreground hover:bg-muted data-[popup-open]:border-primary";
-const POPUP_CLASS =
-  "z-50 min-w-[var(--anchor-width)] rounded-control border border-border bg-card p-1 shadow-md outline-none";
-const ITEM_CLASS =
-  "flex cursor-pointer items-center rounded px-2 py-1.5 text-sm text-foreground outline-none data-[highlighted]:bg-muted data-[selected]:font-semibold";
 
 export function DateRangePicker({
   selection,
@@ -40,15 +34,15 @@ export function DateRangePicker({
           if (typeof value === "string") onPreset(value);
         }}
       >
-        <Select.Trigger className={TRIGGER_CLASS} aria-label="Date range">
+        <Select.Trigger className={SELECT_TRIGGER_CLASS + " min-w-40"} aria-label="Date range">
           <Select.Value />
           <Select.Icon className="text-foreground-muted">▾</Select.Icon>
         </Select.Trigger>
         <Select.Portal>
           <Select.Positioner sideOffset={4}>
-            <Select.Popup className={POPUP_CLASS}>
+            <Select.Popup className={SELECT_POPUP_CLASS}>
               {OPTIONS.map((o) => (
-                <Select.Item key={o.value} value={o.value} className={ITEM_CLASS}>
+                <Select.Item key={o.value} value={o.value} className={SELECT_ITEM_CLASS}>
                   <Select.ItemText>{o.label}</Select.ItemText>
                 </Select.Item>
               ))}
@@ -59,20 +53,20 @@ export function DateRangePicker({
 
       {selection.range === "custom" && (
         <Popover.Root>
-          <Popover.Trigger className={TRIGGER_CLASS + " min-w-0"} aria-label="Custom range">
+          <Popover.Trigger className={SELECT_TRIGGER_CLASS} aria-label="Custom range">
             <span className="tabular">
               {from} – {to}
             </span>
           </Popover.Trigger>
           <Popover.Portal>
             <Popover.Positioner sideOffset={6} align="end">
-              <Popover.Popup className="z-50 rounded-card border border-border bg-card p-3 shadow-md outline-none">
+              <Popover.Popup className="z-50 rounded-card border-(length:--border-w) border-border bg-card p-3 shadow-md outline-none">
                 <div className="flex flex-col gap-2 text-sm">
                   <label className="flex items-center justify-between gap-3">
                     <span className="text-foreground-muted">From</span>
                     <input
                       type="date"
-                      className="tabular rounded-control border border-border bg-surface px-2 py-1"
+                      className="tabular rounded-control border-(length:--border-w) border-border bg-surface px-2 py-1"
                       min={minDate}
                       max={maxDate}
                       value={from}
@@ -85,7 +79,7 @@ export function DateRangePicker({
                     <span className="text-foreground-muted">To</span>
                     <input
                       type="date"
-                      className="tabular rounded-control border border-border bg-surface px-2 py-1"
+                      className="tabular rounded-control border-(length:--border-w) border-border bg-surface px-2 py-1"
                       min={minDate}
                       max={maxDate}
                       value={to}

@@ -375,9 +375,9 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 36.6,
+          "velocity": 0,
           "velocityBand": "red",
-          "warmingUp": false
+          "warmingUp": true
         },
         {
           "repo": {

@@ -463,9 +463,9 @@
             "locAdded": 345,
             "locRemoved": 193
           },
-          "velocity": 63.5,
-          "velocityBand": "yellow",
-          "warmingUp": false
+          "velocity": 36.5,
+          "velocityBand": "red",
+          "warmingUp": true
         }
       ],
       "prs": [

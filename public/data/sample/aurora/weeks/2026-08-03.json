@@ -353,8 +353,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 50,
-          "velocityBand": "yellow",
+          "velocity": 36.5,
+          "velocityBand": "red",
           "warmingUp": false
         },
         {
@@ -731,7 +731,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 39.1,
+          "velocity": 38.7,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -771,8 +771,8 @@
             "locAdded": 176,
             "locRemoved": 35
           },
-          "velocity": 100,
-          "velocityBand": "green",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
           "warmingUp": false
         }
       ],
@@ -1009,8 +1009,8 @@
             "locAdded": 491,
             "locRemoved": 109
           },
-          "velocity": 100,
-          "velocityBand": "green",
+          "velocity": 66.3,
+          "velocityBand": "yellow",
           "warmingUp": false
         },
         {
@@ -1029,8 +1029,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 50,
-          "velocityBand": "yellow",
+          "velocity": 38.2,
+          "velocityBand": "red",
           "warmingUp": false
         },
         {
@@ -1049,7 +1049,7 @@
             "locAdded": 616,
             "locRemoved": 225
           },
-          "velocity": 64.9,
+          "velocity": 52.4,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -1261,8 +1261,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 50,
-          "velocityBand": "yellow",
+          "velocity": 36.5,
+          "velocityBand": "red",
           "warmingUp": false
         },
         {
@@ -1281,8 +1281,8 @@
             "locAdded": 373,
             "locRemoved": 134
           },
-          "velocity": 100,
-          "velocityBand": "green",
+          "velocity": 69.4,
+          "velocityBand": "yellow",
           "warmingUp": false
         }
       ],

@@ -463,8 +463,8 @@
             "locAdded": 111,
             "locRemoved": 19
           },
-          "velocity": 100,
-          "velocityBand": "green",
+          "velocity": 68.4,
+          "velocityBand": "yellow",
           "warmingUp": false
         },
         {
@@ -483,8 +483,8 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 50,
-          "velocityBand": "yellow",
+          "velocity": 36.5,
+          "velocityBand": "red",
           "warmingUp": false
         },
         {
@@ -939,7 +939,7 @@
           },
           "velocity": 50,
           "velocityBand": "yellow",
-          "warmingUp": false
+          "warmingUp": true
         },
         {
           "repo": {

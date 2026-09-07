@@ -75,8 +75,9 @@ export function bandVar(band: VelocityBand): string {
   return `var(--color-band-${band})`;
 }
 
+/** Text in a band colour uses the readable `-ink` step, never the bright fill. */
 export function bandTextClass(band: VelocityBand): string {
-  return band === "green" ? "text-band-green" : band === "yellow" ? "text-band-yellow" : "text-band-red";
+  return band === "green" ? "text-band-green-ink" : band === "yellow" ? "text-band-yellow-ink" : "text-band-red-ink";
 }
 
 export function bandBgClass(band: VelocityBand): string {

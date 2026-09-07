@@ -349,7 +349,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 28.2,
+          "velocity": 0,
           "velocityBand": "red",
           "warmingUp": false
         },

@@ -6,6 +6,7 @@ import { cn } from "../../lib/cn";
 import { HorizontalStack, type StackRow } from "../charts/HorizontalStack";
 import { PrTable } from "../tables/PrTable";
 import { Card, CardBody, CardHeader, CardTitle } from "../ui/Card";
+import { BandChip } from "../ui/BandChip";
 import { DeselectChip } from "../ui/Chip";
 import { StatRow } from "../ui/StatRow";
 import { ContributionTabs } from "./ContributionTabs";
@@ -26,7 +27,7 @@ function RepoDetail({
   onClear: () => void;
 }) {
   return (
-    <div className="rounded-control border border-border bg-surface p-3" data-testid="repo-detail">
+    <div className="rounded-control border-(length:--border-w) border-border bg-surface p-3" data-testid="repo-detail">
       <div className="mb-2 flex items-center justify-between gap-2">
         <a
           href={data.repo.url}
@@ -69,8 +70,9 @@ export function PersonDetailSection({
   onClearMember: () => void;
 }) {
   // "Velocity by repo": each repo has its own independent velocity (vs its own
-  // baseline) — velocity is non-linear, so repo bars are NOT a decomposition of
-  // the scope velocity and do not sum to it. Bar length = the repo's velocity.
+  // baseline of active weeks) — velocity is non-linear, so repo bars are NOT a
+  // decomposition of the scope velocity and do not sum to it. Bar length = the
+  // repo's velocity.
   const repoRows: StackRow[] = scope.repos.map((rt) => ({
     key: repoRefKey(rt.repo),
     label: rt.repo.name,
@@ -95,11 +97,12 @@ export function PersonDetailSection({
       <CardBody className="space-y-4">
         <div className="flex flex-wrap items-center gap-4">
           {isMember && scope.band && (
-            <div className="flex items-baseline gap-1">
-              <span className={cn("tabular text-2xl font-bold leading-none", bandTextClass(scope.band))}>
+            <div className="flex items-center gap-1.5">
+              <span className={cn("tabular text-2xl leading-none font-bold", bandTextClass(scope.band))}>
                 {formatVelocity(scope.velocity ?? 0)}
               </span>
               <span className="text-xs text-foreground-muted">velocity</span>
+              <BandChip band={scope.band} className="ml-1" />
             </div>
           )}
           <StatRow totals={scope.totals} />

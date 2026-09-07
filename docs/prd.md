@@ -128,8 +128,8 @@ Two halves that share one source-agnostic **aggregation library**.
 
 - `github` may be a plain handle or a full profile URL (`https://github.com/jeffhandle`); the
   loader normalizes to a handle.
-- Repo scope is **hybrid**: the GitHub connector auto-discovers repos from each member's PR /
-  commit activity in the window **and** always includes the explicit `repos` list (this is how
+- Repo scope is **hybrid**: the GitHub connector auto-discovers repos from each member's authored
+  and reviewed PRs in the window **and** always includes the explicit `repos` list (this is how
   private repos that don't surface via search get covered).
 - Config is parsed and validated with Zod; invalid config aborts the pull with a clear message.
 
@@ -174,9 +174,13 @@ export interface CollectResult {
 
 Connectors are registered in a small registry keyed by `id`; the puller selects the connectors
 needed by the members present in a team. The **GitHub connector** uses Octokit (GraphQL for PR
-detail — additions/deletions/reviews/participants/comments in one query; REST where simpler for
-commits), authenticated with `GITHUB_TOKEN`, with rate-limit-aware backoff and per-week response
-caching so re-pulls are incremental (already-closed weeks are not re-fetched).
+detail — additions/deletions/reviews/participants/comments **and each PR's own commits** in one
+query), authenticated with `GITHUB_TOKEN`, with rate-limit-aware backoff and per-week response
+caching so re-pulls are incremental (already-closed weeks are not re-fetched). Commits are the
+PRs' commits (attributed to the PR author), not a repo commit log — this is robust to
+squash/rebase merges and unverified commit emails that a by-author log would miss. A PR's commit
+list is one GraphQL page (first 100); a larger PR is warned, never silently truncated (so the
+`wCommit` signal sees at most 100 commits/PR — log-dampened, and such PRs are rare).
 
 > Verify current Octokit / GitHub GraphQL syntax via **context7** before writing connector code.
 
@@ -207,9 +211,10 @@ caching so re-pulls are incremental (already-closed weeks are not re-fetched).
   per-member `{ totals, repos:[{repo, totals, velocity, velocityBand, warmingUp}], prs:[…],
   comments:[…], commits:[…] }`; per-PR relevance breakdown. Each repo carries its **own** velocity
   (§7.1, §8-D) — independent, not a share of the scope velocity. Each `commits` row is
-  `{ sha, repo, authorHandle, committedAt, url }` — **no line stats**: live pulls don't fetch
-  per-commit additions/deletions (LOC is delivered by PRs, §5), so the row carries only what every
-  source can supply. This backs the repo drill-down's Commits tab.
+  `{ sha, repo, authorHandle, committedAt, url }` — the PR's own commits, attributed to the PR's
+  author (commit-level git authorship is unreliable across OSS repos). **No line stats**: live
+  pulls don't fetch per-commit additions/deletions (LOC is delivered by PRs, §5), so the row
+  carries only what every source can supply. This backs the repo drill-down's Commits tab.
 
 `weekStart` is the ISO date (`YYYY-MM-DD`) of the sprint window start, used as the id in paths
 and URLs. `label` is the human range, e.g. `2026/08/24–08/30`.
@@ -335,8 +340,13 @@ tabs used in the repo drill-down (§D), but spanning all of the person's repos, 
 tagged with its repo.
 
 The **velocity-by-repo** bars (§D) give **each repo its own independent velocity** (0–100), computed
-exactly like team/member velocity but on that repo's *own* weekly signal series normalized against
-its *own* trailing baseline — team-wide for the team chart, per-member for a person's chart. Because
+like team/member velocity but on that repo's *own* weekly signal series normalized against its
+*own* trailing baseline — team-wide for the team chart, per-member for a person's chart. One
+difference: a repo series is **sparse** (a person touches a given repo in a minority of weeks), so
+its baseline is the **last 12 *active* weeks** of that repo rather than the last 12 calendar weeks.
+An all-weeks window would be majority-zero, collapse the MAD to 0, and peg every active week at 100;
+against its active weeks a repo scores 50 the first time it is touched, and idle weeks score 0 and
+do not count toward warming up. Because
 velocity is non-linear, repo bars are **not** a decomposition of the scope velocity and do **not**
 sum to it (just as team velocity ≠ Σ member velocities). Per-repo velocity series are computed in
 the CLI and stored in the week detail (`WeekDetail.repos` for the team; a `velocity` on each member
@@ -366,9 +376,14 @@ the first pull, showing a clear "run `bun run pull`" message).
 
 ## 9. Design system
 
-- **Theme:** Solarized-light-inspired. Light background, muted base0x text tones, accents for the
-  five categories and the red/yellow/green velocity bands, all defined once as Tailwind v4
-  `@theme` tokens in OKLCH. Components reference tokens, never hardcoded hex.
+- **Theme:** five switchable themes — Daylight (default, clean white + vivid jewel tones),
+  Nightlight (its dark twin), Poster (black rules, warm paper, flat blocks), Sorbet (peach cream,
+  soft shadows, candy marks) and the original Solarized-light. Accents for the five categories and
+  the red/yellow/green velocity bands are defined once as Tailwind v4 `@theme` tokens in OKLCH
+  (Daylight) with a `[data-theme]` override block per theme; the pick is persisted in
+  localStorage. Components reference tokens, never hardcoded hex. Band colours are fills (chips,
+  arcs, dots, zones) with a separate text-safe `-ink` step; series hues pass the data-viz palette
+  validator for colour-blind separation.
 - **Components:** shadcn (base-ui) first for primitives (cards, tables, popovers, tabs, select).
 - **Charts:** Recharts (stacked bars, smooth line, radial gauge).
 - **Type:** a clean sans for UI + a mono for IDs/PR numbers/LOC figures (tabular numerals).
@@ -397,7 +412,8 @@ TDD (red-green) for the pure logic; tests written right after the feature for UI
   - week bucketing across every `sprintStartsOn` + `sprintStartHour`, DST boundaries, and weeks
     with no activity (run tests under a fixed `TZ` for determinism, e.g. `TZ=Europe/Prague`);
   - velocity: cold start, a median week ≈ 50, a strong week trending up, a PTO week trending down,
-    MAD≈0 fallback, clamping at 0 and 100;
+    MAD≈0 fallback, clamping at 0 and 100, and the active-weeks baseline for sparse per-repo
+    series (pinned on a real 27-week fixture);
   - PR relevance: ordering, normalization edges (single PR in week, all-equal signals);
   - config loader + on-disk JSON: valid parses, invalid config/JSON rejected with clear errors.
 - **Integration (Vitest):** GitHub connector against **recorded fixtures** (no live network in

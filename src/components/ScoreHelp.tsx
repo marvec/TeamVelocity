@@ -3,9 +3,9 @@ import type { VelocityWeights } from "../../shared/types";
 import { DEFAULT_PR_SCORE_WEIGHTS } from "../../shared/aggregate/pr-score";
 
 const TRIGGER_CLASS =
-  "inline-flex size-8 shrink-0 items-center justify-center rounded-control border border-border bg-surface text-sm font-semibold text-foreground-muted hover:bg-muted hover:text-foreground data-[popup-open]:border-primary data-[popup-open]:text-foreground";
+  "inline-flex size-8 shrink-0 items-center justify-center rounded-control border-(length:--border-w) border-border bg-surface text-sm font-semibold text-foreground-muted hover:bg-muted hover:text-foreground data-[popup-open]:border-primary data-[popup-open]:text-foreground";
 const FORMULA_CLASS =
-  "tabular mt-1.5 overflow-x-auto whitespace-pre rounded-control border border-border bg-surface p-2 font-mono text-xs leading-snug text-foreground";
+  "tabular mt-1.5 overflow-x-auto whitespace-pre rounded-control border-(length:--border-w) border-border bg-surface p-2 font-mono text-xs leading-snug text-foreground";
 
 function n(x: number): string {
   return String(x);
@@ -32,7 +32,7 @@ export function ScoreHelp({ velocityWeights: w }: { velocityWeights: VelocityWei
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner sideOffset={6} align="end">
-          <Popover.Popup className="z-50 max-h-[80vh] w-96 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-card border border-border bg-card p-4 text-xs leading-relaxed shadow-md outline-none">
+          <Popover.Popup className="z-50 max-h-[80vh] w-96 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-card border-(length:--border-w) border-border bg-card p-4 text-xs leading-relaxed shadow-md outline-none">
             <h3 className="mb-2 text-sm font-semibold text-heading">How the scores work</h3>
 
             <div className="space-y-3">
@@ -43,9 +43,9 @@ export function ScoreHelp({ velocityWeights: w }: { velocityWeights: VelocityWei
                   Each week&rsquo;s activity (log-dampened so one burst can&rsquo;t dominate) is scored against that same
                   team&rsquo;s / person&rsquo;s own trailing 12-week baseline. A normal week sits near{" "}
                   <span className="font-semibold text-foreground">50</span>; busier climbs toward 100, quieter falls
-                  toward 0. Bands: <span className="font-semibold text-band-red">red &lt;{n(40)}</span>,{" "}
-                  <span className="font-semibold text-band-yellow">yellow &lt;{n(70)}</span>,{" "}
-                  <span className="font-semibold text-band-green">green ≥{n(70)}</span>.
+                  toward 0. Bands: <span className="font-semibold text-band-red-ink">red &lt;{n(40)}</span>,{" "}
+                  <span className="font-semibold text-band-yellow-ink">yellow &lt;{n(70)}</span>,{" "}
+                  <span className="font-semibold text-band-green-ink">green ≥{n(70)}</span>.
                 </p>
                 <pre className={FORMULA_CLASS}>{velocityFormula}</pre>
                 <p className="mt-1 text-foreground-muted">

@@ -1,72 +1,258 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Self-hosted fonts (fontsource) — no runtime network fetch, per the
+ * local-first design. Variable faces where the family ships one. */
+@import "@fontsource-variable/instrument-sans";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/archivo";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+@import "@fontsource/ibm-plex-mono/700.css";
+@import "@fontsource-variable/sora";
+@import "@fontsource/dm-mono/400.css";
+@import "@fontsource/dm-mono/500.css";
+
 /*
- * TeamVelocity design tokens — Solarized-light-inspired, all in OKLCH.
- * Defined ONCE here; components reference tokens via utility classes
- * (bg-*, text-*, border-*, fill-*) and never hardcode hex/oklch values.
+ * TeamVelocity design tokens — all OKLCH, defined ONCE here. Components
+ * reference tokens via utility classes and never hardcode colours.
  *
- * Solarized base tones + accents mapped to OKLCH. Category and velocity-band
- * colors are first-class tokens (PRD §9).
+ * The @theme block is the DEFAULT theme (Daylight). Every other theme is a
+ * `[data-theme="…"]` override block further down that re-assigns the same
+ * variables; `src/theme/themes.ts` stamps the attribute on <html>. Because
+ * utilities compile to `var(--color-…)`, the whole UI re-skins from CSS alone.
+ *
+ * Series (cat-*) and band colours were chosen by enumerating role→hue
+ * assignments and keeping only those that pass the data-viz palette validator
+ * (colour-blind separation on every adjacent stack pair, chroma, contrast) —
+ * see docs/design-alternatives/README.md. Keep the role→hue mapping when
+ * tuning a theme: PRs blue · commits lime · comments violet · LOC+ teal ·
+ * LOC− orange · issues pink.
  */
 @theme {
-  /* Solarized base tones (light scheme) */
-  --color-base3: oklch(0.972 0.017 95); /* #fdf6e3 background */
-  --color-base2: oklch(0.934 0.021 92); /* #eee8d5 highlight */
-  --color-base1: oklch(0.685 0.017 195); /* #93a1a1 secondary content */
-  --color-base0: oklch(0.635 0.021 205); /* #839496 */
-  --color-base00: oklch(0.535 0.028 215); /* #657b83 body text */
-  --color-base01: oklch(0.485 0.028 213); /* #586e75 emphasized text */
-  --color-base02: oklch(0.285 0.037 210); /* #073642 dark accent */
-  --color-base03: oklch(0.235 0.036 210); /* #002b36 darkest */
+  /* --- Daylight: surfaces & ink --- */
+  --color-background: oklch(0.966 0.005 258.3); /* #f2f4f7 page */
+  --color-surface: oklch(1 0 0); /* #ffffff inputs / inset panels */
+  --color-card: oklch(1 0 0); /* #ffffff */
+  --color-muted: oklch(0.957 0.006 255.5); /* #eef1f5 */
+  --color-border: oklch(0.917 0.01 252.8); /* #dfe4ea */
+  --color-grid: oklch(0.954 0.006 255.5); /* #edf0f4 chart hairlines */
+  --color-selection: oklch(0.941 0.025 263.3); /* #e3ecfd focused week / row wash */
+  --color-ring: oklch(0.546 0.215 262.9); /* #2563eb */
+  --color-foreground: oklch(0.278 0.03 256.8); /* #1f2937 body */
+  --color-foreground-muted: oklch(0.446 0.026 256.8); /* #4b5563 */
+  --color-heading: oklch(0.183 0.031 263.4); /* #0b1220 */
+  --color-primary: oklch(0.546 0.215 262.9); /* #2563eb */
+  --color-primary-foreground: oklch(1 0 0);
+  --color-accent: oklch(0.6 0.104 184.7); /* #0d9488 */
+  --color-h1-mark: oklch(0 0 0 / 0); /* highlight behind the team name (Poster only) */
+  --color-on-band: oklch(0.183 0.031 263.4); /* text printed ON a band fill (chips, pills) */
 
-  /* Solarized accents */
-  --color-sol-yellow: oklch(0.66 0.13 90); /* #b58900 */
-  --color-sol-orange: oklch(0.63 0.16 52); /* #cb4b16 */
-  --color-sol-red: oklch(0.6 0.19 27); /* #dc322f */
-  --color-sol-magenta: oklch(0.6 0.19 356); /* #d33682 */
-  --color-sol-violet: oklch(0.57 0.11 285); /* #6c71c4 */
-  --color-sol-blue: oklch(0.62 0.13 245); /* #268bd2 */
-  --color-sol-cyan: oklch(0.69 0.1 190); /* #2aa198 */
-  --color-sol-green: oklch(0.68 0.14 122); /* #859900 */
+  /* --- Daylight: five contribution categories + PR-score "issues" signal --- */
+  --color-cat-prs: oklch(0.546 0.215 262.9); /* #2563eb blue */
+  --color-cat-commits: oklch(0.682 0.183 130.9); /* #6fae0b lime */
+  --color-cat-comments: oklch(0.541 0.247 293); /* #7c3aed violet */
+  --color-cat-loc-add: oklch(0.6 0.104 184.7); /* #0d9488 teal */
+  --color-cat-loc-remove: oklch(0.646 0.194 41.1); /* #ea580c orange */
+  --color-cat-issues: oklch(0.592 0.218 0.6); /* #db2777 pink */
 
-  /* Semantic surface tokens */
-  --color-background: oklch(0.972 0.017 95);
-  --color-surface: oklch(0.99 0.008 95);
-  --color-card: oklch(0.99 0.008 95);
-  --color-muted: oklch(0.934 0.021 92);
-  --color-border: oklch(0.86 0.02 90);
-  --color-ring: oklch(0.62 0.13 245);
-  --color-foreground: oklch(0.485 0.028 213);
-  --color-foreground-muted: oklch(0.635 0.021 205);
-  --color-heading: oklch(0.285 0.037 210);
-  --color-primary: oklch(0.62 0.13 245);
-  --color-primary-foreground: oklch(0.99 0.008 95);
-  --color-accent: oklch(0.69 0.1 190);
+  /* --- Daylight: velocity bands — `band-*` is the FILL (chips, arcs, dots,
+   *     zones); `band-*-ink` is the readable step for text on a surface. --- */
+  --color-band-red: oklch(0.637 0.208 25.3); /* #ef4444 */
+  --color-band-yellow: oklch(0.861 0.173 91.9); /* #facc15 */
+  --color-band-green: oklch(0.723 0.192 149.6); /* #22c55e */
+  --color-band-red-ink: oklch(0.505 0.19 27.5); /* #b91c1c */
+  --color-band-yellow-ink: oklch(0.554 0.121 66.4); /* #a16207 */
+  --color-band-green-ink: oklch(0.527 0.137 150.1); /* #15803d */
 
-  /* Five contribution-category tokens (PRD §8/§9) */
-  --color-cat-prs: oklch(0.62 0.13 245); /* blue */
-  --color-cat-commits: oklch(0.57 0.11 285); /* violet */
-  --color-cat-comments: oklch(0.69 0.1 190); /* cyan */
-  --color-cat-loc-add: oklch(0.68 0.14 122); /* green */
-  --color-cat-loc-remove: oklch(0.63 0.16 52); /* orange */
-
-  /* Velocity band tokens */
-  --color-band-red: oklch(0.6 0.19 27);
-  --color-band-yellow: oklch(0.66 0.13 90);
-  --color-band-green: oklch(0.68 0.14 122);
-
-  /* Typography */
+  /* --- Typography --- */
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    "Instrument Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono:
+    "JetBrains Mono Variable", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    monospace;
 
-  /* Radii */
+  /* --- Shape --- */
   --radius-card: 0.75rem;
   --radius-control: 0.5rem;
+  --radius-chip: 999px;
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.06), 0 1px 3px rgb(16 24 40 / 0.05);
+}
+
+/* Card / section titles: the one place themes differ typographically
+ * (Poster and Solarized track uppercase; the others sit in sentence case). */
+@utility card-title {
+  font-size: var(--title-size);
+  font-weight: var(--title-weight);
+  letter-spacing: var(--title-tracking);
+  text-transform: var(--title-transform);
+  color: var(--color-heading);
 }
 
 @layer base {
+  /* Non-utility knobs, themeable alongside the colour tokens. */
+  :root {
+    --border-w: 1px;
+    --title-size: 0.875rem;
+    --title-weight: 600;
+    --title-tracking: -0.005em;
+    --title-transform: none;
+    --gauge-halo: 0; /* opacity of the band-coloured disc behind the gauge */
+  }
+
+  /* ===================== Nightlight — Daylight after dark ===================== */
+  [data-theme="nightlight"] {
+    color-scheme: dark;
+    --color-background: oklch(0.21 0.038 271.6); /* #12172a */
+    --color-surface: oklch(0.271 0.037 268.4); /* #1f2639 */
+    --color-card: oklch(0.247 0.037 270.1); /* #1a2033 */
+    --color-muted: oklch(0.301 0.043 269); /* #252d44 */
+    --color-border: oklch(0.351 0.05 266.9); /* #2f3a55 */
+    --color-grid: oklch(0.296 0.042 268.5); /* #242c42 */
+    --color-selection: oklch(0.319 0.066 265.3); /* #223154 */
+    --color-ring: oklch(0.714 0.143 254.6); /* #60a5fa */
+    --color-foreground: oklch(0.918 0.015 264.5); /* #dfe4ee */
+    --color-foreground-muted: oklch(0.765 0.029 263.4); /* #a9b3c6 */
+    --color-heading: oklch(0.976 0.006 264.5); /* #f5f7fb */
+    --color-primary: oklch(0.714 0.143 254.6); /* #60a5fa */
+    --color-primary-foreground: oklch(0.177 0.034 269.6); /* #0b1020 */
+    --color-accent: oklch(0.785 0.133 181.9); /* #2dd4bf */
+    --color-on-band: oklch(0.177 0.034 269.6); /* #0b1020 */
+    --color-cat-prs: oklch(0.623 0.188 259.8); /* #3b82f6 */
+    --color-cat-commits: oklch(0.648 0.175 131.7); /* #65a30d */
+    --color-cat-comments: oklch(0.606 0.219 292.7); /* #8b5cf6 */
+    --color-cat-loc-add: oklch(0.65 0.113 183.4); /* #10a596 */
+    --color-cat-loc-remove: oklch(0.646 0.194 41.1); /* #ea580c */
+    --color-cat-issues: oklch(0.644 0.219 351.6); /* #e8409c */
+    --color-band-red: oklch(0.711 0.166 22.2); /* #f87171 */
+    --color-band-yellow: oklch(0.861 0.173 91.9); /* #facc15 */
+    --color-band-green: oklch(0.8 0.182 151.7); /* #4ade80 */
+    --color-band-red-ink: oklch(0.808 0.103 19.6); /* #fca5a5 */
+    --color-band-yellow-ink: oklch(0.905 0.166 98.1); /* #fde047 */
+    --color-band-green-ink: oklch(0.871 0.136 154.4); /* #86efac */
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5), 0 1px 3px rgb(0 0 0 / 0.35);
+  }
+
+  /* ============ Poster — black rules, warm paper, flat blocks, Archivo ============ */
+  [data-theme="poster"] {
+    --color-background: oklch(0.958 0.012 91.5); /* #f4f1e8 */
+    --color-surface: oklch(1 0 0);
+    --color-card: oklch(0.997 0.005 95.1); /* #fffefa */
+    --color-muted: oklch(0.943 0.014 93); /* #efece2 */
+    --color-border: oklch(0.179 0.011 80.5); /* #14110c ink rules */
+    --color-grid: oklch(0.913 0.017 91.6); /* #e6e2d6 */
+    --color-selection: oklch(0.918 0.112 91.8); /* #ffe28a */
+    --color-ring: oklch(0.179 0.011 80.5);
+    --color-foreground: oklch(0.272 0.013 72.3); /* #2b2620 */
+    --color-foreground-muted: oklch(0.453 0.02 79.2); /* #5c554a */
+    --color-heading: oklch(0.179 0.011 80.5); /* #14110c */
+    --color-primary: oklch(0.501 0.223 265.3); /* #2450e0 */
+    --color-primary-foreground: oklch(1 0 0);
+    --color-accent: oklch(0.857 0.175 88.5); /* #ffc800 */
+    --color-h1-mark: oklch(0.857 0.175 88.5); /* #ffc800 */
+    --color-on-band: oklch(0.179 0.011 80.5);
+    --color-cat-prs: oklch(0.501 0.223 265.3); /* #2450e0 */
+    --color-cat-commits: oklch(0.7 0.183 131.1); /* #74b41c */
+    --color-cat-comments: oklch(0.512 0.216 290.7); /* #6d3fd6 */
+    --color-cat-loc-add: oklch(0.614 0.132 161.1); /* #149c6a */
+    --color-cat-loc-remove: oklch(0.655 0.204 37.7); /* #f2541b */
+    --color-cat-issues: oklch(0.59 0.226 350.3); /* #d6248f */
+    --color-band-red: oklch(0.607 0.218 27.7); /* #e8322d */
+    --color-band-yellow: oklch(0.857 0.175 88.5); /* #ffc800 */
+    --color-band-green: oklch(0.667 0.183 147.8); /* #22b14c */
+    --color-band-red-ink: oklch(0.497 0.182 28); /* #b3211d */
+    --color-band-yellow-ink: oklch(0.522 0.108 79.7); /* #8a6100 */
+    --color-band-green-ink: oklch(0.509 0.138 147.9); /* #167a33 */
+    --font-sans: "Archivo Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --radius-card: 4px;
+    --radius-control: 3px;
+    --radius-chip: 3px;
+    --shadow-card: none;
+    --border-w: 2px;
+    --title-size: 0.8125rem;
+    --title-weight: 800;
+    --title-tracking: 0.08em;
+    --title-transform: uppercase;
+  }
+
+  /* ========= Sorbet — peach cream, floating cards, pills, candy marks, Sora ========= */
+  [data-theme="sorbet"] {
+    --color-background: oklch(0.97 0.029 82.6); /* #fff4e0 */
+    --color-surface: oklch(0.987 0.012 79.8); /* #fffaf2 */
+    --color-card: oklch(1 0 0);
+    --color-muted: oklch(0.957 0.018 303.4); /* #f3eefb */
+    --color-border: oklch(0.935 0.024 304.5); /* #ede6f7 */
+    --color-grid: oklch(0.952 0.013 306); /* #f1edf6 */
+    --color-selection: oklch(0.942 0.056 81.9); /* #ffe9c2 */
+    --color-ring: oklch(0.572 0.209 259.9); /* #1d6ff0 */
+    --color-foreground: oklch(0.296 0.059 290.7); /* #2d2748 */
+    --color-foreground-muted: oklch(0.46 0.046 296); /* #5a536f */
+    --color-heading: oklch(0.224 0.055 290.8); /* #1c1633 */
+    --color-primary: oklch(0.572 0.209 259.9); /* #1d6ff0 */
+    --color-primary-foreground: oklch(1 0 0);
+    --color-accent: oklch(0.633 0.231 351.3); /* #e8339a */
+    --color-on-band: oklch(0.224 0.055 290.8);
+    --color-cat-prs: oklch(0.572 0.209 259.9); /* #1d6ff0 */
+    --color-cat-commits: oklch(0.707 0.181 129.2); /* #7cb518 */
+    --color-cat-comments: oklch(0.541 0.247 293); /* #7c3aed */
+    --color-cat-loc-add: oklch(0.62 0.113 177.8); /* #0a9c86 */
+    --color-cat-loc-remove: oklch(0.671 0.194 43.3); /* #f2620c */
+    --color-cat-issues: oklch(0.633 0.231 351.3); /* #e8339a */
+    --color-band-red: oklch(0.66 0.229 17.5); /* #ff3b5c */
+    --color-band-yellow: oklch(0.881 0.181 94); /* #ffd400 */
+    --color-band-green: oklch(0.721 0.181 153); /* #16c46b */
+    --color-band-red-ink: oklch(0.52 0.2 18); /* #c1123a */
+    --color-band-yellow-ink: oklch(0.553 0.114 81.2); /* #946a00 */
+    --color-band-green-ink: oklch(0.51 0.123 154.8); /* #0a7a45 */
+    --font-sans: "Sora Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --radius-card: 20px;
+    --radius-control: 12px;
+    --shadow-card: 0 8px 24px rgb(28 22 51 / 0.07), 0 1px 2px rgb(28 22 51 / 0.04);
+    --title-size: 0.9375rem;
+    --title-weight: 700;
+    --title-tracking: -0.01em;
+    --gauge-halo: 0.16;
+  }
+
+  /* ============== Solarized — the original muted light palette, kept ============== */
+  [data-theme="solarized"] {
+    --color-background: oklch(0.972 0.017 95); /* #fdf6e3 base3 */
+    --color-surface: oklch(0.99 0.008 95);
+    --color-card: oklch(0.99 0.008 95);
+    --color-muted: oklch(0.934 0.021 92); /* #eee8d5 base2 */
+    --color-border: oklch(0.86 0.02 90);
+    --color-grid: oklch(0.9 0.018 92);
+    --color-selection: oklch(0.934 0.021 92);
+    --color-ring: oklch(0.62 0.13 245);
+    --color-foreground: oklch(0.485 0.028 213); /* #586e75 base01 */
+    --color-foreground-muted: oklch(0.635 0.021 205); /* #839496 base0 */
+    --color-heading: oklch(0.285 0.037 210); /* #073642 base02 */
+    --color-primary: oklch(0.62 0.13 245); /* #268bd2 */
+    --color-primary-foreground: oklch(0.99 0.008 95);
+    --color-accent: oklch(0.69 0.1 190); /* #2aa198 */
+    --color-on-band: oklch(0.972 0.017 95); /* light ink on the darker Solarized fills */
+    --color-cat-prs: oklch(0.62 0.13 245); /* blue */
+    --color-cat-commits: oklch(0.57 0.11 285); /* violet */
+    --color-cat-comments: oklch(0.69 0.1 190); /* cyan */
+    --color-cat-loc-add: oklch(0.68 0.14 122); /* green */
+    --color-cat-loc-remove: oklch(0.63 0.16 52); /* orange */
+    --color-cat-issues: oklch(0.66 0.13 90); /* yellow */
+    --color-band-red: oklch(0.6 0.19 27); /* #dc322f */
+    --color-band-yellow: oklch(0.66 0.13 90); /* #b58900 */
+    --color-band-green: oklch(0.68 0.14 122); /* #859900 */
+    --color-band-red-ink: oklch(0.6 0.19 27);
+    --color-band-yellow-ink: oklch(0.66 0.13 90);
+    --color-band-green-ink: oklch(0.68 0.14 122);
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --title-tracking: 0.025em;
+    --title-transform: uppercase;
+  }
+
   html {
     color-scheme: light;
   }
