@@ -4,8 +4,6 @@
  * drive it with recorded fixtures and no live network (PRD §11).
  */
 
-import type { RepoRef } from "../../../shared/types";
-
 export interface GhRepository {
   name: string;
   url: string;
@@ -27,7 +25,7 @@ export interface GhPullRequestNode {
   changedFiles: number;
   author: { login: string; url: string } | null;
   repository: GhRepository;
-  commits: { totalCount: number };
+  commits: { totalCount: number; nodes: Array<{ commit: GhCommitNode }> };
   comments: { totalCount: number };
   reviews: { totalCount: number };
   reviewThreads: { totalCount: number };
@@ -43,15 +41,11 @@ export interface GhReviewedPrNode {
   repository: GhRepository;
 }
 
-/** A commit (REST list + single-commit stats). */
-export interface GhCommit {
-  sha: string;
-  authorLogin: string | null;
+/** A commit node from a pull request's `commits` connection (GraphQL). */
+export interface GhCommitNode {
+  oid: string;
   committedDate: string;
-  additions: number;
-  deletions: number;
   url: string;
-  repo: { owner: string; name: string; url: string };
 }
 
 /**
@@ -64,6 +58,4 @@ export interface GitHubClient {
   searchPrsByAuthor(handle: string, since: Date, until: Date): Promise<GhPullRequestNode[]>;
   /** PRs `handle` reviewed, updated within [since, until). */
   searchPrsReviewedBy(handle: string, since: Date, until: Date): Promise<GhReviewedPrNode[]>;
-  /** Commits authored by `handle` in `repo` within [since, until). */
-  listCommits(repo: RepoRef, handle: string, since: Date, until: Date): Promise<GhCommit[]>;
 }

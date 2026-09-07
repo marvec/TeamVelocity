@@ -8,7 +8,7 @@ import { repoKey } from "../../../shared/types";
 import type { Member } from "../../../shared/schema/config";
 import type { CollectContext, CollectResult, SourceConnector } from "../types";
 import type { GitHubClient } from "./types";
-import { normalizeCommit, normalizePullRequest, normalizeReviewComment } from "./normalize";
+import { commitsFromPr, normalizePullRequest, normalizeReviewComment } from "./normalize";
 
 export function createGitHubConnector(client: GitHubClient): SourceConnector {
   return {
@@ -47,6 +47,24 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
             seenPrs.add(key);
             pullRequests.push(pr);
             addRepo(pr.repo);
+
+            // A PR's own commits (PRD §5), attributed to its author and deduped
+            // by SHA across the member's PRs.
+            for (const commit of commitsFromPr(node, pr.authorHandle)) {
+              if (seenCommits.has(commit.sha)) continue;
+              seenCommits.add(commit.sha);
+              commits.push(commit);
+            }
+            // A PR's commit connection is one GraphQL page (first: 100). When a
+            // PR exceeds that we warn rather than silently truncate. The extra
+            // commits' SHAs/dates are unfetched, so velocity's commit-count signal
+            // (wCommit) sees at most 100/PR — acceptable: it is log-dampened and
+            // >100-commit PRs are pathologically rare.
+            if (node.commits.totalCount > node.commits.nodes.length) {
+              logger.warn(
+                `github: ${pr.repo.owner}/${pr.repo.name}#${String(pr.number)} has ${String(node.commits.totalCount)} commits; only the first ${String(node.commits.nodes.length)} were fetched`,
+              );
+            }
           }
         } catch (err) {
           logger.warn(`github: failed to fetch PRs for @${handle}: ${errorText(err)}`);
@@ -68,26 +86,7 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
         }
       }
 
-      // --- Commits per (repo, member) over the union of discovered + explicit repos ---
       const repoList = [...repos.values()];
-      for (const repo of repoList) {
-        for (const member of members) {
-          const handle = member.github as string;
-          try {
-            const repoCommits = await client.listCommits(repo, handle, since, until);
-            for (const node of repoCommits) {
-              if (seenCommits.has(node.sha)) continue;
-              seenCommits.add(node.sha);
-              commits.push(normalizeCommit(node, handle));
-            }
-          } catch (err) {
-            logger.warn(
-              `github: failed to fetch commits for @${handle} in ${repo.owner}/${repo.name}: ${errorText(err)}`,
-            );
-          }
-        }
-      }
-
       logger.info(
         `github: ${String(pullRequests.length)} PRs, ${String(commits.length)} commits, ${String(comments.length)} review comments across ${String(repoList.length)} repos`,
       );

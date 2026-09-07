@@ -15,7 +15,13 @@
         "changedFiles": 6,
         "author": { "login": "alice", "url": "https://github.com/alice" },
         "repository": { "name": "web", "url": "https://github.com/acme/web", "owner": { "login": "acme" } },
-        "commits": { "totalCount": 4 },
+        "commits": {
+          "totalCount": 2,
+          "nodes": [
+            { "commit": { "oid": "aaa111", "committedDate": "2026-08-04T11:00:00Z", "url": "https://github.com/acme/web/commit/aaa111" } },
+            { "commit": { "oid": "aaa222", "committedDate": "2026-08-05T09:00:00Z", "url": "https://github.com/acme/web/commit/aaa222" } }
+          ]
+        },
         "comments": { "totalCount": 2 },
         "reviews": { "totalCount": 1 },
         "reviewThreads": { "totalCount": 3 },
@@ -36,7 +42,12 @@
         "changedFiles": 2,
         "author": { "login": "alice", "url": "https://github.com/alice" },
         "repository": { "name": "api", "url": "https://github.com/acme/api", "owner": { "login": "acme" } },
-        "commits": { "totalCount": 2 },
+        "commits": {
+          "totalCount": 1,
+          "nodes": [
+            { "commit": { "oid": "ccc111", "committedDate": "2026-08-12T09:15:00Z", "url": "https://github.com/acme/api/commit/ccc111" } }
+          ]
+        },
         "comments": { "totalCount": 1 },
         "reviews": { "totalCount": 0 },
         "reviewThreads": { "totalCount": 0 },
@@ -59,7 +70,12 @@
         "changedFiles": 9,
         "author": { "login": "bob", "url": "https://github.com/bob" },
         "repository": { "name": "api", "url": "https://github.com/acme/api", "owner": { "login": "acme" } },
-        "commits": { "totalCount": 6 },
+        "commits": {
+          "totalCount": 1,
+          "nodes": [
+            { "commit": { "oid": "bbb111", "committedDate": "2026-08-13T09:00:00Z", "url": "https://github.com/acme/api/commit/bbb111" } }
+          ]
+        },
         "comments": { "totalCount": 4 },
         "reviews": { "totalCount": 2 },
         "reviewThreads": { "totalCount": 5 },
@@ -83,39 +99,6 @@
         "url": "https://github.com/acme/web/pull/10",
         "updatedAt": "2026-08-05T12:00:00Z",
         "repository": { "name": "web", "url": "https://github.com/acme/web", "owner": { "login": "acme" } }
-      }
-    ]
-  },
-  "commits": {
-    "github:acme/web|alice": [
-      {
-        "sha": "aaa111",
-        "authorLogin": "alice",
-        "committedDate": "2026-08-05T11:00:00Z",
-        "additions": 0,
-        "deletions": 0,
-        "url": "https://github.com/acme/web/commit/aaa111",
-        "repo": { "owner": "acme", "name": "web", "url": "https://github.com/acme/web" }
-      },
-      {
-        "sha": "aaa222",
-        "authorLogin": "alice",
-        "committedDate": "2026-08-06T09:00:00Z",
-        "additions": 0,
-        "deletions": 0,
-        "url": "https://github.com/acme/web/commit/aaa222",
-        "repo": { "owner": "acme", "name": "web", "url": "https://github.com/acme/web" }
-      }
-    ],
-    "github:acme/api|bob": [
-      {
-        "sha": "bbb111",
-        "authorLogin": "bob",
-        "committedDate": "2026-08-13T09:00:00Z",
-        "additions": 0,
-        "deletions": 0,
-        "url": "https://github.com/acme/api/commit/bbb111",
-        "repo": { "owner": "acme", "name": "api", "url": "https://github.com/acme/api" }
       }
     ]
   }

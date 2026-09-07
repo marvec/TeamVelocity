@@ -5,7 +5,7 @@ import { createOctokitGitHubClient } from "./octokit-client";
 
 export { createGitHubConnector } from "./connector";
 export { createOctokitGitHubClient } from "./octokit-client";
-export type { GitHubClient, GhCommit, GhPullRequestNode, GhReviewedPrNode } from "./types";
+export type { GitHubClient, GhPullRequestNode, GhReviewedPrNode } from "./types";
 
 /** Build a live GitHub connector from a token. */
 export function createGitHubConnectorFromToken(token: string, logger?: Logger): SourceConnector {

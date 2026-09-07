@@ -5,7 +5,7 @@
  */
 
 import type { Comment, Commit, PrState, PullRequest, RepoRef } from "../../../shared/types";
-import type { GhCommit, GhPullRequestNode, GhRepository, GhReviewedPrNode } from "./types";
+import type { GhPullRequestNode, GhRepository, GhReviewedPrNode } from "./types";
 
 export function repoFrom(repository: GhRepository): RepoRef {
   return {
@@ -71,15 +71,26 @@ export function normalizeReviewComment(node: GhReviewedPrNode, reviewerHandle: s
   };
 }
 
-export function normalizeCommit(node: GhCommit, fallbackHandle: string): Commit {
-  return {
-    source: "github",
-    repo: { source: "github", owner: node.repo.owner, name: node.repo.name, url: node.repo.url },
-    sha: node.sha,
-    authorHandle: node.authorLogin ?? fallbackHandle,
-    committedAt: new Date(node.committedDate),
-    additions: node.additions,
-    deletions: node.deletions,
-    url: node.url,
-  };
+/**
+ * A pull request's own commits, each attributed to the PR's author. GitHub
+ * commit authorship is unreliable across OSS repos (squash/rebase rewrites,
+ * unverified author emails whose GitHub user resolves to null), so we credit the
+ * tracked member whose PR this is rather than the commit's own author. Per-commit
+ * line stats stay 0: velocity's LOC signal comes from the PR's additions/deletions
+ * (PRD §5), so counting commit LOC too would double-count.
+ */
+export function commitsFromPr(node: GhPullRequestNode, authorHandle: string): Commit[] {
+  const repo = repoFrom(node.repository);
+  return node.commits.nodes.map(
+    ({ commit }): Commit => ({
+      source: "github",
+      repo,
+      sha: commit.oid,
+      authorHandle,
+      committedAt: new Date(commit.committedDate),
+      additions: 0,
+      deletions: 0,
+      url: commit.url,
+    }),
+  );
 }

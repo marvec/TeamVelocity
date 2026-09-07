@@ -91,13 +91,98 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     expect(aliceReview.createdAt).toBeInstanceOf(Date);
   });
 
-  it("normalizes commits and unions discovered repos", async () => {
+  it("collects each PR's own commits, attributed to the PR author, and unions repos", async () => {
     const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
     const result = await connector.collect(context([alice, bob]));
 
-    expect(result.commits.map((c) => c.sha).sort()).toEqual(["aaa111", "aaa222", "bbb111"]);
+    // Commits come from the PRs themselves now, not a repo commit log.
+    expect(result.commits.map((c) => c.sha).sort()).toEqual(["aaa111", "aaa222", "bbb111", "ccc111"]);
+    // ccc111 rides alice's PR #11 → attributed to alice; bbb111 rides bob's #12 → bob.
+    expect(result.commits.find((c) => c.sha === "ccc111")?.authorHandle).toBe("alice");
+    expect(result.commits.find((c) => c.sha === "bbb111")?.authorHandle).toBe("bob");
+
     const repoNames = result.repos.map((r) => `${r.owner}/${r.name}`).sort();
     expect(repoNames).toEqual(["acme/api", "acme/web"]);
+  });
+
+  it("warns instead of silently dropping when a PR has more commits than were fetched", async () => {
+    const warnings: string[] = [];
+    const capturingLogger: Logger = {
+      info() {},
+      warn: (m) => warnings.push(m),
+      error() {},
+      debug() {},
+    };
+    const capped: GitHubFixtures = {
+      authored: {
+        alice: [
+          {
+            ...fixtures.authored.alice[0],
+            number: 99,
+            commits: {
+              totalCount: 3,
+              nodes: [
+                {
+                  commit: {
+                    oid: "cap1",
+                    committedDate: "2026-08-10T00:00:00Z",
+                    url: "https://github.com/acme/web/commit/cap1",
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+      reviewed: {},
+    };
+    const connector = createGitHubConnector(createFakeGitHubClient(capped));
+    const result = await connector.collect({ ...context([alice]), logger: capturingLogger });
+
+    expect(result.commits.map((c) => c.sha)).toEqual(["cap1"]);
+    expect(warnings.some((w) => w.includes("has 3 commits") && w.includes("only the first 1"))).toBe(true);
+  });
+
+  it("dedupes a commit SHA shared across two of a member's PRs", async () => {
+    const base = fixtures.authored.alice[0];
+    const shared = {
+      commit: { oid: "dup1", committedDate: "2026-08-05T10:00:00Z", url: "https://github.com/acme/web/commit/dup1" },
+    };
+    const dupFixtures: GitHubFixtures = {
+      authored: {
+        alice: [
+          {
+            ...base,
+            number: 10,
+            commits: {
+              totalCount: 2,
+              nodes: [
+                shared,
+                { commit: { oid: "a10", committedDate: "2026-08-05T11:00:00Z", url: "https://github.com/acme/web/commit/a10" } },
+              ],
+            },
+          },
+          {
+            ...base,
+            number: 20,
+            commits: {
+              totalCount: 2,
+              nodes: [
+                shared,
+                { commit: { oid: "a20", committedDate: "2026-08-06T11:00:00Z", url: "https://github.com/acme/web/commit/a20" } },
+              ],
+            },
+          },
+        ],
+      },
+      reviewed: {},
+    };
+    const connector = createGitHubConnector(createFakeGitHubClient(dupFixtures));
+    const result = await connector.collect(context([alice]));
+
+    // dup1 rides both PRs but must appear exactly once (else velocity's commit signal inflates).
+    expect(result.commits.filter((c) => c.sha === "dup1")).toHaveLength(1);
+    expect(result.commits.map((c) => c.sha).sort()).toEqual(["a10", "a20", "dup1"]);
   });
 
   it("includes explicit repos even when no activity surfaces them", async () => {

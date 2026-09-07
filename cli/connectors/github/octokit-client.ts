@@ -5,9 +5,8 @@
  */
 
 import { Octokit } from "octokit";
-import type { RepoRef } from "../../../shared/types";
 import type { Logger } from "../types";
-import type { GhCommit, GhPullRequestNode, GhReviewedPrNode, GitHubClient } from "./types";
+import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient } from "./types";
 
 const PR_FIELDS = `
   number
@@ -23,7 +22,7 @@ const PR_FIELDS = `
   changedFiles
   author { login url }
   repository { name url owner { login } }
-  commits { totalCount }
+  commits(first: 100) { totalCount nodes { commit { oid committedDate url } } }
   comments { totalCount }
   reviews { totalCount }
   reviewThreads { totalCount }
@@ -120,30 +119,6 @@ export function createOctokitGitHubClient(token: string, logger?: Logger): GitHu
     searchPrsReviewedBy(handle, since, until) {
       const q = `reviewed-by:${handle} type:pr updated:${isoWindow(since, until)}`;
       return searchAll<GhReviewedPrNode>(REVIEWED_SEARCH, q);
-    },
-
-    async listCommits(repo: RepoRef, handle, since, until): Promise<GhCommit[]> {
-      const items = await octokit.paginate(octokit.rest.repos.listCommits, {
-        owner: repo.owner,
-        repo: repo.name,
-        author: handle,
-        since: since.toISOString(),
-        until: until.toISOString(),
-        per_page: 100,
-      });
-      return items.map(
-        (item): GhCommit => ({
-          sha: item.sha,
-          authorLogin: item.author?.login ?? handle,
-          committedDate: item.commit.author?.date ?? item.commit.committer?.date ?? until.toISOString(),
-          // Line stats require a per-commit fetch; velocity's LOC signal comes
-          // from PRs, so commit LOC is left at 0 in v1 real pulls (see PRD §5).
-          additions: 0,
-          deletions: 0,
-          url: item.html_url,
-          repo: { owner: repo.owner, name: repo.name, url: repo.url },
-        }),
-      );
     },
   };
 }

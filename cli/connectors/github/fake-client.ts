@@ -4,15 +4,11 @@
  * pipeline runs without a token.
  */
 
-import type { RepoRef } from "../../../shared/types";
-import { repoKey } from "../../../shared/types";
-import type { GhCommit, GhPullRequestNode, GhReviewedPrNode, GitHubClient } from "./types";
+import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient } from "./types";
 
 export interface GitHubFixtures {
   authored: Record<string, GhPullRequestNode[]>;
   reviewed: Record<string, GhReviewedPrNode[]>;
-  /** Keyed by `${repoKey}|${handle}`. */
-  commits: Record<string, GhCommit[]>;
 }
 
 export function createFakeGitHubClient(fixtures: GitHubFixtures): GitHubClient {
@@ -22,9 +18,6 @@ export function createFakeGitHubClient(fixtures: GitHubFixtures): GitHubClient {
     },
     searchPrsReviewedBy(handle: string): Promise<GhReviewedPrNode[]> {
       return Promise.resolve(fixtures.reviewed[handle] ?? []);
-    },
-    listCommits(repo: RepoRef, handle: string): Promise<GhCommit[]> {
-      return Promise.resolve(fixtures.commits[`${repoKey(repo)}|${handle}`] ?? []);
     },
   };
 }
