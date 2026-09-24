@@ -138,6 +138,26 @@ describe("runPull — incremental fetching", () => {
     expect(await pull(store, dir)).toEqual([]);
   });
 
+  it("does not rewrite a cache it did not change", async () => {
+    // Re-serializing means re-validating every entity the handle has ever
+    // accumulated, and history grows forever — so a no-op pull must not write.
+    const inner = createMemoryCacheStore();
+    let writes = 0;
+    const counting: CacheStore = {
+      load: (source, handle) => inner.load(source, handle),
+      save: (source, handle, value) => {
+        writes += 1;
+        return inner.save(source, handle, value);
+      },
+    };
+    const dir = dataDir();
+    await pull(counting, dir);
+    expect(writes).toBe(2); // one per handle on the cold backfill
+
+    await pull(counting, dir);
+    expect(writes).toBe(2);
+  });
+
   it("asks only for the back gap when history is extended further back", async () => {
     const store = createMemoryCacheStore();
     const dir = dataDir();

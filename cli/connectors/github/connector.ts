@@ -4,7 +4,7 @@
  */
 
 import type { Comment, RepoRef } from "../../../shared/types";
-import { repoKey } from "../../../shared/types";
+import { prKey, repoKey } from "../../../shared/types";
 import type { Member } from "../../../shared/schema/config";
 import type { CollectContext, CollectedPr, CollectResult, SourceConnector } from "../types";
 import type { GitHubClient } from "./types";
@@ -44,7 +44,7 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
           const authored = await client.searchPrsByAuthor(handle, since, until);
           for (const node of authored) {
             const pr = normalizePullRequest(node, handle);
-            const key = `${repoKey(pr.repo)}#${pr.number}`;
+            const key = prKey(pr.repo, pr.number);
             if (seenPrs.has(key)) continue;
             seenPrs.add(key);
             addRepo(pr.repo);

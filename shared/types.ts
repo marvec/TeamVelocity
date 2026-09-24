@@ -38,6 +38,15 @@ export function repoKey(repo: Pick<RepoRef, "source" | "owner" | "name">): strin
 }
 
 /**
+ * Stable key for a pull request. This is the single definition on purpose: the
+ * pull cache **persists** these keys, so a second implementation that drifted
+ * would silently orphan every PR already stored under the old spelling.
+ */
+export function prKey(repo: Pick<RepoRef, "source" | "owner" | "name">, number: number): string {
+  return `${repoKey(repo)}#${String(number)}`;
+}
+
+/**
  * A normalized pull request. Dates are `Date` objects in memory; the on-disk
  * contract serializes them to ISO strings.
  */
@@ -78,6 +87,22 @@ export interface Commit {
   additions: number;
   deletions: number;
   url: string;
+}
+
+/**
+ * A pull request together with the commits it owns.
+ *
+ * Grouping them is what lets the pull cache replace a PR's commit set as a
+ * unit: a rebased or force-pushed PR would otherwise accumulate the SHAs of
+ * every rewritten version and permanently inflate velocity's commit signal.
+ *
+ * Each group carries its PR's OWN complete commit list — a SHA riding two PRs
+ * appears in both — so a group never depends on the order PRs were fetched in.
+ * De-duplication by SHA happens when groups are flattened for aggregation.
+ */
+export interface PrGroup {
+  pr: PullRequest;
+  commits: Commit[];
 }
 
 /** A normalized comment attributed to a member. */

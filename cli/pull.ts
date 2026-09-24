@@ -30,9 +30,9 @@ import { getConnectorFactory } from "./connectors"; // importing registers v1 co
 import { createGitHubConnector } from "./connectors/github/connector";
 import { createFakeGitHubClient, type GitHubFixtures } from "./connectors/github/fake-client";
 import fixturesJson from "./connectors/github/__fixtures__/github-fixtures.json";
-import type { CollectResult, Logger, SourceConnector } from "./connectors/types";
+import type { CollectedEntities, Logger, SourceConnector } from "./connectors/types";
 import { flattenCollected } from "./cache/flatten";
-import { planFetchWindows, type Window } from "./cache/plan";
+import { planFetchWindows, unionWindow, type Window } from "./cache/plan";
 import { mergeHandleCache } from "./cache/merge";
 import {
   createFileCacheStore,
@@ -109,23 +109,18 @@ function resolveRange(flags: Flags, now: Date): Window {
   return { since, until };
 }
 
-/** The smallest window containing both. */
+/** The smallest window containing both, tolerating an absent second window. */
 function widen(window: Window, other: Window | undefined): Window {
-  if (!other) return window;
-  return {
-    since: new Date(Math.min(window.since.getTime(), other.since.getTime())),
-    until: new Date(Math.max(window.until.getTime(), other.until.getTime())),
-  };
+  return other ? unionWindow(window, other) : window;
 }
 
-/** A cache read back as if it had just been collected, for the flatten step. */
-function cacheAsCollected(cache: HandleCache): CollectResult {
+/** A cache's entities, for the flatten step. */
+function cacheEntities(cache: HandleCache): CollectedEntities {
   return {
     prs: [...cache.prs.values()],
     commits: [...cache.commits.values()],
     comments: [...cache.comments.values()],
     repos: cache.repos,
-    complete: true,
   };
 }
 
@@ -196,25 +191,24 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
         }
       }
 
-      await saveHandleCache(store, cache);
+      // Nothing fetched means `cache` is still exactly what was loaded, and
+      // re-writing it would re-validate and re-serialize the handle's entire
+      // accumulated history for no change — the cost grows forever, and it lands
+      // precisely on the runs this feature exists to make cheap.
+      if (windows.length > 0) await saveHandleCache(store, cache);
       caches.push(cache);
     }
 
     // History accumulates: the dataset spans everything ever pulled for this
     // team, not just the window this run asked for.
-    let since = requested.since;
-    let until = requested.until;
-    for (const cache of caches) {
-      if (!cache.coverage) continue;
-      if (cache.coverage.since.getTime() < since.getTime()) since = cache.coverage.since;
-      if (cache.coverage.until.getTime() > until.getTime()) until = cache.coverage.until;
-    }
+    let range = requested;
+    for (const cache of caches) range = widen(range, cache.coverage);
 
-    const entities = flattenCollected(caches.map(cacheAsCollected));
+    const entities = flattenCollected(caches.map(cacheEntities));
     const dataset = buildTeamDataset({
       team: toDatasetTeam(team, SOURCE),
-      since,
-      until,
+      since: range.since,
+      until: range.until,
       pullRequests: entities.pullRequests,
       commits: entities.commits,
       comments: entities.comments,

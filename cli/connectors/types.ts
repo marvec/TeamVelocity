@@ -5,7 +5,7 @@
  */
 
 import type { Member, TeamConfig } from "../../shared/schema/config";
-import type { Comment, Commit, PullRequest, RepoRef, SourceId } from "../../shared/types";
+import type { Comment, Commit, PrGroup, RepoRef, SourceId } from "../../shared/types";
 
 export interface Logger {
   info(message: string): void;
@@ -23,28 +23,24 @@ export interface CollectContext {
   logger: Logger;
 }
 
-/**
- * A pull request together with the commits it owns. Grouping them is what lets
- * the pull cache replace a PR's commit set as a unit: a rebased or force-pushed
- * PR would otherwise accumulate the SHAs of every rewritten version and
- * permanently inflate velocity's commit signal.
- *
- * Each group carries its PR's OWN complete commit list — a SHA riding two PRs
- * appears in both. De-duplication by SHA happens when caches are flattened for
- * aggregation, so a group never depends on the order PRs were fetched in.
- */
-export interface CollectedPr {
-  pr: PullRequest;
-  commits: Commit[];
-}
+/** A pull request with the commits it owns — see {@link PrGroup}. */
+export type CollectedPr = PrGroup;
 
-export interface CollectResult {
+/**
+ * The entities a collection produced. Kept separate from {@link CollectResult}
+ * so a replay of already-cached entities can be described honestly, without
+ * having to claim a `complete` fetch that never happened.
+ */
+export interface CollectedEntities {
   prs: CollectedPr[];
   /** Commits owned by no pull request. GitHub sources every commit from a PR. */
   commits: Commit[];
   comments: Comment[];
   /** Union of discovered + explicit repos. */
   repos: RepoRef[];
+}
+
+export interface CollectResult extends CollectedEntities {
   /**
    * False when any part of the requested window could not be fetched — a failed
    * search is warned and skipped rather than made fatal, so the entities that

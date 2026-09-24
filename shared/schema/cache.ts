@@ -12,25 +12,22 @@
  */
 
 import { z } from "zod";
-import type { Comment, Commit, PullRequest, RepoRef, SourceId } from "../types";
-import { SourceIdSchema, PrStateSchema, CommentKindSchema } from "./data";
+import type { Comment, Commit, PrGroup, PullRequest, RepoRef, SourceId } from "../types";
+import {
+  CommentKindSchema,
+  PrStateSchema,
+  RepoRefLiteSchema,
+  SourceIdSchema,
+  count,
+  isoDateTime,
+} from "./data";
 
 /** Bump when the on-disk shape changes; an older file is discarded, not migrated. */
 export const CACHE_VERSION = 1;
 
-const isoDateTime = z.iso.datetime();
-const count = z.number().int().nonnegative();
-
-const RepoRefSchema = z.strictObject({
-  source: SourceIdSchema,
-  owner: z.string(),
-  name: z.string(),
-  url: z.string(),
-});
-
 const StoredPrSchema = z.strictObject({
   source: SourceIdSchema,
-  repo: RepoRefSchema,
+  repo: RepoRefLiteSchema,
   number: z.number().int().positive(),
   title: z.string(),
   authorHandle: z.string(),
@@ -52,7 +49,7 @@ const StoredPrSchema = z.strictObject({
 
 const StoredCommitSchema = z.strictObject({
   source: SourceIdSchema,
-  repo: RepoRefSchema,
+  repo: RepoRefLiteSchema,
   sha: z.string(),
   authorHandle: z.string(),
   committedAt: isoDateTime,
@@ -63,7 +60,7 @@ const StoredCommitSchema = z.strictObject({
 
 const StoredCommentSchema = z.strictObject({
   source: SourceIdSchema,
-  repo: RepoRefSchema,
+  repo: RepoRefLiteSchema,
   kind: CommentKindSchema,
   authorHandle: z.string(),
   createdAt: isoDateTime,
@@ -83,16 +80,13 @@ export const HandleCacheFileSchema = z.strictObject({
   comments: z.record(z.string(), StoredCommentSchema),
   /** Keyed by SHA — only commits owned by no PR. */
   commits: z.record(z.string(), StoredCommitSchema),
-  repos: z.array(RepoRefSchema),
+  repos: z.array(RepoRefLiteSchema),
 });
 
 export type HandleCacheFile = z.infer<typeof HandleCacheFileSchema>;
 
-/** A pull request together with the commits it owns. */
-export interface CachedPr {
-  pr: PullRequest;
-  commits: Commit[];
-}
+/** A pull request with the commits it owns — see {@link PrGroup}. */
+export type CachedPr = PrGroup;
 
 /** The in-memory form: same data, `Date`s instead of ISO strings, maps instead of records. */
 export interface HandleCache {
@@ -119,7 +113,7 @@ function storePr(pr: PullRequest): z.input<typeof StoredPrSchema> {
   };
 }
 
-function loadPr(raw: HandleCacheFile["prs"][string]["pr"]): PullRequest {
+function loadPr(raw: z.infer<typeof StoredPrSchema>): PullRequest {
   const { createdAt, mergedAt, closedAt, ...rest } = raw;
   return {
     ...rest,

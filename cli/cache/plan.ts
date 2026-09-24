@@ -16,6 +16,17 @@ export type Coverage = Window;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 /**
+ * The smallest window containing both. Exact as a coverage union whenever the
+ * two touch or overlap, which is all `planFetchWindows` ever produces.
+ */
+export function unionWindow(a: Window, b: Window): Window {
+  return {
+    since: new Date(Math.min(a.since.getTime(), b.since.getTime())),
+    until: new Date(Math.max(a.until.getTime(), b.until.getTime())),
+  };
+}
+
+/**
  * Windows still to fetch, in the order they should be fetched and merged.
  *
  * A back gap is returned before a forward gap so that when both exist the

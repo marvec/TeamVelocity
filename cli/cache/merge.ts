@@ -6,23 +6,15 @@
  * oldest-first and let the freshest observation of a record survive.
  */
 
-import { repoKey } from "../../shared/types";
+import { prKey, repoKey } from "../../shared/types";
 import type { HandleCache } from "../../shared/schema/cache";
 import type { CollectResult } from "../connectors/types";
-import type { Window } from "./plan";
+import { unionWindow, type Window } from "./plan";
 
-function prKeyOf(repo: Parameters<typeof repoKey>[0], number: number): string {
-  return `${repoKey(repo)}#${String(number)}`;
-}
-
-/** The smallest interval containing both, which is exact because windows touch or overlap. */
 function unionCoverage(a: HandleCache["coverage"], b: Window | null): HandleCache["coverage"] {
   if (!b) return a;
   if (!a) return { since: b.since, until: b.until };
-  return {
-    since: new Date(Math.min(a.since.getTime(), b.since.getTime())),
-    until: new Date(Math.max(a.until.getTime(), b.until.getTime())),
-  };
+  return unionWindow(a, b);
 }
 
 /**
@@ -43,7 +35,7 @@ export function mergeHandleCache(
   for (const collected of fetched.prs) {
     // The whole entry is replaced, commits included: a force-push rewrites SHAs,
     // and keeping the old ones would inflate the commit signal forever.
-    prs.set(prKeyOf(collected.pr.repo, collected.pr.number), {
+    prs.set(prKey(collected.pr.repo, collected.pr.number), {
       pr: collected.pr,
       commits: [...collected.commits],
     });
