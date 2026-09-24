@@ -205,6 +205,27 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     expect(result.repos.some((r) => r.name === "secret")).toBe(true);
   });
 
+  it("reports a complete collection when every search succeeded", async () => {
+    const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
+    const result = await connector.collect(context([alice, bob]));
+    expect(result.complete).toBe(true);
+  });
+
+  it("reports an incomplete collection when a search failed", async () => {
+    // The caller must not advance this handle's cached coverage over a window
+    // it only partly saw, or the gap is never retried.
+    const failing = {
+      ...createFakeGitHubClient(fixtures),
+      searchPrsByAuthor: () => Promise.reject(new Error("502 Bad Gateway")),
+    };
+    const result = await createGitHubConnector(failing).collect({
+      ...context([alice]),
+      logger: { info() {}, warn() {}, error() {}, debug() {} },
+    });
+
+    expect(result.complete).toBe(false);
+  });
+
   it("skips members without a github handle", async () => {
     const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
     const result = await connector.collect(context([alice, carol]));

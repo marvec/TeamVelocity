@@ -45,6 +45,13 @@ export interface CollectResult {
   comments: Comment[];
   /** Union of discovered + explicit repos. */
   repos: RepoRef[];
+  /**
+   * False when any part of the requested window could not be fetched — a failed
+   * search is warned and skipped rather than made fatal, so the entities that
+   * did arrive are still usable. A caller that caches results must not record
+   * an incomplete window as covered, or the missing slice is never retried.
+   */
+  complete: boolean;
 }
 
 export interface SourceConnector {

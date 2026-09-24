@@ -58,7 +58,7 @@ function comment(url: string, over: Partial<Comment> = {}): Comment {
 }
 
 function source(over: Partial<CollectResult> = {}): CollectResult {
-  return { prs: [], commits: [], comments: [], repos: [], ...over };
+  return { prs: [], commits: [], comments: [], repos: [], complete: true, ...over };
 }
 
 describe("flattenCollected", () => {

@@ -16,7 +16,8 @@ function prKeyOf(repo: Parameters<typeof repoKey>[0], number: number): string {
 }
 
 /** The smallest interval containing both, which is exact because windows touch or overlap. */
-function unionCoverage(a: HandleCache["coverage"], b: Window): { since: Date; until: Date } {
+function unionCoverage(a: HandleCache["coverage"], b: Window | null): HandleCache["coverage"] {
+  if (!b) return a;
   if (!a) return { since: b.since, until: b.until };
   return {
     since: new Date(Math.min(a.since.getTime(), b.since.getTime())),
@@ -24,10 +25,16 @@ function unionCoverage(a: HandleCache["coverage"], b: Window): { since: Date; un
   };
 }
 
+/**
+ * @param window the interval this fetch covered, or `null` when the fetch was
+ * incomplete. Entities that did arrive are always kept — they are real — but a
+ * partly-seen window must not be recorded as covered, or the missing slice is
+ * never retried.
+ */
 export function mergeHandleCache(
   cache: HandleCache,
   fetched: CollectResult,
-  window: Window,
+  window: Window | null,
 ): HandleCache {
   const prs = new Map(cache.prs);
   const comments = new Map(cache.comments);

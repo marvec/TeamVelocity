@@ -22,6 +22,10 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
       const { since, until, logger } = ctx;
       const prs: CollectedPr[] = [];
       const comments: Comment[] = [];
+      // A failed search is warned and skipped, never fatal — but the caller
+      // needs to know the window was only partly seen so it is not cached as
+      // covered.
+      let complete = true;
       const seenPrs = new Set<string>();
       const repos = new Map<string, RepoRef>();
 
@@ -60,6 +64,7 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
             }
           }
         } catch (err) {
+          complete = false;
           logger.warn(`github: failed to fetch PRs for @${handle}: ${errorText(err)}`);
         }
 
@@ -75,6 +80,7 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
             });
           }
         } catch (err) {
+          complete = false;
           logger.warn(`github: failed to fetch reviews for @${handle}: ${errorText(err)}`);
         }
       }
@@ -92,7 +98,7 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
         logger.info(`github: ${String(cost)} GraphQL rate-limit points spent so far${left}`);
       }
 
-      return { prs, commits: [], comments, repos: repoList };
+      return { prs, commits: [], comments, repos: repoList, complete };
     },
   };
 }

@@ -61,7 +61,7 @@ function comment(url: string, over: Partial<Comment> = {}): Comment {
 }
 
 function fetched(over: Partial<CollectResult> = {}): CollectResult {
-  return { prs: [], commits: [], comments: [], repos: [], ...over };
+  return { prs: [], commits: [], comments: [], repos: [], complete: true, ...over };
 }
 
 const w = (since: string, until: string): Window => ({ since: d(since), until: d(until) });
@@ -193,6 +193,25 @@ describe("mergeHandleCache — coverage", () => {
 
     expect(out.coverage?.since.toISOString()).toBe("2026-03-01T00:00:00.000Z");
     expect(out.coverage?.until.toISOString()).toBe("2026-09-15T00:00:00.000Z");
+  });
+});
+
+describe("mergeHandleCache — incomplete fetch", () => {
+  it("still stores what arrived but leaves coverage where it was", () => {
+    // A window that was only partly fetched must stay outside coverage so the
+    // next pull retries the gap instead of silently losing it.
+    const before = emptyHandleCache("github", "alice");
+    before.coverage = { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-09-01T00:00:00.000Z") };
+
+    const out = mergeHandleCache(before, fetched({ prs: [{ pr: pr(), commits: [] }] }), null);
+
+    expect(out.prs.get(KEY)).toBeDefined();
+    expect(out.coverage?.until.toISOString()).toBe("2026-09-01T00:00:00.000Z");
+  });
+
+  it("leaves a never-covered handle uncovered", () => {
+    const out = mergeHandleCache(emptyHandleCache("github", "alice"), fetched(), null);
+    expect(out.coverage).toBeUndefined();
   });
 });
 
