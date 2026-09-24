@@ -5,7 +5,8 @@
  * Every collection is de-duplicated here rather than at collection time, so a
  * source's own records never depend on what another source already contributed:
  *
- * - **PRs** by `prKey` — the same PR can surface from two handles.
+ * - **PRs** by `prIdentity` — the same PR can surface from two handles, and
+ *   its location-based key changes if the repo is renamed.
  * - **Commits** by SHA — a SHA rides every PR that contains it (see
  *   {@link PrGroup}), so this is what keeps velocity's commit signal from
  *   double-counting a shared commit.
@@ -18,7 +19,7 @@
  */
 
 import type { Comment, Commit, PullRequest, RepoRef } from "../../shared/types";
-import { prKey, repoKey } from "../../shared/types";
+import { prIdentity, repoKey } from "../../shared/types";
 import type { CollectedEntities } from "../connectors/types";
 
 export interface FlatEntities {
@@ -47,7 +48,7 @@ export function flattenCollected(sources: readonly CollectedEntities[]): FlatEnt
 
   for (const source of sources) {
     for (const collected of source.prs) {
-      addUnique(seenPrs, pullRequests, prKey(collected.pr.repo, collected.pr.number), collected.pr);
+      addUnique(seenPrs, pullRequests, prIdentity(collected.pr), collected.pr);
       for (const commit of collected.commits) {
         addUnique(seenCommits, commits, commit.sha, commit);
       }

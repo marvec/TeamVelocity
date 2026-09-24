@@ -22,13 +22,21 @@ import {
   isoDateTime,
 } from "./data";
 
-/** Bump when the on-disk shape changes; an older file is discarded, not migrated. */
-export const CACHE_VERSION = 1;
+/**
+ * Bump when the on-disk shape OR the key scheme changes; an older file is
+ * discarded, not migrated.
+ *
+ * v2: pull requests are keyed by {@link prIdentity} (the source's rename-stable
+ * id) rather than by `repo#number`, and carry `externalId`.
+ */
+export const CACHE_VERSION = 2;
 
 const StoredPrSchema = z.strictObject({
   source: SourceIdSchema,
   repo: RepoRefLiteSchema,
   number: z.number().int().positive(),
+  /** The source's own rename-stable id, when it exposes one. */
+  externalId: z.string().nullable(),
   title: z.string(),
   authorHandle: z.string(),
   state: PrStateSchema,
@@ -74,7 +82,7 @@ export const HandleCacheFileSchema = z.strictObject({
   handle: z.string().min(1),
   /** Absent until something has actually been fetched for this handle. */
   coverage: z.strictObject({ since: isoDateTime, until: isoDateTime }).nullable(),
-  /** Keyed `${repoKey}#${number}`; a PR owns its commits so a re-fetch replaces them as a unit. */
+  /** Keyed by `prIdentity`; a PR owns its commits so a re-fetch replaces them as a unit. */
   prs: z.record(z.string(), z.strictObject({ pr: StoredPrSchema, commits: z.array(StoredCommitSchema) })),
   /** Keyed by comment url. */
   comments: z.record(z.string(), StoredCommentSchema),
@@ -107,6 +115,7 @@ export function emptyHandleCache(source: SourceId, handle: string): HandleCache 
 function storePr(pr: PullRequest): z.input<typeof StoredPrSchema> {
   return {
     ...pr,
+    externalId: pr.externalId ?? null,
     createdAt: pr.createdAt.toISOString(),
     mergedAt: pr.mergedAt ? pr.mergedAt.toISOString() : null,
     closedAt: pr.closedAt ? pr.closedAt.toISOString() : null,
@@ -114,9 +123,10 @@ function storePr(pr: PullRequest): z.input<typeof StoredPrSchema> {
 }
 
 function loadPr(raw: z.infer<typeof StoredPrSchema>): PullRequest {
-  const { createdAt, mergedAt, closedAt, ...rest } = raw;
+  const { createdAt, mergedAt, closedAt, externalId, ...rest } = raw;
   return {
     ...rest,
+    ...(externalId === null ? {} : { externalId }),
     createdAt: new Date(createdAt),
     ...(mergedAt === null ? {} : { mergedAt: new Date(mergedAt) }),
     ...(closedAt === null ? {} : { closedAt: new Date(closedAt) }),

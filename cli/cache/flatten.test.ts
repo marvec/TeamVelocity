@@ -98,6 +98,25 @@ describe("flattenCollected", () => {
     expect(flat.pullRequests).toHaveLength(1);
   });
 
+  it("treats a renamed repo's PR as the same PR, not a second one", () => {
+    // owner/name is embedded in the location key, so after a rename the same PR
+    // arrives under a different one. Without a stable id it would be counted twice.
+    const before = pr(7, { externalId: "PR_node_7" });
+    const after = pr(7, { externalId: "PR_node_7", repo: { ...web, name: "web-renamed" } });
+    const flat = flattenCollected([
+      source({ prs: [{ pr: before, commits: [] }] }),
+      source({ prs: [{ pr: after, commits: [] }] }),
+    ]);
+    expect(flat.pullRequests).toHaveLength(1);
+  });
+
+  it("still separates distinct PRs that carry no external id", () => {
+    const flat = flattenCollected([
+      source({ prs: [{ pr: pr(1), commits: [] }, { pr: pr(2), commits: [] }] }),
+    ]);
+    expect(flat.pullRequests).toHaveLength(2);
+  });
+
   it("keeps same-numbered PRs from different repos apart", () => {
     const flat = flattenCollected([
       source({ prs: [{ pr: pr(5), commits: [] }, { pr: pr(5, { repo: api }), commits: [] }] }),

@@ -81,6 +81,44 @@ describe("planFetchWindows — overlap", () => {
   });
 });
 
+describe("planFetchWindows — never leaves an unfetched hole", () => {
+  // Coverage is stored as one interval, so a returned window must touch or
+  // overlap existing coverage. A window starting after coverage.until would be
+  // unioned into coverage, silently claiming a range nothing ever fetched —
+  // the exact trap a "don't refetch so far back" optimisation would fall into.
+  const cases: { name: string; coverage: Coverage; requested: Window; overlap: number }[] = [
+    {
+      name: "a long-stale handle",
+      coverage: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-03-08T00:00:00.000Z") },
+      requested: { since: d("2026-03-01T00:00:00.000Z"), until: d("2027-06-01T00:00:00.000Z") },
+      overlap: 2,
+    },
+    {
+      name: "zero overlap",
+      coverage: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-09-01T00:00:00.000Z") },
+      requested: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-12-01T00:00:00.000Z") },
+      overlap: 0,
+    },
+    {
+      name: "both gaps at once",
+      coverage: { since: d("2026-06-01T00:00:00.000Z"), until: d("2026-07-01T00:00:00.000Z") },
+      requested: { since: d("2026-01-01T00:00:00.000Z"), until: d("2026-12-01T00:00:00.000Z") },
+      overlap: 2,
+    },
+  ];
+
+  for (const { name, coverage, requested: req, overlap } of cases) {
+    it(`covers the whole span with no hole: ${name}`, () => {
+      const windows = planFetchWindows(coverage, req, overlap);
+      for (const w of windows) {
+        const touchesCoverage =
+          w.until.getTime() >= coverage.since.getTime() && w.since.getTime() <= coverage.until.getTime();
+        expect(touchesCoverage).toBe(true);
+      }
+    });
+  }
+});
+
 describe("planFetchWindows — boundaries", () => {
   it("emits no forward gap when the request ends exactly at the covered edge", () => {
     const coverage: Coverage = { since: d("2026-03-01T00:00:00.000Z"), until: requested.until };

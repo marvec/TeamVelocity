@@ -49,7 +49,7 @@ Git-ignored, disposable, never under `public/data/`. Handles are already normali
 
 ```jsonc
 {
-  "version": 1,
+  "version": 2,
   "source": "github",
   "handle": "angelozerr",
   "coverage": {
@@ -76,7 +76,7 @@ Git-ignored, disposable, never under `public/data/`. Handles are already normali
 
 | Collection | Key | Rationale |
 |---|---|---|
-| `prs` | `` `${repoKey(repo)}#${number}` `` | A PR's identity on its source. |
+| `prs` | `prIdentity(pr)` — the source's own opaque id (GitHub's GraphQL node id), falling back to `` `${repoKey(repo)}#${number}` `` | The location key embeds `owner/name`, so a repo rename or transfer would file the same PR under a second key and double-count it. The node id survives both. |
 | `comments` | `url` | Every comment has one. A `review_summary` carries the reviewed PR's own URL, so within a single handle's file this gives exactly one entry per (handle, PR) — the intended cardinality. A composite `repo#pr:kind` key would instead collide for any future connector emitting several comments of one kind on one PR. **Note the flatten step keys on author *and* URL** (§6): across handles that same PR URL is shared by every reviewer, so URL alone would drop all but one reviewer's credit. |
 | `commits` | `sha` | Only reached by connectors that emit PR-less commits. GitHub emits none today. |
 
@@ -212,8 +212,11 @@ In `cli/connectors/github/octokit-client.ts`:
 - `searchPrsByAuthor`: `author:${handle} type:pr updated:${since}..${until}`
   (was `created:`). Both searches then share windowing semantics, which is what makes a single
   coverage interval per handle correct.
-- Warn when a search yields ≥ 1,000 nodes — GitHub's documented `search` ceiling, which today
-  truncates silently.
+- A search that yields ≥ 1,000 nodes has hit GitHub's documented `search` ceiling and lost its
+  oldest matches. The client reports that as `truncated`, the connector turns it into
+  `complete: false`, and the window is therefore **never recorded as covered** — so it is retried
+  on every pull instead of the dropped matches being lost forever. It also warns, naming the
+  handle and how to narrow the window.
 - Add `rateLimit { cost remaining }` to both search queries and log the accumulated point cost
   per pull. It is free to request and it makes the saving this feature exists for measurable.
 
@@ -280,6 +283,9 @@ and never the token (invariant #6). `.cache/` is added to `.gitignore`.
    Existing `jdt` / `perf` figures will move up slightly. Expected, not a regression.
 3. **Deletions are not observed.** A deleted PR or a withdrawn review stays cached until `--full`.
    Acceptable for this tool.
+4. **The cache is at version 2.** Keying pull requests by the source's rename-stable id rather
+   than by `repo#number` changed the key scheme, so any v1 file is discarded on first load and
+   that handle is backfilled once.
 
 ## 13. Testing
 
@@ -315,8 +321,10 @@ e2e suites are untouched because the on-disk contract does not change.
 ## 15. Out of scope
 
 - Pruning cache files for handles no longer configured.
-- Chunking a backfill into sub-windows to stay under the 1,000-result search cap (this iteration
-  warns instead).
+- Chunking a backfill into sub-windows to stay under the 1,000-result search cap. This iteration
+  refuses to cache a truncated window (so nothing is silently lost) and warns, but it does not
+  split the window automatically — a persistently capped window is re-fetched every pull until the
+  operator narrows it.
 - Caching for Bitbucket/JIRA connectors — they do not exist yet, but they inherit the cache
   without new cache code.
 - Any change to the SPA, the aggregation math, or the `public/data/` contract.

@@ -45,6 +45,9 @@ import {
 const SOURCE = "github" as const;
 const DEFAULT_CACHE_DIR = ".cache/pull";
 const DEFAULT_OVERLAP_DAYS = 2;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+/** How far coverage may fall behind before the growing re-fetch is worth flagging. */
+const STALE_WARN_DAYS = 7;
 
 export interface Flags {
   dryRun: boolean;
@@ -181,6 +184,19 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
 
       if (windows.length === 0) {
         logger.debug(`@${handle}: cache already covers the range — no requests`);
+      }
+      // A handle whose fetches keep failing never advances its coverage, so the
+      // forward gap grows by a day per pull and eventually costs more than a
+      // cold backfill. Clamping the gap's start is NOT the fix: it would leave
+      // the skipped span unfetched while coverage unions over it, turning a cost
+      // problem into silent data loss. Say it out loud instead.
+      const staleDays = stored.coverage
+        ? (target.until.getTime() - stored.coverage.until.getTime()) / MS_PER_DAY
+        : 0;
+      if (staleDays > STALE_WARN_DAYS) {
+        logger.warn(
+          `@${handle}: cache has not advanced for ${String(Math.floor(staleDays))} days — each pull now re-fetches that whole span. Check earlier warnings for why its fetches are failing.`,
+        );
       }
       let everyWindowComplete = true;
       for (const window of windows) {

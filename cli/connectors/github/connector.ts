@@ -42,7 +42,10 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
         const handle = member.github as string;
         try {
           const authored = await client.searchPrsByAuthor(handle, since, until);
-          for (const node of authored) {
+          // A truncated search saw only part of the window. Treating it as
+          // complete would cache the window as covered and strand the rest.
+          if (authored.truncated) complete = false;
+          for (const node of authored.nodes) {
             const pr = normalizePullRequest(node, handle);
             const key = prKey(pr.repo, pr.number);
             if (seenPrs.has(key)) continue;
@@ -70,7 +73,8 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
 
         try {
           const reviewed = await client.searchPrsReviewedBy(handle, since, until);
-          for (const node of reviewed) {
+          if (reviewed.truncated) complete = false;
+          for (const node of reviewed.nodes) {
             comments.push(normalizeReviewComment(node, handle));
             addRepo({
               source: "github",

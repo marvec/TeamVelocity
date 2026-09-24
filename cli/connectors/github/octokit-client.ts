@@ -10,7 +10,7 @@
 
 import { Octokit } from "octokit";
 import type { Logger } from "../types";
-import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient } from "./types";
+import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient, SearchOutcome } from "./types";
 
 /**
  * GitHub's `search` connection returns at most 1000 results, whatever the
@@ -20,6 +20,7 @@ import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient } from "./types"
 const SEARCH_RESULT_CAP = 1000;
 
 const PR_FIELDS = `
+  id
   number
   title
   state
@@ -131,7 +132,7 @@ export function createGitHubClientFromGraphql(graphql: GraphqlFn, logger?: Logge
   let cost = 0;
   let remaining: number | null = null;
 
-  async function searchAll<T>(query: string, q: string, what: string): Promise<T[]> {
+  async function searchAll<T>(query: string, q: string, what: string): Promise<SearchOutcome<T>> {
     const out: T[] = [];
     let cursor: string | null = null;
     do {
@@ -146,12 +147,13 @@ export function createGitHubClientFromGraphql(graphql: GraphqlFn, logger?: Logge
       cursor = data.search.pageInfo.hasNextPage ? data.search.pageInfo.endCursor : null;
     } while (cursor);
 
-    if (out.length >= SEARCH_RESULT_CAP) {
+    const truncated = out.length >= SEARCH_RESULT_CAP;
+    if (truncated) {
       logger?.warn(
-        `github: ${what} returned ${String(out.length)} results — GitHub's search ceiling is ${String(SEARCH_RESULT_CAP)}, so older matches were dropped. Narrow the window (--weeks / --since) to see them.`,
+        `github: ${what} hit GitHub's ${String(SEARCH_RESULT_CAP)}-result search ceiling, so older matches were dropped. This window will NOT be recorded as cached, so it is retried every pull until it fits — narrow it with --since, or pull more often.`,
       );
     }
-    return out;
+    return { nodes: out, truncated };
   }
 
   return {

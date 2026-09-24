@@ -64,12 +64,12 @@ function recordingClient(): { client: GitHubClient; calls: Call[] } {
       async searchPrsByAuthor(handle, since, until) {
         record(handle, since, until);
         const all = await inner.searchPrsByAuthor(handle, since, until);
-        return all.filter((n) => inWindow(n.updatedAt, since, until));
+        return { nodes: all.nodes.filter((n) => inWindow(n.updatedAt, since, until)), truncated: false };
       },
       async searchPrsReviewedBy(handle, since, until) {
         record(handle, since, until);
         const all = await inner.searchPrsReviewedBy(handle, since, until);
-        return all.filter((n) => inWindow(n.updatedAt, since, until));
+        return { nodes: all.nodes.filter((n) => inWindow(n.updatedAt, since, until)), truncated: false };
       },
       usage: () => inner.usage(),
     },
@@ -337,6 +337,30 @@ describe("runPull — resilience", () => {
     await runPull(options({ connector: createGitHubConnector(failing), store, dataDir: dir }));
 
     // Nothing was recorded as covered, so the next pull asks for the full window again.
+    const retry = await pull(store, dir);
+    expect(retry).toHaveLength(4);
+    for (const call of retry) {
+      expect(call.since).toBe("2026-03-01T00:00:00.000Z");
+    }
+  });
+
+  it("does not record a truncated search as covered", async () => {
+    // GitHub's 1000-result ceiling drops the oldest matches. Caching that window
+    // as covered would mean no ordinary pull ever asks for them again.
+    const store = createMemoryCacheStore();
+    const dir = dataDir();
+    const inner = createFakeGitHubClient(fixtures);
+    const capped: GitHubClient = {
+      async searchPrsByAuthor(h, s, u) {
+        return { nodes: (await inner.searchPrsByAuthor(h, s, u)).nodes, truncated: true };
+      },
+      searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      usage: () => inner.usage(),
+    };
+
+    await runPull(options({ connector: createGitHubConnector(capped), store, dataDir: dir }));
+
+    // Uncovered, so the next pull asks for the whole window again rather than a delta.
     const retry = await pull(store, dir);
     expect(retry).toHaveLength(4);
     for (const call of retry) {

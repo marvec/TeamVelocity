@@ -105,6 +105,12 @@ rate-limit points each pull spent.
 Deleting `.cache/` is always safe: the next pull backfills it. A cache file that is corrupt or
 written by an older version is reported and re-fetched rather than failing the pull.
 
+Two things a pull will tell you about rather than paper over. If a search hits GitHub's
+1000-result ceiling its window is *not* cached, so it is retried every pull until you narrow it
+with `--since` — the warning names the handle. And if one handle's fetches keep failing, its
+cache stops advancing and the re-fetched span grows by a day per pull; after a week the pull says
+so, naming the handle.
+
 ## Scripts
 
 | Script | What it does |

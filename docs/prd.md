@@ -481,8 +481,9 @@ Scripts: `bun run pull`, `bun run dev`, `bun run build`, `bun run test`, `bun ru
   `public/data/`). `--full` rebuilds it; `--no-cache` bypasses it.
 - **Rate limits:** respect GitHub limits with backoff; a `--since`/`--until` (or `--weeks N`) flag
   on the puller for bounded backfills. Searches request `rateLimit { cost remaining }` so each pull
-  reports what it spent, and a search that hits GitHub's 1000-result ceiling warns rather than
-  silently truncating.
+  reports what it spent. A search that hits GitHub's 1000-result ceiling warns *and* marks the
+  collection incomplete, so the truncated window is never cached as covered and is retried rather
+  than silently losing its oldest matches.
 - **Determinism:** identical inputs → identical JSON (stable ordering) so diffs are meaningful.
 - **Fail loud on schema drift:** both writer and loader validate against the shared Zod schema.
 - **Secret hygiene:** the token lives only in `.env`; it is never written into `public/data/`,

@@ -12,6 +12,8 @@ export interface GhRepository {
 
 /** A pull request node from the GraphQL `search` query (author search). */
 export interface GhPullRequestNode {
+  /** GraphQL node id — stable across repo renames and transfers. */
+  id?: string;
   number: number;
   title: string;
   state: "OPEN" | "CLOSED" | "MERGED";
@@ -53,11 +55,23 @@ export interface GhCommitNode {
  * (`octokit-client.ts`) talks to GitHub; tests provide a fake backed by
  * fixtures.
  */
+/**
+ * A search's nodes plus whether GitHub's 1000-result ceiling cut it short.
+ *
+ * Truncation has to travel with the result: the caller caches a *coverage*
+ * interval, and recording a truncated window as covered would mean the dropped
+ * matches are never fetched again by any ordinary pull.
+ */
+export interface SearchOutcome<T> {
+  nodes: T[];
+  truncated: boolean;
+}
+
 export interface GitHubClient {
   /** PRs authored by `handle`, updated within [since, until). */
-  searchPrsByAuthor(handle: string, since: Date, until: Date): Promise<GhPullRequestNode[]>;
+  searchPrsByAuthor(handle: string, since: Date, until: Date): Promise<SearchOutcome<GhPullRequestNode>>;
   /** PRs `handle` reviewed, updated within [since, until). */
-  searchPrsReviewedBy(handle: string, since: Date, until: Date): Promise<GhReviewedPrNode[]>;
+  searchPrsReviewedBy(handle: string, since: Date, until: Date): Promise<SearchOutcome<GhReviewedPrNode>>;
   /**
    * GraphQL rate-limit points spent since the client was created, and the
    * budget left after the last call (`null` until a response reports one).

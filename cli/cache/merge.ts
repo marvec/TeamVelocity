@@ -6,7 +6,7 @@
  * oldest-first and let the freshest observation of a record survive.
  */
 
-import { prKey, repoKey } from "../../shared/types";
+import { prIdentity, repoKey } from "../../shared/types";
 import type { HandleCache } from "../../shared/schema/cache";
 import type { CollectResult } from "../connectors/types";
 import { unionWindow, type Window } from "./plan";
@@ -35,7 +35,7 @@ export function mergeHandleCache(
   for (const collected of fetched.prs) {
     // The whole entry is replaced, commits included: a force-push rewrites SHAs,
     // and keeping the old ones would inflate the commit signal forever.
-    prs.set(prKey(collected.pr.repo, collected.pr.number), {
+    prs.set(prIdentity(collected.pr), {
       pr: collected.pr,
       commits: [...collected.commits],
     });

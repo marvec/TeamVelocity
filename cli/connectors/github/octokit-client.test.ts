@@ -85,7 +85,7 @@ describe("gitHub client — pagination", () => {
     ]);
     const out = await createGitHubClientFromGraphql(fn).searchPrsByAuthor("alice", since, until);
 
-    expect(out.map((n) => n.number)).toEqual([1, 2, 3]);
+    expect(out.nodes.map((n) => n.number)).toEqual([1, 2, 3]);
     expect(calls).toHaveLength(2);
     expect(calls[0].vars.cursor).toBeNull();
     expect(calls[1].vars.cursor).toBe("CUR1");
@@ -94,7 +94,7 @@ describe("gitHub client — pagination", () => {
   it("drops non-PullRequest nodes the issue search returns", async () => {
     const { fn } = recorder([page([prNode(1), { __typename: "Issue", number: 2 }])]);
     const out = await createGitHubClientFromGraphql(fn).searchPrsByAuthor("alice", since, until);
-    expect(out.map((n) => n.number)).toEqual([1]);
+    expect(out.nodes.map((n) => n.number)).toEqual([1]);
   });
 });
 
@@ -104,8 +104,11 @@ describe("gitHub client — accounting", () => {
     const full = Array.from({ length: 1000 }, (_, i) => prNode(i + 1));
     const { fn } = recorder([page(full, { next: null })]);
 
-    await createGitHubClientFromGraphql(fn, logger).searchPrsByAuthor("alice", since, until);
+    const out = await createGitHubClientFromGraphql(fn, logger).searchPrsByAuthor("alice", since, until);
 
+    // Reporting it is what keeps the caller from caching the window as covered;
+    // the warning alone would let the dropped matches be lost permanently.
+    expect(out.truncated).toBe(true);
     expect(warnings.some((w) => w.includes("1000") && w.includes("alice"))).toBe(true);
   });
 
@@ -113,8 +116,9 @@ describe("gitHub client — accounting", () => {
     const { logger, warnings } = collectingLogger();
     const { fn } = recorder([page([prNode(1)], { next: null })]);
 
-    await createGitHubClientFromGraphql(fn, logger).searchPrsByAuthor("alice", since, until);
+    const out = await createGitHubClientFromGraphql(fn, logger).searchPrsByAuthor("alice", since, until);
 
+    expect(out.truncated).toBe(false);
     expect(warnings).toEqual([]);
   });
 
