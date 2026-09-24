@@ -54,8 +54,14 @@ export interface GhCommitNode {
  * fixtures.
  */
 export interface GitHubClient {
-  /** PRs authored by `handle`, created within [since, until). */
+  /** PRs authored by `handle`, updated within [since, until). */
   searchPrsByAuthor(handle: string, since: Date, until: Date): Promise<GhPullRequestNode[]>;
   /** PRs `handle` reviewed, updated within [since, until). */
   searchPrsReviewedBy(handle: string, since: Date, until: Date): Promise<GhReviewedPrNode[]>;
+  /**
+   * GraphQL rate-limit points spent since the client was created, and the
+   * budget left after the last call (`null` until a response reports one).
+   * Making the saving measurable is the point of incremental pulls.
+   */
+  usage(): { cost: number; remaining: number | null };
 }

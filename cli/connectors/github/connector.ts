@@ -85,6 +85,13 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
         `github: ${String(prs.length)} PRs, ${String(commitCount)} commits, ${String(comments.length)} review comments across ${String(repoList.length)} repos`,
       );
 
+      // What the pull actually cost. Fixtures report 0, so dry runs stay quiet.
+      const { cost, remaining } = client.usage();
+      if (cost > 0) {
+        const left = remaining === null ? "" : `, ${String(remaining)} remaining`;
+        logger.info(`github: ${String(cost)} GraphQL rate-limit points spent so far${left}`);
+      }
+
       return { prs, commits: [], comments, repos: repoList };
     },
   };

@@ -19,5 +19,10 @@ export function createFakeGitHubClient(fixtures: GitHubFixtures): GitHubClient {
     searchPrsReviewedBy(handle: string): Promise<GhReviewedPrNode[]> {
       return Promise.resolve(fixtures.reviewed[handle] ?? []);
     },
+
+    /** Fixtures cost nothing, so there is no rate-limit budget to report. */
+    usage() {
+      return { cost: 0, remaining: null };
+    },
   };
 }
