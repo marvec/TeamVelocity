@@ -23,8 +23,24 @@ export interface CollectContext {
   logger: Logger;
 }
 
+/**
+ * A pull request together with the commits it owns. Grouping them is what lets
+ * the pull cache replace a PR's commit set as a unit: a rebased or force-pushed
+ * PR would otherwise accumulate the SHAs of every rewritten version and
+ * permanently inflate velocity's commit signal.
+ *
+ * Each group carries its PR's OWN complete commit list — a SHA riding two PRs
+ * appears in both. De-duplication by SHA happens when caches are flattened for
+ * aggregation, so a group never depends on the order PRs were fetched in.
+ */
+export interface CollectedPr {
+  pr: PullRequest;
+  commits: Commit[];
+}
+
 export interface CollectResult {
-  pullRequests: PullRequest[];
+  prs: CollectedPr[];
+  /** Commits owned by no pull request. GitHub sources every commit from a PR. */
   commits: Commit[];
   comments: Comment[];
   /** Union of discovered + explicit repos. */

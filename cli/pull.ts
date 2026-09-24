@@ -17,6 +17,7 @@ import { createConsoleLogger } from "./logger";
 import { getGithubToken, loadConfig } from "./config";
 import { writeTeamDataset, writeTeamsIndex } from "./writer";
 import { explicitReposOf, githubMembers, toDatasetTeam } from "./team-mapping";
+import { flattenCollected } from "./cache/flatten";
 import { getConnectorFactory } from "./connectors"; // importing registers v1 connectors
 import { createGitHubConnector } from "./connectors/github/connector";
 import { createFakeGitHubClient, type GitHubFixtures } from "./connectors/github/fake-client";
@@ -94,9 +95,7 @@ async function runDryRun(flags: Flags, logger: Logger): Promise<void> {
     team: toDatasetTeam(team, "github"),
     since,
     until,
-    pullRequests: result.pullRequests,
-    commits: result.commits,
-    comments: result.comments,
+    ...flattenCollected([result]),
     now: new Date(2026, 7, 31, 8, 0, 0),
   });
   await writeTeamsIndex(flags.dataDir, [{ id: team.id, name: team.name }]);
@@ -131,9 +130,7 @@ async function runLivePull(flags: Flags, token: string, logger: Logger): Promise
       team: toDatasetTeam(team, "github"),
       since,
       until,
-      pullRequests: result.pullRequests,
-      commits: result.commits,
-      comments: result.comments,
+      ...flattenCollected([result]),
       now,
     });
     await writeTeamDataset(flags.dataDir, dataset);

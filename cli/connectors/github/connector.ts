@@ -3,10 +3,10 @@
  * `GitHubClient`) + normalization. Contains no metric math.
  */
 
-import type { Comment, Commit, PullRequest, RepoRef } from "../../../shared/types";
+import type { Comment, RepoRef } from "../../../shared/types";
 import { repoKey } from "../../../shared/types";
 import type { Member } from "../../../shared/schema/config";
-import type { CollectContext, CollectResult, SourceConnector } from "../types";
+import type { CollectContext, CollectedPr, CollectResult, SourceConnector } from "../types";
 import type { GitHubClient } from "./types";
 import { commitsFromPr, normalizePullRequest, normalizeReviewComment } from "./normalize";
 
@@ -20,11 +20,9 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
 
     async collect(ctx: CollectContext): Promise<CollectResult> {
       const { since, until, logger } = ctx;
-      const pullRequests: PullRequest[] = [];
+      const prs: CollectedPr[] = [];
       const comments: Comment[] = [];
-      const commits: Commit[] = [];
       const seenPrs = new Set<string>();
-      const seenCommits = new Set<string>();
       const repos = new Map<string, RepoRef>();
 
       const addRepo = (repo: RepoRef): void => {
@@ -45,16 +43,11 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
             const key = `${repoKey(pr.repo)}#${pr.number}`;
             if (seenPrs.has(key)) continue;
             seenPrs.add(key);
-            pullRequests.push(pr);
             addRepo(pr.repo);
 
-            // A PR's own commits (PRD §5), attributed to its author and deduped
-            // by SHA across the member's PRs.
-            for (const commit of commitsFromPr(node, pr.authorHandle)) {
-              if (seenCommits.has(commit.sha)) continue;
-              seenCommits.add(commit.sha);
-              commits.push(commit);
-            }
+            // A PR's own commits (PRD §5), attributed to its author and kept
+            // with the PR rather than in a flat list — see CollectedPr.
+            prs.push({ pr, commits: commitsFromPr(node, pr.authorHandle) });
             // A PR's commit connection is one GraphQL page (first: 100). When a
             // PR exceeds that we warn rather than silently truncate. The extra
             // commits' SHAs/dates are unfetched, so velocity's commit-count signal
@@ -87,11 +80,12 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
       }
 
       const repoList = [...repos.values()];
+      const commitCount = prs.reduce((n, c) => n + c.commits.length, 0);
       logger.info(
-        `github: ${String(pullRequests.length)} PRs, ${String(commits.length)} commits, ${String(comments.length)} review comments across ${String(repoList.length)} repos`,
+        `github: ${String(prs.length)} PRs, ${String(commitCount)} commits, ${String(comments.length)} review comments across ${String(repoList.length)} repos`,
       );
 
-      return { pullRequests, commits, comments, repos: repoList };
+      return { prs, commits: [], comments, repos: repoList };
     },
   };
 }

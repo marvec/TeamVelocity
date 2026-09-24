@@ -54,9 +54,10 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
     const result = await connector.collect(context([alice, bob]));
 
-    expect(result.pullRequests.map((p) => p.number).sort((a, b) => a - b)).toEqual([10, 11, 12]);
+    const prs = result.prs.map((c) => c.pr);
+    expect(prs.map((p) => p.number).sort((a, b) => a - b)).toEqual([10, 11, 12]);
 
-    const pr10 = result.pullRequests.find((p) => p.number === 10)!;
+    const pr10 = prs.find((p) => p.number === 10)!;
     expect(pr10.state).toBe("merged");
     expect(pr10.authorHandle).toBe("alice");
     expect(pr10.additions).toBe(120);
@@ -72,7 +73,7 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     expect(pr10.repo.name).toBe("web");
     expect(pr10.mergedAt).toBeInstanceOf(Date);
 
-    const pr11 = result.pullRequests.find((p) => p.number === 11)!;
+    const pr11 = prs.find((p) => p.number === 11)!;
     expect(pr11.state).toBe("open");
     expect(pr11.mergedAt).toBeUndefined();
   });
@@ -95,11 +96,16 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
     const result = await connector.collect(context([alice, bob]));
 
-    // Commits come from the PRs themselves now, not a repo commit log.
-    expect(result.commits.map((c) => c.sha).sort()).toEqual(["aaa111", "aaa222", "bbb111", "ccc111"]);
+    // Commits ride their owning PR so the cache can replace a PR's whole commit
+    // set on re-fetch; they are no longer a flat top-level list.
+    const owned = result.prs.flatMap((c) => c.commits);
+    expect(owned.map((c) => c.sha).sort()).toEqual(["aaa111", "aaa222", "bbb111", "ccc111"]);
     // ccc111 rides alice's PR #11 → attributed to alice; bbb111 rides bob's #12 → bob.
-    expect(result.commits.find((c) => c.sha === "ccc111")?.authorHandle).toBe("alice");
-    expect(result.commits.find((c) => c.sha === "bbb111")?.authorHandle).toBe("bob");
+    expect(owned.find((c) => c.sha === "ccc111")?.authorHandle).toBe("alice");
+    expect(owned.find((c) => c.sha === "bbb111")?.authorHandle).toBe("bob");
+
+    // GitHub sources every commit from a PR, so the PR-less bucket stays empty.
+    expect(result.commits).toEqual([]);
 
     const repoNames = result.repos.map((r) => `${r.owner}/${r.name}`).sort();
     expect(repoNames).toEqual(["acme/api", "acme/web"]);
@@ -139,11 +145,11 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     const connector = createGitHubConnector(createFakeGitHubClient(capped));
     const result = await connector.collect({ ...context([alice]), logger: capturingLogger });
 
-    expect(result.commits.map((c) => c.sha)).toEqual(["cap1"]);
+    expect(result.prs.flatMap((c) => c.commits).map((c) => c.sha)).toEqual(["cap1"]);
     expect(warnings.some((w) => w.includes("has 3 commits") && w.includes("only the first 1"))).toBe(true);
   });
 
-  it("dedupes a commit SHA shared across two of a member's PRs", async () => {
+  it("keeps a shared commit SHA in BOTH owning PRs, leaving dedupe to the flatten step", async () => {
     const base = fixtures.authored.alice[0];
     const shared = {
       commit: { oid: "dup1", committedDate: "2026-08-05T10:00:00Z", url: "https://github.com/acme/web/commit/dup1" },
@@ -180,9 +186,13 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     const connector = createGitHubConnector(createFakeGitHubClient(dupFixtures));
     const result = await connector.collect(context([alice]));
 
-    // dup1 rides both PRs but must appear exactly once (else velocity's commit signal inflates).
-    expect(result.commits.filter((c) => c.sha === "dup1")).toHaveLength(1);
-    expect(result.commits.map((c) => c.sha).sort()).toEqual(["a10", "a20", "dup1"]);
+    // Each PR carries its OWN complete commit set. Dropping dup1 from #20 here
+    // would make the cached set for #20 depend on fetch order, and re-fetching
+    // #10 alone would then lose the SHA entirely. Velocity's commit signal is
+    // protected by the SHA dedupe in the flatten step, not here.
+    const byNumber = new Map(result.prs.map((c) => [c.pr.number, c.commits.map((x) => x.sha).sort()]));
+    expect(byNumber.get(10)).toEqual(["a10", "dup1"]);
+    expect(byNumber.get(20)).toEqual(["a20", "dup1"]);
   });
 
   it("includes explicit repos even when no activity surfaces them", async () => {
@@ -199,6 +209,6 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
     const result = await connector.collect(context([alice, carol]));
     // carol contributes nothing; only alice's PRs surface
-    expect(result.pullRequests.every((p) => p.authorHandle === "alice")).toBe(true);
+    expect(result.prs.every((c) => c.pr.authorHandle === "alice")).toBe(true);
   });
 });
