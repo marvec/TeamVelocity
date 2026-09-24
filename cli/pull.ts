@@ -46,7 +46,7 @@ const SOURCE = "github" as const;
 const DEFAULT_CACHE_DIR = ".cache/pull";
 const DEFAULT_OVERLAP_DAYS = 2;
 
-interface Flags {
+export interface Flags {
   dryRun: boolean;
   verbose: boolean;
   config: string;
@@ -61,7 +61,7 @@ interface Flags {
   cacheDir: string;
 }
 
-function parseFlags(argv: string[]): Flags {
+export function parseFlags(argv: string[]): Flags {
   const flags: Flags = {
     dryRun: false,
     verbose: false,
@@ -157,20 +157,32 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
     const explicitRepos = explicitReposOf(team);
     const caches: HandleCache[] = [];
 
+    // Load every handle before planning any of them. The dataset spans the union
+    // of the team's coverage, so a handle that just joined — or whose cache was
+    // discarded as unreadable — has to be backfilled to that union, not merely to
+    // `requested`. Otherwise it renders as real zeros in every earlier week its
+    // teammates cover, which reads as "did nothing" rather than "not fetched".
+    const storedByHandle = new Map<string, HandleCache>();
+    for (const member of members) {
+      storedByHandle.set(member.github, await loadHandleCache(store, SOURCE, member.github, logger));
+    }
+    let target = requested;
+    for (const cache of storedByHandle.values()) target = widen(target, cache.coverage);
+
     for (const member of members) {
       const handle = member.github;
-      const stored = await loadHandleCache(store, SOURCE, handle, logger);
+      const stored = storedByHandle.get(handle) ?? emptyHandleCache(SOURCE, handle);
 
-      // --full drops the cached entities so records deleted upstream disappear,
-      // but re-fetches over the cached coverage too: it must never shrink
-      // accumulated history just because --weeks is smaller this time.
+      // --full drops the cached entities so records deleted upstream disappear.
+      // It still fetches the full team target, so it can never shrink accumulated
+      // history just because --weeks is smaller this time.
       let cache = full ? emptyHandleCache(SOURCE, handle) : stored;
-      const target = full ? widen(requested, stored.coverage) : requested;
       const windows = planFetchWindows(cache.coverage, target, overlapDays);
 
       if (windows.length === 0) {
         logger.debug(`@${handle}: cache already covers the range — no requests`);
       }
+      let everyWindowComplete = true;
       for (const window of windows) {
         logger.debug(
           `@${handle}: fetching ${window.since.toISOString()} .. ${window.until.toISOString()}`,
@@ -187,21 +199,41 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
         // fully seen, so a failed search is retried on the next pull.
         cache = mergeHandleCache(cache, result, result.complete ? window : null);
         if (!result.complete) {
+          everyWindowComplete = false;
           logger.warn(`@${handle}: window only partly fetched — left uncovered so the next pull retries it`);
         }
       }
 
-      // Nothing fetched means `cache` is still exactly what was loaded, and
-      // re-writing it would re-validate and re-serialize the handle's entire
-      // accumulated history for no change — the cost grows forever, and it lands
-      // precisely on the runs this feature exists to make cheap.
-      if (windows.length > 0) await saveHandleCache(store, cache);
+      if (full && !everyWindowComplete) {
+        // --full threw the cached entities away before re-fetching. Saving the
+        // half-built replacement would destroy accumulated history that GitHub
+        // may no longer return inside --weeks, so keep what we already had and
+        // let the next pull try again.
+        logger.warn(`@${handle}: --full rebuild was incomplete — keeping the existing cache`);
+        cache = stored;
+      } else if (windows.length > 0) {
+        // Nothing fetched means `cache` is still exactly what was loaded, and
+        // re-writing it would re-validate and re-serialize the handle's entire
+        // accumulated history for no change — the cost grows forever, and it
+        // lands precisely on the runs this feature exists to make cheap.
+        try {
+          await saveHandleCache(store, cache);
+        } catch (err) {
+          // Symmetric with the load path: the cache is an optimization, so a
+          // failed write costs the next pull some API calls rather than
+          // throwing away a dataset that was fetched successfully.
+          const reason = err instanceof Error ? err.message.split("\n")[0] : String(err);
+          logger.warn(`@${handle}: could not write the cache (${reason}) — the next pull will re-fetch this range`);
+        }
+      }
       caches.push(cache);
     }
 
     // History accumulates: the dataset spans everything ever pulled for this
-    // team, not just the window this run asked for.
-    let range = requested;
+    // team, not just the window this run asked for. This starts from `target`
+    // rather than `requested` so the rendered range matches the range every
+    // handle was planned against, even where a fetch left coverage short.
+    let range = target;
     for (const cache of caches) range = widen(range, cache.coverage);
 
     const entities = flattenCollected(caches.map(cacheEntities));

@@ -77,7 +77,7 @@ Git-ignored, disposable, never under `public/data/`. Handles are already normali
 | Collection | Key | Rationale |
 |---|---|---|
 | `prs` | `` `${repoKey(repo)}#${number}` `` | A PR's identity on its source. |
-| `comments` | `url` | Every comment has one, and it is unique per comment. For today's `review_summary` the URL is the PR's, giving exactly one entry per (handle, PR) — which is the intended cardinality. A composite `repo#pr:kind` key would collide for any future connector that emits several comments of one kind on one PR. |
+| `comments` | `url` | Every comment has one. A `review_summary` carries the reviewed PR's own URL, so within a single handle's file this gives exactly one entry per (handle, PR) — the intended cardinality. A composite `repo#pr:kind` key would instead collide for any future connector emitting several comments of one kind on one PR. **Note the flatten step keys on author *and* URL** (§6): across handles that same PR URL is shared by every reviewer, so URL alone would drop all but one reviewer's credit. |
 | `commits` | `sha` | Only reached by connectors that emit PR-less commits. GitHub emits none today. |
 
 ### Why a PR bundles its commits
@@ -126,13 +126,17 @@ Rules:
 
 `overlapDays` defaults to **2** and is settable with `--overlap-days N`.
 
-`pull.ts` computes a plan per handle, groups handles whose plans are identical, and calls
-`connector.collect()` **once per distinct window** with only the members that need it. The
-connector interface is therefore unchanged: `CollectContext` already carries `members`, `since`
-and `until`.
+`pull.ts` computes a plan per handle and calls `connector.collect()` **once per (handle,
+window)**. The connector interface is therefore unchanged: `CollectContext` already carries
+`members`, `since` and `until`.
 
-A typical daily pull collapses to a single `collect` call covering a ~3-day window: 7 handles ×
-2 searches × 1 nearly-empty page, against roughly 7 × 2 × 2 full pages today.
+Batching several handles into one `collect()` call was considered and rejected. `collect()` issues
+two searches *per member* internally, so batching saves no API calls, and it would force the
+result to be partitioned back by author — which misfiles a PR whose `author.login` casing differs
+from the handle that was searched.
+
+A typical daily pull covers a ~3-day window: 7 handles × 2 searches × 1 nearly-empty page,
+against roughly 7 × 2 × 2 full pages today.
 
 ## 5. Connector interface change
 

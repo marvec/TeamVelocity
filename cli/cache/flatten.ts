@@ -9,7 +9,10 @@
  * - **Commits** by SHA — a SHA rides every PR that contains it (see
  *   {@link PrGroup}), so this is what keeps velocity's commit signal from
  *   double-counting a shared commit.
- * - **Comments** by url, **repos** by repo key.
+ * - **Comments** by author *and* url. A `review_summary` carries the reviewed
+ *   PR's own url, so every reviewer of that PR shares it; url alone would keep
+ *   one reviewer and silently drop the rest of the team's review activity.
+ * - **Repos** by repo key.
  *
  * First occurrence wins; callers order sources so the preferred record is first.
  */
@@ -53,7 +56,7 @@ export function flattenCollected(sources: readonly CollectedEntities[]): FlatEnt
       addUnique(seenCommits, commits, commit.sha, commit);
     }
     for (const comment of source.comments) {
-      addUnique(seenComments, comments, comment.url, comment);
+      addUnique(seenComments, comments, `${comment.authorHandle}\u0000${comment.url}`, comment);
     }
     for (const repo of source.repos) {
       addUnique(seenRepos, repos, repoKey(repo), repo);

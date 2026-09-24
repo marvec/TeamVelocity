@@ -67,7 +67,8 @@ Two halves that share one source-agnostic **aggregation library**.
   │   (fetch + normalize)         Bitbucket (future) │              │
   │                               JIRA (future)      │              │
   │                                                  ▼              │
-  │   normalized: PullRequest[] Commit[] Comment[] RepoRef[]        │
+  │   normalized: CollectedPr[] (PR + its commits)                  │
+  │               Comment[] RepoRef[]  (+ complete flag) — see §5    │
   │      │                                                          │
   │      ▼                                                          │
   │   AGGREGATION LIB (pure, source-agnostic, unit-tested)          │

@@ -105,7 +105,7 @@ describe("flattenCollected", () => {
     expect(flat.pullRequests).toHaveLength(2);
   });
 
-  it("dedupes comments by url and repos by repo key", () => {
+  it("dedupes the same author's comment seen twice, and dedupes repos by repo key", () => {
     const url = "https://github.com/acme/web/pull/1";
     const flat = flattenCollected([
       source({ comments: [comment(url)], repos: [web, api] }),
@@ -113,6 +113,18 @@ describe("flattenCollected", () => {
     ]);
     expect(flat.comments).toHaveLength(1);
     expect(flat.repos.map((r) => r.name).sort()).toEqual(["api", "web"]);
+  });
+
+  it("keeps BOTH members' reviews of one PR", () => {
+    // A review_summary is stamped with the PR's own url, so every reviewer of a
+    // PR shares it. Keying on url alone would credit only one of them and
+    // undercount the other's review activity in the velocity signal.
+    const url = "https://github.com/acme/web/pull/1";
+    const flat = flattenCollected([
+      source({ comments: [comment(url, { authorHandle: "alice" })] }),
+      source({ comments: [comment(url, { authorHandle: "bob" })] }),
+    ]);
+    expect(flat.comments.map((c) => c.authorHandle).sort()).toEqual(["alice", "bob"]);
   });
 
   it("returns empty collections for no sources", () => {

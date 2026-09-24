@@ -4,7 +4,7 @@
  * `shared/schema/cache.ts`, and all filesystem access lives here (design §9).
  */
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import type { SourceId } from "../../shared/types";
 import {
@@ -58,7 +58,19 @@ export function createFileCacheStore(dir: string): CacheStore {
     async save(source, handle, value) {
       const path = handlePath(dir, source, handle);
       await mkdir(dirname(path), { recursive: true });
-      await writeFile(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+      // Write beside the target and rename over it. A direct overwrite that is
+      // interrupted leaves unparseable JSON, which the load path discards —
+      // silently costing the handle's whole accumulated history. `rename` within
+      // one directory is atomic, so a reader sees either the old file or the new
+      // one. The pid keeps two concurrent pulls off each other's temp file.
+      const temp = `${path}.${String(process.pid)}.tmp`;
+      try {
+        await writeFile(temp, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+        await rename(temp, path);
+      } catch (err) {
+        await rm(temp, { force: true });
+        throw err;
+      }
     },
   };
 }

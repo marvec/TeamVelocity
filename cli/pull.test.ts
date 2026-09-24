@@ -39,7 +39,19 @@ interface Call {
   until: string;
 }
 
-/** Wraps the fixture client and records every window it is asked for. */
+/** Real GitHub honours the `updated:` window; the bare fixture client does not. */
+function inWindow(updatedAt: string, since: Date, until: Date): boolean {
+  const at = new Date(updatedAt).getTime();
+  return at >= since.getTime() && at < until.getTime();
+}
+
+/**
+ * Wraps the fixture client, records every window it is asked for, and — unlike
+ * the bare fixture client — actually filters by that window. Without the filter
+ * every window returns the same static set, so a test comparing an incrementally
+ * merged dataset against a single-shot pull passes no matter how badly the
+ * window planning or the merge regresses.
+ */
 function recordingClient(): { client: GitHubClient; calls: Call[] } {
   const inner = createFakeGitHubClient(fixtures);
   const calls: Call[] = [];
@@ -49,13 +61,15 @@ function recordingClient(): { client: GitHubClient; calls: Call[] } {
   return {
     calls,
     client: {
-      searchPrsByAuthor(handle, since, until) {
+      async searchPrsByAuthor(handle, since, until) {
         record(handle, since, until);
-        return inner.searchPrsByAuthor(handle, since, until);
+        const all = await inner.searchPrsByAuthor(handle, since, until);
+        return all.filter((n) => inWindow(n.updatedAt, since, until));
       },
-      searchPrsReviewedBy(handle, since, until) {
+      async searchPrsReviewedBy(handle, since, until) {
         record(handle, since, until);
-        return inner.searchPrsReviewedBy(handle, since, until);
+        const all = await inner.searchPrsReviewedBy(handle, since, until);
+        return all.filter((n) => inWindow(n.updatedAt, since, until));
       },
       usage: () => inner.usage(),
     },
@@ -175,15 +189,31 @@ describe("runPull — incremental fetching", () => {
 });
 
 describe("runPull — the cached dataset matches a single full pull", () => {
-  it("produces byte-identical output whether built incrementally or in one go", async () => {
-    const later = {
-      requested: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-09-11T00:00:00.000Z") },
-      now: d("2026-09-11T08:00:00.000Z"),
-    };
+  // The fixture PRs update on Aug 5, Aug 12 and Aug 14, so these two windows
+  // genuinely split them: the first pull cannot see PR #12 or alice's review of
+  // it, and only the merge of both windows reproduces the one-shot result.
+  const first = {
+    requested: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-08-13T00:00:00.000Z") },
+    now: d("2026-08-13T08:00:00.000Z"),
+  };
+  const later = {
+    requested: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-08-20T00:00:00.000Z") },
+    now: d("2026-08-20T08:00:00.000Z"),
+  };
 
+  it("sees only part of the data on the first window", async () => {
+    const dir = dataDir();
+    await pull(createMemoryCacheStore(), dir, first);
+    const weeks = snapshot(dir);
+    // Guards the guard: if this ever contains #12, the windows stopped splitting
+    // the fixtures and the equality test below goes back to proving nothing.
+    expect(JSON.stringify(weeks)).not.toContain('"number": 12');
+  });
+
+  it("produces byte-identical output whether built incrementally or in one go", async () => {
     const incrementalDir = dataDir();
     const store = createMemoryCacheStore();
-    await pull(store, incrementalDir);
+    await pull(store, incrementalDir, first);
     await pull(store, incrementalDir, later);
 
     const oneShotDir = dataDir();
@@ -231,6 +261,68 @@ describe("runPull — --full", () => {
   });
 });
 
+describe("runPull — a reset handle is backfilled to the team's range", () => {
+  it("backfills a handle whose cache was lost to the range its teammates cover", async () => {
+    const store = createMemoryCacheStore();
+    const dir = dataDir();
+    await pull(store, dir);
+
+    // alice's cache is discarded (corrupt file, or she was just added to the team).
+    await store.save("github", "alice", undefined);
+
+    const calls = await pull(store, dir, {
+      requested: { since: d("2026-09-05T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") },
+    });
+
+    // Without backfilling to the team range, alice renders as real zeros for
+    // every earlier week bob covers — the dataset spans the union of coverage.
+    const aliceWindows = calls.filter((c) => c.handle === "alice");
+    expect(aliceWindows).toHaveLength(2);
+    for (const call of aliceWindows) {
+      expect(call.since).toBe("2026-03-01T00:00:00.000Z");
+    }
+  });
+});
+
+describe("runPull — --full must not destroy history when it fails", () => {
+  it("keeps the existing cache when a --full rebuild is incomplete", async () => {
+    const store = createMemoryCacheStore();
+    const dir = dataDir();
+    await pull(store, dir);
+
+    // --full starts from an empty cache. If the refetch fails, saving that
+    // empty cache would throw away accumulated history that GitHub may no
+    // longer return within --weeks.
+    const inner = createFakeGitHubClient(fixtures);
+    const failing: GitHubClient = {
+      searchPrsByAuthor: () => Promise.reject(new Error("502 Bad Gateway")),
+      searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      usage: () => inner.usage(),
+    };
+    await runPull(options({ connector: createGitHubConnector(failing), store, dataDir: dir, full: true }));
+
+    // Coverage survived, so an ordinary pull still asks only for the delta.
+    const after = await pull(store, dir, {
+      requested: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-09-11T00:00:00.000Z") },
+      now: d("2026-09-11T08:00:00.000Z"),
+    });
+    for (const call of after) {
+      expect(call.since).toBe("2026-09-08T00:00:00.000Z");
+    }
+  });
+
+  it("still replaces the cache when a --full rebuild succeeds", async () => {
+    const store = createMemoryCacheStore();
+    const dir = dataDir();
+    await pull(store, dir);
+
+    await pull(store, dir, { full: true });
+
+    // A successful --full covers the same range, so nothing is left to fetch.
+    expect(await pull(store, dir)).toEqual([]);
+  });
+});
+
 describe("runPull — resilience", () => {
   it("does not mark a window covered when a search failed, and retries it next pull", async () => {
     const store = createMemoryCacheStore();
@@ -250,6 +342,25 @@ describe("runPull — resilience", () => {
     for (const call of retry) {
       expect(call.since).toBe("2026-03-01T00:00:00.000Z");
     }
+  });
+
+  it("still writes the dataset when the cache cannot be saved", async () => {
+    const dir = dataDir();
+    const inner = createMemoryCacheStore();
+    const unwritable: CacheStore = {
+      load: (source, handle) => inner.load(source, handle),
+      save: () => Promise.reject(new Error("EACCES: permission denied")),
+    };
+
+    await runPull(
+      options({
+        connector: createGitHubConnector(createFakeGitHubClient(fixtures)),
+        store: unwritable,
+        dataDir: dir,
+      }),
+    );
+
+    expect(readFileSync(join(dir, "acme", "index.json"), "utf8")).toContain("weeks");
   });
 
   it("still writes a dataset when a search failed", async () => {

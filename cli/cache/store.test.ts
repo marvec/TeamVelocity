@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { mkdtempSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import {
@@ -48,6 +48,19 @@ describe("file cache store", () => {
     const store = createFileCacheStore(tempDir());
     await expect(store.save("github", "../../etc/passwd", {})).rejects.toThrow(/handle/i);
     await expect(store.load("github", "..")).rejects.toThrow(/handle/i);
+  });
+
+  it("replaces the file atomically and leaves no temp files behind", async () => {
+    // A direct overwrite can be interrupted mid-write, leaving unparseable JSON
+    // that is discarded on the next load — silently costing the handle's whole
+    // accumulated history. Writing a temp file and renaming makes the swap atomic.
+    const dir = tempDir();
+    const store = createFileCacheStore(dir);
+    await store.save("github", "alice", { v: 1 });
+    await store.save("github", "alice", { v: 2 });
+
+    expect(await store.load("github", "alice")).toEqual({ v: 2 });
+    expect(readdirSync(join(dir, "github"))).toEqual(["alice.json"]);
   });
 
   it("throws on a corrupt file so the caller can warn and re-fetch", async () => {
