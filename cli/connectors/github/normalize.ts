@@ -33,6 +33,7 @@ export function normalizePullRequest(node: GhPullRequestNode, fallbackHandle: st
     source: "github",
     repo,
     number: node.number,
+    ...(node.id === undefined ? {} : { externalId: node.id }),
     title: node.title,
     authorHandle: node.author?.login ?? fallbackHandle,
     state: prStateFrom(node.state),

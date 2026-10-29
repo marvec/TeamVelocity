@@ -67,7 +67,8 @@ Two halves that share one source-agnostic **aggregation library**.
   │   (fetch + normalize)         Bitbucket (future) │              │
   │                               JIRA (future)      │              │
   │                                                  ▼              │
-  │   normalized: PullRequest[] Commit[] Comment[] RepoRef[]        │
+  │   normalized, per member: CollectedPr[] (PR + its commits)      │
+  │               Comment[] RepoRef[]  (+ complete flag) — see §5    │
   │      │                                                          │
   │      ▼                                                          │
   │   AGGREGATION LIB (pure, source-agnostic, unit-tested)          │
@@ -164,23 +165,38 @@ export interface CollectContext {
   logger: Logger
 }
 
+export interface CollectedPr {
+  pr: PullRequest               // normalized, see §6
+  commits: Commit[]             // the commits this PR owns
+}
+
 export interface CollectResult {
-  pullRequests: PullRequest[]   // normalized, see §6
-  commits: Commit[]
+  prs: CollectedPr[]
+  commits: Commit[]             // commits owned by no PR (GitHub emits none)
   comments: Comment[]
   repos: RepoRef[]              // union of discovered + explicit
+  complete: boolean             // false if any search failed — see §13
 }
 ```
 
 Connectors are registered in a small registry keyed by `id`; the puller selects the connectors
 needed by the members present in a team. The **GitHub connector** uses Octokit (GraphQL for PR
 detail — additions/deletions/reviews/participants/comments **and each PR's own commits** in one
-query), authenticated with `GITHUB_TOKEN`, with rate-limit-aware backoff and per-week response
-caching so re-pulls are incremental (already-closed weeks are not re-fetched). Commits are the
+query), authenticated with `GITHUB_TOKEN`, with rate-limit-aware backoff. Both searches window on
+`updated:`, never `created:`, so a PR opened before the window but merged inside it is still seen
+— and so a delta query can ask for exactly what changed. A connector returns each PR grouped with
+the commits it owns (`CollectedPr`), which lets the puller's cache replace a PR's commit set as a
+unit instead of accumulating the SHAs a rebase rewrote. Commits are the
 PRs' commits (attributed to the PR author), not a repo commit log — this is robust to
 squash/rebase merges and unverified commit emails that a by-author log would miss. A PR's commit
 list is one GraphQL page (first 100); a larger PR is warned, never silently truncated (so the
 `wCommit` signal sees at most 100 commits/PR — log-dampened, and such PRs are rare).
+
+Members are searched in batches — one query ORs a whole team's `author:` (or `reviewed-by:`)
+qualifiers — because GitHub charges a rate-limit point per page of results, not per member. A
+connector still returns its results **per member** (`CollectByHandle`), so each is cached under its
+own coverage: authored PRs are split by `author.login`, and reviewed PRs by their reviewer list. A
+result that cannot be credited that way is re-asked of individual members rather than guessed.
 
 > Verify current Octokit / GitHub GraphQL syntax via **context7** before writing connector code.
 
@@ -438,14 +454,16 @@ teamvelocity/
     lib/            data-loading (fetch + zod), formatting, url-state, types
     theme/          globals.css (@theme solarized-light tokens)
   cli/                         # data puller — has the token, no React
-    pull.ts                    # entrypoint (bun run pull)
+    pull.ts                    # entrypoint (bun run pull) + injectable runPull
     config.ts                  # load + zod validation
     connectors/  types.ts  registry.ts  github/
+    cache/       plan.ts  merge.ts  flatten.ts  store.ts   # incremental-pull cache
     writer.ts                  # emit + validate public/data
   shared/                      # pure, source-agnostic; imported by cli/ AND tested directly
     aggregate/   weeks.ts  velocity.ts  pr-score.ts
     schema/      zod schemas shared by cli writer and spa loader
     types.ts
+  .cache/pull/                 # per-handle pull cache (git-ignored, disposable)
   public/data/                 # generated (git-ignored) + a committed sample/ fixture set
   docs/                        # this PRD + any specs
   e2e/                         # Playwright specs
@@ -458,11 +476,20 @@ Scripts: `bun run pull`, `bun run dev`, `bun run build`, `bun run test`, `bun ru
 
 ## 13. Non-functional requirements
 
-- **Incremental & resilient pulls:** cache per-week responses; a re-pull only refreshes the
-  current (open) week and any explicitly requested range; a mid-pull failure for one repo/member
-  is logged and skipped, not fatal.
+- **Incremental & resilient pulls:** each handle's normalized entities are cached under
+  `.cache/pull/<source>/<handle>.json` alongside the interval of time that cache covers; a re-pull
+  fetches only the gap between that coverage and the requested range, plus a small overlap
+  (`--overlap-days`, default 2). History accumulates — `--weeks N` means "reach at least N weeks
+  back" and never truncates what is already held. A mid-pull failure for one repo/member is logged
+  and skipped, not fatal, and the partly-seen window is left uncovered so the next pull retries it.
+  The cache is disposable: corrupt or version-drifted files are reported and re-fetched rather than
+  aborting the pull (deliberately weaker than the fail-loud rule below, which governs
+  `public/data/`). `--full` rebuilds it; `--no-cache` bypasses it.
 - **Rate limits:** respect GitHub limits with backoff; a `--since`/`--until` (or `--weeks N`) flag
-  on the puller for bounded backfills.
+  on the puller for bounded backfills. Searches request `rateLimit { cost remaining }` so each pull
+  reports what it spent. A search that hits GitHub's 1000-result ceiling warns *and* marks the
+  collection incomplete, so the truncated window is never cached as covered and is retried rather
+  than silently losing its oldest matches.
 - **Determinism:** identical inputs → identical JSON (stable ordering) so diffs are meaningful.
 - **Fail loud on schema drift:** both writer and loader validate against the shared Zod schema.
 - **Secret hygiene:** the token lives only in `.env`; it is never written into `public/data/`,

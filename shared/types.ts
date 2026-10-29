@@ -38,6 +38,28 @@ export function repoKey(repo: Pick<RepoRef, "source" | "owner" | "name">): strin
 }
 
 /**
+ * Location-based key for a pull request. This is the single definition on
+ * purpose: the pull cache **persists** these keys, so a second implementation
+ * that drifted would silently orphan every PR already stored under the old
+ * spelling.
+ */
+export function prKey(repo: Pick<RepoRef, "source" | "owner" | "name">, number: number): string {
+  return `${repoKey(repo)}#${String(number)}`;
+}
+
+/**
+ * The identity a pull request is cached and de-duplicated under.
+ *
+ * Prefers the source's own opaque id, which survives a repo rename or transfer.
+ * {@link prKey} embeds `owner/name`, so after a rename the same PR would arrive
+ * under a second key and be counted twice. Falls back to `prKey` for a source
+ * (or a fixture) that supplies no id.
+ */
+export function prIdentity(pr: Pick<PullRequest, "externalId" | "repo" | "number">): string {
+  return pr.externalId ?? prKey(pr.repo, pr.number);
+}
+
+/**
  * A normalized pull request. Dates are `Date` objects in memory; the on-disk
  * contract serializes them to ISO strings.
  */
@@ -45,6 +67,11 @@ export interface PullRequest {
   source: SourceId;
   repo: RepoRef;
   number: number;
+  /**
+   * The source's own opaque, location-independent id (GitHub's GraphQL node id).
+   * Optional because a source may not expose one — see {@link prIdentity}.
+   */
+  externalId?: string;
   title: string;
   authorHandle: string;
   state: PrState;
@@ -78,6 +105,22 @@ export interface Commit {
   additions: number;
   deletions: number;
   url: string;
+}
+
+/**
+ * A pull request together with the commits it owns.
+ *
+ * Grouping them is what lets the pull cache replace a PR's commit set as a
+ * unit: a rebased or force-pushed PR would otherwise accumulate the SHAs of
+ * every rewritten version and permanently inflate velocity's commit signal.
+ *
+ * Each group carries its PR's OWN complete commit list — a SHA riding two PRs
+ * appears in both — so a group never depends on the order PRs were fetched in.
+ * De-duplication by SHA happens when groups are flattened for aggregation.
+ */
+export interface PrGroup {
+  pr: PullRequest;
+  commits: Commit[];
 }
 
 /** A normalized comment attributed to a member. */

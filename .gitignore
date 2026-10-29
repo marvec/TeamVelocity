@@ -13,6 +13,9 @@ build/
 !.env.example
 teamvelocity.config.json
 
+# Incremental-pull cache (disposable; delete it to force a full backfill)
+/.cache/
+
 # Generated data — everything under public/data EXCEPT the committed sample fixtures
 /public/data/*
 !/public/data/sample/

@@ -15,8 +15,8 @@ export const CommentKindSchema = z.enum(["issue", "review", "review_summary"]);
 export const VelocityBandSchema = z.enum(["red", "yellow", "green"]);
 
 const isoDate = z.iso.date();
-const isoDateTime = z.iso.datetime();
-const count = z.number().int().nonnegative();
+export const isoDateTime = z.iso.datetime();
+export const count = z.number().int().nonnegative();
 const score01to100 = z.number().min(0).max(100);
 
 /** teams.json — the team-select index (no member/token data). */
@@ -64,7 +64,7 @@ export const TeamMetaSchema = z.strictObject({
 });
 export type TeamMeta = z.infer<typeof TeamMetaSchema>;
 
-const RepoRefLiteSchema = z.strictObject({
+export const RepoRefLiteSchema = z.strictObject({
   source: SourceIdSchema,
   owner: z.string(),
   name: z.string(),

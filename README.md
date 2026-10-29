@@ -79,8 +79,41 @@ GitHub and never sees the token.
 
 - **No token yet?** `bun run pull` (or `bun run pull --dry-run`) runs the whole pipeline over
   bundled fixtures and writes valid JSON — so you can try the flow without a token.
-- Useful flags: `--team <id>`, `--weeks <N>` (backfill depth, default 26), `--since` / `--until`,
-  `--data-dir <path>`, `--verbose`.
+- Useful flags: `--team <id>`, `--weeks <N>` (how far back to reach, default 26), `--since` /
+  `--until`, `--data-dir <path>`, `--verbose`.
+
+### Incremental pulls
+
+Pulls are incremental. Each GitHub handle's normalized PRs, commits and review activity are
+cached under `.cache/pull/<source>/<handle>.json` (git-ignored, disposable), together with the
+window of time that cache covers. A pull fetches only the gap between that coverage and what you
+asked for, plus two days of overlap so anything that changed right at the boundary is still
+picked up. The first pull backfills; a pull the next day asks GitHub for about three days.
+
+History **accumulates**. `--weeks 26` means "reach at least 26 weeks back", so a later pull with a
+smaller `--weeks` never truncates what you already have, and the dashboard's range grows with
+every pull. Run with `--verbose` to see the exact window requested per handle, and the GraphQL
+rate-limit points each pull spent.
+
+Members who need the same window are searched together — one query covers a whole team, split back
+per member afterwards — because GitHub charges per page of results, not per member. A routine pull
+for two 7-person teams costs about 5 rate-limit points; a full 26-week backfill about 50.
+
+| Flag | Default | When you need it |
+| --- | --- | --- |
+| `--full` | off | Re-fetch everything and replace the cache. The only way to drop PRs deleted upstream, or to re-apply a change in how data is normalized. Widens to the coverage you already have, so it never shrinks history. |
+| `--no-cache` | off | Read and write nothing. One-off exploratory pull; the result covers only the requested window and does not accumulate. |
+| `--overlap-days <N>` | `2` | How far back before the covered edge to re-fetch. |
+| `--cache-dir <path>` | `.cache/pull` | Where the cache lives. |
+
+Deleting `.cache/` is always safe: the next pull backfills it. A cache file that is corrupt or
+written by an older version is reported and re-fetched rather than failing the pull.
+
+Two things a pull will tell you about rather than paper over. If a search hits GitHub's
+1000-result ceiling its window is *not* cached, so it is retried every pull until you narrow it
+with `--since` — the warning names the handle. And if one handle's fetches keep failing, its
+cache stops advancing and the re-fetched span grows by a day per pull; after a week the pull says
+so, naming the handle.
 
 ## Scripts
 
@@ -139,6 +172,7 @@ src/       React SPA (never imports cli/ or the token)
 cli/       data puller: config, connectors/ (GitHub), writer, pull, sample generator
 shared/    pure source-agnostic aggregation + Zod schema (imported by cli and tests)
 public/data/  generated (git-ignored) + a committed sample/ (+ sample-solo/) fixture set
+.cache/pull/  per-handle incremental-pull cache (git-ignored, disposable)
 e2e/       Playwright specs over the sample dataset
 docs/      the PRD
 ```

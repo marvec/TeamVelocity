@@ -16,7 +16,7 @@ import type {
   Totals,
   VelocityWeights,
 } from "../types";
-import { addTotals, emptyTotals, repoKey } from "../types";
+import { addTotals, emptyTotals, prKey, repoKey } from "../types";
 import type { Weekday, WeekWindow } from "./weeks";
 import { enumerateWeeks, isoDate, weekKeyFor } from "./weeks";
 import type { VelocityThresholds, WeekVelocity } from "./velocity";
@@ -122,10 +122,6 @@ function newMemberAccum(): MemberAccum {
   };
 }
 
-function prKey(pr: PullRequest): string {
-  return `${repoKey(pr.repo)}#${pr.number}`;
-}
-
 function toScoreInput(pr: PullRequest): PrScoreInput {
   return {
     additions: pr.additions,
@@ -206,7 +202,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
     const primaryIdx = weekIdxOf(primaryDate);
     if (primaryIdx !== undefined) {
       weeks[primaryIdx].prs.push(pr);
-      if (member !== undefined) weeks[primaryIdx].members.get(member)?.prNumbers.add(prKey(pr));
+      if (member !== undefined) weeks[primaryIdx].members.get(member)?.prNumbers.add(prKey(pr.repo, pr.number));
     }
   }
 
