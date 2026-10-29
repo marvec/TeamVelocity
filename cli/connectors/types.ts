@@ -50,10 +50,20 @@ export interface CollectResult extends CollectedEntities {
   complete: boolean;
 }
 
+/**
+ * One {@link CollectResult} per member, keyed by the handle this source knows
+ * them by. Results are per member so each can be cached under its own coverage,
+ * however the connector chose to batch the requests behind them.
+ */
+export type CollectByHandle = Map<string, CollectResult>;
+
 export interface SourceConnector {
   readonly id: SourceId;
   /** True if this member has a handle this connector can use. */
   supportsMember(member: Member): boolean;
-  /** Fetch + normalize all contributions in [since, until) for the members/repos. */
-  collect(ctx: CollectContext): Promise<CollectResult>;
+  /**
+   * Fetch + normalize all contributions in [since, until) for the members/repos.
+   * Every supported member gets an entry, even one with no activity.
+   */
+  collect(ctx: CollectContext): Promise<CollectByHandle>;
 }

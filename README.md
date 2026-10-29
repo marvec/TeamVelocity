@@ -95,6 +95,10 @@ smaller `--weeks` never truncates what you already have, and the dashboard's ran
 every pull. Run with `--verbose` to see the exact window requested per handle, and the GraphQL
 rate-limit points each pull spent.
 
+Members who need the same window are searched together — one query covers a whole team, split back
+per member afterwards — because GitHub charges per page of results, not per member. A routine pull
+for two 7-person teams costs about 5 rate-limit points; a full 26-week backfill about 50.
+
 | Flag | Default | When you need it |
 | --- | --- | --- |
 | `--full` | off | Re-fetch everything and replace the cache. The only way to drop PRs deleted upstream, or to re-apply a change in how data is normalized. Widens to the coverage you already have, so it never shrinks history. |

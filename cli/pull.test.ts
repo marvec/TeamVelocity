@@ -34,7 +34,7 @@ const team: TeamConfig = {
 };
 
 interface Call {
-  handle: string;
+  handles: string[];
   since: string;
   until: string;
 }
@@ -55,20 +55,20 @@ function inWindow(updatedAt: string, since: Date, until: Date): boolean {
 function recordingClient(): { client: GitHubClient; calls: Call[] } {
   const inner = createFakeGitHubClient(fixtures);
   const calls: Call[] = [];
-  const record = (handle: string, since: Date, until: Date): void => {
-    calls.push({ handle, since: since.toISOString(), until: until.toISOString() });
+  const record = (handles: string[], since: Date, until: Date): void => {
+    calls.push({ handles, since: since.toISOString(), until: until.toISOString() });
   };
   return {
     calls,
     client: {
-      async searchPrsByAuthor(handle, since, until) {
-        record(handle, since, until);
-        const all = await inner.searchPrsByAuthor(handle, since, until);
+      async searchPrsByAuthors(handles, since, until) {
+        record(handles, since, until);
+        const all = await inner.searchPrsByAuthors(handles, since, until);
         return { nodes: all.nodes.filter((n) => inWindow(n.updatedAt, since, until)), truncated: false };
       },
-      async searchPrsReviewedBy(handle, since, until) {
-        record(handle, since, until);
-        const all = await inner.searchPrsReviewedBy(handle, since, until);
+      async searchPrsReviewedBy(handles, since, until) {
+        record(handles, since, until);
+        const all = await inner.searchPrsReviewedBy(handles, since, until);
         return { nodes: all.nodes.filter((n) => inWindow(n.updatedAt, since, until)), truncated: false };
       },
       usage: () => inner.usage(),
@@ -119,7 +119,8 @@ describe("runPull — incremental fetching", () => {
   it("fetches the whole requested window on a cold cache", async () => {
     const calls = await pull(createMemoryCacheStore(), dataDir());
 
-    expect(calls.map((c) => c.handle).sort()).toEqual(["alice", "alice", "bob", "bob"]);
+    // One authored + one reviewed search, each covering the whole team.
+    expect(calls.map((c) => c.handles)).toEqual([["alice", "bob"], ["alice", "bob"]]);
     for (const call of calls) {
       expect(call.since).toBe("2026-03-01T00:00:00.000Z");
       expect(call.until).toBe("2026-09-10T00:00:00.000Z");
@@ -141,7 +142,7 @@ describe("runPull — incremental fetching", () => {
       expect(call.since).toBe("2026-09-08T00:00:00.000Z");
       expect(call.until).toBe("2026-09-11T00:00:00.000Z");
     }
-    expect(second).toHaveLength(4);
+    expect(second).toHaveLength(2);
   });
 
   it("makes no requests at all when the cache already covers the range", async () => {
@@ -253,7 +254,7 @@ describe("runPull — --full", () => {
       requested: { since: d("2026-08-01T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") },
     });
 
-    expect(calls).toHaveLength(4);
+    expect(calls).toHaveLength(2);
     for (const call of calls) {
       expect(call.since).toBe("2026-03-01T00:00:00.000Z");
       expect(call.until).toBe("2026-09-10T00:00:00.000Z");
@@ -276,11 +277,49 @@ describe("runPull — a reset handle is backfilled to the team's range", () => {
 
     // Without backfilling to the team range, alice renders as real zeros for
     // every earlier week bob covers — the dataset spans the union of coverage.
-    const aliceWindows = calls.filter((c) => c.handle === "alice");
+    const aliceWindows = calls.filter((c) => c.handles.includes("alice"));
     expect(aliceWindows).toHaveLength(2);
     for (const call of aliceWindows) {
       expect(call.since).toBe("2026-03-01T00:00:00.000Z");
     }
+  });
+});
+
+describe("runPull — batching handles that share a window", () => {
+  it("gives a handle that fell out of step its own request, and keeps the rest batched", async () => {
+    const team3: TeamConfig = { ...team, members: [...team.members, { name: "Carol", github: "carol" }] };
+    const store = createMemoryCacheStore();
+    const dir = dataDir();
+    await pull(store, dir, { teams: [team3] });
+
+    // carol's cache is lost; alice and bob are still in step with each other.
+    await store.save("github", "carol", undefined);
+    const calls = await pull(store, dir, {
+      teams: [team3],
+      requested: { since: d("2026-03-01T00:00:00.000Z"), until: d("2026-09-11T00:00:00.000Z") },
+      now: d("2026-09-11T08:00:00.000Z"),
+    });
+
+    // Oldest window first: carol's backfill, then the shared delta.
+    expect(calls.map((c) => [c.handles, c.since])).toEqual([
+      [["carol"], "2026-03-01T00:00:00.000Z"],
+      [["carol"], "2026-03-01T00:00:00.000Z"],
+      [["alice", "bob"], "2026-09-08T00:00:00.000Z"],
+      [["alice", "bob"], "2026-09-08T00:00:00.000Z"],
+    ]);
+  });
+
+  it("keeps each member's entities in their own cache", async () => {
+    const store = createMemoryCacheStore();
+    await pull(store, dataDir());
+
+    // One batched request served both, but each cache holds only its owner's work.
+    const alice = await store.load("github", "alice");
+    const bob = await store.load("github", "bob");
+    expect(JSON.stringify(alice)).toContain('"authorHandle":"alice"');
+    expect(JSON.stringify(alice)).not.toContain('"authorHandle":"bob"');
+    expect(JSON.stringify(bob)).toContain('"authorHandle":"bob"');
+    expect(JSON.stringify(bob)).not.toContain('"authorHandle":"alice"');
   });
 });
 
@@ -295,7 +334,7 @@ describe("runPull — --full must not destroy history when it fails", () => {
     // longer return within --weeks.
     const inner = createFakeGitHubClient(fixtures);
     const failing: GitHubClient = {
-      searchPrsByAuthor: () => Promise.reject(new Error("502 Bad Gateway")),
+      searchPrsByAuthors: () => Promise.reject(new Error("502 Bad Gateway")),
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
       usage: () => inner.usage(),
     };
@@ -329,7 +368,7 @@ describe("runPull — resilience", () => {
     const dir = dataDir();
     const inner = createFakeGitHubClient(fixtures);
     const failing: GitHubClient = {
-      searchPrsByAuthor: () => Promise.reject(new Error("502 Bad Gateway")),
+      searchPrsByAuthors: () => Promise.reject(new Error("502 Bad Gateway")),
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
       usage: () => inner.usage(),
     };
@@ -338,7 +377,7 @@ describe("runPull — resilience", () => {
 
     // Nothing was recorded as covered, so the next pull asks for the full window again.
     const retry = await pull(store, dir);
-    expect(retry).toHaveLength(4);
+    expect(retry).toHaveLength(2);
     for (const call of retry) {
       expect(call.since).toBe("2026-03-01T00:00:00.000Z");
     }
@@ -351,8 +390,8 @@ describe("runPull — resilience", () => {
     const dir = dataDir();
     const inner = createFakeGitHubClient(fixtures);
     const capped: GitHubClient = {
-      async searchPrsByAuthor(h, s, u) {
-        return { nodes: (await inner.searchPrsByAuthor(h, s, u)).nodes, truncated: true };
+      async searchPrsByAuthors(h, s, u) {
+        return { nodes: (await inner.searchPrsByAuthors(h, s, u)).nodes, truncated: true };
       },
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
       usage: () => inner.usage(),
@@ -362,7 +401,7 @@ describe("runPull — resilience", () => {
 
     // Uncovered, so the next pull asks for the whole window again rather than a delta.
     const retry = await pull(store, dir);
-    expect(retry).toHaveLength(4);
+    expect(retry).toHaveLength(2);
     for (const call of retry) {
       expect(call.since).toBe("2026-03-01T00:00:00.000Z");
     }
@@ -391,7 +430,7 @@ describe("runPull — resilience", () => {
     const dir = dataDir();
     const inner = createFakeGitHubClient(fixtures);
     const failing: GitHubClient = {
-      searchPrsByAuthor: () => Promise.reject(new Error("502")),
+      searchPrsByAuthors: () => Promise.reject(new Error("502")),
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
       usage: () => inner.usage(),
     };

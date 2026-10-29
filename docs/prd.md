@@ -67,7 +67,7 @@ Two halves that share one source-agnostic **aggregation library**.
   │   (fetch + normalize)         Bitbucket (future) │              │
   │                               JIRA (future)      │              │
   │                                                  ▼              │
-  │   normalized: CollectedPr[] (PR + its commits)                  │
+  │   normalized, per member: CollectedPr[] (PR + its commits)      │
   │               Comment[] RepoRef[]  (+ complete flag) — see §5    │
   │      │                                                          │
   │      ▼                                                          │
@@ -191,6 +191,12 @@ PRs' commits (attributed to the PR author), not a repo commit log — this is ro
 squash/rebase merges and unverified commit emails that a by-author log would miss. A PR's commit
 list is one GraphQL page (first 100); a larger PR is warned, never silently truncated (so the
 `wCommit` signal sees at most 100 commits/PR — log-dampened, and such PRs are rare).
+
+Members are searched in batches — one query ORs a whole team's `author:` (or `reviewed-by:`)
+qualifiers — because GitHub charges a rate-limit point per page of results, not per member. A
+connector still returns its results **per member** (`CollectByHandle`), so each is cached under its
+own coverage: authored PRs are split by `author.login`, and reviewed PRs by their reviewer list. A
+result that cannot be credited that way is re-asked of individual members rather than guessed.
 
 > Verify current Octokit / GitHub GraphQL syntax via **context7** before writing connector code.
 

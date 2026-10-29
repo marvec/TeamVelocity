@@ -60,3 +60,34 @@ export function planFetchWindows(
 
   return windows;
 }
+
+/** The handles (or anything) that need one exact window fetched. */
+export interface WindowGroup<T> {
+  window: Window;
+  items: T[];
+}
+
+/**
+ * Group items by the exact windows they need, so one request serves every item
+ * sharing a window. Only identical windows group: fetching a wider window for
+ * someone would be safe, but recording a narrower one as covered would not.
+ *
+ * Groups come oldest-first. A handle's own windows never overlap, so this keeps
+ * each handle's back gap merging before its fresher forward gap, as
+ * {@link planFetchWindows} requires.
+ */
+export function groupByWindow<T>(plans: { item: T; windows: Window[] }[]): WindowGroup<T>[] {
+  const groups = new Map<string, WindowGroup<T>>();
+  for (const { item, windows } of plans) {
+    for (const window of windows) {
+      const key = `${window.since.toISOString()}..${window.until.toISOString()}`;
+      const group = groups.get(key) ?? { window, items: [] };
+      group.items.push(item);
+      groups.set(key, group);
+    }
+  }
+  return [...groups.values()].sort(
+    (a, b) =>
+      a.window.since.getTime() - b.window.since.getTime() || a.window.until.getTime() - b.window.until.getTime(),
+  );
+}

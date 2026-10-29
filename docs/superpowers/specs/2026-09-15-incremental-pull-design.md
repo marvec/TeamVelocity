@@ -126,19 +126,50 @@ Rules:
 
 `overlapDays` defaults to **2** and is settable with `--overlap-days N`.
 
-`pull.ts` computes a plan per handle and calls `connector.collect()` **once per (handle,
-window)**. The connector interface is therefore unchanged: `CollectContext` already carries
-`members`, `since` and `until`.
+`pull.ts` computes a plan per handle, groups the handles that need the **exact same window**
+(`groupByWindow` in `plan.ts`), and calls `connector.collect()` once per group, oldest window
+first. Handles kept in step share every window, so a routine pull makes one call per team; a handle
+that fell out of step (just joined, cache discarded, last fetch failed) lands in a group of its own.
+Only identical windows group — recording a narrower window as covered would strand data.
 
-Batching several handles into one `collect()` call was considered and rejected. `collect()` issues
-two searches *per member* internally, so batching saves no API calls, and it would force the
-result to be partitioned back by author — which misfiles a PR whose `author.login` casing differs
-from the handle that was searched.
+Inside `collect()` the GitHub connector searches each group in **batches**, ORing the members into
+one query (`author:a author:b …`, `reviewed-by:a reviewed-by:b …`; repeated qualifiers are not
+boolean operators, so GitHub's five-operator limit does not apply). Batches are sized so the query
+stays within GitHub's 256-character limit — about 7 handles. Results are split back per member:
 
-A typical daily pull covers a ~3-day window: 7 handles × 2 searches × 1 nearly-empty page,
-against roughly 7 × 2 × 2 full pages today.
+- **Authored PRs** go to the member matching `author.login`, case-insensitively. A PR naming none
+  of them — seen live for PRs the Copilot agent opened on a member's behalf, and possible for
+  deleted accounts — is credited only to a member whose *own* search returns it. Members taking
+  part in the PR are asked first, and asking stops once every such PR has turned up, so this
+  usually costs one extra query.
+- **Reviewed PRs** carry `reviews(first: 100) { author { login } }`, and every batch member listed
+  is credited. A list cut short at 100, or one naming no member, makes the batch re-ask each
+  member alone. Live, the reviewer lists reproduced the per-handle searches exactly (JDT 180/180
+  and perf 83/83 handle–PR pairs over six weeks), at no extra cost per page.
+- **Over the 1000-result ceiling** a batch is halved and re-asked. The client gives up after the
+  first page when `issueCount` already exceeds the ceiling, so pages that would be discarded are
+  not fetched. Only a lone handle is ever reported as truncated.
+
+Every search page costs one rate-limit point however few results it holds, so the old one query
+per handle put a floor of 2 points per member under every pull. Measured on the two live teams (14
+handles):
+
+| Pull | Per handle | Batched |
+| --- | --- | --- |
+| Warm cache, ~2-day window | 28 points | 5 points |
+| No cache, 6 weeks | 30 points | 12 points |
+| No cache, 26 weeks | 52 points | 51 points |
+
+A full backfill is dominated by result pages, so batching saves little there; the saving is on the
+routine pulls this design exists for. The dataset written was byte-identical to the per-handle
+code in all three comparisons (bar `lastPulledAt`).
 
 ## 5. Connector interface change
+
+`collect()` returns one `CollectResult` per member (`CollectByHandle`, keyed by handle), so each can
+be cached under its own coverage however the connector batched the requests behind it. Every
+supported member gets an entry, even one with no activity — an empty, complete result is what lets
+their window be recorded as covered.
 
 `CollectResult` gains explicit commit ownership so the cache can replace a PR's commits as a unit:
 

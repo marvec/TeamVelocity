@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { planFetchWindows, type Coverage, type Window } from "./plan";
+import { groupByWindow, planFetchWindows, type Coverage, type Window } from "./plan";
 
 const d = (iso: string): Date => new Date(iso);
 
@@ -145,5 +145,47 @@ describe("planFetchWindows — boundaries", () => {
     expect(coverage.since.toISOString()).toBe("2026-06-01T00:00:00.000Z");
     expect(coverage.until.toISOString()).toBe("2026-09-13T00:00:00.000Z");
     expect(requested.since.toISOString()).toBe("2026-03-01T00:00:00.000Z");
+  });
+});
+
+describe("groupByWindow", () => {
+  const w = (since: string, until: string): Window => ({ since: new Date(since), until: new Date(until) });
+
+  it("puts every handle needing the same window into one group", () => {
+    const shared = w("2026-09-08T00:00:00Z", "2026-09-11T00:00:00Z");
+    const groups = groupByWindow([
+      { item: "alice", windows: [shared] },
+      // Equal instants in distinct Date objects — the usual case, since each
+      // handle's plan is computed separately.
+      { item: "bob", windows: [w("2026-09-08T00:00:00Z", "2026-09-11T00:00:00Z")] },
+    ]);
+    expect(groups).toHaveLength(1);
+    expect(groups[0].items).toEqual(["alice", "bob"]);
+    expect(groups[0].window).toEqual(shared);
+  });
+
+  it("keeps a handle with a different window in a group of its own", () => {
+    const groups = groupByWindow([
+      { item: "alice", windows: [w("2026-03-01T00:00:00Z", "2026-09-11T00:00:00Z")] },
+      { item: "bob", windows: [w("2026-09-08T00:00:00Z", "2026-09-11T00:00:00Z")] },
+    ]);
+    expect(groups.map((g) => g.items)).toEqual([["alice"], ["bob"]]);
+  });
+
+  it("orders groups oldest-first, so each handle's back gap merges before its forward gap", () => {
+    const back = w("2026-01-01T00:00:00Z", "2026-03-01T00:00:00Z");
+    const forward = w("2026-09-08T00:00:00Z", "2026-09-11T00:00:00Z");
+    const groups = groupByWindow([
+      { item: "alice", windows: [back, forward] },
+      { item: "bob", windows: [forward] },
+    ]);
+    expect(groups.map((g) => [g.window.since.toISOString(), g.items])).toEqual([
+      ["2026-01-01T00:00:00.000Z", ["alice"]],
+      ["2026-09-08T00:00:00.000Z", ["alice", "bob"]],
+    ]);
+  });
+
+  it("returns no groups when nothing needs fetching", () => {
+    expect(groupByWindow([{ item: "alice", windows: [] }])).toEqual([]);
   });
 });
