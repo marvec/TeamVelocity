@@ -2,7 +2,7 @@
   "weekStart": "2026-07-13",
   "weekEnd": "2026-07-20",
   "label": "2026/07/13–07/19",
-  "velocity": 20.5,
+  "velocity": 18.7,
   "velocityBand": "red",
   "warmingUp": false,
   "totals": {
@@ -87,7 +87,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 15.6,
+          "velocity": 18.8,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -107,7 +107,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 37.8,
+          "velocity": 37.7,
           "velocityBand": "red",
           "warmingUp": false
         }
@@ -144,7 +144,7 @@
     {
       "handle": "alanturing",
       "name": "Alan Turing",
-      "velocity": 57.2,
+      "velocity": 52.5,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -193,7 +193,7 @@
             "locAdded": 143,
             "locRemoved": 75
           },
-          "velocity": 100,
+          "velocity": 93.6,
           "velocityBand": "green",
           "warmingUp": false
         }
@@ -329,7 +329,7 @@
         "locAdded": 143,
         "locRemoved": 75
       },
-      "velocity": 47.9,
+      "velocity": 46.9,
       "velocityBand": "yellow",
       "warmingUp": false
     }

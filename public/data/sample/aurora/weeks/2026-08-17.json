@@ -2,7 +2,7 @@
   "weekStart": "2026-08-17",
   "weekEnd": "2026-08-24",
   "label": "2026/08/17–08/23",
-  "velocity": 69.7,
+  "velocity": 66.6,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 5,
     "prsClosed": 2,
     "commits": 19,
-    "comments": 11,
+    "comments": 12,
     "locAdded": 2237,
     "locRemoved": 882
   },
@@ -324,7 +324,7 @@
     {
       "handle": "adalovelace",
       "name": "Ada Lovelace",
-      "velocity": 53.2,
+      "velocity": 57.8,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -353,7 +353,7 @@
             "locAdded": 276,
             "locRemoved": 70
           },
-          "velocity": 78.3,
+          "velocity": 72.1,
           "velocityBand": "green",
           "warmingUp": false
         },
@@ -373,7 +373,7 @@
             "locAdded": 238,
             "locRemoved": 142
           },
-          "velocity": 30.5,
+          "velocity": 34.2,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -393,7 +393,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 37.6,
+          "velocity": 37.5,
           "velocityBand": "red",
           "warmingUp": false
         }
@@ -616,8 +616,8 @@
     {
       "handle": "gracehopper",
       "name": "Grace Hopper",
-      "velocity": 72.6,
-      "velocityBand": "green",
+      "velocity": 64.9,
+      "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
         "prsOpened": 2,
@@ -645,7 +645,7 @@
             "locAdded": 146,
             "locRemoved": 85
           },
-          "velocity": 61.4,
+          "velocity": 60.7,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -864,7 +864,7 @@
     {
       "handle": "linusn",
       "name": "Linus Nyman",
-      "velocity": 65.4,
+      "velocity": 62.3,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -872,7 +872,7 @@
         "prsMerged": 1,
         "prsClosed": 2,
         "commits": 3,
-        "comments": 2,
+        "comments": 3,
         "locAdded": 1320,
         "locRemoved": 488
       },
@@ -909,11 +909,11 @@
             "prsMerged": 1,
             "prsClosed": 0,
             "commits": 2,
-            "comments": 1,
+            "comments": 2,
             "locAdded": 337,
             "locRemoved": 108
           },
-          "velocity": 64.9,
+          "velocity": 67.4,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -933,7 +933,7 @@
             "locAdded": 983,
             "locRemoved": 380
           },
-          "velocity": 50.6,
+          "velocity": 50.5,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -1068,6 +1068,18 @@
           "url": "https://github.com/aurora/infra/pull/31#c1"
         },
         {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-21T03:19:49.383Z",
+          "url": "https://github.com/aurora/infra/issues/176#issuecomment-9063"
+        },
+        {
           "kind": "review",
           "repo": {
             "source": "github",
@@ -1122,7 +1134,7 @@
     {
       "handle": "margaretp",
       "name": "Margaret Park",
-      "velocity": 62.2,
+      "velocity": 54.5,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -1299,7 +1311,7 @@
         "locAdded": 492,
         "locRemoved": 185
       },
-      "velocity": 76,
+      "velocity": 77.6,
       "velocityBand": "green",
       "warmingUp": false
     },
@@ -1315,11 +1327,11 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 4,
-        "comments": 1,
+        "comments": 2,
         "locAdded": 575,
         "locRemoved": 250
       },
-      "velocity": 48.3,
+      "velocity": 49.5,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -1339,7 +1351,7 @@
         "locAdded": 1170,
         "locRemoved": 447
       },
-      "velocity": 48.4,
+      "velocity": 48.2,
       "velocityBand": "yellow",
       "warmingUp": false
     }

@@ -10,7 +10,7 @@
     "prsMerged": 4,
     "prsClosed": 0,
     "commits": 8,
-    "comments": 11,
+    "comments": 13,
     "locAdded": 1467,
     "locRemoved": 712
   },
@@ -172,7 +172,7 @@
     {
       "handle": "rosalindf",
       "name": "Rosalind Frank",
-      "velocity": 80.8,
+      "velocity": 81.5,
       "velocityBand": "green",
       "warmingUp": false,
       "totals": {
@@ -201,7 +201,7 @@
             "locAdded": 183,
             "locRemoved": 109
           },
-          "velocity": 50,
+          "velocity": 43.9,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -432,7 +432,7 @@
     {
       "handle": "alanturing",
       "name": "Alan Turing",
-      "velocity": 72.8,
+      "velocity": 100,
       "velocityBand": "green",
       "warmingUp": false,
       "totals": {
@@ -440,7 +440,7 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 4,
-        "comments": 5,
+        "comments": 7,
         "locAdded": 1124,
         "locRemoved": 538
       },
@@ -461,8 +461,8 @@
             "locAdded": 1124,
             "locRemoved": 538
           },
-          "velocity": 100,
-          "velocityBand": "green",
+          "velocity": 63.5,
+          "velocityBand": "yellow",
           "warmingUp": false
         },
         {
@@ -477,11 +477,11 @@
             "prsMerged": 0,
             "prsClosed": 0,
             "commits": 3,
-            "comments": 0,
+            "comments": 2,
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 50,
+          "velocity": 54,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -614,6 +614,18 @@
           "url": "https://github.com/borealis/app/pull/12#c1"
         },
         {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-12T01:35:22.800Z",
+          "url": "https://github.com/borealis/core/issues/144#issuecomment-9015"
+        },
+        {
           "kind": "review",
           "repo": {
             "source": "github",
@@ -624,6 +636,18 @@
           "prNumber": 12,
           "createdAt": "2026-06-13T15:17:39.844Z",
           "url": "https://github.com/borealis/app/pull/12#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": 158,
+          "createdAt": "2026-06-14T17:22:11.514Z",
+          "url": "https://github.com/borealis/core/pull/158#issuecomment-9014"
         }
       ],
       "commits": [
@@ -695,8 +719,8 @@
         "locAdded": 1307,
         "locRemoved": 647
       },
-      "velocity": 69.1,
-      "velocityBand": "yellow",
+      "velocity": 85.7,
+      "velocityBand": "green",
       "warmingUp": false
     },
     {
@@ -711,11 +735,11 @@
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 6,
-        "comments": 4,
+        "comments": 6,
         "locAdded": 160,
         "locRemoved": 65
       },
-      "velocity": 54.9,
+      "velocity": 61.2,
       "velocityBand": "yellow",
       "warmingUp": false
     }

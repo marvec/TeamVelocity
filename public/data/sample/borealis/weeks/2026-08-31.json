@@ -2,7 +2,7 @@
   "weekStart": "2026-08-31",
   "weekEnd": "2026-09-07",
   "label": "2026/08/31–09/06",
-  "velocity": 45.6,
+  "velocity": 43.1,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 0,
     "prsClosed": 0,
     "commits": 16,
-    "comments": 5,
+    "comments": 6,
     "locAdded": 512,
     "locRemoved": 106
   },
@@ -96,7 +96,7 @@
     {
       "handle": "rosalindf",
       "name": "Rosalind Frank",
-      "velocity": 50.5,
+      "velocity": 47.5,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -125,7 +125,7 @@
             "locAdded": 239,
             "locRemoved": 33
           },
-          "velocity": 54.1,
+          "velocity": 57.9,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -318,7 +318,7 @@
     {
       "handle": "alanturing",
       "name": "Alan Turing",
-      "velocity": 46.1,
+      "velocity": 50.7,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -326,7 +326,7 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 9,
-        "comments": 2,
+        "comments": 3,
         "locAdded": 273,
         "locRemoved": 73
       },
@@ -347,7 +347,7 @@
             "locAdded": 273,
             "locRemoved": 73
           },
-          "velocity": 62,
+          "velocity": 61.5,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -363,12 +363,12 @@
             "prsMerged": 0,
             "prsClosed": 0,
             "commits": 3,
-            "comments": 0,
+            "comments": 1,
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 38.7,
-          "velocityBand": "red",
+          "velocity": 40,
+          "velocityBand": "yellow",
           "warmingUp": false
         }
       ],
@@ -424,6 +424,18 @@
           "prNumber": 26,
           "createdAt": "2026-09-01T08:14:07.177Z",
           "url": "https://github.com/borealis/app/pull/26#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": null,
+          "createdAt": "2026-09-01T19:00:17.526Z",
+          "url": "https://github.com/borealis/core/issues/162#issuecomment-9030"
         },
         {
           "kind": "issue",
@@ -567,7 +579,7 @@
         "locAdded": 512,
         "locRemoved": 106
       },
-      "velocity": 56.4,
+      "velocity": 61.8,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -583,11 +595,11 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 8,
-        "comments": 0,
+        "comments": 1,
         "locAdded": 0,
         "locRemoved": 0
       },
-      "velocity": 28,
+      "velocity": 32.2,
       "velocityBand": "red",
       "warmingUp": false
     }

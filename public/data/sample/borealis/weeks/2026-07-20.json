@@ -2,7 +2,7 @@
   "weekStart": "2026-07-20",
   "weekEnd": "2026-07-27",
   "label": "2026/07/20–07/26",
-  "velocity": 51.6,
+  "velocity": 49.9,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -134,7 +134,7 @@
     {
       "handle": "rosalindf",
       "name": "Rosalind Frank",
-      "velocity": 36.1,
+      "velocity": 33.9,
       "velocityBand": "red",
       "warmingUp": false,
       "totals": {
@@ -163,7 +163,7 @@
             "locAdded": 73,
             "locRemoved": 20
           },
-          "velocity": 46,
+          "velocity": 44.5,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -183,7 +183,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 53.5,
+          "velocity": 47.8,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -320,7 +320,7 @@
     {
       "handle": "alanturing",
       "name": "Alan Turing",
-      "velocity": 100,
+      "velocity": 94.7,
       "velocityBand": "green",
       "warmingUp": false,
       "totals": {
@@ -349,7 +349,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 0,
+          "velocity": 25.5,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -369,7 +369,7 @@
             "locAdded": 560,
             "locRemoved": 244
           },
-          "velocity": 100,
+          "velocity": 89.7,
           "velocityBand": "green",
           "warmingUp": false
         }
@@ -571,7 +571,7 @@
         "locAdded": 73,
         "locRemoved": 20
       },
-      "velocity": 37.1,
+      "velocity": 36.2,
       "velocityBand": "red",
       "warmingUp": false
     },
@@ -591,7 +591,7 @@
         "locAdded": 560,
         "locRemoved": 244
       },
-      "velocity": 64.5,
+      "velocity": 62.4,
       "velocityBand": "yellow",
       "warmingUp": false
     }

@@ -2,15 +2,15 @@
   "weekStart": "2026-07-27",
   "weekEnd": "2026-08-03",
   "label": "2026/07/27–08/02",
-  "velocity": 37.4,
-  "velocityBand": "red",
+  "velocity": 53.9,
+  "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
     "prsOpened": 2,
     "prsMerged": 2,
     "prsClosed": 0,
     "commits": 7,
-    "comments": 4,
+    "comments": 7,
     "locAdded": 336,
     "locRemoved": 148
   },
@@ -96,7 +96,7 @@
     {
       "handle": "rosalindf",
       "name": "Rosalind Frank",
-      "velocity": 50.6,
+      "velocity": 50.5,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -104,7 +104,7 @@
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 3,
-        "comments": 3,
+        "comments": 4,
         "locAdded": 217,
         "locRemoved": 108
       },
@@ -125,7 +125,7 @@
             "locAdded": 217,
             "locRemoved": 108
           },
-          "velocity": 56.4,
+          "velocity": 53.6,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -146,6 +146,26 @@
             "locRemoved": 0
           },
           "velocity": 46.5,
+          "velocityBand": "yellow",
+          "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -219,6 +239,18 @@
           "kind": "issue",
           "repo": {
             "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "prNumber": null,
+          "createdAt": "2026-07-31T10:41:08.493Z",
+          "url": "https://github.com/opensource/http-kit/issues/173#issuecomment-9021"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
             "owner": "borealis",
             "name": "app",
             "url": "https://github.com/borealis/app"
@@ -270,15 +302,15 @@
     {
       "handle": "alanturing",
       "name": "Alan Turing",
-      "velocity": 30,
-      "velocityBand": "red",
+      "velocity": 60.4,
+      "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
         "prsOpened": 1,
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 4,
-        "comments": 1,
+        "comments": 3,
         "locAdded": 119,
         "locRemoved": 40
       },
@@ -299,7 +331,7 @@
             "locAdded": 119,
             "locRemoved": 40
           },
-          "velocity": 50,
+          "velocity": 52.4,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -319,9 +351,29 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 48.1,
+          "velocity": 40,
           "velocityBand": "yellow",
           "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 63.5,
+          "velocityBand": "yellow",
+          "warmingUp": true
         }
       ],
       "prs": [
@@ -365,6 +417,30 @@
         }
       ],
       "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "prNumber": 144,
+          "createdAt": "2026-07-29T00:06:06.334Z",
+          "url": "https://github.com/opensource/http-kit/pull/144#issuecomment-9023"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "prNumber": null,
+          "createdAt": "2026-07-30T08:46:42.211Z",
+          "url": "https://github.com/opensource/http-kit/issues/191#issuecomment-9022"
+        },
         {
           "kind": "issue",
           "repo": {
@@ -447,7 +523,7 @@
         "locAdded": 336,
         "locRemoved": 148
       },
-      "velocity": 66.4,
+      "velocity": 63.6,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -469,6 +545,26 @@
       },
       "velocity": 0,
       "velocityBand": "red",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "opensource",
+        "name": "http-kit",
+        "url": "https://github.com/opensource/http-kit"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 3,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 100,
+      "velocityBand": "green",
       "warmingUp": false
     }
   ]

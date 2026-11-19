@@ -2,7 +2,7 @@
   "weekStart": "2026-06-15",
   "weekEnd": "2026-06-22",
   "label": "2026/06/15–06/21",
-  "velocity": 55,
+  "velocity": 50.2,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 2,
     "prsClosed": 0,
     "commits": 5,
-    "comments": 5,
+    "comments": 6,
     "locAdded": 418,
     "locRemoved": 52
   },
@@ -96,7 +96,7 @@
     {
       "handle": "katherinej",
       "name": "Katherine Johnson",
-      "velocity": 39,
+      "velocity": 30.4,
       "velocityBand": "red",
       "warmingUp": false,
       "totals": {
@@ -125,7 +125,7 @@
             "locAdded": 204,
             "locRemoved": 21
           },
-          "velocity": 63.9,
+          "velocity": 61.1,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -262,7 +262,7 @@
     {
       "handle": "dennisr",
       "name": "Dennis Ritchie",
-      "velocity": 63.7,
+      "velocity": 64,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -270,7 +270,7 @@
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 2,
-        "comments": 1,
+        "comments": 2,
         "locAdded": 214,
         "locRemoved": 31
       },
@@ -291,7 +291,27 @@
             "locAdded": 214,
             "locRemoved": 31
           },
-          "velocity": 54.7,
+          "velocity": 57.7,
+          "velocityBand": "yellow",
+          "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -348,6 +368,18 @@
           "prNumber": 17,
           "createdAt": "2026-06-19T13:13:47.510Z",
           "url": "https://github.com/nimbus/cloud/pull/17#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-20T00:37:29.829Z",
+          "url": "https://github.com/nimbus/edge/issues/125#issuecomment-9019"
         }
       ],
       "commits": [
@@ -395,8 +427,28 @@
         "locAdded": 418,
         "locRemoved": 52
       },
-      "velocity": 77.9,
+      "velocity": 70.9,
       "velocityBand": "green",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "nimbus",
+        "name": "edge",
+        "url": "https://github.com/nimbus/edge"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 35.3,
+      "velocityBand": "red",
       "warmingUp": false
     }
   ]

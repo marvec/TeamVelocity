@@ -10,7 +10,7 @@
     "prsMerged": 0,
     "prsClosed": 0,
     "commits": 1,
-    "comments": 0,
+    "comments": 2,
     "locAdded": 0,
     "locRemoved": 0
   },
@@ -19,7 +19,7 @@
     {
       "handle": "rosalindf",
       "name": "Rosalind Frank",
-      "velocity": 2.8,
+      "velocity": 9.4,
       "velocityBand": "red",
       "warmingUp": false,
       "totals": {
@@ -27,11 +27,31 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 1,
-        "comments": 0,
+        "comments": 2,
         "locAdded": 0,
         "locRemoved": 0
       },
       "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 12.1,
+          "velocityBand": "red",
+          "warmingUp": false
+        },
         {
           "repo": {
             "source": "github",
@@ -51,10 +71,55 @@
           "velocity": 36.5,
           "velocityBand": "red",
           "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": false
         }
       ],
       "prs": [],
-      "comments": [],
+      "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-04T02:01:31.197Z",
+          "url": "https://github.com/opensource/http-kit/issues/101#issuecomment-9025"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 185,
+          "createdAt": "2026-08-06T17:02:05.013Z",
+          "url": "https://github.com/borealis/app/pull/185#issuecomment-9024"
+        }
+      ],
       "commits": [
         {
           "sha": "0fb46230d21e48cf8c1a75cd3fc7410bd32a2d87",
@@ -96,6 +161,26 @@
       "repo": {
         "source": "github",
         "owner": "borealis",
+        "name": "app",
+        "url": "https://github.com/borealis/app"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 0,
+      "velocityBand": "red",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "borealis",
         "name": "core",
         "url": "https://github.com/borealis/core"
       },
@@ -108,8 +193,28 @@
         "locAdded": 0,
         "locRemoved": 0
       },
-      "velocity": 5.3,
+      "velocity": 7.8,
       "velocityBand": "red",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "opensource",
+        "name": "http-kit",
+        "url": "https://github.com/opensource/http-kit"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
       "warmingUp": false
     }
   ]

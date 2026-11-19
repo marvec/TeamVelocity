@@ -2,7 +2,7 @@
   "weekStart": "2026-06-08",
   "weekEnd": "2026-06-15",
   "label": "2026/06/08–06/14",
-  "velocity": 51,
+  "velocity": 63,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 6,
     "prsClosed": 0,
     "commits": 19,
-    "comments": 9,
+    "comments": 12,
     "locAdded": 1237,
     "locRemoved": 441
   },
@@ -248,7 +248,7 @@
     {
       "handle": "adalovelace",
       "name": "Ada Lovelace",
-      "velocity": 63.5,
+      "velocity": 50.7,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -256,7 +256,7 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 7,
-        "comments": 4,
+        "comments": 6,
         "locAdded": 622,
         "locRemoved": 219
       },
@@ -277,7 +277,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 4.1,
+          "velocity": 10.3,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -313,11 +313,11 @@
             "prsMerged": 1,
             "prsClosed": 0,
             "commits": 4,
-            "comments": 1,
+            "comments": 3,
             "locAdded": 323,
             "locRemoved": 131
           },
-          "velocity": 63.5,
+          "velocity": 69.2,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -424,6 +424,30 @@
           "prNumber": 12,
           "createdAt": "2026-06-09T07:33:38.486Z",
           "url": "https://github.com/aurora/infra/pull/12#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-09T07:58:39.601Z",
+          "url": "https://github.com/aurora/web/issues/171#issuecomment-9025"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": 161,
+          "createdAt": "2026-06-10T18:45:14.901Z",
+          "url": "https://github.com/aurora/web/pull/161#issuecomment-9024"
         },
         {
           "kind": "review_summary",
@@ -569,7 +593,7 @@
             "locAdded": 45,
             "locRemoved": 10
           },
-          "velocity": 64.4,
+          "velocity": 62.7,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -757,7 +781,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 50,
+          "velocity": 43.3,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -797,7 +821,7 @@
             "locAdded": 337,
             "locRemoved": 121
           },
-          "velocity": 59.3,
+          "velocity": 58.5,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -978,7 +1002,7 @@
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 2,
-        "comments": 1,
+        "comments": 2,
         "locAdded": 76,
         "locRemoved": 30
       },
@@ -1001,6 +1025,26 @@
           },
           "velocity": 100,
           "velocityBand": "green",
+          "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
           "warmingUp": false
         }
       ],
@@ -1045,6 +1089,18 @@
         }
       ],
       "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-09T19:02:13.352Z",
+          "url": "https://github.com/aurora/web/issues/132#issuecomment-9026"
+        },
         {
           "kind": "issue",
           "repo": {
@@ -1103,8 +1159,8 @@
         "locAdded": 121,
         "locRemoved": 40
       },
-      "velocity": 50,
-      "velocityBand": "yellow",
+      "velocity": 36.5,
+      "velocityBand": "red",
       "warmingUp": false
     },
     {
@@ -1123,7 +1179,7 @@
         "locAdded": 456,
         "locRemoved": 149
       },
-      "velocity": 63.5,
+      "velocity": 50.2,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -1139,11 +1195,11 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 6,
-        "comments": 3,
+        "comments": 6,
         "locAdded": 660,
         "locRemoved": 252
       },
-      "velocity": 50,
+      "velocity": 59.2,
       "velocityBand": "yellow",
       "warmingUp": false
     }

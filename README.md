@@ -84,7 +84,7 @@ GitHub and never sees the token.
 
 ### Incremental pulls
 
-Pulls are incremental. Each GitHub handle's normalized PRs, commits and review activity are
+Pulls are incremental. Each GitHub handle's normalized PRs, commits, reviews and comments are
 cached under `.cache/pull/<source>/<handle>.json` (git-ignored, disposable), together with the
 window of time that cache covers. A pull fetches only the gap between that coverage and what you
 asked for, plus two days of overlap so anything that changed right at the boundary is still
@@ -107,7 +107,16 @@ for two 7-person teams costs about 5 rate-limit points; a full 26-week backfill 
 | `--cache-dir <path>` | `.cache/pull` | Where the cache lives. |
 
 Deleting `.cache/` is always safe: the next pull backfills it. A cache file that is corrupt or
-written by an older version is reported and re-fetched rather than failing the pull.
+written by an older version is reported and re-fetched rather than failing the pull. A file from
+an older version still sets how far back that re-fetch reaches, so an upgrade never shrinks your
+history.
+
+**Upgrading to cache version 3.** Pulls now also collect the issue and PR conversation comments
+each member writes on any repo the token can see, not only on the team's own repos. Older caches
+were fetched without them, so the first pull after this upgrade discards them and re-fetches back
+to the earliest week they covered, not just `--weeks`. Expect that one pull to take longer and to
+spend noticeably more rate-limit points than a routine one, more so for members who comment a lot.
+If it is interrupted or a fetch fails, the old cache file is kept and the next pull tries again.
 
 Two things a pull will tell you about rather than paper over. If a search hits GitHub's
 1000-result ceiling its window is *not* cached, so it is retried every pull until you narrow it

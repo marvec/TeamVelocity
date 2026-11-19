@@ -43,6 +43,8 @@ interface TeamSpec {
   name: string;
   members: MemberSpec[];
   repos: RepoRef[];
+  /** A public repo outside the team where members only ever comment, never author PRs. */
+  outsideRepo: RepoRef;
   seed: number;
   /** Week index that is a team-wide crunch (spike). */
   crunchWeek: number;
@@ -199,7 +201,49 @@ function generateEntities(spec: TeamSpec, windows: WeekWindow[]): Entities {
     });
   });
 
-  return { pullRequests, commits, comments };
+  return { pullRequests, commits, comments: [...comments, ...generateIssueComments(spec, windows)] };
+}
+
+/**
+ * Conversation comments a member writes on issues and PRs, shaped the way the
+ * GitHub connector collects them: `kind: "issue"`, linking to the comment
+ * itself, with a `prNumber` only when the thread is a pull request. Some land in
+ * `spec.outsideRepo`, where no member authors PRs, so the per-repo breakdown
+ * shows a repo a member only commented in.
+ *
+ * Drawn from a stream of its own so adding them left every other generated
+ * entity unchanged.
+ */
+function generateIssueComments(spec: TeamSpec, windows: WeekWindow[]): Comment[] {
+  const rng = makeRng(spec.seed + 1);
+  const comments: Comment[] = [];
+  let commentId = 9000;
+  windows.forEach((win, wi) => {
+    spec.members.forEach((m, mi) => {
+      if (spec.pto.member === mi && spec.pto.week === wi) return;
+      // The first member always comments outside the team in week 1, so every
+      // team's sample holds at least one comment-only repo.
+      const guaranteed = mi === 0 && wi === 1;
+      const count = randInt(rng, guaranteed ? 1 : 0, 2);
+      for (let k = 0; k < count; k++) {
+        const outside = (guaranteed && k === 0) || rng() < 0.25;
+        const r = outside ? spec.outsideRepo : spec.repos[randInt(rng, 0, spec.repos.length - 1)];
+        const onPr = rng() < 0.4;
+        const number = randInt(rng, 100, 199);
+        commentId += 1;
+        comments.push({
+          source: "github",
+          repo: r,
+          kind: "issue",
+          authorHandle: m.handle,
+          createdAt: dateIn(win, rng),
+          ...(onPr ? { prNumber: number } : {}),
+          url: `${r.url}/${onPr ? "pull" : "issues"}/${String(number)}#issuecomment-${String(commentId)}`,
+        });
+      }
+    });
+  });
+  return comments;
 }
 
 const TITLES = [
@@ -272,6 +316,7 @@ const aurora: TeamSpec = {
   quietWeek: 15,
   pto: { member: 1, week: 9 },
   repos: auroraRepos,
+  outsideRepo: repo("opensource", "lint-rules"),
   members: [
     { name: "Ada Lovelace", handle: "adalovelace", prBase: 2.2, locBase: 180, reviewBase: 1.5 },
     { name: "Grace Hopper", handle: "gracehopper", prBase: 1.3, locBase: 90, reviewBase: 3.5 },
@@ -288,6 +333,7 @@ const borealis: TeamSpec = {
   quietWeek: 14,
   pto: { member: 0, week: 11 },
   repos: borealisRepos,
+  outsideRepo: repo("opensource", "http-kit"),
   members: [
     { name: "Rosalind Frank", handle: "rosalindf", prBase: 1.4, locBase: 140, reviewBase: 1.8 },
     { name: "Alan Turing", handle: "alanturing", prBase: 1.7, locBase: 200, reviewBase: 1.1 },
@@ -302,6 +348,7 @@ const nimbus: TeamSpec = {
   quietWeek: 16,
   pto: { member: 1, week: 5 },
   repos: [repo("nimbus", "cloud"), repo("nimbus", "edge")],
+  outsideRepo: repo("opensource", "edge-proxy"),
   members: [
     { name: "Katherine Johnson", handle: "katherinej", prBase: 1.9, locBase: 160, reviewBase: 2.0 },
     { name: "Dennis Ritchie", handle: "dennisr", prBase: 1.5, locBase: 240, reviewBase: 1.0 },

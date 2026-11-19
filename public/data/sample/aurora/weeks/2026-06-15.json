@@ -2,7 +2,7 @@
   "weekStart": "2026-06-15",
   "weekEnd": "2026-06-22",
   "label": "2026/06/15–06/21",
-  "velocity": 25.3,
+  "velocity": 31.7,
   "velocityBand": "red",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 4,
     "prsClosed": 0,
     "commits": 12,
-    "comments": 6,
+    "comments": 11,
     "locAdded": 956,
     "locRemoved": 266
   },
@@ -172,7 +172,7 @@
     {
       "handle": "adalovelace",
       "name": "Ada Lovelace",
-      "velocity": 14,
+      "velocity": 0,
       "velocityBand": "red",
       "warmingUp": false,
       "totals": {
@@ -201,7 +201,7 @@
             "locAdded": 147,
             "locRemoved": 62
           },
-          "velocity": 44.5,
+          "velocity": 44.9,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -241,7 +241,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 1.2,
+          "velocity": 13.5,
           "velocityBand": "red",
           "warmingUp": false
         }
@@ -378,15 +378,15 @@
     {
       "handle": "gracehopper",
       "name": "Grace Hopper",
-      "velocity": 41.4,
-      "velocityBand": "yellow",
+      "velocity": 36.5,
+      "velocityBand": "red",
       "warmingUp": false,
       "totals": {
         "prsOpened": 1,
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 2,
-        "comments": 3,
+        "comments": 4,
         "locAdded": 97,
         "locRemoved": 10
       },
@@ -415,6 +415,26 @@
           "repo": {
             "source": "github",
             "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 33.4,
+          "velocityBand": "red",
+          "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
             "name": "web",
             "url": "https://github.com/aurora/web"
           },
@@ -427,7 +447,7 @@
             "locAdded": 97,
             "locRemoved": 10
           },
-          "velocity": 50.5,
+          "velocity": 50,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -508,6 +528,18 @@
           "prNumber": 15,
           "createdAt": "2026-06-17T10:44:10.433Z",
           "url": "https://github.com/aurora/web/pull/15#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-21T09:23:48.684Z",
+          "url": "https://github.com/aurora/infra/issues/109#issuecomment-9027"
         }
       ],
       "commits": [
@@ -540,7 +572,7 @@
     {
       "handle": "linusn",
       "name": "Linus Nyman",
-      "velocity": 56.2,
+      "velocity": 62.6,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -548,7 +580,7 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 3,
-        "comments": 1,
+        "comments": 3,
         "locAdded": 712,
         "locRemoved": 194
       },
@@ -571,6 +603,26 @@
           },
           "velocity": 63.5,
           "velocityBand": "yellow",
+          "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 39.5,
+          "velocityBand": "red",
           "warmingUp": false
         }
       ],
@@ -654,6 +706,18 @@
       ],
       "comments": [
         {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-19T11:22:47.496Z",
+          "url": "https://github.com/aurora/web/issues/171#issuecomment-9028"
+        },
+        {
           "kind": "review_summary",
           "repo": {
             "source": "github",
@@ -664,6 +728,18 @@
           "prNumber": 15,
           "createdAt": "2026-06-20T17:20:09.041Z",
           "url": "https://github.com/aurora/infra/pull/15#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-21T08:27:14.724Z",
+          "url": "https://github.com/aurora/web/issues/195#issuecomment-9029"
         }
       ],
       "commits": [
@@ -708,7 +784,7 @@
     {
       "handle": "margaretp",
       "name": "Margaret Park",
-      "velocity": 50,
+      "velocity": 63.4,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -716,11 +792,31 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 1,
-        "comments": 1,
+        "comments": 3,
         "locAdded": 0,
         "locRemoved": 0
       },
       "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 36.5,
+          "velocityBand": "red",
+          "warmingUp": false
+        },
         {
           "repo": {
             "source": "github",
@@ -740,10 +836,54 @@
           "velocity": 100,
           "velocityBand": "green",
           "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "lint-rules",
+            "url": "https://github.com/opensource/lint-rules"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true
         }
       ],
       "prs": [],
       "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": 124,
+          "createdAt": "2026-06-15T21:11:02.533Z",
+          "url": "https://github.com/aurora/infra/pull/124#issuecomment-9031"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "lint-rules",
+            "url": "https://github.com/opensource/lint-rules"
+          },
+          "prNumber": null,
+          "createdAt": "2026-06-17T03:53:08.750Z",
+          "url": "https://github.com/opensource/lint-rules/issues/114#issuecomment-9030"
+        },
         {
           "kind": "review_summary",
           "repo": {
@@ -806,11 +946,11 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 6,
-        "comments": 1,
+        "comments": 3,
         "locAdded": 712,
         "locRemoved": 194
       },
-      "velocity": 52.8,
+      "velocity": 56.6,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -826,12 +966,32 @@
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 5,
-        "comments": 4,
+        "comments": 6,
         "locAdded": 97,
         "locRemoved": 10
       },
       "velocity": 32.5,
       "velocityBand": "red",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "opensource",
+        "name": "lint-rules",
+        "url": "https://github.com/opensource/lint-rules"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
       "warmingUp": false
     }
   ]

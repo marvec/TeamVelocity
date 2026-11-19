@@ -10,7 +10,7 @@
     "prsMerged": 0,
     "prsClosed": 0,
     "commits": 4,
-    "comments": 1,
+    "comments": 3,
     "locAdded": 0,
     "locRemoved": 0
   },
@@ -27,7 +27,7 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 1,
-        "comments": 1,
+        "comments": 2,
         "locAdded": 0,
         "locRemoved": 0
       },
@@ -44,11 +44,11 @@
             "prsMerged": 0,
             "prsClosed": 0,
             "commits": 0,
-            "comments": 1,
+            "comments": 2,
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 36.2,
+          "velocity": 38.5,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -68,13 +68,25 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 34.7,
+          "velocity": 34.9,
           "velocityBand": "red",
           "warmingUp": false
         }
       ],
       "prs": [],
       "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-12T10:44:05.770Z",
+          "url": "https://github.com/aurora/api/issues/173#issuecomment-9061"
+        },
         {
           "kind": "issue",
           "repo": {
@@ -135,7 +147,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 36.5,
+          "velocity": 28.4,
           "velocityBand": "red",
           "warmingUp": false
         }
@@ -214,7 +226,7 @@
     {
       "handle": "margaretp",
       "name": "Margaret Park",
-      "velocity": 3.4,
+      "velocity": 7.4,
       "velocityBand": "red",
       "warmingUp": false,
       "totals": {
@@ -222,11 +234,31 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 1,
-        "comments": 0,
+        "comments": 1,
         "locAdded": 0,
         "locRemoved": 0
       },
       "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 100,
+          "velocityBand": "green",
+          "warmingUp": false
+        },
         {
           "repo": {
             "source": "github",
@@ -249,7 +281,20 @@
         }
       ],
       "prs": [],
-      "comments": [],
+      "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "api",
+            "url": "https://github.com/aurora/api"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-10T18:25:22.500Z",
+          "url": "https://github.com/aurora/api/issues/151#issuecomment-9062"
+        }
+      ],
       "commits": [
         {
           "sha": "82e4d294e5a77cf0b4321f124bb020e3bbd38bb4",
@@ -279,11 +324,11 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 0,
-        "comments": 1,
+        "comments": 3,
         "locAdded": 0,
         "locRemoved": 0
       },
-      "velocity": 13.2,
+      "velocity": 12.7,
       "velocityBand": "red",
       "warmingUp": false
     },
@@ -323,7 +368,7 @@
         "locAdded": 0,
         "locRemoved": 0
       },
-      "velocity": 0.9,
+      "velocity": 0,
       "velocityBand": "red",
       "warmingUp": false
     }

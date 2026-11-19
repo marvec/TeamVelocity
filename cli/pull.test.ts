@@ -16,6 +16,7 @@ import { createMemoryCacheStore, type CacheStore } from "./cache/store";
 import type { GitHubClient } from "./connectors/github/types";
 import type { Logger } from "./connectors/types";
 import type { TeamConfig } from "../shared/schema/config";
+import { emptyHandleCache, serializeHandleCache } from "../shared/schema/cache";
 
 const fixtures = fixturesJson as unknown as GitHubFixtures;
 
@@ -283,6 +284,77 @@ describe("runPull — a reset handle is backfilled to the team's range", () => {
     for (const call of aliceWindows) {
       expect(call.since).toBe("2026-03-01T00:00:00.000Z");
     }
+  });
+});
+
+describe("runPull — a cache-version bump refetches without shrinking history", () => {
+  /** A file the previous cache version wrote, covering 2026-03-10 onwards. */
+  async function seedVersion2(store: CacheStore, handle: string): Promise<void> {
+    const old = emptyHandleCache("github", handle);
+    old.coverage = { since: d("2026-03-10T00:00:00.000Z"), until: d("2026-09-01T00:00:00.000Z") };
+    await store.save("github", handle, { ...serializeHandleCache(old), version: 2 });
+  }
+
+  it("refetches back to the old coverage, not just the requested weeks", async () => {
+    const store = createMemoryCacheStore();
+    await seedVersion2(store, "alice");
+    await seedVersion2(store, "bob");
+    const dir = dataDir();
+
+    const calls = await pull(store, dir, {
+      requested: { since: d("2026-05-21T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") },
+    });
+
+    // The old range is a hint, not coverage: everything in it is fetched again.
+    expect(calls).toHaveLength(2);
+    for (const call of calls) {
+      expect(call.handles).toEqual(["alice", "bob"]);
+      expect(call.since).toBe("2026-03-10T00:00:00.000Z");
+      expect(call.until).toBe("2026-09-10T00:00:00.000Z");
+    }
+    // 2026-03-10 is a Tuesday, so the dataset opens on the week holding it.
+    const meta = JSON.parse(readFileSync(join(dir, "acme", "meta.json"), "utf8")) as { rangeStart: string };
+    expect(meta.rangeStart).toBe("2026-03-09");
+  });
+
+  it("stores the refetch at the current version, so the next pull is incremental again", async () => {
+    const store = createMemoryCacheStore();
+    await seedVersion2(store, "alice");
+    await seedVersion2(store, "bob");
+    const dir = dataDir();
+    const requested = { since: d("2026-05-21T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") };
+    await pull(store, dir, { requested });
+
+    expect(await pull(store, dir, { requested })).toEqual([]);
+  });
+
+  it("keeps the stale file when its refetch is incomplete, so the hint survives", async () => {
+    const store = createMemoryCacheStore();
+    await seedVersion2(store, "alice");
+    await seedVersion2(store, "bob");
+    const dir = dataDir();
+    const inner = createFakeGitHubClient(fixtures);
+    const failing: GitHubClient = {
+      searchPrsByAuthors: () => Promise.reject(new Error("502")),
+      searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      listIssueCommentsBy: (h, s, u) => inner.listIssueCommentsBy(h, s, u),
+      usage: () => inner.usage(),
+    };
+    await runPull(
+      options({
+        connector: createGitHubConnector(failing),
+        store,
+        dataDir: dir,
+        requested: { since: d("2026-05-21T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") },
+      }),
+    );
+
+    // A narrow retry still reaches back to the old range.
+    const retry = await pull(store, dir, {
+      requested: { since: d("2026-09-01T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") },
+    });
+    expect(retry).toHaveLength(2);
+    for (const call of retry) expect(call.since).toBe("2026-03-10T00:00:00.000Z");
   });
 });
 

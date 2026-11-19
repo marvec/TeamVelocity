@@ -2,7 +2,7 @@
   "weekStart": "2026-08-24",
   "weekEnd": "2026-08-31",
   "label": "2026/08/24–08/30",
-  "velocity": 69.4,
+  "velocity": 66.6,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 4,
     "prsClosed": 0,
     "commits": 12,
-    "comments": 6,
+    "comments": 7,
     "locAdded": 1045,
     "locRemoved": 406
   },
@@ -172,8 +172,8 @@
     {
       "handle": "rosalindf",
       "name": "Rosalind Frank",
-      "velocity": 72.1,
-      "velocityBand": "green",
+      "velocity": 68.9,
+      "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
         "prsOpened": 2,
@@ -201,7 +201,7 @@
             "locAdded": 167,
             "locRemoved": 88
           },
-          "velocity": 63,
+          "velocity": 62.7,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -444,15 +444,15 @@
     {
       "handle": "alanturing",
       "name": "Alan Turing",
-      "velocity": 67.8,
-      "velocityBand": "yellow",
+      "velocity": 72.8,
+      "velocityBand": "green",
       "warmingUp": false,
       "totals": {
         "prsOpened": 2,
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 4,
-        "comments": 3,
+        "comments": 4,
         "locAdded": 608,
         "locRemoved": 192
       },
@@ -469,12 +469,12 @@
             "prsMerged": 1,
             "prsClosed": 0,
             "commits": 3,
-            "comments": 1,
+            "comments": 2,
             "locAdded": 203,
             "locRemoved": 56
           },
-          "velocity": 63.4,
-          "velocityBand": "yellow",
+          "velocity": 70.2,
+          "velocityBand": "green",
           "warmingUp": false
         },
         {
@@ -493,7 +493,7 @@
             "locAdded": 405,
             "locRemoved": 136
           },
-          "velocity": 66.5,
+          "velocity": 62.7,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -590,6 +590,18 @@
           "url": "https://github.com/borealis/core/pull/21#c0"
         },
         {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "app",
+            "url": "https://github.com/borealis/app"
+          },
+          "prNumber": 145,
+          "createdAt": "2026-08-28T17:28:25.939Z",
+          "url": "https://github.com/borealis/app/pull/145#issuecomment-9029"
+        },
+        {
           "kind": "review",
           "repo": {
             "source": "github",
@@ -679,11 +691,11 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 6,
-        "comments": 3,
+        "comments": 4,
         "locAdded": 370,
         "locRemoved": 144
       },
-      "velocity": 66.3,
+      "velocity": 69.8,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -703,7 +715,7 @@
         "locAdded": 675,
         "locRemoved": 262
       },
-      "velocity": 63.1,
+      "velocity": 61.7,
       "velocityBand": "yellow",
       "warmingUp": false
     }

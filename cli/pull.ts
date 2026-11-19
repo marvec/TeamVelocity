@@ -40,6 +40,7 @@ import {
   loadHandleCache,
   saveHandleCache,
   type CacheStore,
+  type LoadedHandleCache,
 } from "./cache/store";
 
 const SOURCE = "github" as const;
@@ -164,12 +165,20 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
     // discarded as unreadable — has to be backfilled to that union, not merely to
     // `requested`. Otherwise it renders as real zeros in every earlier week its
     // teammates cover, which reads as "did nothing" rather than "not fetched".
-    const storedByHandle = new Map<string, HandleCache>();
+    //
+    // A file from an older cache version is discarded but still names the range
+    // it covered. That range widens the target too — otherwise a version bump
+    // would refetch only `--weeks` and the rebuilt dataset would shrink — while
+    // the handle is planned from its empty cache, so the range is refetched
+    // rather than mistaken for already fetched.
+    const storedByHandle = new Map<string, LoadedHandleCache>();
     for (const member of members) {
       storedByHandle.set(member.github, await loadHandleCache(store, SOURCE, member.github, logger));
     }
     let target = requested;
-    for (const cache of storedByHandle.values()) target = widen(target, cache.coverage);
+    for (const { cache, staleCoverage } of storedByHandle.values()) {
+      target = widen(widen(target, cache.coverage), staleCoverage);
+    }
 
     // Plan every handle first, then fetch per distinct window rather than per
     // handle: handles kept in step share their windows exactly, so one batched
@@ -177,13 +186,14 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
     // joined, or its last fetch failed) simply lands in a group of its own.
     const plans = members.map((member) => {
       const handle = member.github;
-      const stored = storedByHandle.get(handle) ?? emptyHandleCache(SOURCE, handle);
+      const loaded = storedByHandle.get(handle);
+      const stored = loaded?.cache ?? emptyHandleCache(SOURCE, handle);
       // --full drops the cached entities so records deleted upstream disappear.
       // It still fetches the full team target, so it can never shrink accumulated
       // history just because --weeks is smaller this time.
       const cache = full ? emptyHandleCache(SOURCE, handle) : stored;
       const windows = planFetchWindows(cache.coverage, target, overlapDays);
-      return { member, stored, cache, windows, everyWindowComplete: true };
+      return { member, stored, staleCoverage: loaded?.staleCoverage, cache, windows, everyWindowComplete: true };
     });
 
     for (const plan of plans) {
@@ -241,6 +251,11 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
         // let the next pull try again.
         logger.warn(`@${handle}: --full rebuild was incomplete — keeping the existing cache`);
         plan.cache = plan.stored;
+      } else if (plan.staleCoverage && !plan.everyWindowComplete) {
+        // Saving now would overwrite the old-version file with one that covers
+        // nothing, losing the only record of how far back this handle's history
+        // reached. Leave it, so the next pull refetches the whole range again.
+        logger.warn(`@${handle}: refetch after the cache upgrade was incomplete — keeping the old cache file to retry`);
       } else if (plan.windows.length > 0) {
         // Nothing fetched means `cache` is still exactly what was loaded, and
         // re-writing it would re-validate and re-serialize the handle's entire

@@ -28,8 +28,11 @@ import {
  *
  * v2: pull requests are keyed by {@link prIdentity} (the source's rename-stable
  * id) rather than by `repo#number`, and carry `externalId`.
+ * v3: comments include the member's issue and PR conversation comments on any
+ * visible repo. The shape is unchanged, but a v2 file's windows were fetched
+ * without them, so it is refetched — see {@link readStaleCoverage}.
  */
-export const CACHE_VERSION = 2;
+export const CACHE_VERSION = 3;
 
 const StoredPrSchema = z.strictObject({
   source: SourceIdSchema,
@@ -92,6 +95,29 @@ export const HandleCacheFileSchema = z.strictObject({
 });
 
 export type HandleCacheFile = z.infer<typeof HandleCacheFileSchema>;
+
+/** Only what a file from another cache version must still say about itself. */
+const StaleCoverageSchema = z.object({
+  version: z.number().int().refine((version) => version !== CACHE_VERSION),
+  coverage: z.object({ since: isoDateTime, until: isoDateTime }),
+});
+
+/**
+ * The date range a cache file written by a **different** version covered, or
+ * `undefined` when the file is current, never covered anything, or is too
+ * broken to say.
+ *
+ * Such a file's entities are discarded, but its range is still the history the
+ * team had. The caller widens its fetch target with it so a version bump
+ * refetches that history instead of shrinking the dataset to `--weeks`. It is a
+ * hint, never coverage: treating it as coverage would tell the planner the
+ * range was already fetched, and nothing would be refetched.
+ */
+export function readStaleCoverage(raw: unknown): { since: Date; until: Date } | undefined {
+  const parsed = StaleCoverageSchema.safeParse(raw);
+  if (!parsed.success) return undefined;
+  return { since: new Date(parsed.data.coverage.since), until: new Date(parsed.data.coverage.until) };
+}
 
 /** A pull request with the commits it owns — see {@link PrGroup}. */
 export type CachedPr = PrGroup;

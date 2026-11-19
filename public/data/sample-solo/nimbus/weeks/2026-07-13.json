@@ -2,7 +2,7 @@
   "weekStart": "2026-07-13",
   "weekEnd": "2026-07-20",
   "label": "2026/07/13–07/19",
-  "velocity": 25,
+  "velocity": 24.1,
   "velocityBand": "red",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 0,
     "prsClosed": 0,
     "commits": 4,
-    "comments": 4,
+    "comments": 6,
     "locAdded": 281,
     "locRemoved": 63
   },
@@ -96,7 +96,7 @@
     {
       "handle": "katherinej",
       "name": "Katherine Johnson",
-      "velocity": 18.4,
+      "velocity": 12,
       "velocityBand": "red",
       "warmingUp": false,
       "totals": {
@@ -145,7 +145,7 @@
             "locAdded": 177,
             "locRemoved": 38
           },
-          "velocity": 48.7,
+          "velocity": 48.9,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -246,7 +246,7 @@
     {
       "handle": "dennisr",
       "name": "Dennis Ritchie",
-      "velocity": 37,
+      "velocity": 36.8,
       "velocityBand": "red",
       "warmingUp": false,
       "totals": {
@@ -254,7 +254,7 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 2,
-        "comments": 2,
+        "comments": 4,
         "locAdded": 104,
         "locRemoved": 25
       },
@@ -271,7 +271,7 @@
             "prsMerged": 0,
             "prsClosed": 0,
             "commits": 2,
-            "comments": 0,
+            "comments": 1,
             "locAdded": 0,
             "locRemoved": 0
           },
@@ -298,6 +298,26 @@
           "velocity": 100,
           "velocityBand": "green",
           "warmingUp": false
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "edge-proxy",
+            "url": "https://github.com/opensource/edge-proxy"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true
         }
       ],
       "prs": [
@@ -364,6 +384,30 @@
           "prNumber": 13,
           "createdAt": "2026-07-15T04:54:40.276Z",
           "url": "https://github.com/nimbus/edge/pull/13#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "edge-proxy",
+            "url": "https://github.com/opensource/edge-proxy"
+          },
+          "prNumber": null,
+          "createdAt": "2026-07-16T08:42:47.711Z",
+          "url": "https://github.com/opensource/edge-proxy/issues/129#issuecomment-9027"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": null,
+          "createdAt": "2026-07-16T17:29:55.424Z",
+          "url": "https://github.com/nimbus/cloud/issues/105#issuecomment-9028"
         }
       ],
       "commits": [
@@ -407,7 +451,7 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 3,
-        "comments": 0,
+        "comments": 1,
         "locAdded": 0,
         "locRemoved": 0
       },
@@ -430,6 +474,26 @@
         "comments": 4,
         "locAdded": 281,
         "locRemoved": 63
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": false
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "opensource",
+        "name": "edge-proxy",
+        "url": "https://github.com/opensource/edge-proxy"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
       },
       "velocity": 50,
       "velocityBand": "yellow",

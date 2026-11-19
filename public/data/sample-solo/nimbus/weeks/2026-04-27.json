@@ -10,7 +10,7 @@
     "prsMerged": 1,
     "prsClosed": 1,
     "commits": 2,
-    "comments": 3,
+    "comments": 6,
     "locAdded": 246,
     "locRemoved": 90
   },
@@ -104,7 +104,7 @@
         "prsMerged": 1,
         "prsClosed": 1,
         "commits": 2,
-        "comments": 2,
+        "comments": 4,
         "locAdded": 246,
         "locRemoved": 90
       },
@@ -142,6 +142,26 @@
             "prsClosed": 0,
             "commits": 2,
             "comments": 0,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "edge-proxy",
+            "url": "https://github.com/opensource/edge-proxy"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 2,
             "locAdded": 0,
             "locRemoved": 0
           },
@@ -230,6 +250,18 @@
       ],
       "comments": [
         {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "edge-proxy",
+            "url": "https://github.com/opensource/edge-proxy"
+          },
+          "prNumber": 172,
+          "createdAt": "2026-04-28T07:40:07.411Z",
+          "url": "https://github.com/opensource/edge-proxy/pull/172#issuecomment-9001"
+        },
+        {
           "kind": "review",
           "repo": {
             "source": "github",
@@ -252,6 +284,18 @@
           "prNumber": 2,
           "createdAt": "2026-05-03T15:36:56.182Z",
           "url": "https://github.com/nimbus/cloud/pull/2#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "edge-proxy",
+            "url": "https://github.com/opensource/edge-proxy"
+          },
+          "prNumber": 187,
+          "createdAt": "2026-05-03T19:39:46.738Z",
+          "url": "https://github.com/opensource/edge-proxy/pull/187#issuecomment-9002"
         }
       ],
       "commits": [
@@ -292,11 +336,31 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 0,
-        "comments": 1,
+        "comments": 2,
         "locAdded": 0,
         "locRemoved": 0
       },
       "repos": [
+        {
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
+          "warmingUp": true
+        },
         {
           "repo": {
             "source": "github",
@@ -320,6 +384,18 @@
       ],
       "prs": [],
       "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "cloud",
+            "url": "https://github.com/nimbus/cloud"
+          },
+          "prNumber": null,
+          "createdAt": "2026-05-02T11:52:14.943Z",
+          "url": "https://github.com/nimbus/cloud/issues/144#issuecomment-9003"
+        },
         {
           "kind": "review_summary",
           "repo": {
@@ -349,7 +425,7 @@
         "prsMerged": 1,
         "prsClosed": 1,
         "commits": 0,
-        "comments": 2,
+        "comments": 3,
         "locAdded": 246,
         "locRemoved": 90
       },
@@ -370,6 +446,26 @@
         "prsClosed": 0,
         "commits": 2,
         "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
+      "warmingUp": true
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "opensource",
+        "name": "edge-proxy",
+        "url": "https://github.com/opensource/edge-proxy"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 2,
         "locAdded": 0,
         "locRemoved": 0
       },
