@@ -12,8 +12,10 @@ import { Octokit } from "octokit";
 import type { Logger } from "../types";
 import type {
   GhPullRequestNode,
+  GhIssueCommentNode,
   GhReviewedPrNode,
   GitHubClient,
+  IssueCommentsOutcome,
   SearchOptions,
   SearchOutcome,
 } from "./types";
@@ -78,6 +80,53 @@ query SearchReviewed($q: String!, $cursor: String) {
     } }
   }
 }`;
+
+/**
+ * `User.issueComments` can only be ordered by UPDATED_AT, so the walk runs
+ * newest-updated first and stops at `since`: a comment created in the window
+ * was necessarily updated at or after `since` too.
+ */
+const ISSUE_COMMENTS = `
+query IssueComments($login: String!, $cursor: String) {
+  rateLimit { cost remaining }
+  user(login: $login) {
+    issueComments(first: 100, after: $cursor, orderBy: { field: UPDATED_AT, direction: DESC }) {
+      pageInfo { hasNextPage endCursor }
+      nodes {
+        url createdAt updatedAt
+        repository { name url owner { login } }
+        pullRequest { number }
+      }
+    }
+  }
+}`;
+
+interface IssueCommentsPage {
+  /** Null when the login resolves to no user. */
+  user: {
+    issueComments: {
+      pageInfo: { hasNextPage: boolean; endCursor: string | null };
+      nodes: GhIssueCommentNode[];
+    };
+  } | null;
+  rateLimit?: { cost: number; remaining: number } | null;
+}
+
+/**
+ * Octokit throws whenever a response carries `errors`, and an unknown login
+ * comes back as `{ user: null }` plus a NOT_FOUND error on the `user` path —
+ * so on the live API, "no such user" arrives as this exception.
+ */
+function isUserNotFoundError(err: unknown): boolean {
+  if (typeof err !== "object" || err === null || !("errors" in err)) return false;
+  const { errors } = err;
+  if (!Array.isArray(errors)) return false;
+  return errors.some((e: unknown) => {
+    if (typeof e !== "object" || e === null) return false;
+    const { type, path } = e as { type?: unknown; path?: unknown };
+    return type === "NOT_FOUND" && Array.isArray(path) && path[0] === "user";
+  });
+}
 
 interface SearchPage<T> {
   search: {
@@ -188,17 +237,64 @@ export function createGitHubClientFromGraphql(graphql: GraphqlFn, logger?: Logge
    * arrives as undefined. That is a transient fault, not an empty result: retry
    * it once, then fail in words the caller's warning can carry.
    */
-  async function fetchPage<T>(
+  async function fetchWithRetry<P>(
     query: string,
     variables: Record<string, unknown>,
     what: string,
-  ): Promise<SearchPage<T>> {
+    hasData: (page: P) => boolean,
+    label: string,
+  ): Promise<P> {
     for (let attempt = 0; attempt < 2; attempt++) {
-      const data = await graphql<SearchPage<T> | undefined>(query, variables);
-      if (data?.search) return data;
-      logger?.debug(`github: ${what} came back with no search data (attempt ${String(attempt + 1)})`);
+      const data = await graphql<P | undefined>(query, variables);
+      if (data !== undefined && data !== null && hasData(data)) return data;
+      logger?.debug(`github: ${what} came back with no ${label} (attempt ${String(attempt + 1)})`);
     }
-    throw new Error(`GitHub returned no search data for ${what}, twice`);
+    throw new Error(`GitHub returned no ${label} for ${what}, twice`);
+  }
+
+  function fetchPage<T>(query: string, variables: Record<string, unknown>, what: string): Promise<SearchPage<T>> {
+    return fetchWithRetry<SearchPage<T>>(query, variables, what, (d) => Boolean(d.search), "search data");
+  }
+
+  function account(rateLimit: { cost: number; remaining: number } | null | undefined): void {
+    if (rateLimit) {
+      cost += rateLimit.cost;
+      remaining = rateLimit.remaining;
+    }
+  }
+
+  async function listIssueComments(handle: string, since: Date, until: Date): Promise<IssueCommentsOutcome> {
+    const what = `comments by @${handle}`;
+    const out: GhIssueCommentNode[] = [];
+    let cursor: string | null = null;
+    do {
+      let data: IssueCommentsPage;
+      try {
+        // `user` is present (possibly null) on any real answer; its absence is the data-less 200.
+        data = await fetchWithRetry<IssueCommentsPage>(
+          ISSUE_COMMENTS,
+          { login: handle, cursor },
+          what,
+          (d) => "user" in d,
+          "data",
+        );
+      } catch (err) {
+        if (isUserNotFoundError(err)) return { status: "userNotFound" };
+        throw err;
+      }
+      account(data.rateLimit);
+      if (data.user === null) return { status: "userNotFound" };
+
+      const { nodes, pageInfo } = data.user.issueComments;
+      let reachedSince = nodes.length === 0;
+      for (const node of nodes) {
+        const created = Date.parse(node.createdAt);
+        if (created >= since.getTime() && created < until.getTime()) out.push(node);
+        if (Date.parse(node.updatedAt) < since.getTime()) reachedSince = true;
+      }
+      cursor = !reachedSince && pageInfo.hasNextPage ? pageInfo.endCursor : null;
+    } while (cursor);
+    return { status: "found", nodes: out, truncated: false };
   }
 
   async function searchAll<T>(
@@ -212,10 +308,7 @@ export function createGitHubClientFromGraphql(graphql: GraphqlFn, logger?: Logge
     let matches = 0;
     do {
       const data: SearchPage<T> = await fetchPage<T>(query, { q, cursor }, what);
-      if (data.rateLimit) {
-        cost += data.rateLimit.cost;
-        remaining = data.rateLimit.remaining;
-      }
+      account(data.rateLimit);
       matches = Math.max(matches, data.search.issueCount ?? 0);
       if (options.bailOnCap && matches > SEARCH_RESULT_CAP) {
         logger?.debug(
@@ -255,6 +348,10 @@ export function createGitHubClientFromGraphql(graphql: GraphqlFn, logger?: Logge
         `PRs reviewed by ${mentions(handles)}`,
         options,
       );
+    },
+
+    listIssueCommentsBy(handle, since, until) {
+      return listIssueComments(handle, since, until);
     },
 
     usage() {

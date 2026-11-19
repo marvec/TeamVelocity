@@ -283,6 +283,7 @@ function scripted(answer: {
         calls.push({ kind: "reviewed", handles, bailOnCap: options?.bailOnCap ?? false });
         return respond(answer.reviewed ? answer.reviewed(handles) : none);
       },
+      listIssueCommentsBy: () => Promise.resolve({ status: "found" as const, nodes: [], truncated: false as const }),
       usage: () => ({ cost: 0, remaining: null }),
     },
   };

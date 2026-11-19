@@ -71,6 +71,7 @@ function recordingClient(): { client: GitHubClient; calls: Call[] } {
         const all = await inner.searchPrsReviewedBy(handles, since, until);
         return { nodes: all.nodes.filter((n) => inWindow(n.updatedAt, since, until)), truncated: false };
       },
+      listIssueCommentsBy: (h, s, u) => inner.listIssueCommentsBy(h, s, u),
       usage: () => inner.usage(),
     },
   };
@@ -336,6 +337,7 @@ describe("runPull — --full must not destroy history when it fails", () => {
     const failing: GitHubClient = {
       searchPrsByAuthors: () => Promise.reject(new Error("502 Bad Gateway")),
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      listIssueCommentsBy: (h, s, u) => inner.listIssueCommentsBy(h, s, u),
       usage: () => inner.usage(),
     };
     await runPull(options({ connector: createGitHubConnector(failing), store, dataDir: dir, full: true }));
@@ -370,6 +372,7 @@ describe("runPull — resilience", () => {
     const failing: GitHubClient = {
       searchPrsByAuthors: () => Promise.reject(new Error("502 Bad Gateway")),
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      listIssueCommentsBy: (h, s, u) => inner.listIssueCommentsBy(h, s, u),
       usage: () => inner.usage(),
     };
 
@@ -394,6 +397,7 @@ describe("runPull — resilience", () => {
         return { nodes: (await inner.searchPrsByAuthors(h, s, u)).nodes, truncated: true };
       },
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      listIssueCommentsBy: (h, s, u) => inner.listIssueCommentsBy(h, s, u),
       usage: () => inner.usage(),
     };
 
@@ -432,6 +436,7 @@ describe("runPull — resilience", () => {
     const failing: GitHubClient = {
       searchPrsByAuthors: () => Promise.reject(new Error("502")),
       searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      listIssueCommentsBy: (h, s, u) => inner.listIssueCommentsBy(h, s, u),
       usage: () => inner.usage(),
     };
 
