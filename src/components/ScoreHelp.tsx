@@ -16,7 +16,7 @@ export function ScoreHelp({ velocityWeights: w }: { velocityWeights: VelocityWei
   const pr = DEFAULT_PR_SCORE_WEIGHTS;
   const velocityFormula =
     `raw = ${n(w.wPR)}·ln(1+merged) + ${n(w.wOpen)}·ln(1+opened)\n` +
-    `    + ${n(w.wReview)}·ln(1+reviews) + ${n(w.wCommit)}·ln(1+commits)\n` +
+    `    + ${n(w.wReview)}·ln(1+comments) + ${n(w.wCommit)}·ln(1+commits)\n` +
     `    + ${n(w.wLoc)}·ln(1+LOC)\n` +
     `velocity = clamp( 50 + 20·z, 0, 100 )\n` +
     `  z = (raw − med₁₂) / (1.4826 · MAD₁₂)`;

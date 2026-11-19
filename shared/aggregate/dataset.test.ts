@@ -253,3 +253,69 @@ describe("buildTeamDataset — warming up & determinism", () => {
     expect(a).toBe(b);
   });
 });
+
+describe("buildTeamDataset — every comment kind counts toward velocity", () => {
+  /** Four empty weeks (2026-08-03 … 2026-08-24); the caller adds only comments. */
+  function commentsOnly(comments: Comment[]): DatasetInput {
+    return {
+      team,
+      since: new Date(2026, 7, 3),
+      until: new Date(2026, 7, 30),
+      pullRequests: [],
+      commits: [],
+      comments,
+      now: new Date(2026, 7, 31, 8, 0, 0),
+    };
+  }
+
+  function comment(kind: Comment["kind"], day: number, n: number, repo: RepoRef = web): Comment {
+    return {
+      source: "github",
+      repo,
+      kind,
+      authorHandle: "alice",
+      createdAt: new Date(2026, 7, day, 10),
+      prNumber: n,
+      url: `${repo.url}/pull/${n}#c${day}-${kind}`,
+    };
+  }
+
+  it("a week with only one issue comment has a positive team and member raw signal", () => {
+    // Three idle weeks then one issue comment: with a zero baseline, any raw
+    // signal above zero scores 100 and a zero signal scores the neutral 50.
+    const ds = buildTeamDataset(commentsOnly([comment("issue", 26, 1)]));
+    const w3 = ds.index.weeks[3];
+    expect(w3.totals.comments).toBe(1);
+    expect(w3.velocity).toBe(100);
+    const alice = w3.members.find((m) => m.handle === "alice")!;
+    expect(alice.totals.comments).toBe(1);
+    expect(alice.velocity).toBe(100);
+  });
+
+  it("counts a review_summary plus an issue comment as two review activities, matching totals.comments", () => {
+    // Weeks 0-2 each carry one review_summary; week 3 adds an issue comment on top.
+    const background = [comment("review_summary", 4, 1), comment("review_summary", 11, 2), comment("review_summary", 18, 3)];
+    const mixed = buildTeamDataset(commentsOnly([...background, comment("review_summary", 26, 4), comment("issue", 26, 5)]));
+    const twoReviews = buildTeamDataset(commentsOnly([...background, comment("review_summary", 26, 4), comment("review_summary", 26, 5)]));
+
+    const w3 = mixed.index.weeks[3];
+    expect(w3.totals.comments).toBe(2);
+    // The issue comment lifts week 3 above the one-comment baseline...
+    expect(w3.velocity).toBeGreaterThan(50);
+    // ...exactly as much as a second review would: the review term is 2.
+    expect(mixed.index.weeks.map((w) => w.velocity)).toEqual(twoReviews.index.weeks.map((w) => w.velocity));
+    const memberVel = (ds: typeof mixed) =>
+      ds.index.weeks.map((w) => w.members.find((m) => m.handle === "alice")!.velocity);
+    expect(memberVel(mixed)).toEqual(memberVel(twoReviews));
+  });
+
+  it("lists a repo where the member only left an issue comment in their per-repo breakdown", () => {
+    const docs: RepoRef = { source: "github", owner: "acme", name: "docs", url: "https://github.com/acme/docs" };
+    const ds = buildTeamDataset(commentsOnly([comment("issue", 26, 7, docs)]));
+    const alice = ds.weeks["2026-08-24"].members.find((m) => m.handle === "alice")!;
+    const repo = alice.repos.find((r) => r.repo.name === "docs");
+    expect(repo).toBeDefined();
+    expect(repo!.totals.comments).toBe(1);
+    expect(repo!.velocity).toBeGreaterThan(0);
+  });
+});
