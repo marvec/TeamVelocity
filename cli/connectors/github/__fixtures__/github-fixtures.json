@@ -218,5 +218,67 @@
         }
       }
     ]
+  },
+  "commented": {
+    "alice": [
+      {
+        "url": "https://github.com/other-org/lib/pull/42#issuecomment-1001",
+        "createdAt": "2026-08-06T10:00:00Z",
+        "updatedAt": "2026-08-06T10:00:00Z",
+        "repository": {
+          "name": "lib",
+          "url": "https://github.com/other-org/lib",
+          "owner": {
+            "login": "other-org"
+          }
+        },
+        "pullRequest": {
+          "number": 42
+        }
+      },
+      {
+        "url": "https://github.com/other-org/lib/pull/42#issuecomment-1002",
+        "createdAt": "2026-08-07T11:00:00Z",
+        "updatedAt": "2026-08-08T08:00:00Z",
+        "repository": {
+          "name": "lib",
+          "url": "https://github.com/other-org/lib",
+          "owner": {
+            "login": "other-org"
+          }
+        },
+        "pullRequest": {
+          "number": 42
+        }
+      },
+      {
+        "url": "https://github.com/acme/api/pull/11#issuecomment-1003",
+        "createdAt": "2026-08-12T09:20:00Z",
+        "updatedAt": "2026-08-12T09:20:00Z",
+        "repository": {
+          "name": "api",
+          "url": "https://github.com/acme/api",
+          "owner": {
+            "login": "acme"
+          }
+        },
+        "pullRequest": {
+          "number": 11
+        }
+      },
+      {
+        "url": "https://github.com/acme/web/issues/7#issuecomment-1004",
+        "createdAt": "2026-08-18T09:00:00Z",
+        "updatedAt": "2026-08-18T09:00:00Z",
+        "repository": {
+          "name": "web",
+          "url": "https://github.com/acme/web",
+          "owner": {
+            "login": "acme"
+          }
+        },
+        "pullRequest": null
+      }
+    ]
   }
 }
