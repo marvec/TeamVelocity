@@ -96,7 +96,6 @@ interface RepoTotals {
 
 interface MemberAccum {
   totals: Totals;
-  review: number;
   repoTotals: Map<string, RepoTotals>;
   prNumbers: Set<string>; // primary-week PRs, keyed repoKey#number
   comments: Comment[];
@@ -106,7 +105,6 @@ interface MemberAccum {
 interface WeekAccum {
   window: WeekWindow;
   teamTotals: Totals;
-  teamReview: number;
   prs: PullRequest[]; // PRs whose primary week is this window
   members: Map<string, MemberAccum>;
 }
@@ -114,7 +112,6 @@ interface WeekAccum {
 function newMemberAccum(): MemberAccum {
   return {
     totals: emptyTotals(),
-    review: 0,
     repoTotals: new Map(),
     prNumbers: new Set(),
     comments: [],
@@ -148,7 +145,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
   const weeks: WeekAccum[] = windows.map((window) => {
     const members = new Map<string, MemberAccum>();
     for (const m of team.members) members.set(m.handle.toLowerCase(), newMemberAccum());
-    return { window, teamTotals: emptyTotals(), teamReview: 0, prs: [], members };
+    return { window, teamTotals: emptyTotals(), prs: [], members };
   });
 
   const weekIdxOf = (date: Date): number | undefined => keyIndex.get(weekKeyFor(date, weekCfg));
@@ -221,17 +218,12 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
     if (idx === undefined) continue;
     const member = matchMember(cm.authorHandle);
     add(idx, member, cm.repo, "comments", 1);
-    if (cm.kind === "review" || cm.kind === "review_summary") {
-      weeks[idx].teamReview += 1;
-      if (member !== undefined) {
-        const ma = weeks[idx].members.get(member);
-        if (ma) ma.review += 1;
-      }
-    }
     if (member !== undefined) weeks[idx].members.get(member)?.comments.push(cm);
   }
 
   // --- Velocity series (team + per member) ---
+  // Every collected comment (review, review_summary, issue) is review activity,
+  // so the review term reads `totals.comments` at team, member, and repo level.
   const velWeights = team.velocityWeights ?? DEFAULT_VELOCITY_WEIGHTS;
   const velOpts = { thresholds: team.thresholds };
 
@@ -240,7 +232,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
       {
         mergedPRs: w.teamTotals.prsMerged,
         prsOpened: w.teamTotals.prsOpened,
-        reviewActivity: w.teamReview,
+        reviewActivity: w.teamTotals.comments,
         commits: w.teamTotals.commits,
         locChanged: w.teamTotals.locAdded + w.teamTotals.locRemoved,
       },
@@ -259,7 +251,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
         {
           mergedPRs: ma.totals.prsMerged,
           prsOpened: ma.totals.prsOpened,
-          reviewActivity: ma.review,
+          reviewActivity: ma.totals.comments,
           commits: ma.totals.commits,
           locChanged: ma.totals.locAdded + ma.totals.locRemoved,
         },
@@ -272,8 +264,7 @@ export function buildTeamDataset(input: DatasetInput): BuiltDataset {
   // --- Per-repo velocity series (independent, vs each repo's OWN baseline) ---
   // A repo has no additive share of a scope's velocity (velocity is non-linear),
   // so each repo gets its own normalized velocity from its own weekly signal:
-  // team-wide for the team chart, per-member for a person's chart. Review
-  // activity isn't tracked per repo, so all comments stand in for it here.
+  // team-wide for the team chart, per-member for a person's chart.
   // A repo series is sparse (a person touches a given repo in a minority of
   // weeks), so its baseline is its last 12 ACTIVE weeks — an all-weeks window
   // would be majority-zero, collapse the MAD, and peg every active week at 100.

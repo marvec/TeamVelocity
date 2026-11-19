@@ -3,7 +3,15 @@ import { createGitHubConnector } from "./connector";
 import { createFakeGitHubClient, type GitHubFixtures } from "./fake-client";
 import fixturesJson from "./__fixtures__/github-fixtures.json";
 import type { CollectByHandle, CollectContext, CollectedEntities, CollectResult, Logger } from "../types";
-import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient, SearchOptions, SearchOutcome } from "./types";
+import type {
+  GhIssueCommentNode,
+  GhPullRequestNode,
+  GhReviewedPrNode,
+  GitHubClient,
+  IssueCommentsOutcome,
+  SearchOptions,
+  SearchOutcome,
+} from "./types";
 import type { Member, TeamConfig } from "../../../shared/schema/config";
 
 const fixtures = fixturesJson as unknown as GitHubFixtures;
@@ -101,11 +109,10 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
     const result = all(await connector.collect(context([alice, bob])));
 
-    expect(result.comments).toHaveLength(2);
-    for (const c of result.comments) {
-      expect(c.kind).toBe("review_summary");
-    }
-    const aliceReview = result.comments.find((c) => c.authorHandle === "alice")!;
+    // The fixtures also hold issue comments; reviews are the review_summary ones.
+    const reviews = result.comments.filter((c) => c.kind === "review_summary");
+    expect(reviews.map((c) => `${c.authorHandle}:${String(c.prNumber)}`).sort()).toEqual(["alice:12", "bob:10"]);
+    const aliceReview = reviews.find((c) => c.authorHandle === "alice")!;
     expect(aliceReview.prNumber).toBe(12);
     expect(aliceReview.repo.name).toBe("api");
     expect(aliceReview.createdAt).toBeInstanceOf(Date);
@@ -126,8 +133,9 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
     // GitHub sources every commit from a PR, so the PR-less bucket stays empty.
     expect(result.commits).toEqual([]);
 
+    // other-org/lib is surfaced only by alice's issue comments (R13).
     const repoNames = result.repos.map((r) => `${r.owner}/${r.name}`).sort();
-    expect(repoNames).toEqual(["acme/api", "acme/web"]);
+    expect(repoNames).toEqual(["acme/api", "acme/web", "other-org/lib"]);
   });
 
   it("warns instead of silently dropping when a PR has more commits than were fetched", async () => {
@@ -253,8 +261,70 @@ describe("gitHub connector — collect over fixtures (no network)", () => {
   });
 });
 
+describe("gitHub connector — issue comments", () => {
+  const issueComments = (r: CollectResult) => r.comments.filter((c) => c.kind === "issue");
+
+  it("credits each comment on a PR in a repo the member never authored or reviewed in, and adds that repo", async () => {
+    const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
+    const alicesResult = of(await connector.collect(context([alice, bob])), "alice");
+
+    const onLib = issueComments(alicesResult).filter((c) => c.repo.owner === "other-org" && c.repo.name === "lib");
+    expect(onLib).toHaveLength(2);
+    for (const c of onLib) {
+      expect(c).toMatchObject({ source: "github", kind: "issue", authorHandle: "alice", prNumber: 42 });
+    }
+    // Each at its own creation time, linking to the comment itself (R9).
+    expect(onLib.map((c) => c.createdAt.toISOString()).sort()).toEqual([
+      "2026-08-06T10:00:00.000Z",
+      "2026-08-07T11:00:00.000Z",
+    ]);
+    expect(onLib.map((c) => c.url).sort()).toEqual([
+      "https://github.com/other-org/lib/pull/42#issuecomment-1001",
+      "https://github.com/other-org/lib/pull/42#issuecomment-1002",
+    ]);
+    expect(alicesResult.repos.map((r) => `${r.owner}/${r.name}`)).toContain("other-org/lib");
+    expect(alicesResult.repos.find((r) => r.name === "lib")?.url).toBe("https://github.com/other-org/lib");
+  });
+
+  it("leaves prNumber undefined for a comment on an issue, linking to the comment", async () => {
+    const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
+    const alicesResult = of(await connector.collect(context([alice])), "alice");
+
+    const onIssue = issueComments(alicesResult).find((c) => c.url === "https://github.com/acme/web/issues/7#issuecomment-1004");
+    expect(onIssue).toBeDefined();
+    expect(onIssue?.prNumber).toBeUndefined();
+    expect("prNumber" in (onIssue ?? {})).toBe(false);
+    expect(onIssue?.repo).toMatchObject({ owner: "acme", name: "web" });
+  });
+
+  it("keeps a comment on the member's own authored PR (R11)", async () => {
+    const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
+    const alicesResult = of(await connector.collect(context([alice])), "alice");
+
+    expect(alicesResult.prs.some((c) => c.pr.number === 11 && c.pr.repo.name === "api")).toBe(true);
+    const onOwnPr = issueComments(alicesResult).filter((c) => c.repo.name === "api" && c.prNumber === 11);
+    expect(onOwnPr.map((c) => c.url)).toEqual(["https://github.com/acme/api/pull/11#issuecomment-1003"]);
+  });
+
+  it("credits comments only to the member who wrote them", async () => {
+    const connector = createGitHubConnector(createFakeGitHubClient(fixtures));
+    const results = await connector.collect(context([alice, bob]));
+
+    expect(issueComments(of(results, "alice"))).toHaveLength(4);
+    expect(issueComments(of(results, "bob"))).toEqual([]);
+  });
+
+  it("reports issue comments separately from reviews in the summary log", async () => {
+    const infos: string[] = [];
+    const logger: Logger = { info: (m) => infos.push(m), warn() {}, error() {}, debug() {} };
+    await createGitHubConnector(createFakeGitHubClient(fixtures)).collect({ ...context([alice, bob]), logger });
+
+    expect(infos.some((m) => m.includes("2 reviews") && m.includes("4 issue comments") && m.includes("3 repos"))).toBe(true);
+  });
+});
+
 interface SearchCall {
-  kind: "authored" | "reviewed";
+  kind: "authored" | "reviewed" | "commented";
   handles: string[];
   bailOnCap: boolean;
 }
@@ -267,6 +337,7 @@ interface SearchCall {
 function scripted(answer: {
   authored?: (handles: string[]) => SearchOutcome<GhPullRequestNode> | Error;
   reviewed?: (handles: string[]) => SearchOutcome<GhReviewedPrNode> | Error;
+  commented?: (handle: string) => IssueCommentsOutcome | Error;
 }): { client: GitHubClient; calls: SearchCall[] } {
   const calls: SearchCall[] = [];
   const respond = <T>(out: SearchOutcome<T> | Error): Promise<SearchOutcome<T>> =>
@@ -282,6 +353,13 @@ function scripted(answer: {
       searchPrsReviewedBy(handles: string[], _s: Date, _u: Date, options?: SearchOptions) {
         calls.push({ kind: "reviewed", handles, bailOnCap: options?.bailOnCap ?? false });
         return respond(answer.reviewed ? answer.reviewed(handles) : none);
+      },
+      listIssueCommentsBy(handle: string) {
+        calls.push({ kind: "commented", handles: [handle], bailOnCap: false });
+        const out: IssueCommentsOutcome | Error = answer.commented
+          ? answer.commented(handle)
+          : { status: "found", nodes: [] };
+        return out instanceof Error ? Promise.reject(out) : Promise.resolve(out);
       },
       usage: () => ({ cost: 0, remaining: null }),
     },
@@ -311,9 +389,13 @@ describe("gitHub connector — batched searches", () => {
     const { client, calls } = scripted({});
     await createGitHubConnector(client).collect(context([alice, bob, dave]));
 
+    // Comments come from a per-user connection, so they alone are asked per member.
     expect(calls).toEqual([
       { kind: "authored", handles: ["alice", "bob", "dave"], bailOnCap: true },
       { kind: "reviewed", handles: ["alice", "bob", "dave"], bailOnCap: true },
+      { kind: "commented", handles: ["alice"], bailOnCap: false },
+      { kind: "commented", handles: ["bob"], bailOnCap: false },
+      { kind: "commented", handles: ["dave"], bailOnCap: false },
     ]);
   });
 
@@ -480,5 +562,52 @@ describe("gitHub connector — batched searches", () => {
     for (const handle of ["alice", "bob"]) {
       expect(of(results, handle).repos.map((r) => r.name)).toEqual(["secret"]);
     }
+  });
+});
+
+describe("gitHub connector — issue comment failures", () => {
+  const commentOn = (number: number | null, id: number): GhIssueCommentNode => ({
+    url: `https://github.com/acme/web/issues/${String(number ?? 1)}#issuecomment-${String(id)}`,
+    createdAt: "2026-08-10T10:00:00Z",
+    updatedAt: "2026-08-10T10:00:00Z",
+    repository: fixtures.reviewed.bob[0].repository,
+    pullRequest: number === null ? null : { number },
+  });
+
+  it("marks only the member whose comment fetch threw incomplete, keeping their PRs", async () => {
+    const warnings: string[] = [];
+    const { client } = scripted({
+      authored: () => ({ nodes: [prBy("alice", 1), prBy("bob", 2)], truncated: false }),
+      commented: (handle) =>
+        handle === "bob" ? new Error("502 Bad Gateway") : { status: "found", nodes: [commentOn(3, 1)] },
+    });
+    const results = await createGitHubConnector(client).collect({
+      ...context([alice, bob, dave]),
+      logger: { info() {}, warn: (m) => warnings.push(m), error() {}, debug() {} },
+    });
+
+    expect(of(results, "bob").complete).toBe(false);
+    expect(prNumbers(of(results, "bob"))).toEqual([2]);
+    expect(of(results, "alice").complete).toBe(true);
+    expect(of(results, "dave").complete).toBe(true);
+    expect(of(results, "alice").comments.map((c) => c.kind)).toEqual(["issue"]);
+    expect(warnings.some((w) => w.includes("@bob") && w.includes("502 Bad Gateway"))).toBe(true);
+  });
+
+  it("warns and marks the member incomplete when the handle resolves to no user, without throwing", async () => {
+    const warnings: string[] = [];
+    const { client } = scripted({
+      authored: () => ({ nodes: [prBy("alice", 1)], truncated: false }),
+      commented: (handle) => (handle === "alice" ? { status: "userNotFound" } : { status: "found", nodes: [] }),
+    });
+    const results = await createGitHubConnector(client).collect({
+      ...context([alice, bob]),
+      logger: { info() {}, warn: (m) => warnings.push(m), error() {}, debug() {} },
+    });
+
+    expect(of(results, "alice").complete).toBe(false);
+    expect(prNumbers(of(results, "alice"))).toEqual([1]);
+    expect(of(results, "bob").complete).toBe(true);
+    expect(warnings.some((w) => w.includes("@alice"))).toBe(true);
   });
 });

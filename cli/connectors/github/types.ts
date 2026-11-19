@@ -57,6 +57,30 @@ export interface GhCommitNode {
 }
 
 /**
+ * An issue or pull-request conversation comment from `User.issueComments`.
+ * Inline code-review comments are a different type and never appear here.
+ */
+export interface GhIssueCommentNode {
+  /** The comment's own URL (`…#issuecomment-…`). */
+  url: string;
+  createdAt: string;
+  updatedAt: string;
+  repository: GhRepository;
+  /** The PR the comment is on; null when it is on an issue. */
+  pullRequest: { number: number } | null;
+}
+
+/**
+ * A member's comments within a window, or word that the handle resolves to no
+ * user (renamed or deleted). The two must stay apart: an empty list would let
+ * the caller cache the window as covered for a handle that can never answer.
+ * The connection is walked to `since`, never capped, so nothing is truncated.
+ */
+export type IssueCommentsOutcome =
+  | { status: "found"; nodes: GhIssueCommentNode[] }
+  | { status: "userNotFound" };
+
+/**
  * The narrow surface the connector needs. The real implementation
  * (`octokit-client.ts`) talks to GitHub; tests provide a fake backed by
  * fixtures.
@@ -100,6 +124,11 @@ export interface GitHubClient {
     until: Date,
     options?: SearchOptions,
   ): Promise<SearchOutcome<GhReviewedPrNode>>;
+  /**
+   * Issue and PR conversation comments `handle` created within [since, until),
+   * on any repository the token can see. Per user, so not batched.
+   */
+  listIssueCommentsBy(handle: string, since: Date, until: Date): Promise<IssueCommentsOutcome>;
   /**
    * GraphQL rate-limit points spent since the client was created, and the
    * budget left after the last call (`null` until a response reports one).

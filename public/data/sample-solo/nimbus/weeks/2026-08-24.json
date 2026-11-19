@@ -2,7 +2,7 @@
   "weekStart": "2026-08-24",
   "weekEnd": "2026-08-31",
   "label": "2026/08/24–08/30",
-  "velocity": 60.2,
+  "velocity": 60.9,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 2,
     "prsClosed": 1,
     "commits": 11,
-    "comments": 4,
+    "comments": 5,
     "locAdded": 1021,
     "locRemoved": 328
   },
@@ -210,7 +210,7 @@
     {
       "handle": "katherinej",
       "name": "Katherine Johnson",
-      "velocity": 66.8,
+      "velocity": 66.3,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -218,7 +218,7 @@
         "prsMerged": 2,
         "prsClosed": 1,
         "commits": 8,
-        "comments": 2,
+        "comments": 3,
         "locAdded": 623,
         "locRemoved": 151
       },
@@ -255,11 +255,11 @@
             "prsMerged": 1,
             "prsClosed": 1,
             "commits": 4,
-            "comments": 0,
+            "comments": 1,
             "locAdded": 469,
             "locRemoved": 74
           },
-          "velocity": 50.6,
+          "velocity": 55,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -394,6 +394,18 @@
           "url": "https://github.com/nimbus/cloud/pull/30#c1"
         },
         {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "nimbus",
+            "name": "edge",
+            "url": "https://github.com/nimbus/edge"
+          },
+          "prNumber": 185,
+          "createdAt": "2026-08-29T16:05:48.319Z",
+          "url": "https://github.com/nimbus/edge/pull/185#issuecomment-9038"
+        },
+        {
           "kind": "review",
           "repo": {
             "source": "github",
@@ -508,7 +520,7 @@
     {
       "handle": "dennisr",
       "name": "Dennis Ritchie",
-      "velocity": 48.6,
+      "velocity": 48.5,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -537,7 +549,7 @@
             "locAdded": 178,
             "locRemoved": 90
           },
-          "velocity": 33.1,
+          "velocity": 37.8,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -557,7 +569,7 @@
             "locAdded": 220,
             "locRemoved": 87
           },
-          "velocity": 50,
+          "velocity": 52.9,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -723,7 +735,7 @@
         "locAdded": 332,
         "locRemoved": 167
       },
-      "velocity": 50,
+      "velocity": 46.3,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -739,11 +751,11 @@
         "prsMerged": 1,
         "prsClosed": 1,
         "commits": 6,
-        "comments": 1,
+        "comments": 2,
         "locAdded": 689,
         "locRemoved": 161
       },
-      "velocity": 60.9,
+      "velocity": 60.4,
       "velocityBand": "yellow",
       "warmingUp": false
     }

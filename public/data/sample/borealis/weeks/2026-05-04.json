@@ -10,7 +10,7 @@
     "prsMerged": 2,
     "prsClosed": 0,
     "commits": 4,
-    "comments": 4,
+    "comments": 6,
     "locAdded": 413,
     "locRemoved": 167
   },
@@ -104,7 +104,7 @@
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 3,
-        "comments": 2,
+        "comments": 4,
         "locAdded": 185,
         "locRemoved": 99
       },
@@ -141,12 +141,32 @@
             "prsMerged": 0,
             "prsClosed": 0,
             "commits": 1,
-            "comments": 0,
+            "comments": 1,
             "locAdded": 0,
             "locRemoved": 0
           },
           "velocity": 36.5,
           "velocityBand": "red",
+          "warmingUp": true
+        },
+        {
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "totals": {
+            "prsOpened": 0,
+            "prsMerged": 0,
+            "prsClosed": 0,
+            "commits": 0,
+            "comments": 1,
+            "locAdded": 0,
+            "locRemoved": 0
+          },
+          "velocity": 50,
+          "velocityBand": "yellow",
           "warmingUp": true
         }
       ],
@@ -202,6 +222,30 @@
           "prNumber": 1,
           "createdAt": "2026-05-07T23:31:04.652Z",
           "url": "https://github.com/borealis/app/pull/1#c0"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "borealis",
+            "name": "core",
+            "url": "https://github.com/borealis/core"
+          },
+          "prNumber": null,
+          "createdAt": "2026-05-09T12:18:09.366Z",
+          "url": "https://github.com/borealis/core/issues/102#issuecomment-9004"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "opensource",
+            "name": "http-kit",
+            "url": "https://github.com/opensource/http-kit"
+          },
+          "prNumber": 193,
+          "createdAt": "2026-05-09T12:58:19.343Z",
+          "url": "https://github.com/opensource/http-kit/pull/193#issuecomment-9003"
         },
         {
           "kind": "review_summary",
@@ -287,7 +331,7 @@
             "locAdded": 228,
             "locRemoved": 68
           },
-          "velocity": 50,
+          "velocity": 63.5,
           "velocityBand": "yellow",
           "warmingUp": true
         },
@@ -427,12 +471,32 @@
         "prsMerged": 0,
         "prsClosed": 0,
         "commits": 2,
-        "comments": 0,
+        "comments": 1,
         "locAdded": 0,
         "locRemoved": 0
       },
       "velocity": 36.5,
       "velocityBand": "red",
+      "warmingUp": true
+    },
+    {
+      "repo": {
+        "source": "github",
+        "owner": "opensource",
+        "name": "http-kit",
+        "url": "https://github.com/opensource/http-kit"
+      },
+      "totals": {
+        "prsOpened": 0,
+        "prsMerged": 0,
+        "prsClosed": 0,
+        "commits": 0,
+        "comments": 1,
+        "locAdded": 0,
+        "locRemoved": 0
+      },
+      "velocity": 50,
+      "velocityBand": "yellow",
       "warmingUp": true
     }
   ]

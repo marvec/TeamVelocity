@@ -240,3 +240,165 @@ describe("gitHub client — accounting", () => {
     expect(client.usage()).toEqual({ cost: 0, remaining: null });
   });
 });
+
+describe("gitHub client — member issue comments", () => {
+  /** A `user.issueComments` page, newest-updated first, as GitHub returns it. */
+  function commentsPage(
+    nodes: unknown[],
+    opts: { next?: string | null; cost?: number; remaining?: number } = {},
+  ): unknown {
+    return {
+      user: {
+        issueComments: {
+          pageInfo: { hasNextPage: opts.next != null, endCursor: opts.next ?? null },
+          nodes,
+        },
+      },
+      rateLimit: { cost: opts.cost ?? 1, remaining: opts.remaining ?? 4999 },
+    };
+  }
+
+  function comment(id: number, createdAt: string, updatedAt = createdAt, prNumber: number | null = null): unknown {
+    return {
+      url: `https://github.com/other/repo/issues/9#issuecomment-${String(id)}`,
+      createdAt,
+      updatedAt,
+      repository: { name: "repo", url: "https://github.com/other/repo", owner: { login: "other" } },
+      pullRequest: prNumber === null ? null : { number: prNumber },
+    };
+  }
+
+  const ids = (out: Awaited<ReturnType<ReturnType<typeof createGitHubClientFromGraphql>["listIssueCommentsBy"]>>) =>
+    out.status === "found" ? out.nodes.map((n) => n.url.split("-").pop()) : out;
+
+  it("asks for the user's comments newest-updated first, with rate-limit cost", async () => {
+    const { fn, calls } = recorder([commentsPage([])]);
+    await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+
+    expect(calls).toHaveLength(1);
+    expect(calls[0].vars).toEqual({ login: "alice", cursor: null });
+    expect(calls[0].query).toContain("user(login: $login)");
+    expect(calls[0].query).toMatch(/issueComments\(first: 100, after: \$cursor, orderBy: \{ field: UPDATED_AT, direction: DESC \}\)/);
+    expect(calls[0].query).toContain("pullRequest { number }");
+    expect(calls[0].query).toContain("rateLimit { cost remaining }");
+  });
+
+  it("stops paging once a page reaches back before `since`", async () => {
+    const { fn, calls } = recorder([
+      commentsPage([comment(1, "2026-09-10T00:00:00Z"), comment(2, "2026-09-08T00:00:00Z")], { next: "P2" }),
+      commentsPage([comment(3, "2026-09-05T00:00:00Z"), comment(4, "2026-08-20T00:00:00Z")], { next: "P3" }),
+      commentsPage([comment(5, "2026-08-01T00:00:00Z")], { next: null }),
+    ]);
+    const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+
+    // Page 3 can only hold comments updated even earlier — never in the window.
+    expect(calls).toHaveLength(2);
+    expect(calls[1].vars.cursor).toBe("P2");
+    expect(ids(out)).toEqual(["1", "2", "3"]);
+  });
+
+  it("follows every page while comments are still inside the window", async () => {
+    const { fn, calls } = recorder([
+      commentsPage([comment(1, "2026-09-10T00:00:00Z")], { next: "P2" }),
+      commentsPage([comment(2, "2026-09-09T00:00:00Z")], { next: null }),
+    ]);
+    const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+    expect(calls).toHaveLength(2);
+    expect(ids(out)).toEqual(["1", "2"]);
+  });
+
+  it("stops on an empty page even if GitHub claims there is another", async () => {
+    const { fn, calls } = recorder([commentsPage([], { next: "P2" }), commentsPage([comment(1, "2026-09-10T00:00:00Z")])]);
+    const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+    expect(calls).toHaveLength(1);
+    expect(out).toEqual({ status: "found", nodes: [] });
+  });
+
+  it("excludes an old comment edited inside the window", async () => {
+    const { fn } = recorder([
+      commentsPage([comment(1, "2026-08-20T00:00:00Z", "2026-09-10T00:00:00Z"), comment(2, "2026-09-03T00:00:00Z")]),
+    ]);
+    const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+    // Credited at creation time, so an edit does not move it into this window.
+    expect(ids(out)).toEqual(["2"]);
+  });
+
+  it("windows on createdAt as [since, until)", async () => {
+    const { fn } = recorder([
+      commentsPage([
+        comment(1, "2026-09-15T00:00:00.000Z"),
+        comment(2, "2026-09-14T23:59:59.999Z"),
+        comment(3, "2026-09-01T00:00:00.000Z"),
+        comment(4, "2026-08-31T23:59:59.999Z"),
+      ]),
+    ]);
+    const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+    expect(ids(out)).toEqual(["2", "3"]);
+  });
+
+  it("keeps the raw node shape, including a PR's number", async () => {
+    const node = comment(7, "2026-09-03T00:00:00Z", "2026-09-03T00:00:00Z", 42);
+    const { fn } = recorder([commentsPage([node, comment(8, "2026-09-02T00:00:00Z")])]);
+    const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+
+    expect(out.status).toBe("found");
+    if (out.status !== "found") return;
+    expect(out.nodes[0]).toEqual(node);
+    expect(out.nodes[1].pullRequest).toBeNull();
+  });
+
+  it("reports a null user as not found, not as an empty success", async () => {
+    const { fn } = recorder([{ user: null, rateLimit: { cost: 1, remaining: 4998 } }]);
+    const client = createGitHubClientFromGraphql(fn);
+    const out = await client.listIssueCommentsBy("ghost", since, until);
+    expect(out).toEqual({ status: "userNotFound" });
+    expect(client.usage()).toEqual({ cost: 1, remaining: 4998 });
+  });
+
+  it("reports GitHub's NOT_FOUND error on `user` as not found", async () => {
+    // Octokit throws a GraphqlResponseError whenever the response has `errors`,
+    // which is how an unknown login actually arrives from the live API.
+    const fn: GraphqlFn = () =>
+      Promise.reject(
+        Object.assign(new Error("Could not resolve to a User with the login of 'ghost'."), {
+          name: "GraphqlResponseError",
+          errors: [{ type: "NOT_FOUND", path: ["user"], message: "Could not resolve to a User" }],
+          data: { user: null },
+        }),
+      );
+    await expect(createGitHubClientFromGraphql(fn).listIssueCommentsBy("ghost", since, until)).resolves.toEqual({
+      status: "userNotFound",
+    });
+  });
+
+  it("rethrows any other GraphQL error", async () => {
+    const fn: GraphqlFn = () =>
+      Promise.reject(Object.assign(new Error("boom"), { errors: [{ type: "RATE_LIMITED", path: ["user"] }] }));
+    await expect(createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until)).rejects.toThrow("boom");
+  });
+
+  it("retries a page that came back with no data, once", async () => {
+    const { fn, calls } = recorder([undefined, commentsPage([comment(1, "2026-09-10T00:00:00Z")])]);
+    const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
+    expect(calls).toHaveLength(2);
+    expect(ids(out)).toEqual(["1"]);
+  });
+
+  it("fails naming the handle when the empty answer repeats", async () => {
+    const { fn, calls } = recorder([undefined]);
+    await expect(createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until)).rejects.toThrow(
+      /@alice/,
+    );
+    expect(calls).toHaveLength(2);
+  });
+
+  it("adds each page's rate-limit cost to usage()", async () => {
+    const { fn } = recorder([
+      commentsPage([comment(1, "2026-09-10T00:00:00Z")], { next: "P2", cost: 1, remaining: 4990 }),
+      commentsPage([comment(2, "2026-09-09T00:00:00Z")], { next: null, cost: 2, remaining: 4988 }),
+    ]);
+    const client = createGitHubClientFromGraphql(fn);
+    await client.listIssueCommentsBy("alice", since, until);
+    expect(client.usage()).toEqual({ cost: 3, remaining: 4988 });
+  });
+});

@@ -2,7 +2,7 @@
   "weekStart": "2026-05-18",
   "weekEnd": "2026-05-25",
   "label": "2026/05/18–05/24",
-  "velocity": 57.7,
+  "velocity": 55.1,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -134,7 +134,7 @@
     {
       "handle": "rosalindf",
       "name": "Rosalind Frank",
-      "velocity": 57.2,
+      "velocity": 45.9,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -183,7 +183,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 36.5,
+          "velocity": 33.8,
           "velocityBand": "red",
           "warmingUp": false
         }
@@ -346,7 +346,7 @@
     {
       "handle": "alanturing",
       "name": "Alan Turing",
-      "velocity": 53.7,
+      "velocity": 58.3,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -375,9 +375,9 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 0,
+          "velocity": 36.6,
           "velocityBand": "red",
-          "warmingUp": true
+          "warmingUp": false
         },
         {
           "repo": {
@@ -543,7 +543,7 @@
         "locAdded": 211,
         "locRemoved": 72
       },
-      "velocity": 36.7,
+      "velocity": 38.1,
       "velocityBand": "red",
       "warmingUp": false
     }

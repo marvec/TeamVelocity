@@ -10,6 +10,7 @@ import type { SourceId } from "../../shared/types";
 import {
   emptyHandleCache,
   parseHandleCache,
+  readStaleCoverage,
   serializeHandleCache,
   type HandleCache,
 } from "../../shared/schema/cache";
@@ -90,6 +91,20 @@ export function createMemoryCacheStore(): CacheStore {
   };
 }
 
+export interface LoadedHandleCache {
+  cache: HandleCache;
+  /**
+   * The range a discarded file from an older cache version covered. A fetch
+   * target to widen to, never coverage: `cache` is empty, so the whole range is
+   * planned as unfetched and refetched. See `readStaleCoverage`.
+   */
+  staleCoverage?: { since: Date; until: Date };
+}
+
+export function firstLine(err: unknown): string {
+  return err instanceof Error ? (err.message.split("\n")[0] ?? "") : String(err);
+}
+
 /**
  * The handle's cache, or an empty one.
  *
@@ -97,23 +112,41 @@ export function createMemoryCacheStore(): CacheStore {
  * reported and swallowed: the cache is disposable, so the cost of drift is the
  * API calls to refill it, never a failed pull (design §10). This is deliberately
  * weaker than invariant #4, which governs `public/data/`.
+ *
+ * A file from another cache version that still states its coverage also yields
+ * that coverage as `staleCoverage`, so the caller can refetch the same history.
  */
 export async function loadHandleCache(
   store: CacheStore,
   source: SourceId,
   handle: string,
   logger: Logger,
-): Promise<HandleCache> {
+): Promise<LoadedHandleCache> {
+  const empty = (): HandleCache => emptyHandleCache(source, handle);
+  let raw: unknown;
   try {
-    const raw = await store.load(source, handle);
-    if (raw === undefined) return emptyHandleCache(source, handle);
-    return parseHandleCache(raw);
+    raw = await store.load(source, handle);
   } catch (err) {
-    const reason = err instanceof Error ? err.message.split("\n")[0] : String(err);
     logger.warn(
-      `cache: discarding unusable cache for ${source}/${handle} (${reason}) — re-fetching this handle from scratch`,
+      `cache: discarding unusable cache for ${source}/${handle} (${firstLine(err)}) — re-fetching this handle from scratch`,
     );
-    return emptyHandleCache(source, handle);
+    return { cache: empty() };
+  }
+  if (raw === undefined) return { cache: empty() };
+  try {
+    return { cache: parseHandleCache(raw) };
+  } catch (err) {
+    const staleCoverage = readStaleCoverage(raw);
+    if (staleCoverage) {
+      logger.warn(
+        `cache: ${source}/${handle} was written by a different cache version — refetching its whole range ${staleCoverage.since.toISOString()} .. ${staleCoverage.until.toISOString()}`,
+      );
+      return { cache: empty(), staleCoverage };
+    }
+    logger.warn(
+      `cache: discarding unusable cache for ${source}/${handle} (${firstLine(err)}) — re-fetching this handle from scratch`,
+    );
+    return { cache: empty() };
   }
 }
 

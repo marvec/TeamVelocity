@@ -5,7 +5,7 @@
  */
 
 import type { Comment, Commit, PrState, PullRequest, RepoRef } from "../../../shared/types";
-import type { GhPullRequestNode, GhRepository, GhReviewedPrNode } from "./types";
+import type { GhIssueCommentNode, GhPullRequestNode, GhRepository, GhReviewedPrNode } from "./types";
 
 export function repoFrom(repository: GhRepository): RepoRef {
   return {
@@ -68,6 +68,23 @@ export function normalizeReviewComment(node: GhReviewedPrNode, reviewerHandle: s
     authorHandle: reviewerHandle,
     createdAt: new Date(node.updatedAt),
     prNumber: node.number,
+    url: node.url,
+  };
+}
+
+/**
+ * One issue or PR conversation comment, credited to the member who wrote it at
+ * its own creation time and linking to the comment itself. A comment on an
+ * issue carries no `prNumber`.
+ */
+export function normalizeIssueComment(node: GhIssueCommentNode, authorHandle: string): Comment {
+  return {
+    source: "github",
+    repo: repoFrom(node.repository),
+    kind: "issue",
+    authorHandle,
+    createdAt: new Date(node.createdAt),
+    ...(node.pullRequest === null ? {} : { prNumber: node.pullRequest.number }),
     url: node.url,
   };
 }

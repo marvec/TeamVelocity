@@ -192,6 +192,10 @@ squash/rebase merges and unverified commit emails that a by-author log would mis
 list is one GraphQL page (first 100); a larger PR is warned, never silently truncated (so the
 `wCommit` signal sees at most 100 commits/PR — log-dampened, and such PRs are rare).
 
+The connector also collects each member's own issue/PR conversation comments through
+`User.issueComments`: one `Comment` (`kind:'issue'`) per comment, windowed on its creation time, in
+any repo the token can see — so discussion on repos where the member has no PR still counts.
+
 Members are searched in batches — one query ORs a whole team's `author:` (or `reviewed-by:`)
 qualifiers — because GitHub charges a rate-limit point per page of results, not per member. A
 connector still returns its results **per member** (`CollectByHandle`), so each is cached under its
@@ -211,6 +215,9 @@ result that cannot be credited that way is re-asked of individual members rather
   - `state:'closed'` == closed **without** merging (the "rejected" bucket).
 - **Commit** `{ source, repo:RepoRef, sha, authorHandle, committedAt, additions, deletions, url }`
 - **Comment** `{ source, repo:RepoRef, kind:'issue'|'review'|'review_summary', authorHandle, createdAt, prNumber?, url }`
+  - `review`/`review_summary` come from PR review threads; `issue` is a conversation comment on an
+    issue or PR (from `User.issueComments`). Every kind counts in the Comments category and in the
+    velocity review term (§7.1).
 
 ### 6.2 On-disk JSON contract (`public/data/`, git-ignored; a small committed sample powers dev + e2e)
 
@@ -253,10 +260,13 @@ huge refactor or a burst of tiny commits can't dominate:
 ```
 raw_w = wPR·log1p(mergedPRs)
       + wOpen·log1p(prsOpened)
-      + wReview·log1p(reviews + reviewComments)
+      + wReview·log1p(comments)
       + wCommit·log1p(commits)
       + wLoc·log1p(locAdded + locRemoved)
 ```
+
+`comments` counts every collected comment of any kind (review, review summary, issue), the same
+number as the Comments category.
 
 Default weights (overridable per team via `velocityWeights`): `wPR 1.0, wReview 0.7,
 wCommit 0.5, wOpen 0.4, wLoc 0.3`. Weights are documented in one place.
@@ -366,8 +376,8 @@ do not count toward warming up. Because
 velocity is non-linear, repo bars are **not** a decomposition of the scope velocity and do **not**
 sum to it (just as team velocity ≠ Σ member velocities). Per-repo velocity series are computed in
 the CLI and stored in the week detail (`WeekDetail.repos` for the team; a `velocity` on each member
-repo), since the SPA only holds one week and can't compute a baseline. Review activity isn't tracked
-per repo, so all comments stand in for the review term there.
+repo), since the SPA only holds one week and can't compute a baseline. As for team and member
+velocity, all comments form the review term there.
 
 A **"?" help control** in the header opens a plain-language explainer for the two 0–100 scores
 (velocity vs PR relevance), so the distinction in §7 is discoverable in-app.

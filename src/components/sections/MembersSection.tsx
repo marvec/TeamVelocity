@@ -1,5 +1,6 @@
 import type { WeekDetail } from "../../../shared/schema/data";
 import type { VelocityWeights } from "../../../shared/types";
+import { copyMembers } from "../../lib/copy-export";
 import { bandTextClass, formatVelocity, velocityStackDatum } from "../../lib/format";
 import { cn } from "../../lib/cn";
 import { HorizontalStack, type StackRow } from "../charts/HorizontalStack";
@@ -7,6 +8,7 @@ import { Card, CardBody, CardHeader, CardTitle } from "../ui/Card";
 import { CategoryLegend } from "../ui/Legend";
 import { BandChip } from "../ui/BandChip";
 import { DeselectChip } from "../ui/Chip";
+import { CopyButton } from "../ui/CopyButton";
 import { ContributionTabs } from "./ContributionTabs";
 
 export function MembersSection({
@@ -38,9 +40,16 @@ export function MembersSection({
     <Card data-testid="members-section">
       <CardHeader>
         <CardTitle>Velocity of individuals</CardTitle>
-        <div className="flex items-center gap-2">
-          {selected && <DeselectChip label={selected.name} onClear={onClear} testid="clear-member" />}
-          <CategoryLegend />
+        <div className="flex flex-col items-end gap-2">
+          <div className="flex shrink-0 items-center gap-2">
+            {selected && <DeselectChip label={selected.name} onClear={onClear} testid="clear-member" />}
+            <CopyButton
+              getContent={() => copyMembers(week)}
+              label="Copy velocity of individuals"
+              testid="copy-members"
+            />
+          </div>
+          <CategoryLegend className="justify-end" />
         </div>
       </CardHeader>
       <CardBody>

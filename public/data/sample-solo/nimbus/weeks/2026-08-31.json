@@ -2,7 +2,7 @@
   "weekStart": "2026-08-31",
   "weekEnd": "2026-09-07",
   "label": "2026/08/31–09/06",
-  "velocity": 65.2,
+  "velocity": 61.2,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -172,7 +172,7 @@
     {
       "handle": "katherinej",
       "name": "Katherine Johnson",
-      "velocity": 63.3,
+      "velocity": 60,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -201,7 +201,7 @@
             "locAdded": 223,
             "locRemoved": 99
           },
-          "velocity": 67,
+          "velocity": 64.8,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -221,7 +221,7 @@
             "locAdded": 308,
             "locRemoved": 111
           },
-          "velocity": 48.6,
+          "velocity": 43.8,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -420,8 +420,8 @@
     {
       "handle": "dennisr",
       "name": "Dennis Ritchie",
-      "velocity": 70.7,
-      "velocityBand": "green",
+      "velocity": 69.2,
+      "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
         "prsOpened": 2,
@@ -449,7 +449,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 1.9,
+          "velocity": 3,
           "velocityBand": "red",
           "warmingUp": false
         },
@@ -469,7 +469,7 @@
             "locAdded": 539,
             "locRemoved": 180
           },
-          "velocity": 93.9,
+          "velocity": 78.3,
           "velocityBand": "green",
           "warmingUp": false
         }
@@ -707,7 +707,7 @@
         "locAdded": 223,
         "locRemoved": 99
       },
-      "velocity": 41.7,
+      "velocity": 45.9,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -727,8 +727,8 @@
         "locAdded": 847,
         "locRemoved": 291
       },
-      "velocity": 72.4,
-      "velocityBand": "green",
+      "velocity": 67.2,
+      "velocityBand": "yellow",
       "warmingUp": false
     }
   ]

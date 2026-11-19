@@ -21,7 +21,13 @@ import type {
 } from "../types";
 import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient } from "./types";
 import { batchHandles } from "./octokit-client";
-import { commitsFromPr, normalizePullRequest, normalizeReviewComment, repoFrom } from "./normalize";
+import {
+  commitsFromPr,
+  normalizeIssueComment,
+  normalizePullRequest,
+  normalizeReviewComment,
+  repoFrom,
+} from "./normalize";
 
 /** What one member's collection has gathered so far. */
 interface Accumulator {
@@ -223,15 +229,43 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
         });
       };
 
+      // Comments come from a per-user connection, so they are asked member by
+      // member. A failed fetch or a handle that names no user leaves that
+      // member's window incomplete, so it is retried rather than cached as
+      // covered without its comments.
+      const listCommented = async (handle: string): Promise<void> => {
+        let outcome;
+        try {
+          outcome = await client.listIssueCommentsBy(handle, since, until);
+        } catch (err) {
+          markIncomplete([handle]);
+          logger.warn(`github: failed to fetch issue comments for @${handle}: ${errorText(err)}`);
+          return;
+        }
+        if (outcome.status === "userNotFound") {
+          markIncomplete([handle]);
+          logger.warn(`github: no GitHub user @${handle} (renamed or deleted?); skipping their issue comments`);
+          return;
+        }
+        const acc = accOf(handle);
+        for (const node of outcome.nodes) {
+          const comment = normalizeIssueComment(node, handle);
+          acc.comments.push(comment);
+          addRepo(acc, comment.repo);
+        }
+      };
+
       for (const batch of batchHandles(handles, since, until)) {
         await searchAuthored(batch);
         await searchReviewed(batch);
+        for (const handle of batch) await listCommented(handle);
       }
 
       const results: CollectByHandle = new Map();
       let prCount = 0;
       let commitCount = 0;
-      let commentCount = 0;
+      let reviewCount = 0;
+      let issueCommentCount = 0;
       const allRepos = new Set<string>();
       for (const [handle, acc] of accumulators) {
         const result: CollectResult = {
@@ -244,11 +278,14 @@ export function createGitHubConnector(client: GitHubClient): SourceConnector {
         results.set(handle, result);
         prCount += acc.prs.length;
         commitCount += acc.prs.reduce((n, c) => n + c.commits.length, 0);
-        commentCount += acc.comments.length;
+        for (const comment of acc.comments) {
+          if (comment.kind === "issue") issueCommentCount += 1;
+          else reviewCount += 1;
+        }
         for (const key of acc.repos.keys()) allRepos.add(key);
       }
       logger.info(
-        `github: ${String(prCount)} PRs, ${String(commitCount)} commits, ${String(commentCount)} review comments across ${String(allRepos.size)} repos`,
+        `github: ${String(prCount)} PRs, ${String(commitCount)} commits, ${String(reviewCount)} reviews, ${String(issueCommentCount)} issue comments across ${String(allRepos.size)} repos`,
       );
 
       // What the pull actually cost. Fixtures report 0, so dry runs stay quiet.

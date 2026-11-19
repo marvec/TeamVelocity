@@ -59,3 +59,51 @@ test.describe("dashboard", () => {
     await expect(page.getByText("warming up")).toBeVisible();
   });
 });
+
+test.describe("week layout", () => {
+  test("Week detail and PR relevance span the full width, stacked", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto("/?data=/data/sample-solo");
+    const weekly = page.getByTestId("weekly-activity");
+    const weekDetail = page.getByTestId("week-detail");
+    const relevance = page.getByTestId("pr-relevance");
+    await expect(weekDetail).toBeVisible();
+    await expect(relevance).toBeVisible();
+
+    const w = await weekly.boundingBox();
+    const d = await weekDetail.boundingBox();
+    const r = await relevance.boundingBox();
+    if (!w || !d || !r) throw new Error("missing bounding box");
+    expect(d.width).toBeCloseTo(w.width, 0);
+    expect(r.width).toBeCloseTo(w.width, 0);
+    expect(r.y).toBeGreaterThanOrEqual(d.y + d.height);
+  });
+
+  test("the Week detail PR table fits without horizontal scrolling at 1280px", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto("/?data=/data/sample-solo");
+    const scroller = page.getByTestId("week-detail").getByTestId("pr-table-scroll");
+    await expect(scroller).toBeVisible();
+    const { scrollWidth, clientWidth } = await scroller.evaluate((el) => ({
+      scrollWidth: el.scrollWidth,
+      clientWidth: el.clientWidth,
+    }));
+    expect(scrollWidth).toBeLessThanOrEqual(clientWidth);
+  });
+
+  test("Velocity of individuals and Person detail sit side by side at xl", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/?data=/data/sample-solo");
+    await page.locator('[data-testid=members-section] [data-testid^="stack-label-"]').first().click();
+    await expect(page).toHaveURL(/member=/);
+    const members = page.getByTestId("members-section");
+    const person = page.getByTestId("person-detail");
+    await expect(person).toBeVisible();
+
+    const m = await members.boundingBox();
+    const p = await person.boundingBox();
+    if (!m || !p) throw new Error("missing bounding box");
+    expect(p.y).toBeCloseTo(m.y, 0);
+    expect(p.x).toBeGreaterThan(m.x + m.width - 1);
+  });
+});

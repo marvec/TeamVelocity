@@ -4,7 +4,14 @@
  * pipeline runs without a token.
  */
 
-import type { GhPullRequestNode, GhReviewedPrNode, GitHubClient, SearchOutcome } from "./types";
+import type {
+  GhIssueCommentNode,
+  GhPullRequestNode,
+  GhReviewedPrNode,
+  GitHubClient,
+  IssueCommentsOutcome,
+  SearchOutcome,
+} from "./types";
 
 /**
  * A reviewed PR as recorded under the handle that reviewed it. The reviewer
@@ -16,6 +23,8 @@ export type GhReviewedFixture = Omit<GhReviewedPrNode, "reviews">;
 export interface GitHubFixtures {
   authored: Record<string, GhPullRequestNode[]>;
   reviewed: Record<string, GhReviewedFixture[]>;
+  /** Issue/PR conversation comments by handle. Optional: older fixture sets have none. */
+  commented?: Record<string, GhIssueCommentNode[]>;
 }
 
 export function createFakeGitHubClient(fixtures: GitHubFixtures): GitHubClient {
@@ -37,6 +46,18 @@ export function createFakeGitHubClient(fixtures: GitHubFixtures): GitHubClient {
         }
       }
       return Promise.resolve({ nodes: [...byUrl.values()], truncated: false });
+    },
+
+    /**
+     * The same [since, until) window on `createdAt` the live client applies. A
+     * handle missing from the fixtures has simply commented nowhere.
+     */
+    listIssueCommentsBy(handle: string, since: Date, until: Date): Promise<IssueCommentsOutcome> {
+      const nodes = (fixtures.commented?.[handle] ?? []).filter((n) => {
+        const created = Date.parse(n.createdAt);
+        return created >= since.getTime() && created < until.getTime();
+      });
+      return Promise.resolve({ status: "found", nodes });
     },
 
     /** Fixtures cost nothing, so there is no rate-limit budget to report. */

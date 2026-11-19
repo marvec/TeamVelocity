@@ -3,12 +3,8 @@ import { Tabs } from "@base-ui/react/tabs";
 import type { CommentRow, CommitRow, ScoredPr, TotalsData } from "../../../shared/schema/data";
 import { bandBgClass, formatLoc, formatNumber, formatScore } from "../../lib/format";
 import { cn } from "../../lib/cn";
+import { COMMENT_LABEL } from "../../lib/copy-export";
 
-const COMMENT_LABEL: Record<CommentRow["kind"], string> = {
-  review: "review comment",
-  review_summary: "review",
-  issue: "comment",
-};
 
 type ContribTab = "prs" | "commits" | "comments" | "loc";
 

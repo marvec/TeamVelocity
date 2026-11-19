@@ -3,6 +3,7 @@ import {
   CACHE_VERSION,
   emptyHandleCache,
   parseHandleCache,
+  readStaleCoverage,
   serializeHandleCache,
   type HandleCache,
 } from "./cache";
@@ -154,5 +155,38 @@ describe("emptyHandleCache", () => {
     const cache = emptyHandleCache("github", "alice");
     const back = parseHandleCache(JSON.parse(JSON.stringify(serializeHandleCache(cache))));
     expect(back.coverage).toBeUndefined();
+  });
+});
+
+describe("readStaleCoverage", () => {
+  const written = (version: number): unknown => ({
+    ...(JSON.parse(JSON.stringify(serializeHandleCache(populated()))) as Record<string, unknown>),
+    version,
+  });
+
+  it("is at version 3, so every cache written before issue comments were collected is refetched", () => {
+    expect(CACHE_VERSION).toBe(3);
+  });
+
+  it("recovers the coverage of a file written by an older version", () => {
+    expect(readStaleCoverage(written(2))).toEqual({
+      since: new Date("2026-03-01T00:00:00.000Z"),
+      until: new Date("2026-09-01T00:00:00.000Z"),
+    });
+  });
+
+  it("gives nothing for a file at the current version — that coverage is real, not a hint", () => {
+    expect(readStaleCoverage(written(CACHE_VERSION))).toBeUndefined();
+  });
+
+  it("gives nothing for a stale file that never covered anything", () => {
+    const raw = { ...(written(2) as Record<string, unknown>), coverage: null };
+    expect(readStaleCoverage(raw)).toBeUndefined();
+  });
+
+  it("gives nothing for junk or an unreadable coverage", () => {
+    expect(readStaleCoverage(null)).toBeUndefined();
+    expect(readStaleCoverage("nope")).toBeUndefined();
+    expect(readStaleCoverage({ version: 2, coverage: { since: "march", until: "may" } })).toBeUndefined();
   });
 });

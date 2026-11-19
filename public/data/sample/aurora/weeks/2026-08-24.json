@@ -2,7 +2,7 @@
   "weekStart": "2026-08-24",
   "weekEnd": "2026-08-31",
   "label": "2026/08/24–08/30",
-  "velocity": 56,
+  "velocity": 59.9,
   "velocityBand": "yellow",
   "warmingUp": false,
   "totals": {
@@ -10,7 +10,7 @@
     "prsMerged": 6,
     "prsClosed": 1,
     "commits": 20,
-    "comments": 9,
+    "comments": 12,
     "locAdded": 1343,
     "locRemoved": 384
   },
@@ -286,7 +286,7 @@
     {
       "handle": "adalovelace",
       "name": "Ada Lovelace",
-      "velocity": 41.6,
+      "velocity": 51.8,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -315,7 +315,7 @@
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 59.3,
+          "velocity": 42,
           "velocityBand": "yellow",
           "warmingUp": false
         },
@@ -355,7 +355,7 @@
             "locAdded": 550,
             "locRemoved": 114
           },
-          "velocity": 79,
+          "velocity": 75.2,
           "velocityBand": "green",
           "warmingUp": false
         }
@@ -542,7 +542,7 @@
     {
       "handle": "gracehopper",
       "name": "Grace Hopper",
-      "velocity": 58.1,
+      "velocity": 56.6,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -550,7 +550,7 @@
         "prsMerged": 1,
         "prsClosed": 1,
         "commits": 2,
-        "comments": 3,
+        "comments": 4,
         "locAdded": 281,
         "locRemoved": 122
       },
@@ -587,11 +587,11 @@
             "prsMerged": 0,
             "prsClosed": 1,
             "commits": 1,
-            "comments": 3,
+            "comments": 4,
             "locAdded": 156,
             "locRemoved": 49
           },
-          "velocity": 48,
+          "velocity": 48.9,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -700,6 +700,18 @@
           "url": "https://github.com/aurora/web/pull/40#c2"
         },
         {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "web",
+            "url": "https://github.com/aurora/web"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-28T19:00:43.788Z",
+          "url": "https://github.com/aurora/web/issues/145#issuecomment-9064"
+        },
+        {
           "kind": "review",
           "repo": {
             "source": "github",
@@ -742,15 +754,15 @@
     {
       "handle": "linusn",
       "name": "Linus Nyman",
-      "velocity": 69.3,
-      "velocityBand": "yellow",
+      "velocity": 71.9,
+      "velocityBand": "green",
       "warmingUp": false,
       "totals": {
         "prsOpened": 2,
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 9,
-        "comments": 2,
+        "comments": 3,
         "locAdded": 435,
         "locRemoved": 133
       },
@@ -787,12 +799,12 @@
             "prsMerged": 0,
             "prsClosed": 0,
             "commits": 1,
-            "comments": 0,
+            "comments": 1,
             "locAdded": 0,
             "locRemoved": 0
           },
-          "velocity": 36.5,
-          "velocityBand": "red",
+          "velocity": 53,
+          "velocityBand": "yellow",
           "warmingUp": false
         },
         {
@@ -811,7 +823,7 @@
             "locAdded": 435,
             "locRemoved": 133
           },
-          "velocity": 67.7,
+          "velocity": 64.7,
           "velocityBand": "yellow",
           "warmingUp": false
         }
@@ -918,6 +930,18 @@
           "prNumber": 42,
           "createdAt": "2026-08-27T03:53:12.677Z",
           "url": "https://github.com/aurora/web/pull/42#c1"
+        },
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-27T07:34:15.212Z",
+          "url": "https://github.com/aurora/infra/issues/107#issuecomment-9065"
         }
       ],
       "commits": [
@@ -1034,7 +1058,7 @@
     {
       "handle": "margaretp",
       "name": "Margaret Park",
-      "velocity": 40.8,
+      "velocity": 68.5,
       "velocityBand": "yellow",
       "warmingUp": false,
       "totals": {
@@ -1042,7 +1066,7 @@
         "prsMerged": 1,
         "prsClosed": 0,
         "commits": 3,
-        "comments": 2,
+        "comments": 3,
         "locAdded": 77,
         "locRemoved": 15
       },
@@ -1059,7 +1083,7 @@
             "prsMerged": 1,
             "prsClosed": 0,
             "commits": 2,
-            "comments": 2,
+            "comments": 3,
             "locAdded": 77,
             "locRemoved": 15
           },
@@ -1129,6 +1153,18 @@
         }
       ],
       "comments": [
+        {
+          "kind": "issue",
+          "repo": {
+            "source": "github",
+            "owner": "aurora",
+            "name": "infra",
+            "url": "https://github.com/aurora/infra"
+          },
+          "prNumber": null,
+          "createdAt": "2026-08-28T12:26:40.191Z",
+          "url": "https://github.com/aurora/infra/issues/144#issuecomment-9066"
+        },
         {
           "kind": "issue",
           "repo": {
@@ -1211,7 +1247,7 @@
         "locAdded": 0,
         "locRemoved": 0
       },
-      "velocity": 21.2,
+      "velocity": 16.3,
       "velocityBand": "red",
       "warmingUp": false
     },
@@ -1227,11 +1263,11 @@
         "prsMerged": 2,
         "prsClosed": 0,
         "commits": 7,
-        "comments": 2,
+        "comments": 4,
         "locAdded": 202,
         "locRemoved": 88
       },
-      "velocity": 51.4,
+      "velocity": 55.3,
       "velocityBand": "yellow",
       "warmingUp": false
     },
@@ -1247,11 +1283,11 @@
         "prsMerged": 4,
         "prsClosed": 1,
         "commits": 7,
-        "comments": 7,
+        "comments": 8,
         "locAdded": 1141,
         "locRemoved": 296
       },
-      "velocity": 68.2,
+      "velocity": 68.4,
       "velocityBand": "yellow",
       "warmingUp": false
     }

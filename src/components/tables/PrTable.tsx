@@ -53,7 +53,7 @@ export function PrTable({ prs, showAuthor = true }: { prs: ScoredPr[]; showAutho
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto" data-testid="pr-table-scroll">
       <table className="w-full border-collapse text-sm" data-testid="pr-table">
         <thead>
           <tr className="border-b border-border text-left text-xs uppercase tracking-wide text-foreground-muted">

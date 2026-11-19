@@ -89,10 +89,11 @@ describe("memory cache store", () => {
 describe("loadHandleCache", () => {
   it("returns an empty, uncovered cache when nothing is stored", async () => {
     const { logger, warnings } = collectingLogger();
-    const cache = await loadHandleCache(createMemoryCacheStore(), "github", "alice", logger);
+    const { cache, staleCoverage } = await loadHandleCache(createMemoryCacheStore(), "github", "alice", logger);
 
     expect(cache.coverage).toBeUndefined();
     expect(cache.prs.size).toBe(0);
+    expect(staleCoverage).toBeUndefined();
     expect(warnings).toEqual([]);
   });
 
@@ -104,7 +105,7 @@ describe("loadHandleCache", () => {
 
     await saveHandleCache(store, original);
 
-    expect(await loadHandleCache(store, "github", "alice", logger)).toEqual(original);
+    expect(await loadHandleCache(store, "github", "alice", logger)).toEqual({ cache: original });
   });
 
   it("warns and re-fetches from scratch when the file drifted", async () => {
@@ -113,13 +114,33 @@ describe("loadHandleCache", () => {
     const stale = { ...serializeHandleCache(emptyHandleCache("github", "alice")), version: 99 };
     await store.save("github", "alice", stale);
 
-    const cache = await loadHandleCache(store, "github", "alice", logger);
+    const { cache, staleCoverage } = await loadHandleCache(store, "github", "alice", logger);
 
     // Disposable by design: drift costs API calls, never a failed pull.
     expect(cache.coverage).toBeUndefined();
     expect(cache.prs.size).toBe(0);
+    expect(staleCoverage).toBeUndefined();
     expect(warnings).toHaveLength(1);
     expect(warnings[0]).toContain("alice");
+  });
+
+  it("discards a version-2 file but hands back its old range as a widening hint", async () => {
+    const { logger, warnings } = collectingLogger();
+    const store = createMemoryCacheStore();
+    const old = emptyHandleCache("github", "alice");
+    old.coverage = { since: new Date("2026-03-10T00:00:00.000Z"), until: new Date("2026-09-01T00:00:00.000Z") };
+    await store.save("github", "alice", { ...serializeHandleCache(old), version: 2 });
+
+    const { cache, staleCoverage } = await loadHandleCache(store, "github", "alice", logger);
+
+    // The cache is empty, so every window is planned as unfetched...
+    expect(cache.coverage).toBeUndefined();
+    expect(cache.prs.size).toBe(0);
+    // ...but the old range survives separately, so the refetch never shrinks history.
+    expect(staleCoverage).toEqual(old.coverage);
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain("alice");
+    expect(warnings[0]).toMatch(/refetch/i);
   });
 
   it("warns and re-fetches when the stored blob is unreadable", async () => {
@@ -128,9 +149,10 @@ describe("loadHandleCache", () => {
     writeFileSync(join(dir, "github", "alice.json"), "{ not json", "utf8");
     const { logger, warnings } = collectingLogger();
 
-    const cache = await loadHandleCache(createFileCacheStore(dir), "github", "alice", logger);
+    const { cache, staleCoverage } = await loadHandleCache(createFileCacheStore(dir), "github", "alice", logger);
 
     expect(cache.prs.size).toBe(0);
+    expect(staleCoverage).toBeUndefined();
     expect(warnings).toHaveLength(1);
   });
 });
