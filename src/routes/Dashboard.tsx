@@ -92,7 +92,7 @@ export function Dashboard({
         onBackToTeams={clearTeam}
       />
 
-      <Card className="mb-4">
+      <Card className="mb-4" data-testid="weekly-activity">
         <CardHeader>
           <CardTitle>Weekly activity</CardTitle>
           <div className="flex flex-wrap items-center justify-end gap-x-3 gap-y-1">
@@ -125,27 +125,29 @@ export function Dashboard({
           </CardBody>
         </Card>
       ) : weekDetail ? (
-        <div className="grid gap-4 xl:grid-cols-2">
+        <div className="flex flex-col gap-4">
           <WeekPrSection week={weekDetail} onClear={clearWeek} />
           <PrRelevanceSection prs={weekDetail.prs} />
-          <MembersSection
-            week={weekDetail}
-            weights={meta.velocityWeights}
-            selectedMember={selection.member}
-            onSelect={selectMember}
-            onClear={clearMember}
-          />
-          {scope && (
-            <PersonDetailSection
-              scope={scope}
+          <div className="grid gap-4 xl:grid-cols-2">
+            <MembersSection
+              week={weekDetail}
               weights={meta.velocityWeights}
-              isMember={focusedMember !== undefined}
-              selectedRepo={selection.repo}
-              onSelectRepo={selectRepo}
-              onClearRepo={clearRepo}
-              onClearMember={clearMember}
+              selectedMember={selection.member}
+              onSelect={selectMember}
+              onClear={clearMember}
             />
-          )}
+            {scope && (
+              <PersonDetailSection
+                scope={scope}
+                weights={meta.velocityWeights}
+                isMember={focusedMember !== undefined}
+                selectedRepo={selection.repo}
+                onSelectRepo={selectRepo}
+                onClearRepo={clearRepo}
+                onClearMember={clearMember}
+              />
+            )}
+          </div>
         </div>
       ) : weekEntry?.status === "error" && weekEntry.error ? (
         <ErrorState error={weekEntry.error} />
