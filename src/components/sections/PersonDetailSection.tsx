@@ -1,5 +1,6 @@
 import type { CommentRow, CommitRow, ScoredPr } from "../../../shared/schema/data";
 import type { VelocityWeights } from "../../../shared/types";
+import { copyPersonDetail } from "../../lib/copy-export";
 import { type RepoTotals, type Scope, repoRefKey } from "../../lib/selectors";
 import { bandTextClass, formatVelocity, velocityStackDatum } from "../../lib/format";
 import { cn } from "../../lib/cn";
@@ -8,6 +9,7 @@ import { PrTable } from "../tables/PrTable";
 import { Card, CardBody, CardHeader, CardTitle } from "../ui/Card";
 import { BandChip } from "../ui/BandChip";
 import { DeselectChip } from "../ui/Chip";
+import { CopyButton } from "../ui/CopyButton";
 import { StatRow } from "../ui/StatRow";
 import { ContributionTabs } from "./ContributionTabs";
 
@@ -92,7 +94,14 @@ export function PersonDetailSection({
     <Card data-testid="person-detail">
       <CardHeader>
         <CardTitle>{isMember ? scope.name : "Team detail"}</CardTitle>
-        {isMember && <DeselectChip label={scope.name} onClear={onClearMember} testid="clear-person" />}
+        <div className="flex shrink-0 items-center gap-2">
+          {isMember && <DeselectChip label={scope.name} onClear={onClearMember} testid="clear-person" />}
+          <CopyButton
+            getContent={() => copyPersonDetail({ scope, isMember, selectedRepo })}
+            label={isMember ? "Copy person detail" : "Copy team detail"}
+            testid="copy-person"
+          />
+        </div>
       </CardHeader>
       <CardBody className="space-y-4">
         <div className="flex flex-wrap items-center gap-4">
