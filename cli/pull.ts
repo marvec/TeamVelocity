@@ -245,18 +245,20 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
 
     for (const plan of plans) {
       const handle = plan.member.github;
-      if (full && !plan.everyWindowComplete) {
+      if (plan.staleCoverage && !plan.everyWindowComplete) {
+        // Saving now would overwrite the old-version file with one that covers
+        // nothing, losing the only record of how far back this handle's history
+        // reached. Leave it, so the next pull refetches the whole range again.
+        // Checked before --full: the old file holds no usable entities, so the
+        // partial refetch is the best this pull can show for the handle.
+        logger.warn(`@${handle}: refetch after the cache upgrade was incomplete — keeping the old cache file to retry`);
+      } else if (full && !plan.everyWindowComplete) {
         // --full threw the cached entities away before re-fetching. Saving the
         // half-built replacement would destroy accumulated history that GitHub
         // may no longer return inside --weeks, so keep what we already had and
         // let the next pull try again.
         logger.warn(`@${handle}: --full rebuild was incomplete — keeping the existing cache`);
         plan.cache = plan.stored;
-      } else if (plan.staleCoverage && !plan.everyWindowComplete) {
-        // Saving now would overwrite the old-version file with one that covers
-        // nothing, losing the only record of how far back this handle's history
-        // reached. Leave it, so the next pull refetches the whole range again.
-        logger.warn(`@${handle}: refetch after the cache upgrade was incomplete — keeping the old cache file to retry`);
       } else if (plan.windows.length > 0) {
         // Nothing fetched means `cache` is still exactly what was loaded, and
         // re-writing it would re-validate and re-serialize the handle's entire

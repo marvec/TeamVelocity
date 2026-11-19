@@ -356,6 +356,40 @@ describe("runPull — a cache-version bump refetches without shrinking history",
     expect(retry).toHaveLength(2);
     for (const call of retry) expect(call.since).toBe("2026-03-10T00:00:00.000Z");
   });
+
+  it("with --full, an incomplete refetch still shows what did arrive and keeps the hint", async () => {
+    const store = createMemoryCacheStore();
+    await seedVersion2(store, "alice");
+    await seedVersion2(store, "bob");
+    const dir = dataDir();
+    const inner = createFakeGitHubClient(fixtures);
+    const failing: GitHubClient = {
+      searchPrsByAuthors: () => Promise.reject(new Error("502")),
+      searchPrsReviewedBy: (h, s, u) => inner.searchPrsReviewedBy(h, s, u),
+      listIssueCommentsBy: (h, s, u) => inner.listIssueCommentsBy(h, s, u),
+      usage: () => inner.usage(),
+    };
+    await runPull(
+      options({
+        connector: createGitHubConnector(failing),
+        store,
+        dataDir: dir,
+        full: true,
+        requested: { since: d("2026-05-21T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") },
+      }),
+    );
+
+    // The old file held no entities, so resetting to it would blank the member;
+    // the comments and reviews that did arrive belong in this pull's dataset.
+    const weeksDir = join(dir, "acme", "weeks");
+    const weekFiles = readdirSync(weeksDir).map((f) => readFileSync(join(weeksDir, f), "utf8"));
+    expect(weekFiles.some((w) => w.includes('"kind": "issue"'))).toBe(true);
+
+    const retry = await pull(store, dir, {
+      requested: { since: d("2026-09-01T00:00:00.000Z"), until: d("2026-09-10T00:00:00.000Z") },
+    });
+    for (const call of retry) expect(call.since).toBe("2026-03-10T00:00:00.000Z");
+  });
 });
 
 describe("runPull — batching handles that share a window", () => {

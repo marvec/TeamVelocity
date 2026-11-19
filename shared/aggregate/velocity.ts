@@ -16,7 +16,7 @@ export interface VelocityInput {
   mergedPRs: number;
   /** PRs opened in the week. */
   prsOpened: number;
-  /** Review activity by the member/team: reviews + review comments. */
+  /** Comment activity by the member/team: reviews, review comments and issue/PR conversation comments. */
   reviewActivity: number;
   /** Commits authored in the week. */
   commits: number;
