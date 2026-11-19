@@ -9,17 +9,18 @@ import type { CommentRow, CommitRow, ScoredPr, TotalsData, WeekDetail } from "..
 import { formatLoc, formatNumber, formatScore, formatVelocity } from "./format";
 import { type Scope, repoRefKey } from "./selectors";
 
+/** How each comment kind is labelled, in the app (ContributionTabs) and in copies. */
+export const COMMENT_LABEL: Record<CommentRow["kind"], string> = {
+  review: "review comment",
+  review_summary: "review",
+  issue: "comment",
+};
+
 export interface CopyContent {
   html: string;
   markdown: string;
 }
 
-/** Mirrors the in-app comment labels (ContributionTabs). */
-const COMMENT_LABEL: Record<CommentRow["kind"], string> = {
-  review: "review comment",
-  review_summary: "review",
-  issue: "comment",
-};
 
 // ---------------------------------------------------------------------------
 // Escaping primitives
@@ -134,10 +135,6 @@ function totalsLine(t: TotalsData): string {
   ].join(" · ");
 }
 
-function titled(base: string, weekLabel: string | undefined): string {
-  return weekLabel ? `${base} · ${weekLabel}` : base;
-}
-
 function byScoreDesc(prs: ScoredPr[]): ScoredPr[] {
   return [...prs].sort((a, b) => b.score - a.score);
 }
@@ -200,8 +197,6 @@ export interface PersonDetailCopyInput {
   isMember: boolean;
   /** `owner/name` key of the selected repo (`repoRefKey`), if any. */
   selectedRepo?: string;
-  /** Optional week label appended to the heading for context. */
-  weekLabel?: string;
 }
 
 function repoPrList(prs: ScoredPr[], showAuthor: boolean): CopyContent {
@@ -238,8 +233,8 @@ function commentList(comments: CommentRow[]): CopyContent {
   if (comments.length === 0) return paragraph(text("No comments in this repo."));
   return list(
     comments.map((c) => {
-      const label = COMMENT_LABEL[c.kind] + (c.prNumber !== null ? ` on #${String(c.prNumber)}` : "");
-      return join([text(c.createdAt.slice(0, 10)), link(label, c.url)], " · ");
+      const kindLabel = COMMENT_LABEL[c.kind] + (c.prNumber !== null ? ` on #${String(c.prNumber)}` : "");
+      return join([text(c.createdAt.slice(0, 10)), link(kindLabel, c.url)], " · ");
     }),
   );
 }
@@ -249,8 +244,8 @@ function commentList(comments: CommentRow[]): CopyContent {
  * PRs, a per-repo table with repo links, and — when a repo is selected — that
  * repo's PRs, commits, and comments with their links.
  */
-export function copyPersonDetail({ scope, isMember, selectedRepo, weekLabel }: PersonDetailCopyInput): CopyContent {
-  const blocks: CopyContent[] = [heading(2, text(titled(isMember ? scope.name : "Team detail", weekLabel)))];
+export function copyPersonDetail({ scope, isMember, selectedRepo }: PersonDetailCopyInput): CopyContent {
+  const blocks: CopyContent[] = [heading(2, text(isMember ? scope.name : "Team detail"))];
 
   if (isMember && scope.band) {
     blocks.push(paragraph(text(`Velocity: ${String(formatVelocity(scope.velocity ?? 0))} (${scope.band})`)));

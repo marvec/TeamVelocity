@@ -37,6 +37,7 @@ import { mergeHandleCache } from "./cache/merge";
 import {
   createFileCacheStore,
   createMemoryCacheStore,
+  firstLine,
   loadHandleCache,
   saveHandleCache,
   type CacheStore,
@@ -267,7 +268,7 @@ export async function runPull(opts: RunPullOptions): Promise<void> {
           // Symmetric with the load path: the cache is an optimization, so a
           // failed write costs the next pull some API calls rather than
           // throwing away a dataset that was fetched successfully.
-          const reason = err instanceof Error ? err.message.split("\n")[0] : String(err);
+          const reason = firstLine(err);
           logger.warn(`@${handle}: could not write the cache (${reason}) — the next pull will re-fetch this range`);
         }
       }

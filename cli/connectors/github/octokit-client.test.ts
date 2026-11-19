@@ -311,7 +311,7 @@ describe("gitHub client — member issue comments", () => {
     const { fn, calls } = recorder([commentsPage([], { next: "P2" }), commentsPage([comment(1, "2026-09-10T00:00:00Z")])]);
     const out = await createGitHubClientFromGraphql(fn).listIssueCommentsBy("alice", since, until);
     expect(calls).toHaveLength(1);
-    expect(out).toEqual({ status: "found", nodes: [], truncated: false });
+    expect(out).toEqual({ status: "found", nodes: [] });
   });
 
   it("excludes an old comment edited inside the window", async () => {

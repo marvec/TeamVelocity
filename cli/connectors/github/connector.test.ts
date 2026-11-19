@@ -358,7 +358,7 @@ function scripted(answer: {
         calls.push({ kind: "commented", handles: [handle], bailOnCap: false });
         const out: IssueCommentsOutcome | Error = answer.commented
           ? answer.commented(handle)
-          : { status: "found", nodes: [], truncated: false };
+          : { status: "found", nodes: [] };
         return out instanceof Error ? Promise.reject(out) : Promise.resolve(out);
       },
       usage: () => ({ cost: 0, remaining: null }),
@@ -579,7 +579,7 @@ describe("gitHub connector — issue comment failures", () => {
     const { client } = scripted({
       authored: () => ({ nodes: [prBy("alice", 1), prBy("bob", 2)], truncated: false }),
       commented: (handle) =>
-        handle === "bob" ? new Error("502 Bad Gateway") : { status: "found", nodes: [commentOn(3, 1)], truncated: false },
+        handle === "bob" ? new Error("502 Bad Gateway") : { status: "found", nodes: [commentOn(3, 1)] },
     });
     const results = await createGitHubConnector(client).collect({
       ...context([alice, bob, dave]),
@@ -598,7 +598,7 @@ describe("gitHub connector — issue comment failures", () => {
     const warnings: string[] = [];
     const { client } = scripted({
       authored: () => ({ nodes: [prBy("alice", 1)], truncated: false }),
-      commented: (handle) => (handle === "alice" ? { status: "userNotFound" } : { status: "found", nodes: [], truncated: false }),
+      commented: (handle) => (handle === "alice" ? { status: "userNotFound" } : { status: "found", nodes: [] }),
     });
     const results = await createGitHubConnector(client).collect({
       ...context([alice, bob]),

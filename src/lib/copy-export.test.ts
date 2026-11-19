@@ -278,10 +278,6 @@ describe("copyPersonDetail", () => {
     expect(markdown).toContain("3 PRs · 9 commits · 2 comments · 358 LOC +112/−246");
   });
 
-  it("adds the week label to the heading when given", () => {
-    const { markdown } = copyPersonDetail({ scope: teamScope(week()), isMember: false, weekLabel: "2026/08/03–08/09" });
-    expect(markdown).toContain("## Team detail · 2026/08/03–08/09");
-  });
 
   it("team scope with a repo selected shows commit authors", () => {
     const { markdown } = copyPersonDetail({

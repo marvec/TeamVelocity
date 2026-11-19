@@ -101,7 +101,7 @@ export interface LoadedHandleCache {
   staleCoverage?: { since: Date; until: Date };
 }
 
-function firstLine(err: unknown): string {
+export function firstLine(err: unknown): string {
   return err instanceof Error ? (err.message.split("\n")[0] ?? "") : String(err);
 }
 

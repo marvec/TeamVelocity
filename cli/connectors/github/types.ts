@@ -74,11 +74,10 @@ export interface GhIssueCommentNode {
  * A member's comments within a window, or word that the handle resolves to no
  * user (renamed or deleted). The two must stay apart: an empty list would let
  * the caller cache the window as covered for a handle that can never answer.
- * The connection is walked to `since`, never capped, so `truncated` is always
- * false — it is there so a found result reads like a {@link SearchOutcome}.
+ * The connection is walked to `since`, never capped, so nothing is truncated.
  */
 export type IssueCommentsOutcome =
-  | { status: "found"; nodes: GhIssueCommentNode[]; truncated: false }
+  | { status: "found"; nodes: GhIssueCommentNode[] }
   | { status: "userNotFound" };
 
 /**

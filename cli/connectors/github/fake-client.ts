@@ -57,7 +57,7 @@ export function createFakeGitHubClient(fixtures: GitHubFixtures): GitHubClient {
         const created = Date.parse(n.createdAt);
         return created >= since.getTime() && created < until.getTime();
       });
-      return Promise.resolve({ status: "found", nodes, truncated: false });
+      return Promise.resolve({ status: "found", nodes });
     },
 
     /** Fixtures cost nothing, so there is no rate-limit budget to report. */

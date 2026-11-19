@@ -294,7 +294,7 @@ export function createGitHubClientFromGraphql(graphql: GraphqlFn, logger?: Logge
       }
       cursor = !reachedSince && pageInfo.hasNextPage ? pageInfo.endCursor : null;
     } while (cursor);
-    return { status: "found", nodes: out, truncated: false };
+    return { status: "found", nodes: out };
   }
 
   async function searchAll<T>(
@@ -350,9 +350,7 @@ export function createGitHubClientFromGraphql(graphql: GraphqlFn, logger?: Logge
       );
     },
 
-    listIssueCommentsBy(handle, since, until) {
-      return listIssueComments(handle, since, until);
-    },
+    listIssueCommentsBy: listIssueComments,
 
     usage() {
       return { cost, remaining };

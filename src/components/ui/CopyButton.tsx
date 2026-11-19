@@ -5,7 +5,6 @@ import { Button } from "./Button";
 type Status = "idle" | "copied" | "failed";
 
 const STATUS_TEXT: Record<Status, string> = { idle: "Copy", copied: "Copied", failed: "Copy failed" };
-const ANNOUNCEMENT: Record<Status, string> = { idle: "", copied: "Copied", failed: "Copy failed" };
 const RESET_MS = 2000;
 
 /**
@@ -79,7 +78,7 @@ export function CopyButton({
         {STATUS_TEXT[status]}
       </Button>
       <span role="status" aria-live="polite" className="sr-only">
-        {ANNOUNCEMENT[status]}
+        {status === "idle" ? "" : STATUS_TEXT[status]}
       </span>
     </>
   );
